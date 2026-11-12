@@ -15,65 +15,59 @@ const rows = ww.districts // เรียงจาก BOD ต่ำ (ดี) ไ
 const dd = rows.find((d) => d.name === DD)
 const exceed = rows.filter((d) => d.bod > ww.standard).length
 
-// พญาไท: เขตข้างเคียงที่น้ำดีที่สุด ใช้เป็นคู่เทียบในหน้านี้
-const PY = 'พญาไท'
-const py = rows.find((d) => d.name === PY)
-const barColor = (name) => (name === DD ? color.dindaeng : name === PY ? color.contrast : color.other)
+// เขตข้างเคียงที่เน้นด้วยเขียวอ่อน · ห้วยขวางยกป้ายขึ้นอีกชั้น ไม่ให้ชนราชเทวี (ห่างกันแค่ 1 แท่ง) และไม่ทับแท่งที่สูงกว่าทางขวา
+const NEAR = { พญาไท: { anchor: 'middle', dy: 0 }, ราชเทวี: { anchor: 'end', dy: 0 }, ห้วยขวาง: { anchor: 'end', dy: 30 } }
+const barColor = (name) => (name === DD ? color.dindaeng : NEAR[name] ? color.neighbor : color.other)
 
-// ดินแดงต้องลด BOD ลงเท่าไรถึงจะเท่ามาตรฐาน
-const cut = dd.bod - ww.standard
+// จุดตรวจคุณภาพน้ำที่อยู่ในเขตดินแดง (ม.ค.–เม.ย. 2566) เรียงจาก BOD มากไปน้อย
+const stations = ww.stations
+const overCount = stations.filter((x) => x.bod > ww.standard).length
+const doZero = stations.filter((x) => x.doZeroAll).length
+const MONTH = { '01': 'ม.ค.', '02': 'ก.พ.', '03': 'มี.ค.', '04': 'เม.ย.' }
 
-/** แท่งเดียวของดินแดง: ส่วนที่ไม่เกินมาตรฐาน + ส่วนที่เกิน และลูกศรบอกว่าต้องลดเท่าไร */
-function StandardBar() {
+/** แท่งแนวนอนรายจุดตรวจ: ส้ม = เกินมาตรฐาน · เขียว = ผ่าน · เส้นประ = มาตรฐาน 15 */
+function StationBars() {
   const [tip, setTip] = useState(null)
-  const W = 660
-  const H = 260
-  const x0 = 24
-  const x1 = W - 24
-  const MAX = 30
-  const X = (v) => x0 + (v / MAX) * (x1 - x0)
-  const y = 64
-  const h = 64
-  const ticks = [0, 5, 10, 15, 20, 25, 30]
-  const segs = [
-    { key: 'ok', from: 0, to: ww.standard, fill: color.other, title: 'ไม่เกินมาตรฐาน', rows: [['ช่วง', `0–${ww.standard} มก./ล.`]] },
-    { key: 'over', from: ww.standard, to: dd.bod, fill: color.dindaeng, title: 'ส่วนที่เกินมาตรฐาน', rows: [['เกิน', `${fmt.dec(cut)} มก./ล.`], ['BOD ดินแดง', `${fmt.dec(dd.bod)} มก./ล.`]] },
-  ]
+  const MAX = 40
+  const pct = (v) => `${(v / MAX) * 100}%`
   return (
-    <div className={s.barWrap}>
-      <svg viewBox={`0 0 ${W} ${H}`} className={s.barSvg} role="img" aria-label="BOD ดินแดงเทียบมาตรฐาน">
-        <defs>
-          <marker id="ww-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill={color.text} />
-          </marker>
-        </defs>
-        {ticks.map((t) => (
-          <g key={t}>
-            <line x1={X(t)} x2={X(t)} y1={y - 12} y2={y + h + 6} stroke={color.grid} />
-            <text x={X(t)} y={y + h + 30} textAnchor="middle" fontSize={20} fill={color.textFaint}>{t}</text>
-          </g>
-        ))}
-        {/* ส่วนไม่เกิน: ขอบซ้ายตรงติดฐาน · ส่วนเกิน: ปลายขวามน 4px · เว้น 2px ระหว่างสองส่วน */}
-        <rect x={X(0)} y={y} width={X(ww.standard) - X(0) - 1} height={h} fill={segs[0].fill}
-          onMouseEnter={() => setTip(segs[0])} onMouseLeave={() => setTip(null)} />
-        <path
-          d={`M${X(ww.standard) + 1},${y} H${X(dd.bod) - 4} a4,4 0 0 1 4,4 V${y + h - 4} a4,4 0 0 1 -4,4 H${X(ww.standard) + 1} z`}
-          fill={segs[1].fill} onMouseEnter={() => setTip(segs[1])} onMouseLeave={() => setTip(null)} />
-        <text x={(X(0) + X(ww.standard)) / 2} y={y + h / 2} dy="0.35em" textAnchor="middle" fontSize={22} fontWeight={600}
-          fill={color.text} pointerEvents="none">มาตรฐาน {ww.standard}</text>
-        <text x={(X(ww.standard) + X(dd.bod)) / 2} y={y + h / 2} dy="0.35em" textAnchor="middle" fontSize={22} fontWeight={700}
-          fill={color.surface} pointerEvents="none">ส่วนที่เกิน</text>
-        <text x={X(dd.bod)} y={y - 22} textAnchor="middle" fontSize={22} fontWeight={700} fill={color.text}>ดินแดง {fmt.dec(dd.bod)}</text>
-        {/* ลูกศร: ต้องลดจาก 25.81 ลงมาที่ 15 */}
-        <line x1={X(dd.bod)} x2={X(ww.standard) + 4} y1={y + h + 64} y2={y + h + 64} stroke={color.text} strokeWidth={2.5} markerEnd="url(#ww-arrow)" />
-        <line x1={X(dd.bod)} x2={X(dd.bod)} y1={y + h + 54} y2={y + h + 74} stroke={color.text} strokeWidth={2} />
-        <text x={(X(ww.standard) + X(dd.bod)) / 2} y={y + h + 100} textAnchor="middle" fontSize={22} fontWeight={700} fill={color.text}>
-          ต้องลด {fmt.dec(cut)} มก./ล.
-        </text>
-      </svg>
+    <div className={s.stations}>
+      {stations.map((x) => {
+        const over = x.bod > ww.standard
+        return (
+          <div key={x.id} className={s.stRow} onMouseEnter={() => setTip(x)} onMouseLeave={() => setTip(null)}>
+            <div className={s.stLabel}>
+              <b>{x.canal}</b>
+              <span>{x.point}</span>
+            </div>
+            <div className={s.stTrack}>
+              <div className={s.stBar} style={{ width: pct(x.bod), background: over ? color.dindaeng : color.contrast }} />
+              <span className={`${s.stVal} num`} style={{ left: pct(x.bod) }}>{fmt.dec(x.bod)}</span>
+              <div className={s.stStd} style={{ left: pct(ww.standard) }} />
+            </div>
+          </div>
+        )
+      })}
+      <div className={s.stAxis}>
+        <div />
+        <div className={s.stTrack}>
+          <span className={s.stStdLabel} style={{ left: pct(ww.standard) }}>มาตรฐาน {ww.standard}</span>
+        </div>
+      </div>
       {tip && (
-        <div className={s.barTip}>
-          <TipBox active payload={[{ payload: tip }]} render={(r) => ({ title: r.title, rows: r.rows })} />
+        <div className={s.stTip}>
+          <TipBox
+            active
+            payload={[{ payload: tip }]}
+            render={(r) => ({
+              title: `${r.canal} · ${r.point}`,
+              rows: [
+                ['BOD เฉลี่ย', `${fmt.dec(r.bod)} มก./ล.`],
+                ...Object.entries(r.months).map(([k, v]) => [`BOD ${MONTH[k.slice(5)]} ${k.slice(0, 4)}`, `${v}`]),
+                ['ออกซิเจน (DO) เฉลี่ย', `${fmt.dec(r.do, 1)} มก./ล.`],
+              ],
+            })}
+          />
         </div>
       )}
     </div>
@@ -122,7 +116,7 @@ export default function Wastewater() {
     <SlideFrame
       kicker="03 · น้ำเสีย"
       title="น้ำในคลองดินแดงแย่อันดับ 49 ทั้งที่มีโรงบำบัดใหญ่ที่สุดของกรุงเทพฯ"
-      source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (น้ำเสีย: ค่าเฉลี่ยคุณภาพคลองปี 2540–2567, สำนักการระบายน้ำ) · BOD ยิ่งสูงยิ่งเน่า · มาตรฐานคุณภาพน้ำในคลอง 15 มก./ล."
+      source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (น้ำเสีย: ค่าเฉลี่ยคุณภาพคลองปี 2540–2567, สำนักการระบายน้ำ); จุดตรวจรายจุด: data.bangkok.go.th ชุด waterquality ม.ค.–เม.ย. 2566 · BOD ยิ่งสูงยิ่งเน่า · มาตรฐานคุณภาพน้ำในคลอง 15 มก./ล."
     >
       <div className={s.grid}>
         <ChartCard
@@ -130,7 +124,7 @@ export default function Wastewater() {
           note={`เรียงจากน้ำดีไปน้ำแย่ · ${exceed} เขตเกินมาตรฐาน`}
           legend={[
             { label: 'ดินแดง', color: color.dindaeng },
-            { label: 'พญาไท (เขตข้างเคียง)', color: color.contrast },
+            { label: 'เขตข้างเคียง', color: color.neighbor },
             { label: 'เขตอื่น', color: color.other },
           ]}
         >
@@ -153,8 +147,10 @@ export default function Wastewater() {
                         {/* พื้นที่กดของแท่งดินแดง (โปร่งใส ครอบแท่งและป้าย) */}
                         <rect x={x - 4} y={y - 36} width={width + 8} height={height + 36} fill="transparent" />
                       </g>
-                    ) : value === PY ? (
-                      <SvgLabel x={x + width / 2} y={y - 12} anchor="middle">พญาไท {fmt.dec(py.bod)}</SvgLabel>
+                    ) : NEAR[value] ? (
+                      <SvgLabel x={x + width / 2} y={y - 12 - NEAR[value].dy} anchor={NEAR[value].anchor} weight={500}>
+                        {value} {fmt.dec(rows.find((d) => d.name === value).bod)}
+                      </SvgLabel>
                     ) : null
                   }
                 />
@@ -166,18 +162,19 @@ export default function Wastewater() {
         {std ? (
         <GrowFrom from={std.from} closing={std.closing} onClosed={() => setStd(null)}>
         <ChartCard
-          title="BOD ดินแดงเทียบมาตรฐาน"
-          note={`ต้องลดลง ${fmt.dec(cut)} มก./ล. ถึงจะเท่ามาตรฐาน ${ww.standard} มก./ล.`}
+          title={`${doZero} ใน ${stations.length} จุดตรวจในดินแดง น้ำไม่มีออกซิเจนเลย`}
+          note={`BOD เฉลี่ย ม.ค.–เม.ย. 2566 · ${overCount} จุดเกินมาตรฐาน ${ww.standard} มก./ล.`}
           legend={[
-            { label: `ไม่เกินมาตรฐาน (0–${ww.standard})`, color: color.other },
-            { label: 'ส่วนที่เกินมาตรฐาน', color: color.dindaeng },
+            { label: 'เกินมาตรฐาน', color: color.dindaeng },
+            { label: 'ผ่านมาตรฐาน', color: color.contrast },
+            { label: `มาตรฐาน กทม. ${ww.standard}`, color: color.reference, kind: 'dash' },
           ]}
         >
-          <StandardBar />
+          <StationBars />
         </ChartCard>
         </GrowFrom>
         ) : (
-          <div className={s.hint}>กดที่แท่งดินแดง เพื่อดู BOD เทียบมาตรฐาน</div>
+          <div className={s.hint}>กดที่แท่งดินแดง เพื่อดูจุดตรวจน้ำในเขต</div>
         )}
       </div>
     </SlideFrame>

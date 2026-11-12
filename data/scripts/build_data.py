@@ -8,6 +8,7 @@
 2. อ่านค่าดิบจาก xlsx/csv ของกลุ่ม แล้วแก้ปัญหาที่ตรวจพบ
    - สะกด "ราษฏร์บูรณะ" → "ราษฎร์บูรณะ"
    - ไฟล์ BOD ชื่อเขตเลื่อน 2 แถว: ค่าที่เขียน "ธนบุรี" เป็นของทุ่งครุ, ค่าที่เขียน "นนทบุรี" เป็นของธนบุรี
+   - ไฟล์จุดตรวจคุณภาพน้ำ (waterquality) คอลัมน์ "ดินแดง" คือพื้นที่บริการโรงบำบัด จึงเลือกจุดด้วยพิกัดในขอบเขตเขตแทน
 3. ตรวจว่าทุกชุดมีครบ 50 เขตชื่อตรงกัน และค่าดิบให้คะแนนตรงกับดัชนีทางการ
 4. ตรวจตัวเลขหลักให้ตรงกับ ข้อมูลรวม_ตรวจแล้ว.md ถ้าไม่ตรงจะหยุดทันที (ไม่เขียน JSON)
 
@@ -298,6 +299,56 @@ for r in bod:
     r['score'] = r2(scores[r['name']]['wastewater'], 4)
 dd_b = next(r for r in bod if r['name'] == DD)
 check('BOD ดินแดง', dd_b['bod'], 25.81)
+
+# จุดตรวจคุณภาพน้ำรายจุด (data.bangkok.go.th ชุด waterquality, cp874, ม.ค.–เม.ย. 2566)
+# คอลัมน์ service_area_plant = "ดินแดง" คือพื้นที่บริการของโรงบำบัด ไม่ใช่ตัวเขต
+# จึงเลือกจุดจากพิกัดที่อยู่ในขอบเขตเขตดินแดง (OSM relation 2938031) แทน
+rel = json.loads((RAW / 'map' / 'osm_boundary_dindaeng.json').read_text())['elements'][0]
+segs = [[(p['lon'], p['lat']) for p in m['geometry']] for m in rel['members'] if m['type'] == 'way' and m['role'] == 'outer']
+ring = segs.pop(0)
+while segs:
+    for i, sg in enumerate(segs):
+        if sg[0] == ring[-1]:
+            ring += sg[1:]
+        elif sg[-1] == ring[-1]:
+            ring += sg[::-1][1:]
+        else:
+            continue
+        segs.pop(i)
+        break
+    else:
+        ERRORS.append('ต่อเส้นขอบเขตดินแดงไม่ครบวง')
+        break
+
+
+def in_dindaeng(lon, lat):
+    inside = False
+    for (x1, y1), (x2, y2) in zip(ring, ring[1:]):
+        if (y1 > lat) != (y2 > lat) and lon < x1 + (lat - y1) * (x2 - x1) / (y2 - y1):
+            inside = not inside
+    return inside
+
+
+wq_text = (RAW / 'waterquality' / 'waterquality_bma.csv').read_bytes().decode('cp874')
+wq = {}
+for r in csv.DictReader(wq_text.splitlines()):
+    lon, lat = float(r['longitude']), float(r['lattitude'])
+    if not in_dindaeng(lon, lat):
+        continue
+    k = r['sample_id']
+    wq.setdefault(k, {'canal': r['canal'], 'point': r['sample_points'].strip(), 'months': {}, 'do': []})
+    wq[k]['months'][f"{r['sample_year']}-{int(r['sample_month']):02d}"] = float(r['bod_value'])
+    wq[k]['do'].append(float(r['do_value']))  # ออกซิเจนละลายน้ำ (มก./ล.)
+stations = sorted(
+    ({'id': k, 'canal': v['canal'], 'point': v['point'], 'bod': r2(st.mean(v['months'].values())),
+      'do': r2(st.mean(v['do'])), 'doZeroAll': all(d == 0 for d in v['do']), 'months': v['months']}
+     for k, v in wq.items()),
+    key=lambda x: -x['bod'])
+check('จุดตรวจน้ำในดินแดง (จุด)', len(stations), 7)
+check('ทุกจุดมีข้อมูลครบ 4 เดือน', all(len(x['months']) == 4 for x in stations), True)
+check('BOD จุดตรวจ (มากไปน้อย)', [x['bod'] for x in stations], [36.5, 32.25, 31.25, 28.0, 27.5, 25.0, 9.5])
+check('จุดเกินมาตรฐาน 15', sum(x['bod'] > 15 for x in stations), 6)
+check('จุดที่ DO = 0 ทุกเดือน', sum(x['doZeroAll'] for x in stations), 6)
 check('อันดับ BOD ดินแดง', dd_b['rank'], 49)
 check('มัธยฐาน BOD', r2(st.median(r['bod'] for r in bod)), 11.59)
 write('wastewater', {
@@ -307,6 +358,8 @@ write('wastewater', {
     'neighbors': ['ห้วยขวาง', 'ราชเทวี', 'จตุจักร', 'พญาไท'],
     'districts': sorted(bod, key=lambda r: r['rank']),
     'scoreFormula': {'lo': bmin, 'hi': bmax},
+    'stations': stations,
+    'stationsSource': 'data.bangkok.go.th ชุด waterquality (สำนักการระบายน้ำ) · ค่าเฉลี่ย ม.ค.–เม.ย. 2566 · จุดที่อยู่ในขอบเขตเขตดินแดง',
 })
 
 # ---------- 5. การศึกษา ----------

@@ -7,25 +7,85 @@
   gap: 64px;
 }
 
-/* แท่งเทียบมาตรฐาน (การ์ดขวา) */
-.barWrap {
+/* แท่งรายจุดตรวจ (การ์ดขวา) */
+.stations {
   position: relative;
   height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stRow,
+.stAxis {
+  display: grid;
+  grid-template-columns: 300px 1fr;
   align-items: center;
+  gap: 16px;
 }
 
-.barSvg {
-  width: 100%;
-  height: auto;
-  font-family: var(--font);
+.stLabel {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
 }
 
-.barTip {
+.stLabel b {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.stLabel span {
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stTrack {
+  position: relative;
+  height: 26px;
+  margin-right: 72px;
+}
+
+.stBar {
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+}
+
+.stVal {
   position: absolute;
-  top: 8px;
+  top: 50%;
+  transform: translate(10px, -50%);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.stStd {
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  border-left: 2px dashed var(--c-reference);
+}
+
+.stStdLabel {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+  white-space: nowrap;
+}
+
+.stTip {
+  position: absolute;
+  top: 0;
   right: 0;
   pointer-events: none;
+  z-index: 5;
 }
 
 /* การ์ดขวาโผล่หลังกดแท่งดินแดง */

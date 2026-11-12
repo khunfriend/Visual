@@ -18,7 +18,6 @@ const med = flood.medianDrainBudget / 1e6
 const sortedFloods = pts.map((d) => d.floods).sort((a, b) => a - b)
 const medFlood = (sortedFloods[24] + sortedFloods[25]) / 2 // มัธยฐานจำนวนครั้งน้ำท่วม 50 เขต
 const dd = pts.find((d) => d.name === DD)
-const { zero, top } = flood.groups
 const fd = flood.dindaeng
 
 // เขตที่ท่วมน้อยแต่ได้งบมาก: ท่วมไม่เกิน 5 ครั้ง และได้งบระบายน้ำเกิน 30 ล้าน (เกือบ 3 เท่าของค่ากลาง)
@@ -55,7 +54,6 @@ export default function Flood() {
     <SlideFrame
       kicker="02 · น้ำท่วม"
       title="ท่วมบ่อยไม่ได้แปลว่าได้งบมาก"
-      subtitle={`ดินแดงท่วม ${dd.floods} ครั้ง (อันดับ ${dd.floodRank}) แต่ได้งบระบายน้ำ ${fmt.dec(dd.m, 1)} ล้าน (อันดับ ${dd.budgetRank}) · ${top.count} เขตที่ท่วมบ่อยที่สุดได้ ${fmt.mb(top.drainBudget)} ล้าน ส่วน ${zero.count} เขตที่ไม่ท่วมเลยได้ ${fmt.mb(zero.drainBudget)} ล้าน`}
       source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (อุทกภัย: น้ำท่วมขังบนถนนสายหลัก 2568); ข้อบัญญัติงบประมาณ กทม. 2568 · ρ = Spearman correlation · ตำแหน่งจุดท่วมหาจากชื่อถนน/ซอยใน OSM (เส้นประ = ความมั่นใจปานกลาง, ไม่ได้วาง 1 จุดที่ไม่ระบุตำแหน่ง) · แผนที่ฐาน © OpenStreetMap contributors"
     >
       <div className={s.grid}>
