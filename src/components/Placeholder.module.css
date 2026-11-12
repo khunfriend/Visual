@@ -1,0 +1,32 @@
+.wrap {
+  flex: 1;
+  display: grid;
+  gap: 24px;
+  grid-auto-rows: 1fr;
+  position: relative;
+  padding-bottom: 36px;
+}
+
+.box {
+  border: 2px dashed var(--c-border);
+  border-radius: 12px;
+  background: var(--c-surfaceAlt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.label {
+  font-size: var(--fs-body);
+  color: var(--c-textFaint);
+}
+
+.status {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+}

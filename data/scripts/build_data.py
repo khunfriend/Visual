@@ -1,0 +1,495 @@
+"""
+แปลงข้อมูลดิบใน data/raw/ เป็น JSON ใน src/data/ (PRD 8.3)
+
+รัน:  npm run data      (หรือ python3 -I data/scripts/build_data.py)
+
+สิ่งที่ script นี้ทำ
+1. อ่าน Bangkok Index 2025 ฉบับทางการ (คะแนน 16 หัวข้อ × 50 เขต) เป็นแกนหลัก
+2. อ่านค่าดิบจาก xlsx/csv ของกลุ่ม แล้วแก้ปัญหาที่ตรวจพบ
+   - สะกด "ราษฏร์บูรณะ" → "ราษฎร์บูรณะ"
+   - ไฟล์ BOD ชื่อเขตเลื่อน 2 แถว: ค่าที่เขียน "ธนบุรี" เป็นของทุ่งครุ, ค่าที่เขียน "นนทบุรี" เป็นของธนบุรี
+3. ตรวจว่าทุกชุดมีครบ 50 เขตชื่อตรงกัน และค่าดิบให้คะแนนตรงกับดัชนีทางการ
+4. ตรวจตัวเลขหลักให้ตรงกับ ข้อมูลรวม_ตรวจแล้ว.md ถ้าไม่ตรงจะหยุดทันที (ไม่เขียน JSON)
+
+ห้ามแก้ไฟล์ใน src/data/ ด้วยมือ ให้แก้ที่นี่แล้วรันใหม่
+"""
+import csv
+import json
+import statistics as st
+import sys
+from pathlib import Path
+
+import openpyxl
+
+ROOT = Path(__file__).resolve().parents[2]
+RAW = ROOT / 'data' / 'raw'
+OUT = ROOT / 'src' / 'data'
+
+DD, PT = 'ดินแดง', 'ปทุมวัน'
+ERRORS = []
+
+
+# ---------- เครื่องมือ ----------
+def fix_name(s):
+    return str(s).replace('ราษฏร์', 'ราษฎร์').strip()
+
+
+def check(label, got, want, tol=0.005):
+    ok = abs(got - want) <= tol if isinstance(want, (int, float)) else got == want
+    print(f"  {'✓' if ok else '✗'} {label}: {got}" + ('' if ok else f'  (ควรเป็น {want})'))
+    if not ok:
+        ERRORS.append(label)
+
+
+def r2(x, n=2):
+    return None if x is None else round(float(x), n)
+
+
+def read_csv(name):
+    with open(RAW / name, encoding='utf-8-sig') as f:
+        return list(csv.DictReader(f))
+
+
+def sheet_rows(wb, name, min_row=2):
+    return [r for r in wb[name].iter_rows(min_row=min_row, values_only=True) if any(c is not None for c in r)]
+
+
+def rank_desc(values, v):
+    """อันดับแบบดัชนี (มากสุด = 1, ค่าเท่ากันได้อันดับเดียวกัน)"""
+    return sorted(values, reverse=True).index(v) + 1
+
+
+def spearman(x, y):
+    def ranks(v):
+        order = sorted(range(len(v)), key=lambda i: v[i])
+        r = [0.0] * len(v)
+        i = 0
+        while i < len(v):
+            j = i
+            while j + 1 < len(v) and v[order[j + 1]] == v[order[i]]:
+                j += 1
+            for k in range(i, j + 1):
+                r[order[k]] = (i + j) / 2 + 1
+            i = j + 1
+        return r
+
+    rx, ry = ranks(x), ranks(y)
+    mx, my = st.mean(rx), st.mean(ry)
+    num = sum((a - mx) * (b - my) for a, b in zip(rx, ry))
+    den = (sum((a - mx) ** 2 for a in rx) * sum((b - my) ** 2 for b in ry)) ** 0.5
+    return num / den
+
+
+def minmax_inv(x, lo, hi):
+    """คะแนน 1–50 แบบดัชนี 2025 สำหรับตัวชี้วัดที่ 'น้อยดี'"""
+    return 1 + 49 * (hi - x) / (hi - lo)
+
+
+PENDING = {}
+
+
+def write(name, data):
+    """เก็บไว้ก่อน จะเขียนลงไฟล์จริงตอนท้ายเมื่อตรวจผ่านทั้งหมด"""
+    PENDING[name] = data
+
+
+# ---------- 1. ดัชนีทางการ ----------
+print('1) Bangkok Index 2025 ฉบับทางการ')
+off = openpyxl.load_workbook(RAW / 'bangkok_index_2025_official.xlsx', data_only=True)
+DIMS = [('public', 'ด้านบริการสาธารณะ', 'บริการสาธารณะ'), ('economy', 'ด้านเศรษฐกิจ', 'เศรษฐกิจ'),
+        ('welfare', 'ด้านสวัสดิภาพ', 'สวัสดิภาพ'), ('environment', 'ด้านสิ่งแวดล้อม', 'สิ่งแวดล้อม')]
+TOPIC_KEYS = {
+    'สาธารณสุข': 'health', 'ขนส่งสาธารณะ': 'transit', 'การศึกษา': 'education', 'คุณภาพชีวิต': 'quality',
+    'งบประมาณรายเขต': 'budget', 'รายได้จากการจัดเก็บภาษี': 'tax', 'การจดทะเบียนธุรกิจ': 'business',
+    'สถานประกอบการอาหาร': 'food', 'อัคคีภัย': 'fire', 'อุทกภัย': 'flood',
+    'จุดเสี่ยงอาชญากรรม': 'crime', 'อุบัติเหตุบนท้องถนน': 'accident',
+    'ขยะ': 'waste', 'น้ำเสีย': 'wastewater', 'อากาศ': 'air', 'สวนสาธารณะ': 'parks',
+}
+topics_meta, scores = [], {}
+for key, sheet, label in DIMS:
+    rows = [r for r in off[sheet].iter_rows(values_only=True) if any(c is not None for c in r)]
+    names = [rows[0][i] for i in (3, 5, 7, 9)]
+    for n in names:
+        topics_meta.append({'key': TOPIC_KEYS[n], 'label': n, 'dim': key})
+    for r in rows[2:]:
+        d = scores.setdefault(fix_name(r[1]), {})
+        for n, i in zip(names, (4, 6, 8, 10)):
+            d[TOPIC_KEYS[n]] = r[i]
+
+DISTRICTS = sorted(scores)
+check('จำนวนเขตในดัชนี', len(DISTRICTS), 50)
+TOPICS = [t['key'] for t in topics_meta]
+DIM_TOPICS = {k: [t['key'] for t in topics_meta if t['dim'] == k] for k, _, _ in DIMS}
+
+
+def overall_of(sc):
+    dims = {k: sum(sc[t] for t in ts) / 4 for k, ts in DIM_TOPICS.items()}
+    return sum(dims.values()) / 4, dims
+
+
+def table_from(scores_map):
+    out = {}
+    for n, sc in scores_map.items():
+        o, dims = overall_of(sc)
+        out[n] = {'overall': o, 'dims': dims, 'topics': sc}
+    return out
+
+
+TBL = table_from(scores)
+ov = [TBL[n]['overall'] for n in DISTRICTS]
+check('คะแนนรวมดินแดง', r2(TBL[DD]['overall']), 17.35)
+check('อันดับดินแดง', rank_desc(ov, TBL[DD]['overall']), 50)
+check('คะแนนรวมปทุมวัน', r2(TBL[PT]['overall']), 32.03)
+
+districts_out = []
+for n in DISTRICTS:
+    t = TBL[n]
+    districts_out.append({
+        'name': n,
+        'overall': r2(t['overall'], 4),
+        'rank': rank_desc(ov, t['overall']),
+        'dims': {k: {'score': r2(v, 4), 'rank': rank_desc([TBL[m]['dims'][k] for m in DISTRICTS], v)}
+                 for k, v in t['dims'].items()},
+        'topics': {k: {'score': r2(v, 4), 'rank': rank_desc([TBL[m]['topics'][k] for m in DISTRICTS], v)}
+                   for k, v in t['topics'].items()},
+    })
+districts_out.sort(key=lambda d: d['rank'])
+dd_out = next(d for d in districts_out if d['name'] == DD)
+for k, want in [('public', 31), ('economy', 36), ('welfare', 46), ('environment', 44)]:
+    check(f'อันดับด้าน {k} ของดินแดง', dd_out['dims'][k]['rank'], want)
+for k, want in [('air', 8), ('accident', 11), ('transit', 11)]:
+    check(f'จุดแข็ง {k}', dd_out['topics'][k]['rank'], want)
+
+write('index', {
+    'source': 'Bangkok Index 2025 – Rocket Media Lab (ข้อมูลดิบ เผยแพร่ 25 พ.ค. 2026)',
+    'dims': [{'key': k, 'label': lab} for k, _, lab in DIMS],
+    'topics': topics_meta,
+    'medians': {
+        'overall': r2(st.median(ov), 4),
+        'dims': {k: r2(st.median([TBL[n]['dims'][k] for n in DISTRICTS]), 4) for k in DIM_TOPICS},
+        'topics': {k: r2(st.median([TBL[n]['topics'][k] for n in DISTRICTS]), 4) for k in TOPICS},
+    },
+    'districts': districts_out,
+})
+
+
+def assert_names(label, names):
+    names = set(names)
+    missing, extra = set(DISTRICTS) - names, names - set(DISTRICTS)
+    check(f'{label}: ชื่อเขตตรงกับดัชนี', not missing and not extra, True)
+    if missing or extra:
+        print('     ขาด:', missing, ' เกิน:', extra)
+
+
+# ---------- 2. งบประมาณ ----------
+print('2) งบประมาณเขต 2568')
+x = openpyxl.load_workbook(RAW / 'visual_data_dindaeng.xlsx', data_only=True)
+b7 = sheet_rows(x, '7_โครงสร้างงบ_2568')
+cats = [r for r in b7 if isinstance(r[1], (int, float)) and r[0] not in ('รวม', 'ประชากร', 'งบต่อหัว (บาท/คน)')]
+tot = next(r for r in b7 if r[0] == 'รวม')
+pop = next(r for r in b7 if r[0] == 'ประชากร')
+check('ผลรวมหมวดงบดินแดง', sum(r[1] for r in cats), tot[1])
+check('ผลรวมหมวดงบปทุมวัน', sum(r[3] for r in cats), tot[3])
+pc_dd, pc_pt = tot[1] / pop[1], tot[3] / pop[3]
+check('งบต่อหัวดินแดง', round(pc_dd), 3426)
+check('งบต่อหัวปทุมวัน', round(pc_pt), 8382)
+drain_share = next(r for r in cats if r[0].startswith('ระบายน้ำ'))[2]
+check('สัดส่วนงบระบายน้ำดินแดง (%)', r2(drain_share * 100, 1), 2.2)
+b8 = [r for r in sheet_rows(x, '8_งบระบายน้ำดินแดง_2568') if isinstance(r[1], (int, float)) and not str(r[0]).startswith('รวม')]
+write('budget', {
+    'source': 'ข้อบัญญัติงบประมาณ กทม. 2568 (ไฟล์ 68002)',
+    'year': 2568,
+    'districts': {
+        DD: {'total': tot[1], 'population': pop[1], 'perCapita': round(pc_dd, 2)},
+        PT: {'total': tot[3], 'population': pop[3], 'perCapita': round(pc_pt, 2)},
+    },
+    'perCapitaRatio': r2(pc_pt / pc_dd),
+    'categories': [{'name': r[0], DD: r[1], f'{DD}_pct': r2(r[2] * 100, 2), PT: r[3], f'{PT}_pct': r2(r[4] * 100, 2)} for r in cats],
+    'drainageParts': [{'name': r[0], 'baht': r[1], 'pct': r2(r[2] * 100, 1)} for r in b8],
+})
+
+# ---------- 3. น้ำท่วม ----------
+print('3) น้ำท่วม')
+fl = read_csv('flood_2568_bangkok_50districts.csv')
+fl_rows = [{'name': fix_name(r['เขต']), 'floods': int(r['จำนวนครั้งน้ำท่วมขัง 2568']),
+            'drainBudget': int(r['งบงานระบายน้ำของสำนักงานเขต 2568 (บาท)']),
+            'totalBudget': int(r['งบรวมสำนักงานเขต 2568 (บาท)'])} for r in fl]
+assert_names('น้ำท่วม', [r['name'] for r in fl_rows])
+fmax, fmin = max(r['floods'] for r in fl_rows), min(r['floods'] for r in fl_rows)
+check('สูตรคะแนนน้ำท่วมตรงกับดัชนี (คลาดสูงสุด)',
+      r2(max(abs(minmax_inv(r['floods'], fmin, fmax) - scores[r['name']]['flood']) for r in fl_rows), 3), 0, 0.001)
+for r in fl_rows:
+    r['floodRank'] = rank_desc([q['floods'] for q in fl_rows], r['floods'])
+    r['budgetRank'] = rank_desc([q['drainBudget'] for q in fl_rows], r['drainBudget'])
+dd_fl = next(r for r in fl_rows if r['name'] == DD)
+check('ดินแดงท่วม (ครั้ง)', dd_fl['floods'], 41)
+check('อันดับท่วมดินแดง', dd_fl['floodRank'], 2)
+check('อันดับงบระบายน้ำดินแดง', dd_fl['budgetRank'], 31)
+med_b = st.median(r['drainBudget'] for r in fl_rows)
+check('มัธยฐานงบระบายน้ำ (ล้าน)', r2(med_b / 1e6), 11.14)
+zero = [r for r in fl_rows if r['floods'] == 0]
+cut = sorted((r['floods'] for r in fl_rows), reverse=True)[9]  # ค่าที่อันดับ 10 แล้วรวมทุกเขตที่เสมอ
+top = [r for r in fl_rows if r['floods'] >= cut]
+check('จำนวนเขตที่ไม่ท่วม', len(zero), 11)
+check('งบรวมเขตที่ไม่ท่วม (ล้าน)', r2(sum(r['drainBudget'] for r in zero) / 1e6, 1), 347.9)
+check('จำนวนเขตท่วมบ่อยสุด (รวมที่เสมอ)', len(top), 11)
+check('งบรวมเขตท่วมบ่อยสุด (ล้าน)', r2(sum(r['drainBudget'] for r in top) / 1e6, 1), 188.5)
+rho = spearman([r['floods'] for r in fl_rows], [r['drainBudget'] for r in fl_rows])
+check('Spearman ρ', r2(rho, 3), 0.006, 0.001)
+
+ev = read_csv('dindaeng_flood_events_2568.csv')
+events = []
+for r in ev:
+    m, d, y = map(int, r['วันที่ (ค.ศ. ด/ว/ป)'].split('/'))
+    road = r['ถนน']
+    if r['จุด'].startswith('ประชาสุข') and road == 'ถนนรัชดาภิเษก':
+        road = 'ถนนประชาสุข'  # แก้แถวที่พิมพ์ผิด (20/5/2025)
+    events.append({'date': f'{y:04d}-{m:02d}-{d:02d}', 'spot': r['จุด'], 'road': road,
+                   'levelMin': int(r['ระดับน้ำต่ำสุด (ซม.)']), 'levelMax': int(r['ระดับน้ำสูงสุด (ซม.)']),
+                   'dryMin': int(r['เวลาแห้ง (นาที)']), 'rain': float(r['ฝนรวม (มม.)'])})
+days = {}
+for e in events:
+    days.setdefault(e['date'], {'date': e['date'], 'rain': e['rain'], 'spots': 0})['spots'] += 1
+days = sorted(days.values(), key=lambda d: d['date'])
+check('จำนวนเหตุการณ์', len(events), 41)
+check('ฝนเฉลี่ยต่อวันที่ท่วม (มม.)', r2(st.mean(d['rain'] for d in days), 1), 59.2)
+check('เวลาท่วมรวม (ชม.)', round(sum(e['dryMin'] for e in events) / 60), 71)
+check('เวลาแห้งเฉลี่ย (นาที)', round(st.mean(e['dryMin'] for e in events)), 104)
+
+hs = read_csv('dindaeng_flood_hotspots_2568.csv')
+hotspots = [{'spot': r['จุด'], 'count': int(r['ครั้งที่ท่วม 2568']), 'levelMax': int(r['ระดับน้ำสูงสุด (ซม.)']),
+             'dryAvg': int(r['เวลาแห้งเฉลี่ย (นาที)']), 'rainAvg': float(r['ฝนเฉลี่ยวันที่ท่วม (มม.)']),
+             'lat': float(r['ละติจูด (ใส่เอง)']) if r['ละติจูด (ใส่เอง)'] else None,
+             'lng': float(r['ลองจิจูด (ใส่เอง)']) if r['ลองจิจูด (ใส่เอง)'] else None} for r in hs]
+check('ผลรวมครั้งจากจุดท่วม', sum(h['count'] for h in hotspots), 41)
+
+write('flood', {
+    'source': 'Bangkok Index 2025: อุทกภัย (น้ำท่วมขังบนถนนสายหลัก 2568); ข้อบัญญัติงบประมาณ กทม. 2568',
+    'districts': sorted(fl_rows, key=lambda r: r['floodRank']),
+    'medianDrainBudget': med_b,
+    'groups': {
+        'zero': {'count': len(zero), 'drainBudget': sum(r['drainBudget'] for r in zero), 'names': [r['name'] for r in zero]},
+        'top': {'count': len(top), 'minFloods': cut, 'drainBudget': sum(r['drainBudget'] for r in top), 'names': [r['name'] for r in top]},
+    },
+    'spearman': r2(rho, 4),
+    'spearmanP': 0.97,
+    'systemCapacityMm': 60,
+    'dindaeng': {
+        'events': events, 'days': days, 'hotspots': hotspots,
+        'rainPerDayAvg': r2(st.mean(d['rain'] for d in days), 1),
+        'totalHours': r2(sum(e['dryMin'] for e in events) / 60, 1),
+        'dryAvgMin': r2(st.mean(e['dryMin'] for e in events), 0),
+    },
+    'scoreFormula': {'lo': fmin, 'hi': fmax, 'note': 'คะแนน = 1 + 49 × (hi − ครั้ง) ÷ (hi − lo)'},
+})
+
+# ---------- 4. น้ำเสีย ----------
+print('4) น้ำเสีย (BOD)')
+bod_raw = read_csv('bod_bangkok_index_2025.csv')
+RENAME_BOD = {'ธนบุรี': 'ทุ่งครุ', 'นนทบุรี': 'ธนบุรี'}  # ดู docstring ข้อ 2
+bod = [{'name': RENAME_BOD.get(fix_name(r['เขต']), fix_name(r['เขต'])), 'bod': float(r['BOD เฉลี่ย (มก./ล.)']),
+        'canals': int(r['จำนวนคลอง'])} for r in bod_raw]
+assert_names('BOD', [r['name'] for r in bod])
+bmax, bmin = max(r['bod'] for r in bod), min(r['bod'] for r in bod)
+check('BOD ให้คะแนนตรงกับดัชนี (คลาดสูงสุด)',
+      r2(max(abs(minmax_inv(r['bod'], bmin, bmax) - scores[r['name']]['wastewater']) for r in bod), 2), 0, 0.03)
+for r in bod:
+    r['rank'] = rank_desc([-q['bod'] for q in bod], -r['bod'])  # น้อยดี: อันดับ 1 = BOD ต่ำสุด
+    r['score'] = r2(scores[r['name']]['wastewater'], 4)
+dd_b = next(r for r in bod if r['name'] == DD)
+check('BOD ดินแดง', dd_b['bod'], 25.81)
+check('อันดับ BOD ดินแดง', dd_b['rank'], 49)
+check('มัธยฐาน BOD', r2(st.median(r['bod'] for r in bod)), 11.59)
+write('wastewater', {
+    'source': 'Bangkok Index 2025: น้ำเสีย (ค่าเฉลี่ยคุณภาพคลอง 2540–2567, สำนักการระบายน้ำ)',
+    'standard': 15,
+    'median': r2(st.median(r['bod'] for r in bod)),
+    'neighbors': ['ห้วยขวาง', 'ราชเทวี', 'จตุจักร', 'พญาไท'],
+    'districts': sorted(bod, key=lambda r: r['rank']),
+    'scoreFormula': {'lo': bmin, 'hi': bmax},
+})
+
+# ---------- 5. การศึกษา ----------
+print('5) การศึกษา')
+ed = [r for r in sheet_rows(x, '4_การศึกษา') if isinstance(r[0], int)]
+edu = [{'name': fix_name(r[1]), 'children': r[2], 'schools': r[3], 'students': r[4], 'teachers': r[5]} for r in ed]
+assert_names('การศึกษา', [r['name'] for r in edu])
+
+
+def edu_scores(rows):
+    a = [r['schools'] / r['children'] * 1000 for r in rows]
+    b = [r['students'] / r['teachers'] for r in rows]
+    s1 = lambda v: 1 + 49 * (v - min(a)) / (max(a) - min(a))
+    s2 = lambda v: 1 + 49 * (max(b) - v) / (max(b) - min(b))
+    return {r['name']: (s1(ai) + s2(bi)) / 2 for r, ai, bi in zip(rows, a, b)}
+
+
+base = edu_scores(edu)
+check('สูตรคะแนนการศึกษาตรงกับดัชนี (คลาดสูงสุด)',
+      r2(max(abs(base[n] - scores[n]['education']) for n in base), 3), 0, 0.006)
+for r in edu:
+    r['schoolsPer1000'] = r2(r['schools'] / r['children'] * 1000, 3)
+    r['studentsPerTeacher'] = r2(r['students'] / r['teachers'], 2)
+    r['score'] = r2(scores[r['name']]['education'], 4)
+    r['rankStudentsPerTeacher'] = rank_desc([q['students'] / q['teachers'] for q in edu], r['students'] / r['teachers'])
+dd_e = next(r for r in edu if r['name'] == DD)
+med_spt = st.median(r['students'] / r['teachers'] for r in edu)
+check('นักเรียนต่อครูดินแดง', r2(dd_e['studentsPerTeacher'], 1), 23.1)
+check('อันดับนักเรียนต่อครู (มากสุด = 1)', dd_e['rankStudentsPerTeacher'], 4)
+check('มัธยฐานนักเรียนต่อครู', r2(med_spt, 1), 19.8)
+
+
+def edu_scenario(add_schools, add_teachers):
+    rows = [dict(r) for r in edu]
+    d = next(r for r in rows if r['name'] == DD)
+    d['schools'] += add_schools
+    d['teachers'] += add_teachers
+    s = edu_scores(rows)
+    return {'addSchools': add_schools, 'addTeachers': add_teachers, 'score': r2(s[DD]),
+            'rank': rank_desc(list(s.values()), s[DD])}
+
+
+edu_scen = [edu_scenario(0, 0), edu_scenario(1, 0), edu_scenario(0, 88), edu_scenario(1, 88)]
+for sc, want in zip(edu_scen, [(6.01, 48), (6.52, 48), (11.83, 29), (12.35, 26)]):
+    check(f"ฉากทัศน์การศึกษา +{sc['addSchools']} รร. +{sc['addTeachers']} ครู", (sc['score'], sc['rank']), want)
+write('education', {
+    'source': 'Bangkok Index 2025: การศึกษา (ปีการศึกษา 2568)',
+    'medianStudentsPerTeacher': r2(med_spt, 2),
+    'medianSchoolsPer1000': r2(st.median(r['schools'] / r['children'] * 1000 for r in edu), 3),
+    'schoolsBreakdown': {DD: {'bma': 3, 'obec': 5}, PT: {'bma': 7, 'obec': 3}},
+    'teachersNeeded': 88,
+    'teacherSalary': {'monthly': 18220, 'annualTotal88': 88 * 18220 * 12, 'note': 'ครูผู้ช่วย วุฒิ ป.ตรี 4 ปี (ยังไม่ยืนยันอัตรา กทม.)'},
+    'districts': sorted(edu, key=lambda r: -r['score']),
+    'scenarios': edu_scen,
+})
+
+# ---------- 6. จุดเสี่ยง ----------
+print('6) จุดเสี่ยงอาชญากรรม')
+cr = [r for r in sheet_rows(x, '5_จุดเสี่ยงอาชญากรรม') if isinstance(r[1], (int, float)) and fix_name(r[0]) in scores]
+crime = [{'name': fix_name(r[0]), 'points': int(r[1])} for r in cr]
+assert_names('จุดเสี่ยง', [r['name'] for r in crime])
+cmax, cmin = max(r['points'] for r in crime), min(r['points'] for r in crime)
+check('สูตรคะแนนจุดเสี่ยงตรงกับดัชนี (คลาดสูงสุด)',
+      r2(max(abs(minmax_inv(r['points'], cmin, cmax) - scores[r['name']]['crime']) for r in crime), 3), 0, 0.001)
+for r in crime:
+    r['score'] = r2(scores[r['name']]['crime'], 4)
+check('จุดเสี่ยงดินแดง', next(r['points'] for r in crime if r['name'] == DD), 17)
+check('มัธยฐานจุดเสี่ยง', st.median(r['points'] for r in crime), 12)
+write('risk', {
+    'source': 'บัญชีพื้นที่เสี่ยงและพื้นที่อันตราย สำนักเทศกิจ (2567–2568); Bangkok Index 2025',
+    'note': 'เป็นพื้นที่ที่หน่วยงานขึ้นบัญชีเฝ้าระวัง ไม่ใช่จุดที่เกิดคดีจริง',
+    'median': st.median(r['points'] for r in crime),
+    'districts': sorted(crime, key=lambda r: -r['points']),
+    'dindaengTypes': {'unverified': False, 'note': 'ตรวจกับบัญชีสำนักเทศกิจ (data/raw/map) แล้วใน build_map.py · พิกัดอยู่ใน map.json',
+                      'items': [{'type': 'จุดล่อแหลมต่อการเกิดอาชญากรรม', 'count': 10},
+                                {'type': 'ประชากรหนาแน่น/พลุกพล่าน', 'count': 5},
+                                {'type': 'จุดรกร้าง/พื้นที่ลักลอบทิ้งขยะ', 'count': 1},
+                                {'type': 'จุดมืด จุดเปลี่ยว', 'count': 1}]},
+    'scoreFormula': {'lo': cmin, 'hi': cmax},
+})
+
+# ---------- 7. สวนสาธารณะ ----------
+print('7) สวนสาธารณะ')
+pk = [r for r in sheet_rows(x, '6_สวนสาธารณะ') if isinstance(r[0], int)]
+parks = [{'name': fix_name(r[1]), 'population': r[3], 'greenM2': r[4], 'accessibleParks': r[5],
+          'accessibleM2': r[6], 'greenPerCapita': r[7], 'accessiblePerCapita': r[8],
+          'score': r2(scores[fix_name(r[1])]['parks'], 4)} for r in pk]
+assert_names('สวน', [r['name'] for r in parks])
+check('คะแนนสวนในไฟล์กลุ่มตรงกับดัชนี (คลาดสูงสุด)',
+      r2(max(abs(r[2] - scores[fix_name(r[1])]['parks']) for r in pk), 3), 0, 0.006)
+dd_p = next(r for r in parks if r['name'] == DD)
+med_g = st.median(r['greenPerCapita'] for r in parks)
+med_a = st.median(r['accessiblePerCapita'] for r in parks)
+check('คะแนนสวนดินแดง', r2(dd_p['score']), 1.69)
+print(f'  · มัธยฐานพื้นที่สีเขียวต่อคน {med_g} ตร.ม. ดินแดง {dd_p["greenPerCapita"]} '
+      f'(ต้องเพิ่ม {med_g / dd_p["greenPerCapita"]:.2f} เท่า)')
+gap_acc = (med_a - dd_p['accessiblePerCapita']) * dd_p['population']
+print(f'  · มัธยฐานสวนเข้าถึงได้ต่อคน {med_a} ดินแดง {dd_p["accessiblePerCapita"]} '
+      f'ต้องเพิ่ม {gap_acc:,.0f} ตร.ม. ≈ Pocket Park 300 ตร.ม. {gap_acc / 300:.0f} แห่ง')
+write('parks', {
+    'source': 'Bangkok Index 2025: สวนสาธารณะ (สำนักสิ่งแวดล้อม 2568)',
+    'medianGreenPerCapita': med_g,
+    'medianAccessiblePerCapita': med_a,
+    'dindaengGap': {'greenTimes': r2(med_g / dd_p['greenPerCapita']), 'accessibleM2': round(gap_acc),
+                    'pocketParks300m2': round(gap_acc / 300)},
+    'districts': parks,
+})
+
+# ---------- 8. ฉากทัศน์คะแนนรวม ----------
+print('8) ฉากทัศน์คะแนนรวม (เพิ่มทั้งโรงเรียนและครู)')
+EDU_BOTH = next(s for s in edu_scen if s['addSchools'] == 1 and s['addTeachers'] == 88)['score']
+
+
+def overall_scenario(crime_pts=None, floods=None, edu_score=None, bod_val=None):
+    sc = {n: dict(v) for n, v in scores.items()}
+    d = sc[DD]
+    if crime_pts is not None:
+        d['crime'] = minmax_inv(crime_pts, cmin, cmax)
+    if floods is not None:
+        d['flood'] = minmax_inv(floods, fmin, fmax)
+    if edu_score is not None:
+        d['education'] = edu_score
+    if bod_val is not None:
+        d['wastewater'] = minmax_inv(bod_val, bmin, bmax)
+    o = {n: overall_of(v)[0] for n, v in sc.items()}
+    return r2(o[DD]), rank_desc(list(o.values()), o[DD])
+
+
+CASES = [
+    ('now', 'ตอนนี้ (2568)', dict()),
+    ('careful', 'ปีแรก ระมัดระวัง', dict(crime_pts=12, floods=31, edu_score=EDU_BOTH)),
+    ('target', 'ปีแรก ตามเป้า', dict(crime_pts=9, floods=29, edu_score=EDU_BOTH)),
+    ('good', 'ปีแรก กรณีดี', dict(crime_pts=8, floods=27, edu_score=EDU_BOTH)),
+    ('longterm', 'ระยะยาว ตามเป้า', dict(crime_pts=9, floods=29, edu_score=EDU_BOTH, bod_val=15)),
+]
+scen = []
+for key, label, kw in CASES:
+    s, rk = overall_scenario(**kw)
+    scen.append({'key': key, 'label': label, 'crime': kw.get('crime_pts', 17), 'floods': kw.get('floods', 41),
+                 'eduScore': kw.get('edu_score', r2(scores[DD]['education'])), 'bod': kw.get('bod_val', 25.81),
+                 'score': s, 'rank': rk})
+for sc, want in zip(scen, [(17.35, 50), (19.47, 46), (20.22, 40), (20.56, 39), (21.73, 32)]):
+    check(f"ฉากทัศน์ {sc['label']}", (sc['score'], sc['rank']), want)
+
+base_o = TBL[DD]['overall']
+steps = [
+    ('จุดเสี่ยง 17 → 9 จุด', 'crime', minmax_inv(9, cmin, cmax)),
+    ('น้ำท่วม 41 → 29 ครั้ง', 'flood', minmax_inv(29, fmin, fmax)),
+    ('การศึกษา +1 โรงเรียน +88 ครู', 'education', EDU_BOTH),
+]
+waterfall = [{'label': 'ตอนนี้', 'value': r2(base_o)}]
+for label, k, new in steps:
+    waterfall.append({'label': label, 'topicFrom': r2(scores[DD][k]), 'topicTo': r2(new),
+                      'delta': r2((new - scores[DD][k]) / 16, 3)})
+waterfall.append({'label': 'หลังแก้ (ปีแรก ตามเป้า)', 'value': scen[2]['score']})
+check('waterfall รวม', r2(base_o + sum(w.get('delta', 0) for w in waterfall[1:-1])), 20.22, 0.011)
+write('scenarios', {
+    'note': 'คำนวณจากคะแนนจริง 16 หัวข้อ × 50 เขต สมมติให้เขตอื่นคงที่',
+    'cases': scen,
+    'waterfall': waterfall,
+    'single': {
+        'crimeOnly': dict(zip(('score', 'rank'), overall_scenario(crime_pts=9))),
+        'floodOnly': dict(zip(('score', 'rank'), overall_scenario(floods=29))),
+        'eduOnly': dict(zip(('score', 'rank'), overall_scenario(edu_score=EDU_BOTH))),
+    },
+})
+
+# ---------- 9. งบที่ขอ (ร่าง) ----------
+ask = [r for r in sheet_rows(x, '9_งบที่ขอเพิ่ม') if r[1] and isinstance(r[2], (int, float)) and r[1] not in ('รวม',)]
+write('ask', {
+    'draft': True,
+    'note': 'ร่างจาก xlsx ชีต 9 · ยอดรวมจริงรอผู้ใช้ส่ง (ห้ามใช้ยอดรวมนี้ในสไลด์)',
+    'items': [{'topic': r[0], 'item': r[1], 'low': r[2], 'high': r[3], 'type': r[4]} for r in ask if not str(r[1]).startswith('%')],
+})
+
+# ---------- สรุป ----------
+if ERRORS:
+    print(f'\n✗ ตรวจไม่ผ่าน {len(ERRORS)} รายการ: {ERRORS}')
+    print('  ไม่ได้เขียน JSON (ไฟล์เดิมใน src/data/ ยังอยู่) แก้ปัญหาแล้วรันใหม่')
+    sys.exit(1)
+OUT.mkdir(parents=True, exist_ok=True)
+for name, data in PENDING.items():
+    (OUT / f'{name}.json').write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding='utf-8')
+print(f'\n✓ ผ่านทั้งหมด · เขียน JSON ไว้ที่ {OUT.relative_to(ROOT)}/')
+for f in sorted(OUT.glob('*.json')):
+    print(f'  {f.name:18} {f.stat().st_size / 1024:6.1f} KB')

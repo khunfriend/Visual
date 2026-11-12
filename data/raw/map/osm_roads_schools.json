@@ -1,0 +1,4582 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-12T04:12:30Z",
+    "timestamp_areas_base": "2026-11-11T23:58:04Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "relation",
+  "id": 2938031,
+  "bounds": {
+    "minlat": 13.7551446,
+    "minlon": 100.5434049,
+    "maxlat": 13.8010753,
+    "maxlon": 100.5749158
+  },
+  "tags": {
+    "admin_level": "6",
+    "boundary": "administrative",
+    "name": "เขตดินแดง",
+    "name:en": "Din Daeng District",
+    "name:th": "เขตดินแดง",
+    "name:th-Latn": "Khet Din Daeng",
+    "population": "123966",
+    "postal_code": "10400",
+    "short_name": "ดินแดง",
+    "source:population": "Department of Provincial Administration",
+    "type": "boundary",
+    "wikidata": "Q113560",
+    "wikipedia": "de:Din Daeng"
+  }
+},
+{
+  "type": "way",
+  "id": 25744763,
+  "bounds": {
+    "minlat": 13.7563327,
+    "minlon": 100.5571438,
+    "maxlat": 13.7580615,
+    "maxlon": 100.5627487
+  },
+  "geometry": [
+    { "lat": 13.7580615, "lon": 100.5571438 },
+    { "lat": 13.7576947, "lon": 100.5574205 },
+    { "lat": 13.7576671, "lon": 100.5574413 },
+    { "lat": 13.7575341, "lon": 100.5575528 },
+    { "lat": 13.7573986, "lon": 100.5576841 },
+    { "lat": 13.7572630, "lon": 100.5578224 },
+    { "lat": 13.7571252, "lon": 100.5579953 },
+    { "lat": 13.7570100, "lon": 100.5581653 },
+    { "lat": 13.7568941, "lon": 100.5583510 },
+    { "lat": 13.7567937, "lon": 100.5585562 },
+    { "lat": 13.7567290, "lon": 100.5587282 },
+    { "lat": 13.7566795, "lon": 100.5588815 },
+    { "lat": 13.7566711, "lon": 100.5589074 },
+    { "lat": 13.7566179, "lon": 100.5591258 },
+    { "lat": 13.7565829, "lon": 100.5593210 },
+    { "lat": 13.7565812, "lon": 100.5593352 },
+    { "lat": 13.7565543, "lon": 100.5595549 },
+    { "lat": 13.7565301, "lon": 100.5598072 },
+    { "lat": 13.7564664, "lon": 100.5607765 },
+    { "lat": 13.7564206, "lon": 100.5614727 },
+    { "lat": 13.7564173, "lon": 100.5615226 },
+    { "lat": 13.7563785, "lon": 100.5621063 },
+    { "lat": 13.7563524, "lon": 100.5624950 },
+    { "lat": 13.7563327, "lon": 100.5627487 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "sidewalk:left": "separate"
+  }
+},
+{
+  "type": "way",
+  "id": 25744942,
+  "bounds": {
+    "minlat": 13.7595027,
+    "minlon": 100.5459773,
+    "maxlat": 13.7611128,
+    "maxlon": 100.5473730
+  },
+  "geometry": [
+    { "lat": 13.7611128, "lon": 100.5459773 },
+    { "lat": 13.7603472, "lon": 100.5466332 },
+    { "lat": 13.7595027, "lon": 100.5473730 }
+  ],
+  "tags": {
+    "alt_name": "ทางด่วนขั้นที่ 2",
+    "alt_name:en": "2nd-stage expressway",
+    "alt_name:th": "ทางด่วนขั้นที่ 2",
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "motorway",
+    "lanes": "4",
+    "layer": "3",
+    "motorcycle": "no",
+    "name": "ทางพิเศษศรีรัช",
+    "name:de": "Si Rat Expressway",
+    "name:en": "Sirat Expressway",
+    "name:etymology:wikidata": "Q85987157",
+    "name:fr": "Autoroute Si Rat",
+    "name:ja": "シラット高速道路",
+    "name:th": "ทางพิเศษศรีรัช",
+    "oneway": "yes",
+    "toll": "yes",
+    "turn:lanes": "slight_left|slight_left;through|through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 25933491,
+  "bounds": {
+    "minlat": 13.7755322,
+    "minlon": 100.5678793,
+    "maxlat": 13.7769865,
+    "maxlon": 100.5679802
+  },
+  "geometry": [
+    { "lat": 13.7769865, "lon": 100.5679802 },
+    { "lat": 13.7760606, "lon": 100.5679105 },
+    { "lat": 13.7757277, "lon": 100.5678899 },
+    { "lat": 13.7756300, "lon": 100.5678846 },
+    { "lat": 13.7755322, "lon": 100.5678793 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "lanes": "2",
+    "maxspeed": "30",
+    "name": "ถนนประชาสงเคราะห์",
+    "name:en": "Pracha Songkhro Road",
+    "name:th": "ถนนประชาสงเคราะห์",
+    "sidewalk": "both",
+    "sidewalk:both": "separate",
+    "surface": "asphalt",
+    "wikidata": "Q132677147"
+  }
+},
+{
+  "type": "way",
+  "id": 25933502,
+  "bounds": {
+    "minlat": 13.7702935,
+    "minlon": 100.5553763,
+    "maxlat": 13.7718861,
+    "maxlon": 100.5585065
+  },
+  "geometry": [
+    { "lat": 13.7702935, "lon": 100.5585065 },
+    { "lat": 13.7703052, "lon": 100.5583037 },
+    { "lat": 13.7705264, "lon": 100.5578166 },
+    { "lat": 13.7706135, "lon": 100.5576093 },
+    { "lat": 13.7706859, "lon": 100.5574378 },
+    { "lat": 13.7707231, "lon": 100.5573678 },
+    { "lat": 13.7707818, "lon": 100.5572937 },
+    { "lat": 13.7708375, "lon": 100.5572255 },
+    { "lat": 13.7708863, "lon": 100.5571790 },
+    { "lat": 13.7710284, "lon": 100.5570298 },
+    { "lat": 13.7711098, "lon": 100.5569254 },
+    { "lat": 13.7711794, "lon": 100.5567900 },
+    { "lat": 13.7712549, "lon": 100.5566406 },
+    { "lat": 13.7715355, "lon": 100.5560700 },
+    { "lat": 13.7718481, "lon": 100.5554464 },
+    { "lat": 13.7718861, "lon": 100.5553763 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "maxspeed": "50",
+    "name": "ถนนมิตรไมตรี",
+    "name:en": "Mit Maitri Road",
+    "name:th": "ถนนมิตรไมตรี",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 25933850,
+  "bounds": {
+    "minlat": 13.7893263,
+    "minlon": 100.5617787,
+    "maxlat": 13.7895754,
+    "maxlon": 100.5669913
+  },
+  "geometry": [
+    { "lat": 13.7893263, "lon": 100.5617787 },
+    { "lat": 13.7893589, "lon": 100.5624610 },
+    { "lat": 13.7893731, "lon": 100.5627597 },
+    { "lat": 13.7893978, "lon": 100.5632765 },
+    { "lat": 13.7894019, "lon": 100.5634012 },
+    { "lat": 13.7894169, "lon": 100.5636763 },
+    { "lat": 13.7894281, "lon": 100.5639089 },
+    { "lat": 13.7894563, "lon": 100.5645008 },
+    { "lat": 13.7894939, "lon": 100.5652861 },
+    { "lat": 13.7894988, "lon": 100.5653887 },
+    { "lat": 13.7895052, "lon": 100.5655242 },
+    { "lat": 13.7895206, "lon": 100.5658455 },
+    { "lat": 13.7895294, "lon": 100.5660286 },
+    { "lat": 13.7895565, "lon": 100.5665968 },
+    { "lat": 13.7895754, "lon": 100.5669913 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "maxspeed": "50",
+    "name": "ถนนสุทธิสารวินิจฉัย",
+    "name:en": "Sutthisan Winitchai Road",
+    "name:etymology:wikidata": "Q13017769",
+    "name:th": "ถนนสุทธิสารวินิจฉัย",
+    "surface": "asphalt",
+    "wikidata": "Q6578440"
+  }
+},
+{
+  "type": "way",
+  "id": 32045522,
+  "bounds": {
+    "minlat": 13.7637729,
+    "minlon": 100.5475960,
+    "maxlat": 13.7640471,
+    "maxlon": 100.5485058
+  },
+  "geometry": [
+    { "lat": 13.7640397, "lon": 100.5475960 },
+    { "lat": 13.7640471, "lon": 100.5477912 },
+    { "lat": 13.7640230, "lon": 100.5479823 },
+    { "lat": 13.7639931, "lon": 100.5481128 },
+    { "lat": 13.7639368, "lon": 100.5482410 },
+    { "lat": 13.7638653, "lon": 100.5483687 },
+    { "lat": 13.7637729, "lon": 100.5485058 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "highway": "primary",
+    "layer": "-1",
+    "maxspeed": "40",
+    "motorcycle": "no",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "oneway": "yes",
+    "tunnel": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 32045526,
+  "bounds": {
+    "minlat": 13.7626931,
+    "minlon": 100.5485058,
+    "maxlat": 13.7637729,
+    "maxlon": 100.5505218
+  },
+  "geometry": [
+    { "lat": 13.7637729, "lon": 100.5485058 },
+    { "lat": 13.7636628, "lon": 100.5486330 },
+    { "lat": 13.7635766, "lon": 100.5487509 },
+    { "lat": 13.7635133, "lon": 100.5488488 },
+    { "lat": 13.7634499, "lon": 100.5489635 },
+    { "lat": 13.7630003, "lon": 100.5498615 },
+    { "lat": 13.7628956, "lon": 100.5500790 },
+    { "lat": 13.7626931, "lon": 100.5505218 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "highway": "primary",
+    "maxspeed": "40",
+    "motorcycle": "no",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 32047890,
+  "bounds": {
+    "minlat": 13.7628786,
+    "minlon": 100.5477011,
+    "maxlat": 13.7660714,
+    "maxlon": 100.5492096
+  },
+  "geometry": [
+    { "lat": 13.7660714, "lon": 100.5492096 },
+    { "lat": 13.7652332, "lon": 100.5487686 },
+    { "lat": 13.7646986, "lon": 100.5485170 },
+    { "lat": 13.7634196, "lon": 100.5479881 },
+    { "lat": 13.7628786, "lon": 100.5477011 }
+  ],
+  "tags": {
+    "alt_name": "ทางด่วนขั้นที่ 1",
+    "alt_name:en": "1st-stage expressway",
+    "alt_name:th": "ทางด่วนขั้นที่ 1",
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "destination:lanes": "ถนนพระราม 9;แจ้งวัฒนะ|สุขุมวิท|บางนา;ดาวคะนอง|บางนา;ดาวคะนอง",
+    "destination:lang:en": "Rama IX Rd;Chaeng Watthana|Sukhumvit|Bang Na;Dao Khanong|Bang Na;Dao Khanong",
+    "foot": "no",
+    "highway": "motorway",
+    "lanes": "3",
+    "layer": "2",
+    "maxspeed": "100",
+    "motorcycle": "no",
+    "name": "ทางพิเศษเฉลิมมหานคร",
+    "name:de": "Chaloem Maha Nakhon Expressway",
+    "name:en": "Chaloem Mahanakhon Expressway",
+    "name:etymology:wikidata": "Q200250",
+    "name:fr": "Autoroute Chaloem Maha Nakhon",
+    "name:ja": "チャルームマハナコーン高速道路",
+    "name:th": "ทางพิเศษเฉลิมมหานคร",
+    "oneway": "yes",
+    "toll": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156422775,
+  "bounds": {
+    "minlat": 13.7587069,
+    "minlon": 100.5549048,
+    "maxlat": 13.7605617,
+    "maxlon": 100.5568403
+  },
+  "geometry": [
+    { "lat": 13.7605617, "lon": 100.5549048 },
+    { "lat": 13.7604872, "lon": 100.5550682 },
+    { "lat": 13.7603317, "lon": 100.5553865 },
+    { "lat": 13.7601390, "lon": 100.5557778 },
+    { "lat": 13.7600857, "lon": 100.5558877 },
+    { "lat": 13.7599960, "lon": 100.5560522 },
+    { "lat": 13.7599100, "lon": 100.5561835 },
+    { "lat": 13.7598146, "lon": 100.5562923 },
+    { "lat": 13.7596976, "lon": 100.5563995 },
+    { "lat": 13.7595814, "lon": 100.5564752 },
+    { "lat": 13.7590794, "lon": 100.5567222 },
+    { "lat": 13.7589725, "lon": 100.5567618 },
+    { "lat": 13.7588654, "lon": 100.5567928 },
+    { "lat": 13.7587547, "lon": 100.5568235 },
+    { "lat": 13.7587069, "lon": 100.5568403 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "maxspeed": "60",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "sidewalk:left": "separate"
+  }
+},
+{
+  "type": "way",
+  "id": 156422776,
+  "bounds": {
+    "minlat": 13.7701233,
+    "minlon": 100.5599656,
+    "maxlat": 13.7755948,
+    "maxlon": 100.5654836
+  },
+  "geometry": [
+    { "lat": 13.7754499, "lon": 100.5654836 },
+    { "lat": 13.7754907, "lon": 100.5649814 },
+    { "lat": 13.7754927, "lon": 100.5649594 },
+    { "lat": 13.7754968, "lon": 100.5648866 },
+    { "lat": 13.7755062, "lon": 100.5647344 },
+    { "lat": 13.7755258, "lon": 100.5644104 },
+    { "lat": 13.7755355, "lon": 100.5642338 },
+    { "lat": 13.7755578, "lon": 100.5638876 },
+    { "lat": 13.7755730, "lon": 100.5636240 },
+    { "lat": 13.7755738, "lon": 100.5636073 },
+    { "lat": 13.7755754, "lon": 100.5635755 },
+    { "lat": 13.7755948, "lon": 100.5631023 },
+    { "lat": 13.7755911, "lon": 100.5630185 },
+    { "lat": 13.7755843, "lon": 100.5629650 },
+    { "lat": 13.7755713, "lon": 100.5629180 },
+    { "lat": 13.7755472, "lon": 100.5628675 },
+    { "lat": 13.7755094, "lon": 100.5628086 },
+    { "lat": 13.7755048, "lon": 100.5628013 },
+    { "lat": 13.7751964, "lon": 100.5623119 },
+    { "lat": 13.7751275, "lon": 100.5622012 },
+    { "lat": 13.7751138, "lon": 100.5621792 },
+    { "lat": 13.7747380, "lon": 100.5615922 },
+    { "lat": 13.7744042, "lon": 100.5610759 },
+    { "lat": 13.7743888, "lon": 100.5610519 },
+    { "lat": 13.7742365, "lon": 100.5608146 },
+    { "lat": 13.7742210, "lon": 100.5607905 },
+    { "lat": 13.7741558, "lon": 100.5606827 },
+    { "lat": 13.7741432, "lon": 100.5606619 },
+    { "lat": 13.7740560, "lon": 100.5605220 },
+    { "lat": 13.7740032, "lon": 100.5604555 },
+    { "lat": 13.7739974, "lon": 100.5604499 },
+    { "lat": 13.7739382, "lon": 100.5603928 },
+    { "lat": 13.7738784, "lon": 100.5603512 },
+    { "lat": 13.7738460, "lon": 100.5603341 },
+    { "lat": 13.7738211, "lon": 100.5603209 },
+    { "lat": 13.7738078, "lon": 100.5603174 },
+    { "lat": 13.7737329, "lon": 100.5602979 },
+    { "lat": 13.7736447, "lon": 100.5602847 },
+    { "lat": 13.7729866, "lon": 100.5602515 },
+    { "lat": 13.7727118, "lon": 100.5602388 },
+    { "lat": 13.7724869, "lon": 100.5602293 },
+    { "lat": 13.7722667, "lon": 100.5602157 },
+    { "lat": 13.7722238, "lon": 100.5602130 },
+    { "lat": 13.7720860, "lon": 100.5602045 },
+    { "lat": 13.7718698, "lon": 100.5601863 },
+    { "lat": 13.7715724, "lon": 100.5601883 },
+    { "lat": 13.7713209, "lon": 100.5601739 },
+    { "lat": 13.7711998, "lon": 100.5601646 },
+    { "lat": 13.7710982, "lon": 100.5601536 },
+    { "lat": 13.7707231, "lon": 100.5600878 },
+    { "lat": 13.7701233, "lon": 100.5599656 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "lanes": "2",
+    "lanes:backward": "1",
+    "lanes:forward": "1",
+    "maxspeed": "30",
+    "name": "ถนนประชาสงเคราะห์",
+    "name:en": "Pracha Songkhro Road",
+    "name:th": "ถนนประชาสงเคราะห์",
+    "sidewalk": "both",
+    "sidewalk:both": "separate",
+    "surface": "asphalt",
+    "wikidata": "Q132677147"
+  }
+},
+{
+  "type": "way",
+  "id": 156422777,
+  "bounds": {
+    "minlat": 13.7587640,
+    "minlon": 100.5524667,
+    "maxlat": 13.7616970,
+    "maxlon": 100.5568040
+  },
+  "geometry": [
+    { "lat": 13.7616970, "lon": 100.5524667 },
+    { "lat": 13.7613475, "lon": 100.5531532 },
+    { "lat": 13.7609786, "lon": 100.5538924 },
+    { "lat": 13.7606394, "lon": 100.5545681 },
+    { "lat": 13.7604718, "lon": 100.5549416 },
+    { "lat": 13.7604670, "lon": 100.5549526 },
+    { "lat": 13.7603607, "lon": 100.5551978 },
+    { "lat": 13.7600376, "lon": 100.5558484 },
+    { "lat": 13.7599342, "lon": 100.5560389 },
+    { "lat": 13.7598142, "lon": 100.5561960 },
+    { "lat": 13.7596985, "lon": 100.5563106 },
+    { "lat": 13.7595620, "lon": 100.5564067 },
+    { "lat": 13.7594444, "lon": 100.5564689 },
+    { "lat": 13.7587640, "lon": 100.5568040 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "primary",
+    "layer": "2",
+    "maxspeed": "40",
+    "motorcycle": "no",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 156422780,
+  "bounds": {
+    "minlat": 13.7580615,
+    "minlon": 100.5568403,
+    "maxlat": 13.7587069,
+    "maxlon": 100.5571438
+  },
+  "geometry": [
+    { "lat": 13.7587069, "lon": 100.5568403 },
+    { "lat": 13.7586565, "lon": 100.5568618 },
+    { "lat": 13.7584125, "lon": 100.5569787 },
+    { "lat": 13.7582014, "lon": 100.5570749 },
+    { "lat": 13.7581618, "lon": 100.5570930 },
+    { "lat": 13.7580615, "lon": 100.5571438 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "maxspeed": "60",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "sidewalk:left": "separate"
+  }
+},
+{
+  "type": "way",
+  "id": 156631041,
+  "bounds": {
+    "minlat": 13.7603930,
+    "minlon": 100.5487136,
+    "maxlat": 13.7634449,
+    "maxlon": 100.5548768
+  },
+  "geometry": [
+    { "lat": 13.7603930, "lon": 100.5548768 },
+    { "lat": 13.7606614, "lon": 100.5543184 },
+    { "lat": 13.7611839, "lon": 100.5532854 },
+    { "lat": 13.7615463, "lon": 100.5525745 },
+    { "lat": 13.7619043, "lon": 100.5518730 },
+    { "lat": 13.7626632, "lon": 100.5503529 },
+    { "lat": 13.7627495, "lon": 100.5501696 },
+    { "lat": 13.7628318, "lon": 100.5499862 },
+    { "lat": 13.7629191, "lon": 100.5497927 },
+    { "lat": 13.7630202, "lon": 100.5495789 },
+    { "lat": 13.7634449, "lon": 100.5487136 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "maxspeed": "60",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "name:th-Latn": "Thanon Din Daeng",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156763608,
+  "bounds": {
+    "minlat": 13.7690838,
+    "minlon": 100.5725908,
+    "maxlat": 13.7709127,
+    "maxlon": 100.5733348
+  },
+  "geometry": [
+    { "lat": 13.7709127, "lon": 100.5733348 },
+    { "lat": 13.7706097, "lon": 100.5732475 },
+    { "lat": 13.7703919, "lon": 100.5731826 },
+    { "lat": 13.7698697, "lon": 100.5729859 },
+    { "lat": 13.7696137, "lon": 100.5728605 },
+    { "lat": 13.7692945, "lon": 100.5727101 },
+    { "lat": 13.7690838, "lon": 100.5725908 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "turn:lanes": "through|through|through|reverse"
+  }
+},
+{
+  "type": "way",
+  "id": 156763613,
+  "bounds": {
+    "minlat": 13.7752280,
+    "minlon": 100.5734143,
+    "maxlat": 13.7756456,
+    "maxlon": 100.5734697
+  },
+  "geometry": [
+    { "lat": 13.7752280, "lon": 100.5734143 },
+    { "lat": 13.7756456, "lon": 100.5734697 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "destination:lanes": "สุทธิสาร;ลาดพร้าว|สุทธิสาร;ลาดพร้าว",
+    "destination:lang:en:lanes": "Sutthisan;Lat Phrao|Sutthisan;Lat Phrao",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "turn:lanes": "through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 156763615,
+  "bounds": {
+    "minlat": 13.7781360,
+    "minlon": 100.5735958,
+    "maxlat": 13.7788187,
+    "maxlon": 100.5736251
+  },
+  "geometry": [
+    { "lat": 13.7781360, "lon": 100.5735958 },
+    { "lat": 13.7788187, "lon": 100.5736251 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bus": "no",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "-1",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "tunnel": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156763618,
+  "bounds": {
+    "minlat": 13.7699336,
+    "minlon": 100.5728200,
+    "maxlat": 13.7712341,
+    "maxlon": 100.5731778
+  },
+  "geometry": [
+    { "lat": 13.7699336, "lon": 100.5728200 },
+    { "lat": 13.7703852, "lon": 100.5729890 },
+    { "lat": 13.7704457, "lon": 100.5730116 },
+    { "lat": 13.7708402, "lon": 100.5731169 },
+    { "lat": 13.7710142, "lon": 100.5731490 },
+    { "lat": 13.7712341, "lon": 100.5731778 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left"
+  }
+},
+{
+  "type": "way",
+  "id": 156763620,
+  "bounds": {
+    "minlat": 13.7894160,
+    "minlon": 100.5741328,
+    "maxlat": 13.7900950,
+    "maxlon": 100.5741665
+  },
+  "geometry": [
+    { "lat": 13.7894160, "lon": 100.5741328 },
+    { "lat": 13.7900950, "lon": 100.5741665 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bus": "no",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "-1",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "tunnel": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156763621,
+  "bounds": {
+    "minlat": 13.7869985,
+    "minlon": 100.5740833,
+    "maxlat": 13.7894073,
+    "maxlon": 100.5742040
+  },
+  "geometry": [
+    { "lat": 13.7894073, "lon": 100.5742040 },
+    { "lat": 13.7869985, "lon": 100.5740833 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "cutting": "yes",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156763622,
+  "bounds": {
+    "minlat": 13.7712341,
+    "minlon": 100.5731778,
+    "maxlat": 13.7735765,
+    "maxlon": 100.5733125
+  },
+  "geometry": [
+    { "lat": 13.7712341, "lon": 100.5731778 },
+    { "lat": 13.7716276, "lon": 100.5731914 },
+    { "lat": 13.7725677, "lon": 100.5732370 },
+    { "lat": 13.7727385, "lon": 100.5732460 },
+    { "lat": 13.7735765, "lon": 100.5733125 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156763623,
+  "bounds": {
+    "minlat": 13.7813293,
+    "minlon": 100.5738176,
+    "maxlat": 13.7816874,
+    "maxlon": 100.5738654
+  },
+  "geometry": [
+    { "lat": 13.7816874, "lon": 100.5738654 },
+    { "lat": 13.7813293, "lon": 100.5738176 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "turn:lanes": "left;through|reverse|through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 156763626,
+  "bounds": {
+    "minlat": 13.7866019,
+    "minlon": 100.5739508,
+    "maxlat": 13.7869985,
+    "maxlon": 100.5740243
+  },
+  "geometry": [
+    { "lat": 13.7866019, "lon": 100.5739508 },
+    { "lat": 13.7869985, "lon": 100.5740243 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 156763632,
+  "bounds": {
+    "minlat": 13.7781330,
+    "minlon": 100.5736595,
+    "maxlat": 13.7788155,
+    "maxlon": 100.5736944
+  },
+  "geometry": [
+    { "lat": 13.7788155, "lon": 100.5736944 },
+    { "lat": 13.7781330, "lon": 100.5736595 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bus": "no",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "-1",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "tunnel": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156763635,
+  "bounds": {
+    "minlat": 13.7818404,
+    "minlon": 100.5738730,
+    "maxlat": 13.7866149,
+    "maxlon": 100.5740978
+  },
+  "geometry": [
+    { "lat": 13.7866149, "lon": 100.5740978 },
+    { "lat": 13.7863727, "lon": 100.5740862 },
+    { "lat": 13.7856347, "lon": 100.5740517 },
+    { "lat": 13.7850585, "lon": 100.5740231 },
+    { "lat": 13.7844428, "lon": 100.5739934 },
+    { "lat": 13.7840220, "lon": 100.5739739 },
+    { "lat": 13.7838879, "lon": 100.5739677 },
+    { "lat": 13.7835553, "lon": 100.5739523 },
+    { "lat": 13.7830008, "lon": 100.5739265 },
+    { "lat": 13.7819697, "lon": 100.5738787 },
+    { "lat": 13.7818404, "lon": 100.5738730 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156763641,
+  "bounds": {
+    "minlat": 13.7925996,
+    "minlon": 100.5743542,
+    "maxlat": 13.7929594,
+    "maxlon": 100.5744069
+  },
+  "geometry": [
+    { "lat": 13.7929594, "lon": 100.5744069 },
+    { "lat": 13.7925996, "lon": 100.5743542 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "destination:lanes": "ห้วยขวาง;พระราม 9|ห้วยขวาง;พระราม 9",
+    "destination:lang:en:lanes": "Huai Khwang;Rama IX|Huai Khwang;Rama IX",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "concrete",
+    "turn:lanes": "through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 156763642,
+  "bounds": {
+    "minlat": 13.7650630,
+    "minlon": 100.5694720,
+    "maxlat": 13.7690838,
+    "maxlon": 100.5725908
+  },
+  "geometry": [
+    { "lat": 13.7690838, "lon": 100.5725908 },
+    { "lat": 13.7688803, "lon": 100.5724555 },
+    { "lat": 13.7686978, "lon": 100.5723295 },
+    { "lat": 13.7685169, "lon": 100.5721925 },
+    { "lat": 13.7681692, "lon": 100.5719222 },
+    { "lat": 13.7676860, "lon": 100.5715389 },
+    { "lat": 13.7673978, "lon": 100.5713115 },
+    { "lat": 13.7669236, "lon": 100.5709373 },
+    { "lat": 13.7661870, "lon": 100.5703561 },
+    { "lat": 13.7661446, "lon": 100.5703226 },
+    { "lat": 13.7658384, "lon": 100.5700810 },
+    { "lat": 13.7658311, "lon": 100.5700753 },
+    { "lat": 13.7652559, "lon": 100.5696214 },
+    { "lat": 13.7650630, "lon": 100.5694720 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 156763645,
+  "bounds": {
+    "minlat": 13.7756426,
+    "minlon": 100.5735335,
+    "maxlat": 13.7781330,
+    "maxlon": 100.5736595
+  },
+  "geometry": [
+    { "lat": 13.7781330, "lon": 100.5736595 },
+    { "lat": 13.7756426, "lon": 100.5735335 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "cutting": "yes",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 156763647,
+  "bounds": {
+    "minlat": 13.7894073,
+    "minlon": 100.5742040,
+    "maxlat": 13.7900846,
+    "maxlon": 100.5742335
+  },
+  "geometry": [
+    { "lat": 13.7900846, "lon": 100.5742335 },
+    { "lat": 13.7894073, "lon": 100.5742040 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bus": "no",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "-1",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "tunnel": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156763650,
+  "bounds": {
+    "minlat": 13.7614003,
+    "minlon": 100.5664845,
+    "maxlat": 13.7634939,
+    "maxlon": 100.5680337
+  },
+  "geometry": [
+    { "lat": 13.7614003, "lon": 100.5664845 },
+    { "lat": 13.7617919, "lon": 100.5667253 },
+    { "lat": 13.7620208, "lon": 100.5668843 },
+    { "lat": 13.7620943, "lon": 100.5669414 },
+    { "lat": 13.7624684, "lon": 100.5672261 },
+    { "lat": 13.7629000, "lon": 100.5675660 },
+    { "lat": 13.7634939, "lon": 100.5680337 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "turn:lanes": "none|none|none|merge_to_left"
+  }
+},
+{
+  "type": "way",
+  "id": 156763653,
+  "bounds": {
+    "minlat": 13.7788187,
+    "minlon": 100.5736251,
+    "maxlat": 13.7813314,
+    "maxlon": 100.5737499
+  },
+  "geometry": [
+    { "lat": 13.7788187, "lon": 100.5736251 },
+    { "lat": 13.7813314, "lon": 100.5737499 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "cutting": "yes",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156763655,
+  "bounds": {
+    "minlat": 13.7900950,
+    "minlon": 100.5741665,
+    "maxlat": 13.7926036,
+    "maxlon": 100.5742939
+  },
+  "geometry": [
+    { "lat": 13.7900950, "lon": 100.5741665 },
+    { "lat": 13.7926036, "lon": 100.5742939 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "cutting": "yes",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 156767811,
+  "bounds": {
+    "minlat": 13.7552988,
+    "minlon": 100.5648204,
+    "maxlat": 13.7561309,
+    "maxlon": 100.5756631
+  },
+  "geometry": [
+    { "lat": 13.7561309, "lon": 100.5648204 },
+    { "lat": 13.7560361, "lon": 100.5660769 },
+    { "lat": 13.7559006, "lon": 100.5678016 },
+    { "lat": 13.7557860, "lon": 100.5692902 },
+    { "lat": 13.7555776, "lon": 100.5720583 },
+    { "lat": 13.7554707, "lon": 100.5733618 },
+    { "lat": 13.7553717, "lon": 100.5746680 },
+    { "lat": 13.7552988, "lon": 100.5756631 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "motorcycle": "no",
+    "name": "ถนนพระราม 9",
+    "name:en": "Rama IX Road",
+    "name:etymology:wikidata": "Q855252",
+    "name:th": "ถนนพระราม 9",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156767816,
+  "bounds": {
+    "minlat": 13.7549944,
+    "minlon": 100.5648080,
+    "maxlat": 13.7560548,
+    "maxlon": 100.5790651
+  },
+  "geometry": [
+    { "lat": 13.7549944, "lon": 100.5790651 },
+    { "lat": 13.7551529, "lon": 100.5770177 },
+    { "lat": 13.7551707, "lon": 100.5764147 },
+    { "lat": 13.7552206, "lon": 100.5756497 },
+    { "lat": 13.7554030, "lon": 100.5733457 },
+    { "lat": 13.7555671, "lon": 100.5712858 },
+    { "lat": 13.7556764, "lon": 100.5697839 },
+    { "lat": 13.7557077, "lon": 100.5692844 },
+    { "lat": 13.7558224, "lon": 100.5677951 },
+    { "lat": 13.7559579, "lon": 100.5660706 },
+    { "lat": 13.7560548, "lon": 100.5648080 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "maxweight:signed": "no",
+    "motorcycle": "no",
+    "name": "ถนนพระราม 9",
+    "name:en": "Rama IX Road",
+    "name:etymology:wikidata": "Q855252",
+    "name:th": "ถนนพระราม 9",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 156767819,
+  "bounds": {
+    "minlat": 13.7568098,
+    "minlon": 100.5571438,
+    "maxlat": 13.7580615,
+    "maxlon": 100.5583818
+  },
+  "geometry": [
+    { "lat": 13.7580615, "lon": 100.5571438 },
+    { "lat": 13.7578368, "lon": 100.5572621 },
+    { "lat": 13.7576591, "lon": 100.5573832 },
+    { "lat": 13.7574843, "lon": 100.5575199 },
+    { "lat": 13.7573130, "lon": 100.5576795 },
+    { "lat": 13.7571714, "lon": 100.5578287 },
+    { "lat": 13.7570368, "lon": 100.5580008 },
+    { "lat": 13.7569233, "lon": 100.5581754 },
+    { "lat": 13.7568098, "lon": 100.5583818 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "highway": "primary",
+    "maxspeed": "50",
+    "motorcycle": "no",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156767821,
+  "bounds": {
+    "minlat": 13.7563143,
+    "minlon": 100.5602320,
+    "maxlat": 13.7563608,
+    "maxlon": 100.5614159
+  },
+  "geometry": [
+    { "lat": 13.7563143, "lon": 100.5614159 },
+    { "lat": 13.7563541, "lon": 100.5608339 },
+    { "lat": 13.7563608, "lon": 100.5605523 },
+    { "lat": 13.7563544, "lon": 100.5602320 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "50",
+    "motorcycle": "no",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:etymology:wikidata": "Q855252",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 156825466,
+  "bounds": {
+    "minlat": 13.7578314,
+    "minlon": 100.5654241,
+    "maxlat": 13.7614743,
+    "maxlon": 100.5667124
+  },
+  "geometry": [
+    { "lat": 13.7614743, "lon": 100.5667124 },
+    { "lat": 13.7613068, "lon": 100.5666074 },
+    { "lat": 13.7611405, "lon": 100.5665118 },
+    { "lat": 13.7610266, "lon": 100.5664504 },
+    { "lat": 13.7609534, "lon": 100.5664109 },
+    { "lat": 13.7607888, "lon": 100.5663284 },
+    { "lat": 13.7607490, "lon": 100.5663085 },
+    { "lat": 13.7605415, "lon": 100.5662129 },
+    { "lat": 13.7603287, "lon": 100.5661200 },
+    { "lat": 13.7601328, "lon": 100.5660418 },
+    { "lat": 13.7600986, "lon": 100.5660281 },
+    { "lat": 13.7598648, "lon": 100.5659384 },
+    { "lat": 13.7597794, "lon": 100.5659093 },
+    { "lat": 13.7594695, "lon": 100.5658192 },
+    { "lat": 13.7591595, "lon": 100.5657323 },
+    { "lat": 13.7578314, "lon": 100.5654241 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "5",
+    "lit": "yes",
+    "maxspeed": "60",
+    "maxspeed:type": "TH:urban",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "smoothness": "intermediate",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 178872838,
+  "bounds": {
+    "minlat": 13.7900846,
+    "minlon": 100.5742335,
+    "maxlat": 13.7925996,
+    "maxlon": 100.5743542
+  },
+  "geometry": [
+    { "lat": 13.7925996, "lon": 100.5743542 },
+    { "lat": 13.7900846, "lon": 100.5742335 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "cutting": "yes",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 178872843,
+  "bounds": {
+    "minlat": 13.7869985,
+    "minlon": 100.5740243,
+    "maxlat": 13.7894160,
+    "maxlon": 100.5741328
+  },
+  "geometry": [
+    { "lat": 13.7869985, "lon": 100.5740243 },
+    { "lat": 13.7894160, "lon": 100.5741328 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "cutting": "yes",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 178872845,
+  "bounds": {
+    "minlat": 13.7813314,
+    "minlon": 100.5737108,
+    "maxlat": 13.7817542,
+    "maxlon": 100.5737499
+  },
+  "geometry": [
+    { "lat": 13.7813314, "lon": 100.5737499 },
+    { "lat": 13.7817542, "lon": 100.5737108 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 178872848,
+  "bounds": {
+    "minlat": 13.7756456,
+    "minlon": 100.5734697,
+    "maxlat": 13.7781360,
+    "maxlon": 100.5735958
+  },
+  "geometry": [
+    { "lat": 13.7756456, "lon": 100.5734697 },
+    { "lat": 13.7781360, "lon": 100.5735958 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "cutting": "yes",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 178872852,
+  "bounds": {
+    "minlat": 13.7926036,
+    "minlon": 100.5742539,
+    "maxlat": 13.7929581,
+    "maxlon": 100.5742939
+  },
+  "geometry": [
+    { "lat": 13.7926036, "lon": 100.5742939 },
+    { "lat": 13.7929581, "lon": 100.5742539 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 178872855,
+  "bounds": {
+    "minlat": 13.7866149,
+    "minlon": 100.5740833,
+    "maxlat": 13.7869985,
+    "maxlon": 100.5740978
+  },
+  "geometry": [
+    { "lat": 13.7869985, "lon": 100.5740833 },
+    { "lat": 13.7866149, "lon": 100.5740978 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 178872857,
+  "bounds": {
+    "minlat": 13.7788155,
+    "minlon": 100.5736944,
+    "maxlat": 13.7813293,
+    "maxlon": 100.5738176
+  },
+  "geometry": [
+    { "lat": 13.7813293, "lon": 100.5738176 },
+    { "lat": 13.7788155, "lon": 100.5736944 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "cutting": "yes",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 178872858,
+  "bounds": {
+    "minlat": 13.7565169,
+    "minlon": 100.5649935,
+    "maxlat": 13.7614003,
+    "maxlon": 100.5664845
+  },
+  "geometry": [
+    { "lat": 13.7565169, "lon": 100.5649935 },
+    { "lat": 13.7574711, "lon": 100.5651897 },
+    { "lat": 13.7578166, "lon": 100.5652774 },
+    { "lat": 13.7590762, "lon": 100.5655437 },
+    { "lat": 13.7593208, "lon": 100.5656007 },
+    { "lat": 13.7595964, "lon": 100.5656727 },
+    { "lat": 13.7598538, "lon": 100.5657567 },
+    { "lat": 13.7600843, "lon": 100.5658424 },
+    { "lat": 13.7603148, "lon": 100.5659416 },
+    { "lat": 13.7605489, "lon": 100.5660432 },
+    { "lat": 13.7609352, "lon": 100.5662204 },
+    { "lat": 13.7612508, "lon": 100.5663975 },
+    { "lat": 13.7614003, "lon": 100.5664845 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "sidewalk:left": "separate",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 185077905,
+  "bounds": {
+    "minlat": 13.7895754,
+    "minlon": 100.5669913,
+    "maxlat": 13.7897124,
+    "maxlon": 100.5697492
+  },
+  "geometry": [
+    { "lat": 13.7895754, "lon": 100.5669913 },
+    { "lat": 13.7895899, "lon": 100.5672951 },
+    { "lat": 13.7896120, "lon": 100.5677582 },
+    { "lat": 13.7896271, "lon": 100.5680736 },
+    { "lat": 13.7896339, "lon": 100.5682169 },
+    { "lat": 13.7896664, "lon": 100.5688948 },
+    { "lat": 13.7896722, "lon": 100.5690169 },
+    { "lat": 13.7896917, "lon": 100.5694267 },
+    { "lat": 13.7897124, "lon": 100.5697492 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "maxspeed": "50",
+    "name": "ถนนสุทธิสารวินิจฉัย",
+    "name:en": "Sutthisan Winitchai Road",
+    "name:etymology:wikidata": "Q13017769",
+    "name:th": "ถนนสุทธิสารวินิจฉัย",
+    "wikidata": "Q6578440"
+  }
+},
+{
+  "type": "way",
+  "id": 236051656,
+  "bounds": {
+    "minlat": 13.7605617,
+    "minlon": 100.5505218,
+    "maxlat": 13.7626931,
+    "maxlon": 100.5549048
+  },
+  "geometry": [
+    { "lat": 13.7626931, "lon": 100.5505218 },
+    { "lat": 13.7620847, "lon": 100.5517399 },
+    { "lat": 13.7619769, "lon": 100.5519557 },
+    { "lat": 13.7618616, "lon": 100.5522212 },
+    { "lat": 13.7617466, "lon": 100.5524861 },
+    { "lat": 13.7616172, "lon": 100.5527488 },
+    { "lat": 13.7616056, "lon": 100.5527722 },
+    { "lat": 13.7608040, "lon": 100.5543881 },
+    { "lat": 13.7607920, "lon": 100.5544137 },
+    { "lat": 13.7606605, "lon": 100.5546995 },
+    { "lat": 13.7605617, "lon": 100.5549048 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "maxspeed": "60",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "name:th-Latn": "Thanon Din Daeng",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 236051658,
+  "bounds": {
+    "minlat": 13.7560283,
+    "minlon": 100.5634365,
+    "maxlat": 13.7561035,
+    "maxlon": 100.5643952
+  },
+  "geometry": [
+    { "lat": 13.7560283, "lon": 100.5643952 },
+    { "lat": 13.7560684, "lon": 100.5638843 },
+    { "lat": 13.7560877, "lon": 100.5636416 },
+    { "lat": 13.7561035, "lon": 100.5634365 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "50",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 300803501,
+  "bounds": {
+    "minlat": 13.7589940,
+    "minlon": 100.5458904,
+    "maxlat": 13.7610350,
+    "maxlon": 100.5476459
+  },
+  "geometry": [
+    { "lat": 13.7589940, "lon": 100.5476459 },
+    { "lat": 13.7596412, "lon": 100.5470791 },
+    { "lat": 13.7603195, "lon": 100.5464963 },
+    { "lat": 13.7610350, "lon": 100.5458904 }
+  ],
+  "tags": {
+    "alt_name": "ทางด่วนขั้นที่ 2",
+    "alt_name:en": "2nd-stage expressway",
+    "alt_name:th": "ทางด่วนขั้นที่ 2",
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "motorway",
+    "lanes": "3",
+    "layer": "3",
+    "motorcycle": "no",
+    "name": "ทางพิเศษศรีรัช",
+    "name:de": "Si Rat Expressway",
+    "name:en": "Sirat Expressway",
+    "name:etymology:wikidata": "Q85987157",
+    "name:fr": "Autoroute Si Rat",
+    "name:ja": "シラット高速道路",
+    "name:th": "ทางพิเศษศรีรัช",
+    "oneway": "yes",
+    "toll": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 368024521,
+  "bounds": {
+    "minlat": 13.7784135,
+    "minlon": 100.5735301,
+    "maxlat": 13.7784599,
+    "maxlon": 100.5737373
+  },
+  "geometry": [
+    { "lat": 13.7784599, "lon": 100.5737373 },
+    { "lat": 13.7784135, "lon": 100.5735301 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "name": "ถนนประชาราษฎร์บำเพ็ญ",
+    "name:en": "Pracha Rat Bamphen Road",
+    "name:th": "ถนนประชาราษฎร์บำเพ็ญ",
+    "source": "sign;bing",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 368024530,
+  "bounds": {
+    "minlat": 13.7780952,
+    "minlon": 100.5719846,
+    "maxlat": 13.7781185,
+    "maxlon": 100.5721322
+  },
+  "geometry": [
+    { "lat": 13.7781185, "lon": 100.5721322 },
+    { "lat": 13.7780952, "lon": 100.5719846 }
+  ],
+  "tags": {
+    "bridge": "trestle",
+    "bridge:structure": "arch",
+    "highway": "secondary",
+    "layer": "1",
+    "name": "ถนนประชาราษฎร์บำเพ็ญ",
+    "name:en": "Pracha Rat Bamphen Road",
+    "name:th": "ถนนประชาราษฎร์บำเพ็ญ",
+    "source": "sign;bing"
+  }
+},
+{
+  "type": "way",
+  "id": 368611489,
+  "bounds": {
+    "minlat": 13.7754368,
+    "minlon": 100.5654836,
+    "maxlat": 13.7754499,
+    "maxlon": 100.5655545
+  },
+  "geometry": [
+    { "lat": 13.7754368, "lon": 100.5655545 },
+    { "lat": 13.7754499, "lon": 100.5654836 }
+  ],
+  "tags": {
+    "bridge": "trestle",
+    "bridge:structure": "arch",
+    "highway": "secondary",
+    "layer": "1",
+    "maxspeed": "30",
+    "name": "ถนนประชาสงเคราะห์",
+    "name:en": "Pracha Songkhro Road",
+    "name:th": "ถนนประชาสงเคราะห์",
+    "sidewalk": "both",
+    "sidewalk:both": "separate",
+    "source": "sign;bing",
+    "wikidata": "Q132677147"
+  }
+},
+{
+  "type": "way",
+  "id": 368611499,
+  "bounds": {
+    "minlat": 13.7782088,
+    "minlon": 100.5680785,
+    "maxlat": 13.7783717,
+    "maxlon": 100.5705530
+  },
+  "geometry": [
+    { "lat": 13.7782088, "lon": 100.5705530 },
+    { "lat": 13.7782159, "lon": 100.5704660 },
+    { "lat": 13.7782534, "lon": 100.5700068 },
+    { "lat": 13.7782884, "lon": 100.5695410 },
+    { "lat": 13.7783143, "lon": 100.5691530 },
+    { "lat": 13.7783345, "lon": 100.5687754 },
+    { "lat": 13.7783579, "lon": 100.5683370 },
+    { "lat": 13.7783717, "lon": 100.5680785 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "lanes": "3",
+    "lanes:backward": "1",
+    "lanes:forward": "2",
+    "name": "ถนนประชาสงเคราะห์",
+    "name:en": "Pracha Songkhro Road",
+    "name:th": "ถนนประชาสงเคราะห์",
+    "surface": "concrete",
+    "wikidata": "Q132677147"
+  }
+},
+{
+  "type": "way",
+  "id": 369892574,
+  "bounds": {
+    "minlat": 13.7735765,
+    "minlon": 100.5733125,
+    "maxlat": 13.7742778,
+    "maxlon": 100.5733480
+  },
+  "geometry": [
+    { "lat": 13.7735765, "lon": 100.5733125 },
+    { "lat": 13.7742778, "lon": 100.5733480 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 369892576,
+  "bounds": {
+    "minlat": 13.7735718,
+    "minlon": 100.5734728,
+    "maxlat": 13.7742778,
+    "maxlon": 100.5735088
+  },
+  "geometry": [
+    { "lat": 13.7742778, "lon": 100.5735088 },
+    { "lat": 13.7735718, "lon": 100.5734728 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 369892577,
+  "bounds": {
+    "minlat": 13.7742778,
+    "minlon": 100.5733480,
+    "maxlat": 13.7752280,
+    "maxlon": 100.5734143
+  },
+  "geometry": [
+    { "lat": 13.7742778, "lon": 100.5733480 },
+    { "lat": 13.7747579, "lon": 100.5733821 },
+    { "lat": 13.7749050, "lon": 100.5733922 },
+    { "lat": 13.7752280, "lon": 100.5734143 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 369892582,
+  "bounds": {
+    "minlat": 13.7709127,
+    "minlon": 100.5733348,
+    "maxlat": 13.7735718,
+    "maxlon": 100.5734728
+  },
+  "geometry": [
+    { "lat": 13.7735718, "lon": 100.5734728 },
+    { "lat": 13.7731226, "lon": 100.5734550 },
+    { "lat": 13.7728626, "lon": 100.5734427 },
+    { "lat": 13.7726858, "lon": 100.5734344 },
+    { "lat": 13.7711974, "lon": 100.5733696 },
+    { "lat": 13.7709127, "lon": 100.5733348 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "wikidata": "Q4924256"
+  }
+},
+{
+  "type": "way",
+  "id": 377358381,
+  "bounds": {
+    "minlat": 13.7784599,
+    "minlon": 100.5737373,
+    "maxlat": 13.7785216,
+    "maxlon": 100.5739602
+  },
+  "geometry": [
+    { "lat": 13.7784599, "lon": 100.5737373 },
+    { "lat": 13.7785216, "lon": 100.5739602 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "lanes": "3",
+    "lanes:backward": "1",
+    "lanes:forward": "2",
+    "name": "ถนนประชาราษฎร์บำเพ็ญ",
+    "name:en": "Pracha Rat Bamphen Road",
+    "name:th": "ถนนประชาราษฎร์บำเพ็ญ",
+    "source": "sign;bing",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 377358387,
+  "bounds": {
+    "minlat": 13.7897302,
+    "minlon": 100.5740664,
+    "maxlat": 13.7897492,
+    "maxlon": 100.5742930
+  },
+  "geometry": [
+    { "lat": 13.7897302, "lon": 100.5742930 },
+    { "lat": 13.7897492, "lon": 100.5740664 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "name": "ถนนสุทธิสารวินิจฉัย",
+    "name:en": "Sutthisan Winitchai Road",
+    "name:etymology:wikidata": "Q13017769",
+    "name:th": "ถนนสุทธิสารวินิจฉัย",
+    "wikidata": "Q6578440"
+  }
+},
+{
+  "type": "way",
+  "id": 458620712,
+  "bounds": {
+    "minlat": 13.7555534,
+    "minlon": 100.5647893,
+    "maxlat": 13.7559967,
+    "maxlon": 100.5648775
+  },
+  "geometry": [
+    { "lat": 13.7555534, "lon": 100.5647893 },
+    { "lat": 13.7558968, "lon": 100.5648576 },
+    { "lat": 13.7559967, "lon": 100.5648775 }
+  ],
+  "tags": {
+    "alt_name": "ถนนรัชดาภิเษก",
+    "alt_name:en": "Ratchadaphisek Road",
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "4",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "surface": "concrete",
+    "turn:lanes": "through|through|through;right|right"
+  }
+},
+{
+  "type": "way",
+  "id": 458620713,
+  "bounds": {
+    "minlat": 13.7561640,
+    "minlon": 100.5650660,
+    "maxlat": 13.7564798,
+    "maxlon": 100.5651249
+  },
+  "geometry": [
+    { "lat": 13.7564798, "lon": 100.5651249 },
+    { "lat": 13.7562536, "lon": 100.5650827 },
+    { "lat": 13.7561640, "lon": 100.5650660 }
+  ],
+  "tags": {
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "maxspeed:type": "TH:urban",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "smoothness": "intermediate",
+    "surface": "concrete",
+    "turn:lanes": "through|through|right|right"
+  }
+},
+{
+  "type": "way",
+  "id": 458620714,
+  "bounds": {
+    "minlat": 13.7561763,
+    "minlon": 100.5644844,
+    "maxlat": 13.7562094,
+    "maxlon": 100.5649119
+  },
+  "geometry": [
+    { "lat": 13.7562094, "lon": 100.5644844 },
+    { "lat": 13.7561852, "lon": 100.5647965 },
+    { "lat": 13.7561763, "lon": 100.5649119 }
+  ],
+  "tags": {
+    "foot": "no",
+    "highway": "primary",
+    "lane_markings": "no",
+    "lanes": "4",
+    "maxspeed": "50",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "surface": "concrete",
+    "turn:lanes": "through|through|right|right"
+  }
+},
+{
+  "type": "way",
+  "id": 458620716,
+  "bounds": {
+    "minlat": 13.7559475,
+    "minlon": 100.5650328,
+    "maxlat": 13.7559866,
+    "maxlon": 100.5656300
+  },
+  "geometry": [
+    { "lat": 13.7559475, "lon": 100.5656300 },
+    { "lat": 13.7559796, "lon": 100.5651405 },
+    { "lat": 13.7559866, "lon": 100.5650328 }
+  ],
+  "tags": {
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "50",
+    "name": "ถนนพระราม 9",
+    "name:en": "Rama IX Road",
+    "name:etymology:wikidata": "Q855252",
+    "name:th": "ถนนพระราม 9",
+    "oneway": "yes",
+    "surface": "concrete",
+    "turn:lanes": "through|through;right|right"
+  }
+},
+{
+  "type": "way",
+  "id": 458620718,
+  "bounds": {
+    "minlat": 13.7559866,
+    "minlon": 100.5648775,
+    "maxlat": 13.7559967,
+    "maxlon": 100.5650328
+  },
+  "geometry": [
+    { "lat": 13.7559866, "lon": 100.5650328 },
+    { "lat": 13.7559967, "lon": 100.5648775 }
+  ],
+  "tags": {
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "50",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 458620719,
+  "bounds": {
+    "minlat": 13.7555653,
+    "minlon": 100.5649424,
+    "maxlat": 13.7559866,
+    "maxlon": 100.5650328
+  },
+  "geometry": [
+    { "lat": 13.7559866, "lon": 100.5650328 },
+    { "lat": 13.7558734, "lon": 100.5650085 },
+    { "lat": 13.7555653, "lon": 100.5649424 }
+  ],
+  "tags": {
+    "alt_name": "ถนนรัชดาภิเษก",
+    "alt_name:en": "Ratchadaphisek Road",
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "4",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 458620720,
+  "bounds": {
+    "minlat": 13.7561640,
+    "minlon": 100.5649119,
+    "maxlat": 13.7561763,
+    "maxlon": 100.5650660
+  },
+  "geometry": [
+    { "lat": 13.7561763, "lon": 100.5649119 },
+    { "lat": 13.7561640, "lon": 100.5650660 }
+  ],
+  "tags": {
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "50",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 458620721,
+  "bounds": {
+    "minlat": 13.7561763,
+    "minlon": 100.5649119,
+    "maxlat": 13.7565169,
+    "maxlon": 100.5649935
+  },
+  "geometry": [
+    { "lat": 13.7561763, "lon": 100.5649119 },
+    { "lat": 13.7562817, "lon": 100.5649371 },
+    { "lat": 13.7565169, "lon": 100.5649935 }
+  ],
+  "tags": {
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 458620723,
+  "bounds": {
+    "minlat": 13.7559967,
+    "minlon": 100.5648775,
+    "maxlat": 13.7561763,
+    "maxlon": 100.5649119
+  },
+  "geometry": [
+    { "lat": 13.7559967, "lon": 100.5648775 },
+    { "lat": 13.7561763, "lon": 100.5649119 }
+  ],
+  "tags": {
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "4",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 458620724,
+  "bounds": {
+    "minlat": 13.7559967,
+    "minlon": 100.5643952,
+    "maxlat": 13.7560283,
+    "maxlon": 100.5648775
+  },
+  "geometry": [
+    { "lat": 13.7559967, "lon": 100.5648775 },
+    { "lat": 13.7560041, "lon": 100.5647642 },
+    { "lat": 13.7560283, "lon": 100.5643952 }
+  ],
+  "tags": {
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "50",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 458620725,
+  "bounds": {
+    "minlat": 13.7559866,
+    "minlon": 100.5650328,
+    "maxlat": 13.7561640,
+    "maxlon": 100.5650660
+  },
+  "geometry": [
+    { "lat": 13.7561640, "lon": 100.5650660 },
+    { "lat": 13.7559866, "lon": 100.5650328 }
+  ],
+  "tags": {
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "4",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 458620726,
+  "bounds": {
+    "minlat": 13.7561473,
+    "minlon": 100.5650660,
+    "maxlat": 13.7561640,
+    "maxlon": 100.5654487
+  },
+  "geometry": [
+    { "lat": 13.7561640, "lon": 100.5650660 },
+    { "lat": 13.7561600, "lon": 100.5651579 },
+    { "lat": 13.7561473, "lon": 100.5654487 }
+  ],
+  "tags": {
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "50",
+    "name": "ถนนพระราม 9",
+    "name:en": "Rama IX Road",
+    "name:etymology:wikidata": "Q855252",
+    "name:th": "ถนนพระราม 9",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 462463535,
+  "bounds": {
+    "minlat": 13.7817542,
+    "minlon": 100.5737108,
+    "maxlat": 13.7858148,
+    "maxlon": 100.5739120
+  },
+  "geometry": [
+    { "lat": 13.7817542, "lon": 100.5737108 },
+    { "lat": 13.7818336, "lon": 100.5737143 },
+    { "lat": 13.7820908, "lon": 100.5737258 },
+    { "lat": 13.7838490, "lon": 100.5738042 },
+    { "lat": 13.7840569, "lon": 100.5738157 },
+    { "lat": 13.7844437, "lon": 100.5738372 },
+    { "lat": 13.7847855, "lon": 100.5738558 },
+    { "lat": 13.7858148, "lon": 100.5739120 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 463576279,
+  "bounds": {
+    "minlat": 13.7562686,
+    "minlon": 100.5627487,
+    "maxlat": 13.7563327,
+    "maxlon": 100.5636797
+  },
+  "geometry": [
+    { "lat": 13.7563327, "lon": 100.5627487 },
+    { "lat": 13.7563221, "lon": 100.5629067 },
+    { "lat": 13.7563111, "lon": 100.5630490 },
+    { "lat": 13.7563098, "lon": 100.5630779 },
+    { "lat": 13.7562955, "lon": 100.5632976 },
+    { "lat": 13.7562832, "lon": 100.5634559 },
+    { "lat": 13.7562686, "lon": 100.5636797 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "60",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "sidewalk:left": "separate"
+  }
+},
+{
+  "type": "way",
+  "id": 465371336,
+  "bounds": {
+    "minlat": 13.7896877,
+    "minlon": 100.5698493,
+    "maxlat": 13.7898764,
+    "maxlon": 100.5740664
+  },
+  "geometry": [
+    { "lat": 13.7897188, "lon": 100.5698493 },
+    { "lat": 13.7897198, "lon": 100.5698740 },
+    { "lat": 13.7897279, "lon": 100.5700628 },
+    { "lat": 13.7897281, "lon": 100.5701336 },
+    { "lat": 13.7897286, "lon": 100.5702639 },
+    { "lat": 13.7897112, "lon": 100.5704795 },
+    { "lat": 13.7896926, "lon": 100.5706293 },
+    { "lat": 13.7896877, "lon": 100.5707321 },
+    { "lat": 13.7896921, "lon": 100.5709043 },
+    { "lat": 13.7897017, "lon": 100.5710418 },
+    { "lat": 13.7897043, "lon": 100.5710792 },
+    { "lat": 13.7897237, "lon": 100.5712982 },
+    { "lat": 13.7897796, "lon": 100.5718429 },
+    { "lat": 13.7897983, "lon": 100.5720246 },
+    { "lat": 13.7898233, "lon": 100.5722676 },
+    { "lat": 13.7898394, "lon": 100.5724252 },
+    { "lat": 13.7898764, "lon": 100.5727851 },
+    { "lat": 13.7898735, "lon": 100.5728696 },
+    { "lat": 13.7898291, "lon": 100.5732648 },
+    { "lat": 13.7897793, "lon": 100.5737647 },
+    { "lat": 13.7897492, "lon": 100.5740664 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "maxspeed": "50",
+    "name": "ถนนสุทธิสารวินิจฉัย",
+    "name:en": "Sutthisan Winitchai Road",
+    "name:etymology:wikidata": "Q13017769",
+    "name:th": "ถนนสุทธิสารวินิจฉัย",
+    "wikidata": "Q6578440"
+  }
+},
+{
+  "type": "way",
+  "id": 632445132,
+  "bounds": {
+    "minlat": 13.7638001,
+    "minlon": 100.5484801,
+    "maxlat": 13.7638778,
+    "maxlon": 100.5485687
+  },
+  "geometry": [
+    { "lat": 13.7638778, "lon": 100.5484801 },
+    { "lat": 13.7638001, "lon": 100.5485687 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "maxspeed": "45",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "name:th-Latn": "Thanon Din Daeng",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 632445157,
+  "bounds": {
+    "minlat": 13.7638778,
+    "minlon": 100.5477252,
+    "maxlat": 13.7641359,
+    "maxlon": 100.5484801
+  },
+  "geometry": [
+    { "lat": 13.7641359, "lon": 100.5477252 },
+    { "lat": 13.7641247, "lon": 100.5478442 },
+    { "lat": 13.7641134, "lon": 100.5479644 },
+    { "lat": 13.7641002, "lon": 100.5481052 },
+    { "lat": 13.7640335, "lon": 100.5483026 },
+    { "lat": 13.7639643, "lon": 100.5483858 },
+    { "lat": 13.7638973, "lon": 100.5484589 },
+    { "lat": 13.7638778, "lon": 100.5484801 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "maxspeed": "45",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "name:th-Latn": "Thanon Din Daeng",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 699302086,
+  "bounds": {
+    "minlat": 13.7606911,
+    "minlon": 100.5459173,
+    "maxlat": 13.7661844,
+    "maxlon": 100.5489724
+  },
+  "geometry": [
+    { "lat": 13.7606911, "lon": 100.5459173 },
+    { "lat": 13.7611494, "lon": 100.5463614 },
+    { "lat": 13.7613624, "lon": 100.5465625 },
+    { "lat": 13.7616152, "lon": 100.5467871 },
+    { "lat": 13.7624247, "lon": 100.5473533 },
+    { "lat": 13.7634695, "lon": 100.5478873 },
+    { "lat": 13.7646250, "lon": 100.5483605 },
+    { "lat": 13.7653885, "lon": 100.5486401 },
+    { "lat": 13.7661844, "lon": 100.5489724 }
+  ],
+  "tags": {
+    "alt_name": "ทางด่วนขั้นที่ 1",
+    "alt_name:en": "1st-stage expressway",
+    "alt_name:th": "ทางด่วนขั้นที่ 1",
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "motorway",
+    "layer": "2",
+    "maxspeed": "100",
+    "motorcycle": "no",
+    "name": "ทางพิเศษเฉลิมมหานคร",
+    "name:de": "Chaloem Maha Nakhon Expressway",
+    "name:en": "Chaloem Mahanakhon Expressway",
+    "name:etymology:wikidata": "Q200250",
+    "name:fr": "Autoroute Chaloem Maha Nakhon",
+    "name:ja": "チャルームマハナコーン高速道路",
+    "name:th": "ทางพิเศษเฉลิมมหานคร",
+    "oneway": "yes",
+    "toll": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 835519346,
+  "bounds": {
+    "minlat": 13.7752162,
+    "minlon": 100.5735565,
+    "maxlat": 13.7784599,
+    "maxlon": 100.5737373
+  },
+  "geometry": [
+    { "lat": 13.7784599, "lon": 100.5737373 },
+    { "lat": 13.7781665, "lon": 100.5737265 },
+    { "lat": 13.7780376, "lon": 100.5737202 },
+    { "lat": 13.7767223, "lon": 100.5736559 },
+    { "lat": 13.7760018, "lon": 100.5736207 },
+    { "lat": 13.7752162, "lon": 100.5735565 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 835519348,
+  "bounds": {
+    "minlat": 13.7965666,
+    "minlon": 100.5744152,
+    "maxlat": 13.8009156,
+    "maxlon": 100.5746268
+  },
+  "geometry": [
+    { "lat": 13.7965666, "lon": 100.5744152 },
+    { "lat": 13.7968975, "lon": 100.5744241 },
+    { "lat": 13.7973570, "lon": 100.5744414 },
+    { "lat": 13.7975507, "lon": 100.5744534 },
+    { "lat": 13.7978235, "lon": 100.5744618 },
+    { "lat": 13.7979054, "lon": 100.5744643 },
+    { "lat": 13.7989802, "lon": 100.5745191 },
+    { "lat": 13.8003096, "lon": 100.5745934 },
+    { "lat": 13.8009156, "lon": 100.5746268 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 835519349,
+  "bounds": {
+    "minlat": 13.7959417,
+    "minlon": 100.5743908,
+    "maxlat": 13.7965666,
+    "maxlon": 100.5744152
+  },
+  "geometry": [
+    { "lat": 13.7959417, "lon": 100.5743908 },
+    { "lat": 13.7965666, "lon": 100.5744152 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 835519350,
+  "bounds": {
+    "minlat": 13.7959362,
+    "minlon": 100.5745524,
+    "maxlat": 13.7965720,
+    "maxlon": 100.5745835
+  },
+  "geometry": [
+    { "lat": 13.7965720, "lon": 100.5745835 },
+    { "lat": 13.7959362, "lon": 100.5745524 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 835519351,
+  "bounds": {
+    "minlat": 13.7965720,
+    "minlon": 100.5745835,
+    "maxlat": 13.8009636,
+    "maxlon": 100.5748081
+  },
+  "geometry": [
+    { "lat": 13.8009636, "lon": 100.5748081 },
+    { "lat": 13.8004917, "lon": 100.5747873 },
+    { "lat": 13.8003685, "lon": 100.5747807 },
+    { "lat": 13.7997818, "lon": 100.5747541 },
+    { "lat": 13.7993902, "lon": 100.5747320 },
+    { "lat": 13.7990563, "lon": 100.5747182 },
+    { "lat": 13.7987405, "lon": 100.5747023 },
+    { "lat": 13.7982885, "lon": 100.5746798 },
+    { "lat": 13.7978857, "lon": 100.5746597 },
+    { "lat": 13.7972322, "lon": 100.5746278 },
+    { "lat": 13.7971328, "lon": 100.5746211 },
+    { "lat": 13.7965720, "lon": 100.5745835 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 835519356,
+  "bounds": {
+    "minlat": 13.8009156,
+    "minlon": 100.5746268,
+    "maxlat": 13.8010971,
+    "maxlon": 100.5746381
+  },
+  "geometry": [
+    { "lat": 13.8009156, "lon": 100.5746268 },
+    { "lat": 13.8010971, "lon": 100.5746381 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 835519357,
+  "bounds": {
+    "minlat": 13.8009636,
+    "minlon": 100.5748081,
+    "maxlat": 13.8010677,
+    "maxlon": 100.5748127
+  },
+  "geometry": [
+    { "lat": 13.8010677, "lon": 100.5748127 },
+    { "lat": 13.8009636, "lon": 100.5748081 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 835519386,
+  "bounds": {
+    "minlat": 13.7553114,
+    "minlon": 100.5647350,
+    "maxlat": 13.7555534,
+    "maxlon": 100.5647893
+  },
+  "geometry": [
+    { "lat": 13.7553114, "lon": 100.5647350 },
+    { "lat": 13.7555534, "lon": 100.5647893 }
+  ],
+  "tags": {
+    "alt_name": "ถนนรัชดาภิเษก",
+    "alt_name:en": "Ratchadaphisek Road",
+    "highway": "primary",
+    "lanes": "4",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "smoothness": "intermediate",
+    "surface": "concrete",
+    "turn:lanes": "left;through|through|righ|right"
+  }
+},
+{
+  "type": "way",
+  "id": 835519387,
+  "bounds": {
+    "minlat": 13.7548997,
+    "minlon": 100.5646494,
+    "maxlat": 13.7553114,
+    "maxlon": 100.5647350
+  },
+  "geometry": [
+    { "lat": 13.7548997, "lon": 100.5646494 },
+    { "lat": 13.7553114, "lon": 100.5647350 }
+  ],
+  "tags": {
+    "alt_name": "ถนนรัชดาภิเษก",
+    "alt_name:en": "Ratchadaphisek Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "turn:lanes": "left;through|through|through|right;through"
+  }
+},
+{
+  "type": "way",
+  "id": 835519388,
+  "bounds": {
+    "minlat": 13.7548805,
+    "minlon": 100.5647884,
+    "maxlat": 13.7552932,
+    "maxlon": 100.5648771
+  },
+  "geometry": [
+    { "lat": 13.7552932, "lon": 100.5648771 },
+    { "lat": 13.7548805, "lon": 100.5647884 }
+  ],
+  "tags": {
+    "alt_name": "ถนนรัชดาภิเษก",
+    "alt_name:en": "Ratchadaphisek Road",
+    "bridge": "yes",
+    "highway": "primary",
+    "lanes": "4",
+    "layer": "1",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 835519389,
+  "bounds": {
+    "minlat": 13.7552932,
+    "minlon": 100.5648771,
+    "maxlat": 13.7555653,
+    "maxlon": 100.5649424
+  },
+  "geometry": [
+    { "lat": 13.7555653, "lon": 100.5649424 },
+    { "lat": 13.7552932, "lon": 100.5648771 }
+  ],
+  "tags": {
+    "alt_name": "ถนนรัชดาภิเษก",
+    "alt_name:en": "Ratchadaphisek Road",
+    "highway": "primary",
+    "lanes": "4",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 835519390,
+  "bounds": {
+    "minlat": 13.7587069,
+    "minlon": 100.5568040,
+    "maxlat": 13.7587640,
+    "maxlon": 100.5568403
+  },
+  "geometry": [
+    { "lat": 13.7587640, "lon": 100.5568040 },
+    { "lat": 13.7587335, "lon": 100.5568208 },
+    { "lat": 13.7587069, "lon": 100.5568403 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "highway": "primary",
+    "maxspeed": "40",
+    "motorcycle": "no",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 836466758,
+  "bounds": {
+    "minlat": 13.7900711,
+    "minlon": 100.5743082,
+    "maxlat": 13.7929594,
+    "maxlon": 100.5744285
+  },
+  "geometry": [
+    { "lat": 13.7929594, "lon": 100.5744069 },
+    { "lat": 13.7925708, "lon": 100.5744285 },
+    { "lat": 13.7914934, "lon": 100.5743679 },
+    { "lat": 13.7909785, "lon": 100.5743463 },
+    { "lat": 13.7900711, "lon": 100.5743082 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "turn:lanes": "left;through|reverse"
+  }
+},
+{
+  "type": "way",
+  "id": 853581138,
+  "bounds": {
+    "minlat": 13.7897124,
+    "minlon": 100.5697492,
+    "maxlat": 13.7897188,
+    "maxlon": 100.5698493
+  },
+  "geometry": [
+    { "lat": 13.7897124, "lon": 100.5697492 },
+    { "lat": 13.7897188, "lon": 100.5698493 }
+  ],
+  "tags": {
+    "bridge": "yes",
+    "highway": "secondary",
+    "layer": "1",
+    "maxspeed": "50",
+    "name": "ถนนสุทธิสารวินิจฉัย",
+    "name:en": "Sutthisan Winitchai Road",
+    "name:etymology:wikidata": "Q13017769",
+    "name:th": "ถนนสุทธิสารวินิจฉัย",
+    "wikidata": "Q6578440"
+  }
+},
+{
+  "type": "way",
+  "id": 876391535,
+  "bounds": {
+    "minlat": 13.7897492,
+    "minlon": 100.5740664,
+    "maxlat": 13.7929903,
+    "maxlon": 100.5742554
+  },
+  "geometry": [
+    { "lat": 13.7897492, "lon": 100.5740664 },
+    { "lat": 13.7897978, "lon": 100.5740712 },
+    { "lat": 13.7900574, "lon": 100.5740909 },
+    { "lat": 13.7912021, "lon": 100.5741400 },
+    { "lat": 13.7918648, "lon": 100.5741684 },
+    { "lat": 13.7924248, "lon": 100.5741924 },
+    { "lat": 13.7926267, "lon": 100.5742011 },
+    { "lat": 13.7929581, "lon": 100.5742539 },
+    { "lat": 13.7929903, "lon": 100.5742554 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 876391536,
+  "bounds": {
+    "minlat": 13.7895141,
+    "minlon": 100.5740621,
+    "maxlat": 13.7897492,
+    "maxlon": 100.5740664
+  },
+  "geometry": [
+    { "lat": 13.7895141, "lon": 100.5740621 },
+    { "lat": 13.7896914, "lon": 100.5740653 },
+    { "lat": 13.7897492, "lon": 100.5740664 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 969940060,
+  "bounds": {
+    "minlat": 13.7645666,
+    "minlon": 100.5688577,
+    "maxlat": 13.7687150,
+    "maxlon": 100.5721080
+  },
+  "geometry": [
+    { "lat": 13.7645666, "lon": 100.5688577 },
+    { "lat": 13.7646526, "lon": 100.5689271 },
+    { "lat": 13.7646759, "lon": 100.5689461 },
+    { "lat": 13.7647307, "lon": 100.5689909 },
+    { "lat": 13.7651335, "lon": 100.5693201 },
+    { "lat": 13.7653662, "lon": 100.5695104 },
+    { "lat": 13.7655439, "lon": 100.5696475 },
+    { "lat": 13.7658225, "lon": 100.5698624 },
+    { "lat": 13.7664192, "lon": 100.5703226 },
+    { "lat": 13.7669477, "lon": 100.5707302 },
+    { "lat": 13.7672003, "lon": 100.5709250 },
+    { "lat": 13.7672905, "lon": 100.5709955 },
+    { "lat": 13.7676802, "lon": 100.5712998 },
+    { "lat": 13.7677783, "lon": 100.5713764 },
+    { "lat": 13.7678849, "lon": 100.5714597 },
+    { "lat": 13.7682850, "lon": 100.5717722 },
+    { "lat": 13.7687150, "lon": 100.5721080 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left"
+  }
+},
+{
+  "type": "way",
+  "id": 974520474,
+  "bounds": {
+    "minlat": 13.7866019,
+    "minlon": 100.5739321,
+    "maxlat": 13.7894248,
+    "maxlon": 100.5740610
+  },
+  "geometry": [
+    { "lat": 13.7866019, "lon": 100.5739508 },
+    { "lat": 13.7869667, "lon": 100.5739321 },
+    { "lat": 13.7875470, "lon": 100.5739625 },
+    { "lat": 13.7886440, "lon": 100.5740200 },
+    { "lat": 13.7894248, "lon": 100.5740610 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "turn:lanes": "left;through|through;right|reverse"
+  }
+},
+{
+  "type": "way",
+  "id": 975332464,
+  "bounds": {
+    "minlat": 13.7561035,
+    "minlon": 100.5633510,
+    "maxlat": 13.7561107,
+    "maxlon": 100.5634365
+  },
+  "geometry": [
+    { "lat": 13.7561035, "lon": 100.5634365 },
+    { "lat": 13.7561107, "lon": 100.5633510 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 975332465,
+  "bounds": {
+    "minlat": 13.7563544,
+    "minlon": 100.5549596,
+    "maxlat": 13.7603544,
+    "maxlon": 100.5602320
+  },
+  "geometry": [
+    { "lat": 13.7563544, "lon": 100.5602320 },
+    { "lat": 13.7563644, "lon": 100.5601368 },
+    { "lat": 13.7563800, "lon": 100.5599749 },
+    { "lat": 13.7563816, "lon": 100.5599534 },
+    { "lat": 13.7564164, "lon": 100.5594850 },
+    { "lat": 13.7564191, "lon": 100.5594492 },
+    { "lat": 13.7564529, "lon": 100.5591193 },
+    { "lat": 13.7565467, "lon": 100.5588135 },
+    { "lat": 13.7566613, "lon": 100.5584998 },
+    { "lat": 13.7567729, "lon": 100.5582782 },
+    { "lat": 13.7567892, "lon": 100.5582458 },
+    { "lat": 13.7568237, "lon": 100.5581890 },
+    { "lat": 13.7569192, "lon": 100.5580318 },
+    { "lat": 13.7570383, "lon": 100.5578790 },
+    { "lat": 13.7571251, "lon": 100.5577676 },
+    { "lat": 13.7572291, "lon": 100.5576578 },
+    { "lat": 13.7574637, "lon": 100.5574162 },
+    { "lat": 13.7576334, "lon": 100.5572836 },
+    { "lat": 13.7577593, "lon": 100.5571980 },
+    { "lat": 13.7578761, "lon": 100.5571347 },
+    { "lat": 13.7579884, "lon": 100.5570783 },
+    { "lat": 13.7585446, "lon": 100.5568035 },
+    { "lat": 13.7593824, "lon": 100.5564031 },
+    { "lat": 13.7595016, "lon": 100.5563393 },
+    { "lat": 13.7595915, "lon": 100.5562811 },
+    { "lat": 13.7596686, "lon": 100.5562124 },
+    { "lat": 13.7597380, "lon": 100.5561473 },
+    { "lat": 13.7598156, "lon": 100.5560548 },
+    { "lat": 13.7598761, "lon": 100.5559623 },
+    { "lat": 13.7599423, "lon": 100.5558428 },
+    { "lat": 13.7599528, "lon": 100.5558240 },
+    { "lat": 13.7600716, "lon": 100.5555681 },
+    { "lat": 13.7602091, "lon": 100.5552703 },
+    { "lat": 13.7603282, "lon": 100.5550171 },
+    { "lat": 13.7603544, "lon": 100.5549596 }
+  ],
+  "tags": {
+    "destination:lanes": "จตุรทิศ;วิภาวดีรังสิต;ราชปรารภ|วิภาวดีรังสิต;ราชปรารภ|",
+    "destination:lang:en:lanes": "Chaturathit;Vibhavadi Rangsit;Ratchaprarop|Vibhavadi Rangsit;Ratchaprarop|",
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "60",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "sidewalk:left": "separate",
+    "turn:lanes": "left;through|through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 976207029,
+  "bounds": {
+    "minlat": 13.7752280,
+    "minlon": 100.5733945,
+    "maxlat": 13.7781563,
+    "maxlon": 100.5735176
+  },
+  "geometry": [
+    { "lat": 13.7752280, "lon": 100.5734143 },
+    { "lat": 13.7755381, "lon": 100.5733997 },
+    { "lat": 13.7757022, "lon": 100.5733948 },
+    { "lat": 13.7757767, "lon": 100.5733947 },
+    { "lat": 13.7758818, "lon": 100.5733945 },
+    { "lat": 13.7758935, "lon": 100.5733945 },
+    { "lat": 13.7767625, "lon": 100.5734392 },
+    { "lat": 13.7771074, "lon": 100.5734586 },
+    { "lat": 13.7781563, "lon": 100.5735176 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "asphalt",
+    "turn:lanes": "left;through|through;right|reverse"
+  }
+},
+{
+  "type": "way",
+  "id": 1008662996,
+  "bounds": {
+    "minlat": 13.7603544,
+    "minlon": 100.5548768,
+    "maxlat": 13.7603930,
+    "maxlon": 100.5549596
+  },
+  "geometry": [
+    { "lat": 13.7603544, "lon": 100.5549596 },
+    { "lat": 13.7603930, "lon": 100.5548768 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1055365750,
+  "bounds": {
+    "minlat": 13.7626931,
+    "minlon": 100.5491798,
+    "maxlat": 13.7634346,
+    "maxlon": 100.5505218
+  },
+  "geometry": [
+    { "lat": 13.7634346, "lon": 100.5491798 },
+    { "lat": 13.7632804, "lon": 100.5494807 },
+    { "lat": 13.7632312, "lon": 100.5495780 },
+    { "lat": 13.7629737, "lon": 100.5500876 },
+    { "lat": 13.7629046, "lon": 100.5502133 },
+    { "lat": 13.7628505, "lon": 100.5503044 },
+    { "lat": 13.7628127, "lon": 100.5503605 },
+    { "lat": 13.7627964, "lon": 100.5503847 },
+    { "lat": 13.7626931, "lon": 100.5505218 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "maxspeed": "50",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "name:th-Latn": "Thanon Din Daeng",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1058860798,
+  "bounds": {
+    "minlat": 13.7780938,
+    "minlon": 100.5705530,
+    "maxlat": 13.7782088,
+    "maxlon": 100.5719846
+  },
+  "geometry": [
+    { "lat": 13.7780952, "lon": 100.5719846 },
+    { "lat": 13.7780938, "lon": 100.5718222 },
+    { "lat": 13.7781042, "lon": 100.5716935 },
+    { "lat": 13.7781195, "lon": 100.5715239 },
+    { "lat": 13.7782010, "lon": 100.5706520 },
+    { "lat": 13.7782056, "lon": 100.5705938 },
+    { "lat": 13.7782088, "lon": 100.5705530 }
+  ],
+  "tags": {
+    "country": "Thailand",
+    "highway": "secondary",
+    "lanes": "4",
+    "name": "ถนนประชาสงเคราะห์",
+    "name:en": "Pracha Songkhro Road",
+    "name:th": "ถนนประชาสงเคราะห์",
+    "surface": "concrete",
+    "wikidata": "Q132677147"
+  }
+},
+{
+  "type": "way",
+  "id": 1059339511,
+  "bounds": {
+    "minlat": 13.7693835,
+    "minlon": 100.5725546,
+    "maxlat": 13.7699336,
+    "maxlon": 100.5728200
+  },
+  "geometry": [
+    { "lat": 13.7693835, "lon": 100.5725546 },
+    { "lat": 13.7694410, "lon": 100.5725823 },
+    { "lat": 13.7699336, "lon": 100.5728200 }
+  ],
+  "tags": {
+    "destination:lanes": "ถนนห้วยขวาง|ถนนห้วยขวาง|ถนนลาดพร้าว|ถนนเทียมร่วมมิตร|ถนนเทียมร่วมมิตร",
+    "destination:lang:en:lanes": "Huai Khwang Road|Huai Khwang Road|Lat Phrao Road|Thiam Ruam Mit Road|Thiam Ruam Mit Road",
+    "highway": "primary",
+    "lanes": "5",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "surface": "asphalt",
+    "turn:lanes": "through|through|through|right|right"
+  }
+},
+{
+  "type": "way",
+  "id": 1101901306,
+  "bounds": {
+    "minlat": 13.7626306,
+    "minlon": 100.5423488,
+    "maxlat": 13.7639328,
+    "maxlon": 100.5444363
+  },
+  "geometry": [
+    { "lat": 13.7626306, "lon": 100.5444363 },
+    { "lat": 13.7628268, "lon": 100.5442294 },
+    { "lat": 13.7630050, "lon": 100.5440252 },
+    { "lat": 13.7631651, "lon": 100.5438160 },
+    { "lat": 13.7632876, "lon": 100.5436400 },
+    { "lat": 13.7634101, "lon": 100.5434337 },
+    { "lat": 13.7635506, "lon": 100.5431755 },
+    { "lat": 13.7636612, "lon": 100.5429489 },
+    { "lat": 13.7639328, "lon": 100.5423488 }
+  ],
+  "tags": {
+    "alt_name": "ทางด่วนขั้นที่ 2",
+    "alt_name:en": "2nd-stage expressway",
+    "alt_name:th": "ทางด่วนขั้นที่ 2",
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "motorway",
+    "lanes": "4",
+    "layer": "2",
+    "motorcycle": "no",
+    "name": "ทางพิเศษศรีรัช",
+    "name:de": "Si Rat Expressway",
+    "name:en": "Sirat Expressway",
+    "name:etymology:wikidata": "Q85987157",
+    "name:fr": "Autoroute Si Rat",
+    "name:ja": "シラット高速道路",
+    "name:th": "ทางพิเศษศรีรัช",
+    "oneway": "yes",
+    "toll": "yes",
+    "turn:lanes": "slight_left|slight_left;through|through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 1103847159,
+  "bounds": {
+    "minlat": 13.7689921,
+    "minlon": 100.5723244,
+    "maxlat": 13.7693835,
+    "maxlon": 100.5725546
+  },
+  "geometry": [
+    { "lat": 13.7689921, "lon": 100.5723244 },
+    { "lat": 13.7691075, "lon": 100.5723978 },
+    { "lat": 13.7693835, "lon": 100.5725546 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "turn:lanes": "through|through|through|right"
+  }
+},
+{
+  "type": "way",
+  "id": 1103847162,
+  "bounds": {
+    "minlat": 13.7614743,
+    "minlon": 100.5667124,
+    "maxlat": 13.7645777,
+    "maxlon": 100.5690962
+  },
+  "geometry": [
+    { "lat": 13.7645777, "lon": 100.5690962 },
+    { "lat": 13.7644482, "lon": 100.5689910 },
+    { "lat": 13.7644087, "lon": 100.5689621 },
+    { "lat": 13.7643279, "lon": 100.5688998 },
+    { "lat": 13.7642680, "lon": 100.5688505 },
+    { "lat": 13.7635918, "lon": 100.5683155 },
+    { "lat": 13.7633780, "lon": 100.5681525 },
+    { "lat": 13.7630982, "lon": 100.5679476 },
+    { "lat": 13.7628509, "lon": 100.5677519 },
+    { "lat": 13.7623439, "lon": 100.5673421 },
+    { "lat": 13.7619651, "lon": 100.5670521 },
+    { "lat": 13.7616211, "lon": 100.5668074 },
+    { "lat": 13.7614743, "lon": 100.5667124 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "surface": "asphalt",
+    "turn:lanes": "none|none|none|reverse"
+  }
+},
+{
+  "type": "way",
+  "id": 1103847163,
+  "bounds": {
+    "minlat": 13.7645777,
+    "minlon": 100.5690962,
+    "maxlat": 13.7650630,
+    "maxlon": 100.5694720
+  },
+  "geometry": [
+    { "lat": 13.7650630, "lon": 100.5694720 },
+    { "lat": 13.7645777, "lon": 100.5690962 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "surface": "asphalt",
+    "turn:lanes": "none|none|none|reverse"
+  }
+},
+{
+  "type": "way",
+  "id": 1154916548,
+  "bounds": {
+    "minlat": 13.7562094,
+    "minlon": 100.5641270,
+    "maxlat": 13.7562342,
+    "maxlon": 100.5644844
+  },
+  "geometry": [
+    { "lat": 13.7562342, "lon": 100.5641270 },
+    { "lat": 13.7562094, "lon": 100.5644844 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "5",
+    "maxspeed": "50",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "sidewalk:left": "separate",
+    "turn:lanes": "left|through|through|right|right"
+  }
+},
+{
+  "type": "way",
+  "id": 1155963906,
+  "bounds": {
+    "minlat": 13.7929594,
+    "minlon": 100.5744069,
+    "maxlat": 13.7959362,
+    "maxlon": 100.5745524
+  },
+  "geometry": [
+    { "lat": 13.7959362, "lon": 100.5745524 },
+    { "lat": 13.7953710, "lon": 100.5745257 },
+    { "lat": 13.7951466, "lon": 100.5745152 },
+    { "lat": 13.7947247, "lon": 100.5744943 },
+    { "lat": 13.7929594, "lon": 100.5744069 }
+  ],
+  "tags": {
+    "destination:lanes": "ลาดพร้าว 64|ที่กลับรถ|ห้วยขวาง;พระราม 9|ห้วยขวาง;พระราม 9",
+    "destination:lang:en:lanes": "Lat Phrao 64|U turn|Huai Khwang;Rama IX|Huai Khwang;Rama IX",
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "concrete",
+    "turn:lanes": "left|through|through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 1155963907,
+  "bounds": {
+    "minlat": 13.7897302,
+    "minlon": 100.5742930,
+    "maxlat": 13.7900711,
+    "maxlon": 100.5743082
+  },
+  "geometry": [
+    { "lat": 13.7900711, "lon": 100.5743082 },
+    { "lat": 13.7898475, "lon": 100.5743001 },
+    { "lat": 13.7897302, "lon": 100.5742930 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "1",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "turn:lanes": "left;through"
+  }
+},
+{
+  "type": "way",
+  "id": 1156194740,
+  "bounds": {
+    "minlat": 13.7858148,
+    "minlon": 100.5739120,
+    "maxlat": 13.7866019,
+    "maxlon": 100.5739508
+  },
+  "geometry": [
+    { "lat": 13.7858148, "lon": 100.5739120 },
+    { "lat": 13.7862989, "lon": 100.5739359 },
+    { "lat": 13.7866019, "lon": 100.5739508 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "concrete",
+    "turn:lanes": "left;through|through;right|reverse"
+  }
+},
+{
+  "type": "way",
+  "id": 1156494131,
+  "bounds": {
+    "minlat": 13.7781563,
+    "minlon": 100.5735176,
+    "maxlat": 13.7784135,
+    "maxlon": 100.5735301
+  },
+  "geometry": [
+    { "lat": 13.7781563, "lon": 100.5735176 },
+    { "lat": 13.7784135, "lon": 100.5735301 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "asphalt",
+    "turn:lanes": "through|through;right"
+  }
+},
+{
+  "type": "way",
+  "id": 1156494132,
+  "bounds": {
+    "minlat": 13.7784135,
+    "minlon": 100.5735301,
+    "maxlat": 13.7812040,
+    "maxlon": 100.5736628
+  },
+  "geometry": [
+    { "lat": 13.7784135, "lon": 100.5735301 },
+    { "lat": 13.7788046, "lon": 100.5735429 },
+    { "lat": 13.7797258, "lon": 100.5735897 },
+    { "lat": 13.7812040, "lon": 100.5736628 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1156494707,
+  "bounds": {
+    "minlat": 13.7812040,
+    "minlon": 100.5736628,
+    "maxlat": 13.7817542,
+    "maxlon": 100.5737108
+  },
+  "geometry": [
+    { "lat": 13.7812040, "lon": 100.5736628 },
+    { "lat": 13.7813360, "lon": 100.5736665 },
+    { "lat": 13.7816157, "lon": 100.5736872 },
+    { "lat": 13.7817542, "lon": 100.5737108 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "turn:lanes": "merge_to_right|none|none"
+  }
+},
+{
+  "type": "way",
+  "id": 1156545452,
+  "bounds": {
+    "minlat": 13.7634939,
+    "minlon": 100.5680337,
+    "maxlat": 13.7645666,
+    "maxlon": 100.5688577
+  },
+  "geometry": [
+    { "lat": 13.7634939, "lon": 100.5680337 },
+    { "lat": 13.7637580, "lon": 100.5682379 },
+    { "lat": 13.7637846, "lon": 100.5682591 },
+    { "lat": 13.7637996, "lon": 100.5682710 },
+    { "lat": 13.7639856, "lon": 100.5684063 },
+    { "lat": 13.7645188, "lon": 100.5688205 },
+    { "lat": 13.7645666, "lon": 100.5688577 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "turn:lanes": "none|none|none|reverse"
+  }
+},
+{
+  "type": "way",
+  "id": 1156563939,
+  "bounds": {
+    "minlat": 13.7742778,
+    "minlon": 100.5735088,
+    "maxlat": 13.7752162,
+    "maxlon": 100.5735565
+  },
+  "geometry": [
+    { "lat": 13.7752162, "lon": 100.5735565 },
+    { "lat": 13.7751811, "lon": 100.5735541 },
+    { "lat": 13.7750819, "lon": 100.5735473 },
+    { "lat": 13.7747331, "lon": 100.5735306 },
+    { "lat": 13.7742778, "lon": 100.5735088 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1156851577,
+  "bounds": {
+    "minlat": 13.7562342,
+    "minlon": 100.5636797,
+    "maxlat": 13.7562686,
+    "maxlon": 100.5641270
+  },
+  "geometry": [
+    { "lat": 13.7562686, "lon": 100.5636797 },
+    { "lat": 13.7562342, "lon": 100.5641270 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "3",
+    "maxspeed": "50",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "sidewalk:left": "separate",
+    "turn:lanes": "through|through|right"
+  }
+},
+{
+  "type": "way",
+  "id": 1157597119,
+  "bounds": {
+    "minlat": 13.7929903,
+    "minlon": 100.5742554,
+    "maxlat": 13.7959417,
+    "maxlon": 100.5743908
+  },
+  "geometry": [
+    { "lat": 13.7929903, "lon": 100.5742554 },
+    { "lat": 13.7934107, "lon": 100.5742747 },
+    { "lat": 13.7958392, "lon": 100.5743859 },
+    { "lat": 13.7959417, "lon": 100.5743908 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1157607515,
+  "bounds": {
+    "minlat": 13.7866149,
+    "minlon": 100.5740978,
+    "maxlat": 13.7897302,
+    "maxlon": 100.5742930
+  },
+  "geometry": [
+    { "lat": 13.7897302, "lon": 100.5742930 },
+    { "lat": 13.7896060, "lon": 100.5742864 },
+    { "lat": 13.7894069, "lon": 100.5742762 },
+    { "lat": 13.7884824, "lon": 100.5742302 },
+    { "lat": 13.7880764, "lon": 100.5742111 },
+    { "lat": 13.7877292, "lon": 100.5741947 },
+    { "lat": 13.7876370, "lon": 100.5741889 },
+    { "lat": 13.7869525, "lon": 100.5741580 },
+    { "lat": 13.7868205, "lon": 100.5741385 },
+    { "lat": 13.7866149, "lon": 100.5740978 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1157607516,
+  "bounds": {
+    "minlat": 13.7787993,
+    "minlon": 100.5737599,
+    "maxlat": 13.7816874,
+    "maxlon": 100.5738958
+  },
+  "geometry": [
+    { "lat": 13.7816874, "lon": 100.5738654 },
+    { "lat": 13.7813760, "lon": 100.5738958 },
+    { "lat": 13.7804438, "lon": 100.5738466 },
+    { "lat": 13.7801517, "lon": 100.5738312 },
+    { "lat": 13.7800788, "lon": 100.5738269 },
+    { "lat": 13.7799292, "lon": 100.5738180 },
+    { "lat": 13.7796983, "lon": 100.5738042 },
+    { "lat": 13.7788681, "lon": 100.5737635 },
+    { "lat": 13.7787993, "lon": 100.5737599 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "turn:lanes": "left;through|reverse"
+  }
+},
+{
+  "type": "way",
+  "id": 1157607517,
+  "bounds": {
+    "minlat": 13.7784599,
+    "minlon": 100.5737373,
+    "maxlat": 13.7787993,
+    "maxlon": 100.5737599
+  },
+  "geometry": [
+    { "lat": 13.7787993, "lon": 100.5737599 },
+    { "lat": 13.7784599, "lon": 100.5737373 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "1",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1157820679,
+  "bounds": {
+    "minlat": 13.7561107,
+    "minlon": 100.5602320,
+    "maxlat": 13.7563544,
+    "maxlon": 100.5633510
+  },
+  "geometry": [
+    { "lat": 13.7561107, "lon": 100.5633510 },
+    { "lat": 13.7561365, "lon": 100.5630279 },
+    { "lat": 13.7561877, "lon": 100.5622855 },
+    { "lat": 13.7561884, "lon": 100.5622747 },
+    { "lat": 13.7561924, "lon": 100.5622172 },
+    { "lat": 13.7562384, "lon": 100.5616534 },
+    { "lat": 13.7562471, "lon": 100.5615467 },
+    { "lat": 13.7562617, "lon": 100.5613506 },
+    { "lat": 13.7562992, "lon": 100.5608466 },
+    { "lat": 13.7563201, "lon": 100.5605891 },
+    { "lat": 13.7563544, "lon": 100.5602320 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1159435305,
+  "bounds": {
+    "minlat": 13.7634449,
+    "minlon": 100.5481858,
+    "maxlat": 13.7636680,
+    "maxlon": 100.5487136
+  },
+  "geometry": [
+    { "lat": 13.7634449, "lon": 100.5487136 },
+    { "lat": 13.7635355, "lon": 100.5485053 },
+    { "lat": 13.7636124, "lon": 100.5483298 },
+    { "lat": 13.7636680, "lon": 100.5481858 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "maxspeed": "45",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "name:th-Latn": "Thanon Din Daeng",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1177255384,
+  "bounds": {
+    "minlat": 13.7610350,
+    "minlon": 100.5444363,
+    "maxlat": 13.7626306,
+    "maxlon": 100.5458904
+  },
+  "geometry": [
+    { "lat": 13.7610350, "lon": 100.5458904 },
+    { "lat": 13.7616765, "lon": 100.5453371 },
+    { "lat": 13.7619922, "lon": 100.5450504 },
+    { "lat": 13.7622876, "lon": 100.5447754 },
+    { "lat": 13.7626306, "lon": 100.5444363 }
+  ],
+  "tags": {
+    "alt_name": "ทางด่วนขั้นที่ 2",
+    "alt_name:en": "2nd-stage expressway",
+    "alt_name:th": "ทางด่วนขั้นที่ 2",
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "motorway",
+    "lanes": "4",
+    "layer": "2",
+    "motorcycle": "no",
+    "name": "ทางพิเศษศรีรัช",
+    "name:de": "Si Rat Expressway",
+    "name:en": "Sirat Expressway",
+    "name:etymology:wikidata": "Q85987157",
+    "name:fr": "Autoroute Si Rat",
+    "name:ja": "シラット高速道路",
+    "name:th": "ทางพิเศษศรีรัช",
+    "oneway": "yes",
+    "toll": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1180391648,
+  "bounds": {
+    "minlat": 13.7604415,
+    "minlon": 100.5459008,
+    "maxlat": 13.7615196,
+    "maxlon": 100.5469008
+  },
+  "geometry": [
+    { "lat": 13.7615196, "lon": 100.5469008 },
+    { "lat": 13.7604415, "lon": 100.5459008 }
+  ],
+  "tags": {
+    "alt_name": "ทางด่วนขั้นที่ 1",
+    "alt_name:en": "1st-stage expressway",
+    "alt_name:th": "ทางด่วนขั้นที่ 1",
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "destination:lanes": "สุขุมวิท|บางนา;ดาวคะนอง|บางนา;ดาวคะนอง",
+    "destination:lang:en:lanes": "Sukhumvit|Bang Na;Dao Khanong|Bang Na;Dao Khanong",
+    "foot": "no",
+    "highway": "motorway",
+    "lanes": "3",
+    "layer": "2",
+    "maxspeed": "100",
+    "motorcycle": "no",
+    "name": "ทางพิเศษเฉลิมมหานคร",
+    "name:de": "Chaloem Maha Nakhon Expressway",
+    "name:en": "Chaloem Mahanakhon Expressway",
+    "name:etymology:wikidata": "Q200250",
+    "name:fr": "Autoroute Chaloem Maha Nakhon",
+    "name:ja": "チャルームマハナコーン高速道路",
+    "name:th": "ทางพิเศษเฉลิมมหานคร",
+    "oneway": "yes",
+    "toll": "yes",
+    "turn:lanes": "none|none|none"
+  }
+},
+{
+  "type": "way",
+  "id": 1190119999,
+  "bounds": {
+    "minlat": 13.7611128,
+    "minlon": 100.5428625,
+    "maxlat": 13.7638368,
+    "maxlon": 100.5459773
+  },
+  "geometry": [
+    { "lat": 13.7638368, "lon": 100.5428625 },
+    { "lat": 13.7636751, "lon": 100.5431973 },
+    { "lat": 13.7635357, "lon": 100.5434542 },
+    { "lat": 13.7633987, "lon": 100.5436901 },
+    { "lat": 13.7632400, "lon": 100.5439245 },
+    { "lat": 13.7630688, "lon": 100.5441512 },
+    { "lat": 13.7628398, "lon": 100.5444119 },
+    { "lat": 13.7625889, "lon": 100.5446667 },
+    { "lat": 13.7623583, "lon": 100.5448818 },
+    { "lat": 13.7611128, "lon": 100.5459773 }
+  ],
+  "tags": {
+    "alt_name": "ทางด่วนขั้นที่ 2",
+    "alt_name:en": "2nd-stage expressway",
+    "alt_name:th": "ทางด่วนขั้นที่ 2",
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "motorway",
+    "lanes": "4",
+    "layer": "2",
+    "motorcycle": "no",
+    "name": "ทางพิเศษศรีรัช",
+    "name:de": "Si Rat Expressway",
+    "name:en": "Sirat Expressway",
+    "name:etymology:wikidata": "Q85987157",
+    "name:fr": "Autoroute Si Rat",
+    "name:ja": "シラット高速道路",
+    "name:th": "ทางพิเศษศรีรัช",
+    "oneway": "yes",
+    "toll": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1190126024,
+  "bounds": {
+    "minlat": 13.7615196,
+    "minlon": 100.5469008,
+    "maxlat": 13.7628786,
+    "maxlon": 100.5477011
+  },
+  "geometry": [
+    { "lat": 13.7628786, "lon": 100.5477011 },
+    { "lat": 13.7623616, "lon": 100.5474244 },
+    { "lat": 13.7615196, "lon": 100.5469008 }
+  ],
+  "tags": {
+    "alt_name": "ทางด่วนขั้นที่ 1",
+    "alt_name:en": "1st-stage expressway",
+    "alt_name:th": "ทางด่วนขั้นที่ 1",
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "destination:lanes": "ถนนพระราม 9;แจ้งวัฒนะ|สุขุมวิท|บางนา;ดาวคะนอง|บางนา;ดาวคะนอง",
+    "destination:lang:en": "Rama IX Rd;Chaeng Watthana|Sukhumvit|Bang Na;Dao Khanong|Bang Na;Dao Khanong",
+    "foot": "no",
+    "highway": "motorway",
+    "lanes": "4",
+    "layer": "2",
+    "maxspeed": "100",
+    "motorcycle": "no",
+    "name": "ทางพิเศษเฉลิมมหานคร",
+    "name:de": "Chaloem Maha Nakhon Expressway",
+    "name:en": "Chaloem Mahanakhon Expressway",
+    "name:etymology:wikidata": "Q200250",
+    "name:fr": "Autoroute Chaloem Maha Nakhon",
+    "name:ja": "チャルームマハナコーン高速道路",
+    "name:th": "ทางพิเศษเฉลิมมหานคร",
+    "oneway": "yes",
+    "toll": "yes",
+    "turn:lanes": "slight_left|through|through|through"
+  }
+},
+{
+  "type": "way",
+  "id": 1303838162,
+  "bounds": {
+    "minlat": 13.7781185,
+    "minlon": 100.5721322,
+    "maxlat": 13.7783663,
+    "maxlon": 100.5733316
+  },
+  "geometry": [
+    { "lat": 13.7783663, "lon": 100.5733316 },
+    { "lat": 13.7783157, "lon": 100.5731148 },
+    { "lat": 13.7782427, "lon": 100.5728007 },
+    { "lat": 13.7781780, "lon": 100.5724596 },
+    { "lat": 13.7781412, "lon": 100.5722546 },
+    { "lat": 13.7781185, "lon": 100.5721322 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "name": "ถนนประชาราษฎร์บำเพ็ญ",
+    "name:en": "Pracha Rat Bamphen Road",
+    "name:th": "ถนนประชาราษฎร์บำเพ็ญ",
+    "source": "sign;bing",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1303838164,
+  "bounds": {
+    "minlat": 13.7783663,
+    "minlon": 100.5733316,
+    "maxlat": 13.7784135,
+    "maxlon": 100.5735301
+  },
+  "geometry": [
+    { "lat": 13.7784135, "lon": 100.5735301 },
+    { "lat": 13.7783663, "lon": 100.5733316 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "name": "ถนนประชาราษฎร์บำเพ็ญ",
+    "name:en": "Pracha Rat Bamphen Road",
+    "name:th": "ถนนประชาราษฎร์บำเพ็ญ",
+    "source": "sign;bing",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1306889184,
+  "bounds": {
+    "minlat": 13.7634346,
+    "minlon": 100.5485687,
+    "maxlat": 13.7638001,
+    "maxlon": 100.5491798
+  },
+  "geometry": [
+    { "lat": 13.7638001, "lon": 100.5485687 },
+    { "lat": 13.7636171, "lon": 100.5488483 },
+    { "lat": 13.7635417, "lon": 100.5489635 },
+    { "lat": 13.7634346, "lon": 100.5491798 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "maxspeed": "45",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "name:th-Latn": "Thanon Din Daeng",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1308124741,
+  "bounds": {
+    "minlat": 13.7816874,
+    "minlon": 100.5738654,
+    "maxlat": 13.7818404,
+    "maxlon": 100.5738730
+  },
+  "geometry": [
+    { "lat": 13.7818404, "lon": 100.5738730 },
+    { "lat": 13.7816874, "lon": 100.5738654 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1314824672,
+  "bounds": {
+    "minlat": 13.7687150,
+    "minlon": 100.5721080,
+    "maxlat": 13.7689921,
+    "maxlon": 100.5723244
+  },
+  "geometry": [
+    { "lat": 13.7687150, "lon": 100.5721080 },
+    { "lat": 13.7689921, "lon": 100.5723244 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "4",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left"
+  }
+},
+{
+  "type": "way",
+  "id": 1319861880,
+  "bounds": {
+    "minlat": 13.7702935,
+    "minlon": 100.5534775,
+    "maxlat": 13.7734402,
+    "maxlon": 100.5585065
+  },
+  "geometry": [
+    { "lat": 13.7734402, "lon": 100.5535453 },
+    { "lat": 13.7731729, "lon": 100.5534954 },
+    { "lat": 13.7731218, "lon": 100.5534879 },
+    { "lat": 13.7730571, "lon": 100.5534775 },
+    { "lat": 13.7729936, "lon": 100.5534897 },
+    { "lat": 13.7729223, "lon": 100.5535337 },
+    { "lat": 13.7728821, "lon": 100.5535791 },
+    { "lat": 13.7728246, "lon": 100.5536532 },
+    { "lat": 13.7727905, "lon": 100.5537103 },
+    { "lat": 13.7726738, "lon": 100.5539343 },
+    { "lat": 13.7725887, "lon": 100.5541116 },
+    { "lat": 13.7722407, "lon": 100.5548143 },
+    { "lat": 13.7720093, "lon": 100.5552827 },
+    { "lat": 13.7715923, "lon": 100.5561095 },
+    { "lat": 13.7715417, "lon": 100.5562134 },
+    { "lat": 13.7713203, "lon": 100.5566518 },
+    { "lat": 13.7712340, "lon": 100.5568210 },
+    { "lat": 13.7711807, "lon": 100.5569284 },
+    { "lat": 13.7711365, "lon": 100.5570002 },
+    { "lat": 13.7710845, "lon": 100.5570765 },
+    { "lat": 13.7710143, "lon": 100.5571586 },
+    { "lat": 13.7709414, "lon": 100.5572415 },
+    { "lat": 13.7708568, "lon": 100.5573368 },
+    { "lat": 13.7707681, "lon": 100.5574611 },
+    { "lat": 13.7706913, "lon": 100.5575991 },
+    { "lat": 13.7705884, "lon": 100.5578489 },
+    { "lat": 13.7704893, "lon": 100.5580789 },
+    { "lat": 13.7703986, "lon": 100.5582896 },
+    { "lat": 13.7702935, "lon": 100.5585065 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "maxspeed": "50",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1331909280,
+  "bounds": {
+    "minlat": 13.7564798,
+    "minlon": 100.5651249,
+    "maxlat": 13.7578314,
+    "maxlon": 100.5654241
+  },
+  "geometry": [
+    { "lat": 13.7578314, "lon": 100.5654241 },
+    { "lat": 13.7564798, "lon": 100.5651249 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "5",
+    "lit": "yes",
+    "maxspeed": "60",
+    "maxspeed:type": "TH:urban",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "sidewalk": "left",
+    "smoothness": "intermediate",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1345143962,
+  "bounds": {
+    "minlat": 13.7751419,
+    "minlon": 100.5655545,
+    "maxlat": 13.7755322,
+    "maxlon": 100.5678793
+  },
+  "geometry": [
+    { "lat": 13.7755322, "lon": 100.5678793 },
+    { "lat": 13.7753295, "lon": 100.5678626 },
+    { "lat": 13.7752675, "lon": 100.5678540 },
+    { "lat": 13.7752100, "lon": 100.5678302 },
+    { "lat": 13.7751741, "lon": 100.5677996 },
+    { "lat": 13.7751511, "lon": 100.5677544 },
+    { "lat": 13.7751419, "lon": 100.5676960 },
+    { "lat": 13.7751434, "lon": 100.5676313 },
+    { "lat": 13.7751741, "lon": 100.5672383 },
+    { "lat": 13.7751865, "lon": 100.5670944 },
+    { "lat": 13.7752034, "lon": 100.5669460 },
+    { "lat": 13.7752608, "lon": 100.5665569 },
+    { "lat": 13.7753623, "lon": 100.5659936 },
+    { "lat": 13.7754110, "lon": 100.5657230 },
+    { "lat": 13.7754255, "lon": 100.5656371 },
+    { "lat": 13.7754368, "lon": 100.5655545 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "lanes": "2",
+    "maxspeed": "30",
+    "name": "ถนนประชาสงเคราะห์",
+    "name:en": "Pracha Songkhro Road",
+    "name:th": "ถนนประชาสงเคราะห์",
+    "sidewalk": "both",
+    "sidewalk:both": "separate",
+    "surface": "asphalt",
+    "wikidata": "Q132677147"
+  }
+},
+{
+  "type": "way",
+  "id": 1345143965,
+  "bounds": {
+    "minlat": 13.7769865,
+    "minlon": 100.5679802,
+    "maxlat": 13.7783717,
+    "maxlon": 100.5680785
+  },
+  "geometry": [
+    { "lat": 13.7783717, "lon": 100.5680785 },
+    { "lat": 13.7779737, "lon": 100.5680515 },
+    { "lat": 13.7777047, "lon": 100.5680321 },
+    { "lat": 13.7776189, "lon": 100.5680259 },
+    { "lat": 13.7773225, "lon": 100.5680045 },
+    { "lat": 13.7769865, "lon": 100.5679802 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "lanes": "2",
+    "maxspeed": "30",
+    "name": "ถนนประชาสงเคราะห์",
+    "name:en": "Pracha Songkhro Road",
+    "name:th": "ถนนประชาสงเคราะห์",
+    "sidewalk": "both",
+    "sidewalk:both": "separate",
+    "surface": "asphalt",
+    "wikidata": "Q132677147"
+  }
+},
+{
+  "type": "way",
+  "id": 1352979532,
+  "bounds": {
+    "minlat": 13.7616970,
+    "minlon": 100.5519557,
+    "maxlat": 13.7619769,
+    "maxlon": 100.5524667
+  },
+  "geometry": [
+    { "lat": 13.7619769, "lon": 100.5519557 },
+    { "lat": 13.7616970, "lon": 100.5524667 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "highway": "primary",
+    "maxspeed": "40",
+    "motorcycle": "no",
+    "name": "ถนนดินแดง",
+    "name:en": "Din Daeng Road",
+    "name:etymology:wikidata": "Q622845",
+    "name:th": "ถนนดินแดง",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1356610594,
+  "bounds": {
+    "minlat": 13.7751811,
+    "minlon": 100.5735335,
+    "maxlat": 13.7756426,
+    "maxlon": 100.5735541
+  },
+  "geometry": [
+    { "lat": 13.7756426, "lon": 100.5735335 },
+    { "lat": 13.7751811, "lon": 100.5735541 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "foot": "no",
+    "hgv": "no",
+    "highway": "primary",
+    "maxspeed": "60",
+    "motorcycle": "no",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1362868552,
+  "bounds": {
+    "minlat": 13.7726091,
+    "minlon": 100.5531418,
+    "maxlat": 13.7727996,
+    "maxlon": 100.5538994
+  },
+  "geometry": [
+    { "lat": 13.7726091, "lon": 100.5538994 },
+    { "lat": 13.7727220, "lon": 100.5536900 },
+    { "lat": 13.7727820, "lon": 100.5535661 },
+    { "lat": 13.7727891, "lon": 100.5535317 },
+    { "lat": 13.7727996, "lon": 100.5534609 },
+    { "lat": 13.7727976, "lon": 100.5533706 },
+    { "lat": 13.7727724, "lon": 100.5532611 },
+    { "lat": 13.7727274, "lon": 100.5531418 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "maxspeed": "50",
+    "name": "ถนนมิตรไมตรี",
+    "name:en": "Mit Maitri Road",
+    "name:th": "ถนนมิตรไมตรี",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1381612240,
+  "bounds": {
+    "minlat": 13.7560548,
+    "minlon": 100.5614159,
+    "maxlat": 13.7563143,
+    "maxlon": 100.5648080
+  },
+  "geometry": [
+    { "lat": 13.7560548, "lon": 100.5648080 },
+    { "lat": 13.7561091, "lon": 100.5641008 },
+    { "lat": 13.7561416, "lon": 100.5637362 },
+    { "lat": 13.7562837, "lon": 100.5619320 },
+    { "lat": 13.7563143, "lon": 100.5614159 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "maxweight:signed": "no",
+    "motorcycle": "no",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:etymology:wikidata": "Q855252",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1381612241,
+  "bounds": {
+    "minlat": 13.7561309,
+    "minlon": 100.5583818,
+    "maxlat": 13.7568098,
+    "maxlon": 100.5648204
+  },
+  "geometry": [
+    { "lat": 13.7568098, "lon": 100.5583818 },
+    { "lat": 13.7566900, "lon": 100.5586579 },
+    { "lat": 13.7565702, "lon": 100.5590120 },
+    { "lat": 13.7564998, "lon": 100.5594277 },
+    { "lat": 13.7564686, "lon": 100.5598837 },
+    { "lat": 13.7564292, "lon": 100.5606503 },
+    { "lat": 13.7564042, "lon": 100.5610493 },
+    { "lat": 13.7563471, "lon": 100.5619216 },
+    { "lat": 13.7562146, "lon": 100.5637447 },
+    { "lat": 13.7561846, "lon": 100.5641082 },
+    { "lat": 13.7561309, "lon": 100.5648204 }
+  ],
+  "tags": {
+    "bicycle": "no",
+    "bridge": "viaduct",
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "50",
+    "motorcycle": "no",
+    "name": "ถนนอโศก-ดินแดง",
+    "name:en": "Asok-Din Daeng Road",
+    "name:etymology:wikidata": "Q855252",
+    "name:th": "ถนนอโศก-ดินแดง",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1534151894,
+  "bounds": {
+    "minlat": 13.7718861,
+    "minlon": 100.5538994,
+    "maxlat": 13.7726091,
+    "maxlon": 100.5553763
+  },
+  "geometry": [
+    { "lat": 13.7718861, "lon": 100.5553763 },
+    { "lat": 13.7719457, "lon": 100.5552514 },
+    { "lat": 13.7721691, "lon": 100.5547911 },
+    { "lat": 13.7725180, "lon": 100.5540722 },
+    { "lat": 13.7726091, "lon": 100.5538994 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "maxspeed": "50",
+    "name": "ถนนมิตรไมตรี",
+    "name:en": "Mit Maitri Road",
+    "name:th": "ถนนมิตรไมตรี",
+    "oneway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1539320348,
+  "bounds": {
+    "minlat": 13.7700940,
+    "minlon": 100.5585065,
+    "maxlat": 13.7702935,
+    "maxlon": 100.5593600
+  },
+  "geometry": [
+    { "lat": 13.7700940, "lon": 100.5593600 },
+    { "lat": 13.7701840, "lon": 100.5589152 },
+    { "lat": 13.7702327, "lon": 100.5586845 },
+    { "lat": 13.7702610, "lon": 100.5585989 },
+    { "lat": 13.7702655, "lon": 100.5585860 },
+    { "lat": 13.7702935, "lon": 100.5585065 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "maxspeed": "30",
+    "name": "ถนนประชาสงเคราะห์",
+    "name:en": "Pracha Songkhro Road",
+    "name:th": "ถนนประชาสงเคราะห์",
+    "sidewalk": "both",
+    "sidewalk:both": "separate",
+    "surface": "asphalt",
+    "wikidata": "Q132677147"
+  }
+},
+{
+  "type": "way",
+  "id": 1539327540,
+  "bounds": {
+    "minlat": 13.7699737,
+    "minlon": 100.5593600,
+    "maxlat": 13.7700940,
+    "maxlon": 100.5599335
+  },
+  "geometry": [
+    { "lat": 13.7699737, "lon": 100.5599335 },
+    { "lat": 13.7700243, "lon": 100.5596909 },
+    { "lat": 13.7700575, "lon": 100.5595315 },
+    { "lat": 13.7700661, "lon": 100.5594914 },
+    { "lat": 13.7700940, "lon": 100.5593600 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "lanes:backward": "2",
+    "lanes:forward": "2",
+    "maxspeed": "30",
+    "name": "ถนนประชาสงเคราะห์",
+    "name:en": "Pracha Songkhro Road",
+    "name:th": "ถนนประชาสงเคราะห์",
+    "parking:side:restriction": "no_parking",
+    "sidewalk": "both",
+    "sidewalk:both": "separate",
+    "surface": "asphalt",
+    "wikidata": "Q132677147"
+  }
+},
+{
+  "type": "way",
+  "id": 1539351970,
+  "bounds": {
+    "minlat": 13.7699737,
+    "minlon": 100.5599335,
+    "maxlat": 13.7701233,
+    "maxlon": 100.5599656
+  },
+  "geometry": [
+    { "lat": 13.7701233, "lon": 100.5599656 },
+    { "lat": 13.7699737, "lon": 100.5599335 }
+  ],
+  "tags": {
+    "highway": "secondary",
+    "maxspeed": "30",
+    "name": "ถนนประชาสงเคราะห์",
+    "name:en": "Pracha Songkhro Road",
+    "name:th": "ถนนประชาสงเคราะห์",
+    "sidewalk": "both",
+    "sidewalk:both": "separate",
+    "surface": "asphalt",
+    "wikidata": "Q132677147"
+  }
+},
+{
+  "type": "way",
+  "id": 1553121405,
+  "bounds": {
+    "minlat": 13.7894248,
+    "minlon": 100.5740610,
+    "maxlat": 13.7895141,
+    "maxlon": 100.5740621
+  },
+  "geometry": [
+    { "lat": 13.7894248, "lon": 100.5740610 },
+    { "lat": 13.7895141, "lon": 100.5740621 }
+  ],
+  "tags": {
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "60",
+    "name": "ถนนรัชดาภิเษก",
+    "name:en": "Ratchadaphisek Road",
+    "name:th": "ถนนรัชดาภิเษก",
+    "oneway": "yes",
+    "turn:lanes": "left;through|through;right"
+  }
+},
+{
+  "type": "way",
+  "id": 366712932,
+  "center": {
+    "lat": 13.7820645,
+    "lon": 100.5725336
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "โรงเรียนกุนนทีรุทธารามวิทยาคม",
+    "name:en": "Kunnatee Rutharam Wittayakhom School",
+    "name:th": "โรงเรียนกุนนทีรุทธารามวิทยาคม"
+  }
+},
+{
+  "type": "way",
+  "id": 368559626,
+  "center": {
+    "lat": 13.7775743,
+    "lon": 100.5693396
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "โรงเรียนสามเสนนอก",
+    "name:en": "Sam Saen Nok School",
+    "name:th": "โรงเรียนสามเสนนอก"
+  }
+},
+{
+  "type": "way",
+  "id": 368559627,
+  "center": {
+    "lat": 13.7744193,
+    "lon": 100.5723604
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "Samsen Nok School"
+  }
+},
+{
+  "type": "way",
+  "id": 605778962,
+  "center": {
+    "lat": 13.7628882,
+    "lon": 100.5514513
+  },
+  "tags": {
+    "addr:city": "ดินแดง",
+    "amenity": "school",
+    "name": "โรงเรียนพิบูลประชาสรรค์",
+    "name:en": "Piboon Prachasan School",
+    "name:th": "โรงเรียนพิบูลประชาสรรค์",
+    "wikidata": "Q132860626"
+  }
+},
+{
+  "type": "way",
+  "id": 606076667,
+  "center": {
+    "lat": 13.7753011,
+    "lon": 100.5556257
+  },
+  "tags": {
+    "addr:district": "ดินแดง",
+    "addr:housenumber": "54",
+    "addr:postcode": "10400",
+    "addr:province": "กรุงเทพมหานคร",
+    "addr:street": "ถนนวิภาวดีรังสิต",
+    "addr:subdistrict": "รัชดาภิเษก",
+    "amenity": "school",
+    "name": "โรงเรียนสุรศักดิ์มนตรี",
+    "name:en": "Surasak Montree School",
+    "name:th": "โรงเรียนสุรศักดิ์มนตรี",
+    "old_name": "โรงเรียนบุตรข้าราชการกองทัพบก",
+    "wikidata": "Q13027315",
+    "wikipedia": "th:โรงเรียนสุรศักดิ์มนตรี"
+  }
+},
+{
+  "type": "way",
+  "id": 1319861811,
+  "center": {
+    "lat": 13.7686862,
+    "lon": 100.5566807
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "โรงเรียนฝึกอาชีพกรุงเทพมหานคร",
+    "name:th": "โรงเรียนฝึกอาชีพกรุงเทพมหานคร"
+  }
+},
+{
+  "type": "way",
+  "id": 1319861832,
+  "center": {
+    "lat": 13.7677259,
+    "lon": 100.5550167
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "โรงเรียนวิชากร กรุงเทพมหานคร",
+    "name:en": "Wichakorn School Bangkok",
+    "name:th": "โรงเรียนวิชากร กรุงเทพมหานคร"
+  }
+},
+{
+  "type": "way",
+  "id": 1319861891,
+  "center": {
+    "lat": 13.7676414,
+    "lon": 100.5562066
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "โรงเรียนวิชูทิศ",
+    "name:en": "Wichutit School",
+    "name:th": "โรงเรียนวิชูทิศ"
+  }
+},
+{
+  "type": "way",
+  "id": 1322123315,
+  "center": {
+    "lat": 13.7669516,
+    "lon": 100.5569482
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "โรงเรียนสามัคคีบํารุงวิทยา",
+    "name:en": "Samakeebumroong School",
+    "name:th": "โรงเรียนสามัคคีบํารุงวิทยา"
+  }
+},
+{
+  "type": "way",
+  "id": 1348158696,
+  "center": {
+    "lat": 13.7971032,
+    "lon": 100.5737099
+  },
+  "tags": {
+    "amenity": "school"
+  }
+},
+{
+  "type": "way",
+  "id": 1369219466,
+  "center": {
+    "lat": 13.7627635,
+    "lon": 100.5470806
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "โรงเรียนนิธิปริญญา",
+    "name:th": "โรงเรียนนิธิปริญญา"
+  }
+},
+{
+  "type": "way",
+  "id": 1429513589,
+  "center": {
+    "lat": 13.7739086,
+    "lon": 100.5664934
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "โรงเรียนอำนวยพิทยา",
+    "name:th": "โรงเรียนอำนวยพิทยา"
+  }
+},
+{
+  "type": "relation",
+  "id": 18184397,
+  "center": {
+    "lat": 13.7649058,
+    "lon": 100.5595285
+  },
+  "tags": {
+    "amenity": "school",
+    "name": "โรงเรียนจำนงค์พิทยา",
+    "name:th": "โรงเรียนจำนงค์พิทยา",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 18249706,
+  "center": {
+    "lat": 13.7602519,
+    "lon": 100.5560454
+  },
+  "tags": {
+    "addr:district": "ดินแดง",
+    "addr:housenumber": "5921/1",
+    "addr:postcode": "10400",
+    "addr:province": "กรุงเทพมหานคร",
+    "addr:street": "ถนนอโศก-ดินแดง",
+    "addr:subdistrict": "ดินแดง",
+    "amenity": "school",
+    "name": "โรงเรียนแม่พระฟาติมา",
+    "name:en": "Maepra Fatima School",
+    "name:th": "โรงเรียนแม่พระฟาติมา",
+    "type": "multipolygon"
+  }
+}
+
+  ]
+}

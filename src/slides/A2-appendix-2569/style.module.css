@@ -1,0 +1,103 @@
+/* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
+.grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+}
+
+.pairs {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 32px;
+}
+
+.pair {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pairLabel {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--c-text);
+}
+
+.pairRow {
+  display: grid;
+  grid-template-columns: 64px 1fr 170px;
+  align-items: center;
+  gap: 12px;
+}
+
+.year {
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+}
+
+.track {
+  height: 28px;
+}
+
+.bar {
+  display: block;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+}
+
+.val {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--c-text);
+  text-align: right;
+}
+
+.val small {
+  font-size: var(--fs-source);
+  font-weight: 400;
+  color: var(--c-textMuted);
+}
+
+.pairNote {
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.items li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+  line-height: 1.5;
+}
+
+.items b {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.gapItem {
+  padding: 20px 24px;
+  border-radius: 12px;
+  background: var(--c-surfaceAlt);
+  border-left: 6px solid var(--c-dindaeng);
+}
+
+.gapItem b {
+  font-size: var(--fs-body);
+}

@@ -1,0 +1,599 @@
+{
+ "source": "Bangkok Index 2025: การศึกษา (ปีการศึกษา 2568)",
+ "medianStudentsPerTeacher": 19.81,
+ "medianSchoolsPer1000": 0.528,
+ "schoolsBreakdown": {
+  "ดินแดง": {
+   "bma": 3,
+   "obec": 5
+  },
+  "ปทุมวัน": {
+   "bma": 7,
+   "obec": 3
+  }
+ },
+ "teachersNeeded": 88,
+ "teacherSalary": {
+  "monthly": 18220,
+  "annualTotal88": 19240320,
+  "note": "ครูผู้ช่วย วุฒิ ป.ตรี 4 ปี (ยังไม่ยืนยันอัตรา กทม.)"
+ },
+ "districts": [
+  {
+   "name": "พระนคร",
+   "children": 5360,
+   "schools": 17,
+   "students": 5112,
+   "teachers": 291,
+   "schoolsPer1000": 3.172,
+   "studentsPerTeacher": 17.57,
+   "score": 37.1613,
+   "rankStudentsPerTeacher": 41
+  },
+  {
+   "name": "บางกอกน้อย",
+   "children": 11908,
+   "schools": 15,
+   "students": 2400,
+   "teachers": 227,
+   "schoolsPer1000": 1.26,
+   "studentsPerTeacher": 10.57,
+   "score": 33.8615,
+   "rankStudentsPerTeacher": 49
+  },
+  {
+   "name": "ป้อมปราบศัตรูพ่าย",
+   "children": 4426,
+   "schools": 4,
+   "students": 569,
+   "teachers": 56,
+   "schoolsPer1000": 0.904,
+   "studentsPerTeacher": 10.16,
+   "score": 31.7045,
+   "rankStudentsPerTeacher": 50
+  },
+  {
+   "name": "บางพลัด",
+   "children": 10910,
+   "schools": 11,
+   "students": 1983,
+   "teachers": 174,
+   "schoolsPer1000": 1.008,
+   "studentsPerTeacher": 11.4,
+   "score": 30.4052,
+   "rankStudentsPerTeacher": 48
+  },
+  {
+   "name": "ตลิ่งชัน",
+   "children": 15387,
+   "schools": 16,
+   "students": 3318,
+   "teachers": 275,
+   "schoolsPer1000": 1.04,
+   "studentsPerTeacher": 12.07,
+   "score": 29.5005,
+   "rankStudentsPerTeacher": 47
+  },
+  {
+   "name": "บางรัก",
+   "children": 4426,
+   "schools": 7,
+   "students": 2546,
+   "teachers": 163,
+   "schoolsPer1000": 1.582,
+   "studentsPerTeacher": 15.62,
+   "score": 27.7096,
+   "rankStudentsPerTeacher": 46
+  },
+  {
+   "name": "ธนบุรี",
+   "children": 13228,
+   "schools": 25,
+   "students": 9139,
+   "teachers": 502,
+   "schoolsPer1000": 1.89,
+   "studentsPerTeacher": 18.21,
+   "score": 25.7153,
+   "rankStudentsPerTeacher": 39
+  },
+  {
+   "name": "สัมพันธวงศ์",
+   "children": 2148,
+   "schools": 4,
+   "students": 1088,
+   "teachers": 57,
+   "schoolsPer1000": 1.862,
+   "studentsPerTeacher": 19.09,
+   "score": 23.9617,
+   "rankStudentsPerTeacher": 34
+  },
+  {
+   "name": "ปทุมวัน",
+   "children": 5133,
+   "schools": 10,
+   "students": 10861,
+   "teachers": 514,
+   "schoolsPer1000": 1.948,
+   "studentsPerTeacher": 21.13,
+   "score": 21.1144,
+   "rankStudentsPerTeacher": 8
+  },
+  {
+   "name": "ภาษีเจริญ",
+   "children": 18351,
+   "schools": 13,
+   "students": 5993,
+   "teachers": 380,
+   "schoolsPer1000": 0.708,
+   "studentsPerTeacher": 15.77,
+   "score": 20.4032,
+   "rankStudentsPerTeacher": 45
+  },
+  {
+   "name": "หนองจอก",
+   "children": 41786,
+   "schools": 40,
+   "students": 20650,
+   "teachers": 1174,
+   "schoolsPer1000": 0.957,
+   "studentsPerTeacher": 17.59,
+   "score": 19.2586,
+   "rankStudentsPerTeacher": 40
+  },
+  {
+   "name": "บางคอแหลม",
+   "children": 11791,
+   "schools": 7,
+   "students": 2898,
+   "teachers": 178,
+   "schoolsPer1000": 0.594,
+   "studentsPerTeacher": 16.28,
+   "score": 18.5938,
+   "rankStudentsPerTeacher": 43
+  },
+  {
+   "name": "บางซื่อ",
+   "children": 16003,
+   "schools": 7,
+   "students": 2271,
+   "teachers": 143,
+   "schoolsPer1000": 0.437,
+   "studentsPerTeacher": 15.88,
+   "score": 18.0263,
+   "rankStudentsPerTeacher": 44
+  },
+  {
+   "name": "ยานนาวา",
+   "children": 11247,
+   "schools": 8,
+   "students": 3875,
+   "teachers": 224,
+   "schoolsPer1000": 0.711,
+   "studentsPerTeacher": 17.3,
+   "score": 17.7777,
+   "rankStudentsPerTeacher": 42
+  },
+  {
+   "name": "ดุสิต",
+   "children": 9331,
+   "schools": 14,
+   "students": 13759,
+   "teachers": 649,
+   "schoolsPer1000": 1.5,
+   "studentsPerTeacher": 21.2,
+   "score": 17.3807,
+   "rankStudentsPerTeacher": 7
+  },
+  {
+   "name": "บางกอกใหญ่",
+   "children": 7870,
+   "schools": 16,
+   "students": 17347,
+   "teachers": 732,
+   "schoolsPer1000": 2.033,
+   "studentsPerTeacher": 23.7,
+   "score": 17.3479,
+   "rankStudentsPerTeacher": 3
+  },
+  {
+   "name": "คลองสาน",
+   "children": 8207,
+   "schools": 11,
+   "students": 7285,
+   "teachers": 354,
+   "schoolsPer1000": 1.34,
+   "studentsPerTeacher": 20.58,
+   "score": 17.1663,
+   "rankStudentsPerTeacher": 13
+  },
+  {
+   "name": "วัฒนา",
+   "children": 10154,
+   "schools": 9,
+   "students": 5520,
+   "teachers": 288,
+   "schoolsPer1000": 0.886,
+   "studentsPerTeacher": 19.17,
+   "score": 15.9525,
+   "rankStudentsPerTeacher": 33
+  },
+  {
+   "name": "ราษฎร์บูรณะ",
+   "children": 12294,
+   "schools": 6,
+   "students": 3891,
+   "teachers": 211,
+   "schoolsPer1000": 0.488,
+   "studentsPerTeacher": 18.44,
+   "score": 13.9976,
+   "rankStudentsPerTeacher": 38
+  },
+  {
+   "name": "ลาดกระบัง",
+   "children": 35840,
+   "schools": 24,
+   "students": 26041,
+   "teachers": 1326,
+   "schoolsPer1000": 0.67,
+   "studentsPerTeacher": 19.64,
+   "score": 13.3859,
+   "rankStudentsPerTeacher": 27
+  },
+  {
+   "name": "คลองสามวา",
+   "children": 43519,
+   "schools": 20,
+   "students": 18620,
+   "teachers": 977,
+   "schoolsPer1000": 0.46,
+   "studentsPerTeacher": 19.06,
+   "score": 12.6974,
+   "rankStudentsPerTeacher": 35
+  },
+  {
+   "name": "สวนหลวง",
+   "children": 21621,
+   "schools": 9,
+   "students": 8887,
+   "teachers": 470,
+   "schoolsPer1000": 0.416,
+   "studentsPerTeacher": 18.91,
+   "score": 12.6077,
+   "rankStudentsPerTeacher": 37
+  },
+  {
+   "name": "มีนบุรี",
+   "children": 28681,
+   "schools": 15,
+   "students": 13375,
+   "teachers": 687,
+   "schoolsPer1000": 0.523,
+   "studentsPerTeacher": 19.47,
+   "score": 12.4977,
+   "rankStudentsPerTeacher": 31
+  },
+  {
+   "name": "บางกะปิ",
+   "children": 22548,
+   "schools": 14,
+   "students": 17685,
+   "teachers": 886,
+   "schoolsPer1000": 0.621,
+   "studentsPerTeacher": 19.96,
+   "score": 12.4349,
+   "rankStudentsPerTeacher": 25
+  },
+  {
+   "name": "หลักสี่",
+   "children": 14004,
+   "schools": 7,
+   "students": 5380,
+   "teachers": 277,
+   "schoolsPer1000": 0.5,
+   "studentsPerTeacher": 19.42,
+   "score": 12.3913,
+   "rankStudentsPerTeacher": 32
+  },
+  {
+   "name": "ทวีวัฒนา",
+   "children": 12828,
+   "schools": 8,
+   "students": 8537,
+   "teachers": 425,
+   "schoolsPer1000": 0.624,
+   "studentsPerTeacher": 20.09,
+   "score": 12.2376,
+   "rankStudentsPerTeacher": 23
+  },
+  {
+   "name": "บางบอน",
+   "children": 18493,
+   "schools": 9,
+   "students": 7835,
+   "teachers": 402,
+   "schoolsPer1000": 0.487,
+   "studentsPerTeacher": 19.49,
+   "score": 12.1676,
+   "rankStudentsPerTeacher": 30
+  },
+  {
+   "name": "บึงกุ่ม",
+   "children": 22102,
+   "schools": 11,
+   "students": 14100,
+   "teachers": 717,
+   "schoolsPer1000": 0.498,
+   "studentsPerTeacher": 19.67,
+   "score": 11.9528,
+   "rankStudentsPerTeacher": 26
+  },
+  {
+   "name": "ราชเทวี",
+   "children": 8158,
+   "schools": 5,
+   "students": 1663,
+   "teachers": 82,
+   "schoolsPer1000": 0.613,
+   "studentsPerTeacher": 20.28,
+   "score": 11.8157,
+   "rankStudentsPerTeacher": 17
+  },
+  {
+   "name": "จอมทอง",
+   "children": 21627,
+   "schools": 12,
+   "students": 7744,
+   "teachers": 385,
+   "schoolsPer1000": 0.555,
+   "studentsPerTeacher": 20.11,
+   "score": 11.6356,
+   "rankStudentsPerTeacher": 21
+  },
+  {
+   "name": "พระโขนง",
+   "children": 11410,
+   "schools": 6,
+   "students": 6500,
+   "teachers": 325,
+   "schoolsPer1000": 0.526,
+   "studentsPerTeacher": 20.0,
+   "score": 11.5997,
+   "rankStudentsPerTeacher": 24
+  },
+  {
+   "name": "จตุจักร",
+   "children": 21601,
+   "schools": 9,
+   "students": 12252,
+   "teachers": 624,
+   "schoolsPer1000": 0.417,
+   "studentsPerTeacher": 19.63,
+   "score": 11.3521,
+   "rankStudentsPerTeacher": 28
+  },
+  {
+   "name": "ห้วยขวาง",
+   "children": 11867,
+   "schools": 6,
+   "students": 7050,
+   "teachers": 350,
+   "schoolsPer1000": 0.506,
+   "studentsPerTeacher": 20.14,
+   "score": 11.1887,
+   "rankStudentsPerTeacher": 20
+  },
+  {
+   "name": "บางนา",
+   "children": 11780,
+   "schools": 8,
+   "students": 8434,
+   "teachers": 402,
+   "schoolsPer1000": 0.679,
+   "studentsPerTeacher": 20.98,
+   "score": 11.1372,
+   "rankStudentsPerTeacher": 9
+  },
+  {
+   "name": "บางแค",
+   "children": 30167,
+   "schools": 16,
+   "students": 13825,
+   "teachers": 680,
+   "schoolsPer1000": 0.53,
+   "studentsPerTeacher": 20.33,
+   "score": 11.0627,
+   "rankStudentsPerTeacher": 16
+  },
+  {
+   "name": "สาทร",
+   "children": 9591,
+   "schools": 5,
+   "students": 6548,
+   "teachers": 322,
+   "schoolsPer1000": 0.521,
+   "studentsPerTeacher": 20.34,
+   "score": 10.9818,
+   "rankStudentsPerTeacher": 15
+  },
+  {
+   "name": "ประเวศ",
+   "children": 36588,
+   "schools": 17,
+   "students": 13189,
+   "teachers": 656,
+   "schoolsPer1000": 0.465,
+   "studentsPerTeacher": 20.11,
+   "score": 10.9235,
+   "rankStudentsPerTeacher": 22
+  },
+  {
+   "name": "ดอนเมือง",
+   "children": 27076,
+   "schools": 9,
+   "students": 13098,
+   "teachers": 668,
+   "schoolsPer1000": 0.332,
+   "studentsPerTeacher": 19.61,
+   "score": 10.719,
+   "rankStudentsPerTeacher": 29
+  },
+  {
+   "name": "คลองเตย",
+   "children": 13800,
+   "schools": 6,
+   "students": 5306,
+   "teachers": 262,
+   "schoolsPer1000": 0.435,
+   "studentsPerTeacher": 20.25,
+   "score": 10.4284,
+   "rankStudentsPerTeacher": 19
+  },
+  {
+   "name": "สะพานสูง",
+   "children": 18252,
+   "schools": 9,
+   "students": 11060,
+   "teachers": 536,
+   "schoolsPer1000": 0.493,
+   "studentsPerTeacher": 20.63,
+   "score": 10.2359,
+   "rankStudentsPerTeacher": 11
+  },
+  {
+   "name": "คันนายาว",
+   "children": 14854,
+   "schools": 2,
+   "students": 1935,
+   "teachers": 102,
+   "schoolsPer1000": 0.135,
+   "studentsPerTeacher": 18.97,
+   "score": 10.2282,
+   "rankStudentsPerTeacher": 36
+  },
+  {
+   "name": "ลาดพร้าว",
+   "children": 17844,
+   "schools": 8,
+   "students": 10537,
+   "teachers": 512,
+   "schoolsPer1000": 0.448,
+   "studentsPerTeacher": 20.58,
+   "score": 9.9688,
+   "rankStudentsPerTeacher": 12
+  },
+  {
+   "name": "สายไหม",
+   "children": 38417,
+   "schools": 11,
+   "students": 18728,
+   "teachers": 914,
+   "schoolsPer1000": 0.286,
+   "studentsPerTeacher": 20.49,
+   "score": 8.8178,
+   "rankStudentsPerTeacher": 14
+  },
+  {
+   "name": "บางเขน",
+   "children": 28380,
+   "schools": 6,
+   "students": 7980,
+   "teachers": 394,
+   "schoolsPer1000": 0.211,
+   "studentsPerTeacher": 20.25,
+   "score": 8.6231,
+   "rankStudentsPerTeacher": 18
+  },
+  {
+   "name": "วังทองหลาง",
+   "children": 17567,
+   "schools": 5,
+   "students": 7048,
+   "teachers": 339,
+   "schoolsPer1000": 0.285,
+   "studentsPerTeacher": 20.79,
+   "score": 8.2833,
+   "rankStudentsPerTeacher": 10
+  },
+  {
+   "name": "ทุ่งครุ",
+   "children": 22656,
+   "schools": 8,
+   "students": 9406,
+   "teachers": 432,
+   "schoolsPer1000": 0.353,
+   "studentsPerTeacher": 21.77,
+   "score": 7.1324,
+   "rankStudentsPerTeacher": 6
+  },
+  {
+   "name": "หนองแขม",
+   "children": 27845,
+   "schools": 12,
+   "students": 16495,
+   "teachers": 738,
+   "schoolsPer1000": 0.431,
+   "studentsPerTeacher": 22.35,
+   "score": 6.7589,
+   "rankStudentsPerTeacher": 5
+  },
+  {
+   "name": "ดินแดง",
+   "children": 15757,
+   "schools": 8,
+   "students": 11987,
+   "teachers": 518,
+   "schoolsPer1000": 0.508,
+   "studentsPerTeacher": 23.14,
+   "score": 6.0086,
+   "rankStudentsPerTeacher": 4
+  },
+  {
+   "name": "บางขุนเทียน",
+   "children": 37748,
+   "schools": 26,
+   "students": 36043,
+   "teachers": 1499,
+   "schoolsPer1000": 0.689,
+   "studentsPerTeacher": 24.04,
+   "score": 5.9027,
+   "rankStudentsPerTeacher": 2
+  },
+  {
+   "name": "พญาไท",
+   "children": 9909,
+   "schools": 5,
+   "students": 10325,
+   "teachers": 425,
+   "schoolsPer1000": 0.505,
+   "studentsPerTeacher": 24.29,
+   "score": 3.9844,
+   "rankStudentsPerTeacher": 1
+  }
+ ],
+ "scenarios": [
+  {
+   "addSchools": 0,
+   "addTeachers": 0,
+   "score": 6.01,
+   "rank": 48
+  },
+  {
+   "addSchools": 1,
+   "addTeachers": 0,
+   "score": 6.52,
+   "rank": 48
+  },
+  {
+   "addSchools": 0,
+   "addTeachers": 88,
+   "score": 11.83,
+   "rank": 29
+  },
+  {
+   "addSchools": 1,
+   "addTeachers": 88,
+   "score": 12.35,
+   "rank": 26
+  }
+ ]
+}

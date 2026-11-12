@@ -1,0 +1,4582 @@
+{
+ "source": "Bangkok Index 2025 – Rocket Media Lab (ข้อมูลดิบ เผยแพร่ 25 พ.ค. 2026)",
+ "dims": [
+  {
+   "key": "public",
+   "label": "บริการสาธารณะ"
+  },
+  {
+   "key": "economy",
+   "label": "เศรษฐกิจ"
+  },
+  {
+   "key": "welfare",
+   "label": "สวัสดิภาพ"
+  },
+  {
+   "key": "environment",
+   "label": "สิ่งแวดล้อม"
+  }
+ ],
+ "topics": [
+  {
+   "key": "health",
+   "label": "สาธารณสุข",
+   "dim": "public"
+  },
+  {
+   "key": "transit",
+   "label": "ขนส่งสาธารณะ",
+   "dim": "public"
+  },
+  {
+   "key": "education",
+   "label": "การศึกษา",
+   "dim": "public"
+  },
+  {
+   "key": "quality",
+   "label": "คุณภาพชีวิต",
+   "dim": "public"
+  },
+  {
+   "key": "budget",
+   "label": "งบประมาณรายเขต",
+   "dim": "economy"
+  },
+  {
+   "key": "tax",
+   "label": "รายได้จากการจัดเก็บภาษี",
+   "dim": "economy"
+  },
+  {
+   "key": "business",
+   "label": "การจดทะเบียนธุรกิจ",
+   "dim": "economy"
+  },
+  {
+   "key": "food",
+   "label": "สถานประกอบการอาหาร",
+   "dim": "economy"
+  },
+  {
+   "key": "fire",
+   "label": "อัคคีภัย",
+   "dim": "welfare"
+  },
+  {
+   "key": "flood",
+   "label": "อุทกภัย",
+   "dim": "welfare"
+  },
+  {
+   "key": "crime",
+   "label": "จุดเสี่ยงอาชญากรรม",
+   "dim": "welfare"
+  },
+  {
+   "key": "accident",
+   "label": "อุบัติเหตุบนท้องถนน",
+   "dim": "welfare"
+  },
+  {
+   "key": "waste",
+   "label": "ขยะ",
+   "dim": "environment"
+  },
+  {
+   "key": "wastewater",
+   "label": "น้ำเสีย",
+   "dim": "environment"
+  },
+  {
+   "key": "air",
+   "label": "อากาศ",
+   "dim": "environment"
+  },
+  {
+   "key": "parks",
+   "label": "สวนสาธารณะ",
+   "dim": "environment"
+  }
+ ],
+ "medians": {
+  "overall": 22.4101,
+  "dims": {
+   "public": 17.8276,
+   "economy": 8.8451,
+   "welfare": 33.7235,
+   "environment": 29.709
+  },
+  "topics": {
+   "health": 27.5343,
+   "transit": 13.3395,
+   "education": 12.3145,
+   "quality": 13.8386,
+   "budget": 8.3863,
+   "tax": 3.3453,
+   "business": 18.7763,
+   "food": 4.5391,
+   "fire": 28.3098,
+   "flood": 42.2045,
+   "crime": 33.6667,
+   "accident": 36.7057,
+   "waste": 43.5399,
+   "wastewater": 32.8873,
+   "air": 37.5538,
+   "parks": 4.0273
+  }
+ },
+ "districts": [
+  {
+   "name": "ปทุมวัน",
+   "overall": 32.0345,
+   "rank": 1,
+   "dims": {
+    "public": {
+     "score": 30.6459,
+     "rank": 1
+    },
+    "economy": {
+     "score": 40.1328,
+     "rank": 1
+    },
+    "welfare": {
+     "score": 37.1669,
+     "rank": 15
+    },
+    "environment": {
+     "score": 20.1926,
+     "rank": 47
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 42.2329,
+     "rank": 4
+    },
+    "transit": {
+     "score": 33.9711,
+     "rank": 2
+    },
+    "education": {
+     "score": 21.1144,
+     "rank": 9
+    },
+    "quality": {
+     "score": 25.2651,
+     "rank": 3
+    },
+    "budget": {
+     "score": 30.644,
+     "rank": 3
+    },
+    "tax": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "business": {
+     "score": 29.887,
+     "rank": 2
+    },
+    "food": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "fire": {
+     "score": 29.874,
+     "rank": 15
+    },
+    "flood": {
+     "score": 42.2045,
+     "rank": 24
+    },
+    "crime": {
+     "score": 33.6667,
+     "rank": 24
+    },
+    "accident": {
+     "score": 42.9223,
+     "rank": 10
+    },
+    "waste": {
+     "score": 1.0,
+     "rank": 50
+    },
+    "wastewater": {
+     "score": 3.4882,
+     "rank": 48
+    },
+    "air": {
+     "score": 37.9189,
+     "rank": 24
+    },
+    "parks": {
+     "score": 38.3632,
+     "rank": 1
+    }
+   }
+  },
+  {
+   "name": "พระนคร",
+   "overall": 29.1728,
+   "rank": 2,
+   "dims": {
+    "public": {
+     "score": 28.5241,
+     "rank": 4
+    },
+    "economy": {
+     "score": 22.5788,
+     "rank": 4
+    },
+    "welfare": {
+     "score": 33.9853,
+     "rank": 24
+    },
+    "environment": {
+     "score": 31.6031,
+     "rank": 15
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 30.1036,
+     "rank": 17
+    },
+    "transit": {
+     "score": 22.9748,
+     "rank": 7
+    },
+    "education": {
+     "score": 37.1613,
+     "rank": 1
+    },
+    "quality": {
+     "score": 23.8569,
+     "rank": 5
+    },
+    "budget": {
+     "score": 43.097,
+     "rank": 2
+    },
+    "tax": {
+     "score": 5.8547,
+     "rank": 14
+    },
+    "business": {
+     "score": 18.2855,
+     "rank": 34
+    },
+    "food": {
+     "score": 23.0781,
+     "rank": 4
+    },
+    "fire": {
+     "score": 29.3757,
+     "rank": 18
+    },
+    "flood": {
+     "score": 45.5455,
+     "rank": 20
+    },
+    "crime": {
+     "score": 14.0667,
+     "rank": 46
+    },
+    "accident": {
+     "score": 46.9532,
+     "rank": 3
+    },
+    "waste": {
+     "score": 26.2291,
+     "rank": 49
+    },
+    "wastewater": {
+     "score": 39.765,
+     "rank": 16
+    },
+    "air": {
+     "score": 42.6898,
+     "rank": 10
+    },
+    "parks": {
+     "score": 17.7286,
+     "rank": 8
+    }
+   }
+  },
+  {
+   "name": "บางกอกน้อย",
+   "overall": 28.415,
+   "rank": 3,
+   "dims": {
+    "public": {
+     "score": 24.446,
+     "rank": 8
+    },
+    "economy": {
+     "score": 14.7251,
+     "rank": 9
+    },
+    "welfare": {
+     "score": 39.7172,
+     "rank": 4
+    },
+    "environment": {
+     "score": 34.7718,
+     "rank": 4
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 35.1506,
+     "rank": 9
+    },
+    "transit": {
+     "score": 13.447,
+     "rank": 25
+    },
+    "education": {
+     "score": 33.8615,
+     "rank": 2
+    },
+    "quality": {
+     "score": 15.325,
+     "rank": 22
+    },
+    "budget": {
+     "score": 29.152,
+     "rank": 4
+    },
+    "tax": {
+     "score": 2.0839,
+     "rank": 37
+    },
+    "business": {
+     "score": 16.9908,
+     "rank": 49
+    },
+    "food": {
+     "score": 10.6739,
+     "rank": 14
+    },
+    "fire": {
+     "score": 32.0056,
+     "rank": 7
+    },
+    "flood": {
+     "score": 48.8864,
+     "rank": 12
+    },
+    "crime": {
+     "score": 40.2,
+     "rank": 13
+    },
+    "accident": {
+     "score": 37.7766,
+     "rank": 21
+    },
+    "waste": {
+     "score": 31.4894,
+     "rank": 44
+    },
+    "wastewater": {
+     "score": 45.5756,
+     "rank": 7
+    },
+    "air": {
+     "score": 38.7474,
+     "rank": 19
+    },
+    "parks": {
+     "score": 23.2748,
+     "rank": 4
+    }
+   }
+  },
+  {
+   "name": "สัมพันธวงศ์",
+   "overall": 27.9644,
+   "rank": 4,
+   "dims": {
+    "public": {
+     "score": 24.4812,
+     "rank": 7
+    },
+    "economy": {
+     "score": 23.8223,
+     "rank": 3
+    },
+    "welfare": {
+     "score": 33.3735,
+     "rank": 27
+    },
+    "environment": {
+     "score": 30.1806,
+     "rank": 23
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 43.2571,
+     "rank": 3
+    },
+    "transit": {
+     "score": 8.7548,
+     "rank": 35
+    },
+    "education": {
+     "score": 23.9617,
+     "rank": 8
+    },
+    "quality": {
+     "score": 21.9511,
+     "rank": 7
+    },
+    "budget": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "tax": {
+     "score": 11.7024,
+     "rank": 5
+    },
+    "business": {
+     "score": 21.3902,
+     "rank": 4
+    },
+    "food": {
+     "score": 12.1966,
+     "rank": 10
+    },
+    "fire": {
+     "score": 22.8424,
+     "rank": 41
+    },
+    "flood": {
+     "score": 43.3182,
+     "rank": 23
+    },
+    "crime": {
+     "score": 17.3333,
+     "rank": 42
+    },
+    "accident": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "waste": {
+     "score": 37.2202,
+     "rank": 42
+    },
+    "wastewater": {
+     "score": 36.2643,
+     "rank": 22
+    },
+    "air": {
+     "score": 42.917,
+     "rank": 9
+    },
+    "parks": {
+     "score": 4.321,
+     "rank": 24
+    }
+   }
+  },
+  {
+   "name": "บางรัก",
+   "overall": 27.8926,
+   "rank": 5,
+   "dims": {
+    "public": {
+     "score": 24.4428,
+     "rank": 9
+    },
+    "economy": {
+     "score": 27.8869,
+     "rank": 2
+    },
+    "welfare": {
+     "score": 39.7118,
+     "rank": 5
+    },
+    "environment": {
+     "score": 19.5288,
+     "rank": 48
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 37.3395,
+     "rank": 7
+    },
+    "transit": {
+     "score": 23.5658,
+     "rank": 5
+    },
+    "education": {
+     "score": 27.7096,
+     "rank": 6
+    },
+    "quality": {
+     "score": 9.1565,
+     "rank": 45
+    },
+    "budget": {
+     "score": 21.046,
+     "rank": 6
+    },
+    "tax": {
+     "score": 29.2216,
+     "rank": 2
+    },
+    "business": {
+     "score": 31.2738,
+     "rank": 1
+    },
+    "food": {
+     "score": 30.0064,
+     "rank": 3
+    },
+    "fire": {
+     "score": 28.7944,
+     "rank": 21
+    },
+    "flood": {
+     "score": 42.2045,
+     "rank": 24
+    },
+    "crime": {
+     "score": 40.2,
+     "rank": 13
+    },
+    "accident": {
+     "score": 47.6485,
+     "rank": 2
+    },
+    "waste": {
+     "score": 28.1228,
+     "rank": 47
+    },
+    "wastewater": {
+     "score": 11.9117,
+     "rank": 44
+    },
+    "air": {
+     "score": 35.6069,
+     "rank": 34
+    },
+    "parks": {
+     "score": 2.4737,
+     "rank": 41
+    }
+   }
+  },
+  {
+   "name": "ป้อมปราบศัตรูพ่าย",
+   "overall": 26.7293,
+   "rank": 6,
+   "dims": {
+    "public": {
+     "score": 28.851,
+     "rank": 2
+    },
+    "economy": {
+     "score": 14.9592,
+     "rank": 8
+    },
+    "welfare": {
+     "score": 41.9731,
+     "rank": 1
+    },
+    "environment": {
+     "score": 21.1338,
+     "rank": 45
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 46.4258,
+     "rank": 2
+    },
+    "transit": {
+     "score": 12.1575,
+     "rank": 28
+    },
+    "education": {
+     "score": 31.7045,
+     "rank": 3
+    },
+    "quality": {
+     "score": 25.1161,
+     "rank": 4
+    },
+    "budget": {
+     "score": 23.0027,
+     "rank": 5
+    },
+    "tax": {
+     "score": 6.1872,
+     "rank": 13
+    },
+    "business": {
+     "score": 18.4804,
+     "rank": 32
+    },
+    "food": {
+     "score": 12.1665,
+     "rank": 11
+    },
+    "fire": {
+     "score": 29.8463,
+     "rank": 16
+    },
+    "flood": {
+     "score": 47.7727,
+     "rank": 14
+    },
+    "crime": {
+     "score": 43.4667,
+     "rank": 6
+    },
+    "accident": {
+     "score": 46.8065,
+     "rank": 4
+    },
+    "waste": {
+     "score": 42.1591,
+     "rank": 30
+    },
+    "wastewater": {
+     "score": 37.4674,
+     "rank": 19
+    },
+    "air": {
+     "score": 1.0,
+     "rank": 50
+    },
+    "parks": {
+     "score": 3.9088,
+     "rank": 29
+    }
+   }
+  },
+  {
+   "name": "วัฒนา",
+   "overall": 26.3011,
+   "rank": 7,
+   "dims": {
+    "public": {
+     "score": 18.3428,
+     "rank": 22
+    },
+    "economy": {
+     "score": 21.3021,
+     "rank": 5
+    },
+    "welfare": {
+     "score": 38.7251,
+     "rank": 9
+    },
+    "environment": {
+     "score": 26.8346,
+     "rank": 35
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 32.9222,
+     "rank": 11
+    },
+    "transit": {
+     "score": 17.7811,
+     "rank": 14
+    },
+    "education": {
+     "score": 15.9525,
+     "rank": 18
+    },
+    "quality": {
+     "score": 6.7153,
+     "rank": 49
+    },
+    "budget": {
+     "score": 12.0458,
+     "rank": 13
+    },
+    "tax": {
+     "score": 17.8494,
+     "rank": 3
+    },
+    "business": {
+     "score": 22.7208,
+     "rank": 3
+    },
+    "food": {
+     "score": 32.5924,
+     "rank": 2
+    },
+    "fire": {
+     "score": 30.2339,
+     "rank": 13
+    },
+    "flood": {
+     "score": 33.2955,
+     "rank": 30
+    },
+    "crime": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "accident": {
+     "score": 41.3709,
+     "rank": 16
+    },
+    "waste": {
+     "score": 26.9557,
+     "rank": 48
+    },
+    "wastewater": {
+     "score": 29.029,
+     "rank": 33
+    },
+    "air": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "parks": {
+     "score": 1.3536,
+     "rank": 49
+    }
+   }
+  },
+  {
+   "name": "ทวีวัฒนา",
+   "overall": 25.708,
+   "rank": 8,
+   "dims": {
+    "public": {
+     "score": 15.2989,
+     "rank": 35
+    },
+    "economy": {
+     "score": 10.2372,
+     "rank": 17
+    },
+    "welfare": {
+     "score": 39.8969,
+     "rank": 3
+    },
+    "environment": {
+     "score": 37.3991,
+     "rank": 1
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 27.5269,
+     "rank": 26
+    },
+    "transit": {
+     "score": 6.7847,
+     "rank": 38
+    },
+    "education": {
+     "score": 12.2376,
+     "rank": 26
+    },
+    "quality": {
+     "score": 14.6465,
+     "rank": 23
+    },
+    "budget": {
+     "score": 15.2928,
+     "rank": 7
+    },
+    "tax": {
+     "score": 3.3961,
+     "rank": 25
+    },
+    "business": {
+     "score": 18.6439,
+     "rank": 29
+    },
+    "food": {
+     "score": 3.6161,
+     "rank": 32
+    },
+    "fire": {
+     "score": 35.7153,
+     "rank": 4
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 36.9333,
+     "rank": 18
+    },
+    "accident": {
+     "score": 36.939,
+     "rank": 25
+    },
+    "waste": {
+     "score": 44.1191,
+     "rank": 22
+    },
+    "wastewater": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "air": {
+     "score": 37.7099,
+     "rank": 25
+    },
+    "parks": {
+     "score": 17.7673,
+     "rank": 7
+    }
+   }
+  },
+  {
+   "name": "ธนบุรี",
+   "overall": 24.9505,
+   "rank": 9,
+   "dims": {
+    "public": {
+     "score": 22.2322,
+     "rank": 12
+    },
+    "economy": {
+     "score": 8.3875,
+     "rank": 32
+    },
+    "welfare": {
+     "score": 36.3827,
+     "rank": 17
+    },
+    "environment": {
+     "score": 32.7996,
+     "rank": 13
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 31.8861,
+     "rank": 14
+    },
+    "transit": {
+     "score": 18.4795,
+     "rank": 13
+    },
+    "education": {
+     "score": 25.7153,
+     "rank": 7
+    },
+    "quality": {
+     "score": 12.8478,
+     "rank": 29
+    },
+    "budget": {
+     "score": 10.3621,
+     "rank": 17
+    },
+    "tax": {
+     "score": 2.0608,
+     "rank": 38
+    },
+    "business": {
+     "score": 17.165,
+     "rank": 48
+    },
+    "food": {
+     "score": 3.9622,
+     "rank": 31
+    },
+    "fire": {
+     "score": 29.791,
+     "rank": 17
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 33.6667,
+     "rank": 24
+    },
+    "accident": {
+     "score": 32.0732,
+     "rank": 34
+    },
+    "waste": {
+     "score": 45.501,
+     "rank": 15
+    },
+    "wastewater": {
+     "score": 46.2136,
+     "rank": 5
+    },
+    "air": {
+     "score": 37.3977,
+     "rank": 26
+    },
+    "parks": {
+     "score": 2.086,
+     "rank": 46
+    }
+   }
+  },
+  {
+   "name": "คันนายาว",
+   "overall": 24.9312,
+   "rank": 10,
+   "dims": {
+    "public": {
+     "score": 16.7994,
+     "rank": 29
+    },
+    "economy": {
+     "score": 8.7989,
+     "rank": 27
+    },
+    "welfare": {
+     "score": 39.898,
+     "rank": 2
+    },
+    "environment": {
+     "score": 34.2285,
+     "rank": 6
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 29.6006,
+     "rank": 18
+    },
+    "transit": {
+     "score": 15.614,
+     "rank": 20
+    },
+    "education": {
+     "score": 10.2282,
+     "rank": 41
+    },
+    "quality": {
+     "score": 11.7547,
+     "rank": 34
+    },
+    "budget": {
+     "score": 6.6714,
+     "rank": 35
+    },
+    "tax": {
+     "score": 3.5658,
+     "rank": 24
+    },
+    "business": {
+     "score": 18.0877,
+     "rank": 35
+    },
+    "food": {
+     "score": 6.8708,
+     "rank": 17
+    },
+    "fire": {
+     "score": 30.7322,
+     "rank": 10
+    },
+    "flood": {
+     "score": 47.7727,
+     "rank": 14
+    },
+    "crime": {
+     "score": 43.4667,
+     "rank": 6
+    },
+    "accident": {
+     "score": 37.6204,
+     "rank": 23
+    },
+    "waste": {
+     "score": 45.1044,
+     "rank": 18
+    },
+    "wastewater": {
+     "score": 31.4016,
+     "rank": 29
+    },
+    "air": {
+     "score": 41.6475,
+     "rank": 14
+    },
+    "parks": {
+     "score": 18.7603,
+     "rank": 5
+    }
+   }
+  },
+  {
+   "name": "ราษฎร์บูรณะ",
+   "overall": 24.8117,
+   "rank": 11,
+   "dims": {
+    "public": {
+     "score": 18.6771,
+     "rank": 19
+    },
+    "economy": {
+     "score": 8.9808,
+     "rank": 24
+    },
+    "welfare": {
+     "score": 39.5771,
+     "rank": 7
+    },
+    "environment": {
+     "score": 32.0119,
+     "rank": 14
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 35.4086,
+     "rank": 8
+    },
+    "transit": {
+     "score": 9.1667,
+     "rank": 34
+    },
+    "education": {
+     "score": 13.9976,
+     "rank": 19
+    },
+    "quality": {
+     "score": 16.1353,
+     "rank": 18
+    },
+    "budget": {
+     "score": 11.6662,
+     "rank": 15
+    },
+    "tax": {
+     "score": 2.7593,
+     "rank": 32
+    },
+    "business": {
+     "score": 18.0364,
+     "rank": 36
+    },
+    "food": {
+     "score": 3.4611,
+     "rank": 35
+    },
+    "fire": {
+     "score": 27.078,
+     "rank": 30
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 43.4667,
+     "rank": 6
+    },
+    "accident": {
+     "score": 37.7637,
+     "rank": 22
+    },
+    "waste": {
+     "score": 46.2918,
+     "rank": 12
+    },
+    "wastewater": {
+     "score": 42.451,
+     "rank": 12
+    },
+    "air": {
+     "score": 36.1791,
+     "rank": 30
+    },
+    "parks": {
+     "score": 3.1257,
+     "rank": 35
+    }
+   }
+  },
+  {
+   "name": "บางกอกใหญ่",
+   "overall": 24.8109,
+   "rank": 12,
+   "dims": {
+    "public": {
+     "score": 16.6873,
+     "rank": 30
+    },
+    "economy": {
+     "score": 8.2795,
+     "rank": 34
+    },
+    "welfare": {
+     "score": 39.6539,
+     "rank": 6
+    },
+    "environment": {
+     "score": 34.623,
+     "rank": 5
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 24.9319,
+     "rank": 45
+    },
+    "transit": {
+     "score": 11.674,
+     "rank": 29
+    },
+    "education": {
+     "score": 17.3479,
+     "rank": 16
+    },
+    "quality": {
+     "score": 12.7956,
+     "rank": 30
+    },
+    "budget": {
+     "score": 9.6679,
+     "rank": 20
+    },
+    "tax": {
+     "score": 1.1778,
+     "rank": 48
+    },
+    "business": {
+     "score": 17.8733,
+     "rank": 39
+    },
+    "food": {
+     "score": 4.3988,
+     "rank": 27
+    },
+    "fire": {
+     "score": 28.3237,
+     "rank": 25
+    },
+    "flood": {
+     "score": 48.8864,
+     "rank": 12
+    },
+    "crime": {
+     "score": 36.9333,
+     "rank": 18
+    },
+    "accident": {
+     "score": 44.4721,
+     "rank": 6
+    },
+    "waste": {
+     "score": 47.0146,
+     "rank": 8
+    },
+    "wastewater": {
+     "score": 45.8293,
+     "rank": 6
+    },
+    "air": {
+     "score": 36.3103,
+     "rank": 29
+    },
+    "parks": {
+     "score": 9.338,
+     "rank": 11
+    }
+   }
+  },
+  {
+   "name": "ดุสิต",
+   "overall": 24.7001,
+   "rank": 13,
+   "dims": {
+    "public": {
+     "score": 21.1268,
+     "rank": 13
+    },
+    "economy": {
+     "score": 9.9388,
+     "rank": 18
+    },
+    "welfare": {
+     "score": 39.0937,
+     "rank": 8
+    },
+    "environment": {
+     "score": 28.6412,
+     "rank": 30
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 31.3339,
+     "rank": 15
+    },
+    "transit": {
+     "score": 15.2917,
+     "rank": 22
+    },
+    "education": {
+     "score": 17.3807,
+     "rank": 15
+    },
+    "quality": {
+     "score": 20.5009,
+     "rank": 13
+    },
+    "budget": {
+     "score": 14.7529,
+     "rank": 9
+    },
+    "tax": {
+     "score": 1.7995,
+     "rank": 42
+    },
+    "business": {
+     "score": 17.2891,
+     "rank": 47
+    },
+    "food": {
+     "score": 5.9136,
+     "rank": 22
+    },
+    "fire": {
+     "score": 25.8599,
+     "rank": 33
+    },
+    "flood": {
+     "score": 46.6591,
+     "rank": 19
+    },
+    "crime": {
+     "score": 40.2,
+     "rank": 13
+    },
+    "accident": {
+     "score": 43.6557,
+     "rank": 7
+    },
+    "waste": {
+     "score": 42.9193,
+     "rank": 29
+    },
+    "wastewater": {
+     "score": 36.0685,
+     "rank": 23
+    },
+    "air": {
+     "score": 26.7331,
+     "rank": 43
+    },
+    "parks": {
+     "score": 8.8439,
+     "rank": 12
+    }
+   }
+  },
+  {
+   "name": "มีนบุรี",
+   "overall": 24.4357,
+   "rank": 14,
+   "dims": {
+    "public": {
+     "score": 18.3816,
+     "rank": 21
+    },
+    "economy": {
+     "score": 8.3047,
+     "rank": 33
+    },
+    "welfare": {
+     "score": 37.577,
+     "rank": 14
+    },
+    "environment": {
+     "score": 33.4797,
+     "rank": 9
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 26.7311,
+     "rank": 29
+    },
+    "transit": {
+     "score": 13.644,
+     "rank": 24
+    },
+    "education": {
+     "score": 12.4977,
+     "rank": 23
+    },
+    "quality": {
+     "score": 20.6534,
+     "rank": 11
+    },
+    "budget": {
+     "score": 9.0165,
+     "rank": 22
+    },
+    "tax": {
+     "score": 2.7874,
+     "rank": 31
+    },
+    "business": {
+     "score": 18.3278,
+     "rank": 33
+    },
+    "food": {
+     "score": 3.0871,
+     "rank": 40
+    },
+    "fire": {
+     "score": 30.3723,
+     "rank": 12
+    },
+    "flood": {
+     "score": 45.5455,
+     "rank": 20
+    },
+    "crime": {
+     "score": 43.4667,
+     "rank": 6
+    },
+    "accident": {
+     "score": 30.9235,
+     "rank": 39
+    },
+    "waste": {
+     "score": 46.3923,
+     "rank": 11
+    },
+    "wastewater": {
+     "score": 43.3239,
+     "rank": 11
+    },
+    "air": {
+     "score": 38.0926,
+     "rank": 23
+    },
+    "parks": {
+     "score": 6.1099,
+     "rank": 18
+    }
+   }
+  },
+  {
+   "name": "ยานนาวา",
+   "overall": 24.3782,
+   "rank": 15,
+   "dims": {
+    "public": {
+     "score": 17.1394,
+     "rank": 28
+    },
+    "economy": {
+     "score": 11.9985,
+     "rank": 13
+    },
+    "welfare": {
+     "score": 37.8045,
+     "rank": 11
+    },
+    "environment": {
+     "score": 30.5704,
+     "rank": 21
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 25.7773,
+     "rank": 39
+    },
+    "transit": {
+     "score": 3.3819,
+     "rank": 44
+    },
+    "education": {
+     "score": 17.7777,
+     "rank": 14
+    },
+    "quality": {
+     "score": 21.6205,
+     "rank": 8
+    },
+    "budget": {
+     "score": 8.2247,
+     "rank": 27
+    },
+    "tax": {
+     "score": 8.1711,
+     "rank": 11
+    },
+    "business": {
+     "score": 19.5218,
+     "rank": 10
+    },
+    "food": {
+     "score": 12.0766,
+     "rank": 12
+    },
+    "fire": {
+     "score": 25.3339,
+     "rank": 36
+    },
+    "flood": {
+     "score": 47.7727,
+     "rank": 14
+    },
+    "crime": {
+     "score": 36.9333,
+     "rank": 18
+    },
+    "accident": {
+     "score": 41.178,
+     "rank": 17
+    },
+    "waste": {
+     "score": 39.3093,
+     "rank": 36
+    },
+    "wastewater": {
+     "score": 31.4694,
+     "rank": 28
+    },
+    "air": {
+     "score": 47.1535,
+     "rank": 5
+    },
+    "parks": {
+     "score": 4.3493,
+     "rank": 23
+    }
+   }
+  },
+  {
+   "name": "พญาไท",
+   "overall": 24.2491,
+   "rank": 16,
+   "dims": {
+    "public": {
+     "score": 18.1269,
+     "rank": 24
+    },
+    "economy": {
+     "score": 12.4848,
+     "rank": 11
+    },
+    "welfare": {
+     "score": 36.5118,
+     "rank": 16
+    },
+    "environment": {
+     "score": 29.8727,
+     "rank": 25
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 38.6433,
+     "rank": 6
+    },
+    "transit": {
+     "score": 19.769,
+     "rank": 9
+    },
+    "education": {
+     "score": 3.9844,
+     "rank": 50
+    },
+    "quality": {
+     "score": 10.1109,
+     "rank": 40
+    },
+    "budget": {
+     "score": 12.5837,
+     "rank": 11
+    },
+    "tax": {
+     "score": 6.5291,
+     "rank": 12
+    },
+    "business": {
+     "score": 18.5804,
+     "rank": 31
+    },
+    "food": {
+     "score": 12.2462,
+     "rank": 9
+    },
+    "fire": {
+     "score": 28.7113,
+     "rank": 23
+    },
+    "flood": {
+     "score": 31.0682,
+     "rank": 33
+    },
+    "crime": {
+     "score": 43.4667,
+     "rank": 6
+    },
+    "accident": {
+     "score": 42.8009,
+     "rank": 12
+    },
+    "waste": {
+     "score": 38.1178,
+     "rank": 40
+    },
+    "wastewater": {
+     "score": 38.1221,
+     "rank": 17
+    },
+    "air": {
+     "score": 40.6719,
+     "rank": 15
+    },
+    "parks": {
+     "score": 2.5789,
+     "rank": 39
+    }
+   }
+  },
+  {
+   "name": "บางคอแหลม",
+   "overall": 23.875,
+   "rank": 17,
+   "dims": {
+    "public": {
+     "score": 19.2511,
+     "rank": 18
+    },
+    "economy": {
+     "score": 9.76,
+     "rank": 20
+    },
+    "welfare": {
+     "score": 37.7531,
+     "rank": 13
+    },
+    "environment": {
+     "score": 28.7357,
+     "rank": 29
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 32.4819,
+     "rank": 12
+    },
+    "transit": {
+     "score": 5.0833,
+     "rank": 42
+    },
+    "education": {
+     "score": 18.5938,
+     "rank": 12
+    },
+    "quality": {
+     "score": 20.8454,
+     "rank": 10
+    },
+    "budget": {
+     "score": 9.4543,
+     "rank": 21
+    },
+    "tax": {
+     "score": 4.34,
+     "rank": 18
+    },
+    "business": {
+     "score": 18.7485,
+     "rank": 26
+    },
+    "food": {
+     "score": 6.4973,
+     "rank": 20
+    },
+    "fire": {
+     "score": 24.3096,
+     "rank": 39
+    },
+    "flood": {
+     "score": 47.7727,
+     "rank": 14
+    },
+    "crime": {
+     "score": 33.6667,
+     "rank": 24
+    },
+    "accident": {
+     "score": 45.2633,
+     "rank": 5
+    },
+    "waste": {
+     "score": 44.0117,
+     "rank": 23
+    },
+    "wastewater": {
+     "score": 32.6187,
+     "rank": 26
+    },
+    "air": {
+     "score": 11.5382,
+     "rank": 48
+    },
+    "parks": {
+     "score": 26.7743,
+     "rank": 2
+    }
+   }
+  },
+  {
+   "name": "ภาษีเจริญ",
+   "overall": 23.5598,
+   "rank": 18,
+   "dims": {
+    "public": {
+     "score": 17.9853,
+     "rank": 25
+    },
+    "economy": {
+     "score": 6.7275,
+     "rank": 45
+    },
+    "welfare": {
+     "score": 35.9729,
+     "rank": 18
+    },
+    "environment": {
+     "score": 33.5534,
+     "rank": 8
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 28.4447,
+     "rank": 21
+    },
+    "transit": {
+     "score": 13.9126,
+     "rank": 23
+    },
+    "education": {
+     "score": 20.4032,
+     "rank": 10
+    },
+    "quality": {
+     "score": 9.1808,
+     "rank": 43
+    },
+    "budget": {
+     "score": 5.324,
+     "rank": 41
+    },
+    "tax": {
+     "score": 1.7866,
+     "rank": 43
+    },
+    "business": {
+     "score": 17.5262,
+     "rank": 46
+    },
+    "food": {
+     "score": 2.2731,
+     "rank": 47
+    },
+    "fire": {
+     "score": 26.0537,
+     "rank": 32
+    },
+    "flood": {
+     "score": 42.2045,
+     "rank": 24
+    },
+    "crime": {
+     "score": 36.9333,
+     "rank": 18
+    },
+    "accident": {
+     "score": 38.7002,
+     "rank": 20
+    },
+    "waste": {
+     "score": 46.6878,
+     "rank": 9
+    },
+    "wastewater": {
+     "score": 46.9992,
+     "rank": 3
+    },
+    "air": {
+     "score": 38.6138,
+     "rank": 22
+    },
+    "parks": {
+     "score": 1.9127,
+     "rank": 47
+    }
+   }
+  },
+  {
+   "name": "คลองสาน",
+   "overall": 23.4828,
+   "rank": 19,
+   "dims": {
+    "public": {
+     "score": 19.9669,
+     "rank": 14
+    },
+    "economy": {
+     "score": 12.1701,
+     "rank": 12
+    },
+    "welfare": {
+     "score": 32.2489,
+     "rank": 30
+    },
+    "environment": {
+     "score": 29.5453,
+     "rank": 26
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 31.9193,
+     "rank": 13
+    },
+    "transit": {
+     "score": 17.6557,
+     "rank": 15
+    },
+    "education": {
+     "score": 17.1663,
+     "rank": 17
+    },
+    "quality": {
+     "score": 13.1263,
+     "rank": 27
+    },
+    "budget": {
+     "score": 13.488,
+     "rank": 10
+    },
+    "tax": {
+     "score": 4.2518,
+     "rank": 19
+    },
+    "business": {
+     "score": 18.9827,
+     "rank": 21
+    },
+    "food": {
+     "score": 11.9581,
+     "rank": 13
+    },
+    "fire": {
+     "score": 25.0847,
+     "rank": 37
+    },
+    "flood": {
+     "score": 44.4318,
+     "rank": 22
+    },
+    "crime": {
+     "score": 17.3333,
+     "rank": 42
+    },
+    "accident": {
+     "score": 42.1459,
+     "rank": 14
+    },
+    "waste": {
+     "score": 41.9858,
+     "rank": 31
+    },
+    "wastewater": {
+     "score": 30.3424,
+     "rank": 31
+    },
+    "air": {
+     "score": 42.2622,
+     "rank": 12
+    },
+    "parks": {
+     "score": 3.591,
+     "rank": 32
+    }
+   }
+  },
+  {
+   "name": "บางพลัด",
+   "overall": 23.452,
+   "rank": 20,
+   "dims": {
+    "public": {
+     "score": 24.6771,
+     "rank": 6
+    },
+    "economy": {
+     "score": 7.3571,
+     "rank": 40
+    },
+    "welfare": {
+     "score": 32.7554,
+     "rank": 28
+    },
+    "environment": {
+     "score": 29.0184,
+     "rank": 28
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 26.7294,
+     "rank": 30
+    },
+    "transit": {
+     "score": 18.6765,
+     "rank": 11
+    },
+    "education": {
+     "score": 30.4052,
+     "rank": 4
+    },
+    "quality": {
+     "score": 22.8971,
+     "rank": 6
+    },
+    "budget": {
+     "score": 6.3646,
+     "rank": 36
+    },
+    "tax": {
+     "score": 2.4539,
+     "rank": 35
+    },
+    "business": {
+     "score": 16.3384,
+     "rank": 50
+    },
+    "food": {
+     "score": 4.2715,
+     "rank": 29
+    },
+    "fire": {
+     "score": 19.022,
+     "rank": 46
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 20.6,
+     "rank": 39
+    },
+    "accident": {
+     "score": 41.3998,
+     "rank": 15
+    },
+    "waste": {
+     "score": 44.6584,
+     "rank": 20
+    },
+    "wastewater": {
+     "score": 32.5101,
+     "rank": 27
+    },
+    "air": {
+     "score": 36.3419,
+     "rank": 28
+    },
+    "parks": {
+     "score": 2.5631,
+     "rank": 40
+    }
+   }
+  },
+  {
+   "name": "ราชเทวี",
+   "overall": 23.2032,
+   "rank": 21,
+   "dims": {
+    "public": {
+     "score": 28.7172,
+     "rank": 3
+    },
+    "economy": {
+     "score": 15.8457,
+     "rank": 6
+    },
+    "welfare": {
+     "score": 23.8351,
+     "rank": 45
+    },
+    "environment": {
+     "score": 24.4145,
+     "rank": 39
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 48.7098,
+     "rank": 1
+    },
+    "transit": {
+     "score": 33.2368,
+     "rank": 3
+    },
+    "education": {
+     "score": 11.8157,
+     "rank": 29
+    },
+    "quality": {
+     "score": 21.1066,
+     "rank": 9
+    },
+    "budget": {
+     "score": 15.2598,
+     "rank": 8
+    },
+    "tax": {
+     "score": 11.5925,
+     "rank": 6
+    },
+    "business": {
+     "score": 18.5869,
+     "rank": 30
+    },
+    "food": {
+     "score": 17.9437,
+     "rank": 5
+    },
+    "fire": {
+     "score": 23.1746,
+     "rank": 40
+    },
+    "flood": {
+     "score": 17.7045,
+     "rank": 40
+    },
+    "crime": {
+     "score": 14.0667,
+     "rank": 46
+    },
+    "accident": {
+     "score": 40.3946,
+     "rank": 18
+    },
+    "waste": {
+     "score": 31.1592,
+     "rank": 45
+    },
+    "wastewater": {
+     "score": 15.5489,
+     "rank": 41
+    },
+    "air": {
+     "score": 42.6872,
+     "rank": 11
+    },
+    "parks": {
+     "score": 8.2629,
+     "rank": 13
+    }
+   }
+  },
+  {
+   "name": "หนองจอก",
+   "overall": 23.0305,
+   "rank": 22,
+   "dims": {
+    "public": {
+     "score": 19.9034,
+     "rank": 15
+    },
+    "economy": {
+     "score": 7.2887,
+     "rank": 42
+    },
+    "welfare": {
+     "score": 31.6348,
+     "rank": 33
+    },
+    "environment": {
+     "score": 33.2952,
+     "rank": 11
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 24.5265,
+     "rank": 47
+    },
+    "transit": {
+     "score": 1.6806,
+     "rank": 48
+    },
+    "education": {
+     "score": 19.2586,
+     "rank": 11
+    },
+    "quality": {
+     "score": 34.1478,
+     "rank": 2
+    },
+    "budget": {
+     "score": 8.6853,
+     "rank": 24
+    },
+    "tax": {
+     "score": 1.5136,
+     "rank": 45
+    },
+    "business": {
+     "score": 17.9561,
+     "rank": 37
+    },
+    "food": {
+     "score": 1.0,
+     "rank": 50
+    },
+    "fire": {
+     "score": 38.7881,
+     "rank": 3
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 14.0667,
+     "rank": 46
+    },
+    "accident": {
+     "score": 23.6844,
+     "rank": 47
+    },
+    "waste": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "wastewater": {
+     "score": 44.7885,
+     "rank": 9
+    },
+    "air": {
+     "score": 33.0155,
+     "rank": 36
+    },
+    "parks": {
+     "score": 5.3767,
+     "rank": 20
+    }
+   }
+  },
+  {
+   "name": "บางซื่อ",
+   "overall": 22.8936,
+   "rank": 23,
+   "dims": {
+    "public": {
+     "score": 17.67,
+     "rank": 26
+    },
+    "economy": {
+     "score": 7.4689,
+     "rank": 39
+    },
+    "welfare": {
+     "score": 35.3455,
+     "rank": 20
+    },
+    "environment": {
+     "score": 31.0901,
+     "rank": 19
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 25.9609,
+     "rank": 37
+    },
+    "transit": {
+     "score": 16.8319,
+     "rank": 17
+    },
+    "education": {
+     "score": 18.0263,
+     "rank": 13
+    },
+    "quality": {
+     "score": 9.8608,
+     "rank": 42
+    },
+    "budget": {
+     "score": 4.2754,
+     "rank": 42
+    },
+    "tax": {
+     "score": 2.6636,
+     "rank": 34
+    },
+    "business": {
+     "score": 17.8281,
+     "rank": 42
+    },
+    "food": {
+     "score": 5.1085,
+     "rank": 23
+    },
+    "fire": {
+     "score": 30.0955,
+     "rank": 14
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 23.8667,
+     "rank": 37
+    },
+    "accident": {
+     "score": 37.4198,
+     "rank": 24
+    },
+    "waste": {
+     "score": 46.6433,
+     "rank": 10
+    },
+    "wastewater": {
+     "score": 36.8911,
+     "rank": 21
+    },
+    "air": {
+     "score": 38.7207,
+     "rank": 20
+    },
+    "parks": {
+     "score": 2.1051,
+     "rank": 45
+    }
+   }
+  },
+  {
+   "name": "ตลิ่งชัน",
+   "overall": 22.7487,
+   "rank": 24,
+   "dims": {
+    "public": {
+     "score": 19.3252,
+     "rank": 17
+    },
+    "economy": {
+     "score": 8.7228,
+     "rank": 29
+    },
+    "welfare": {
+     "score": 32.3115,
+     "rank": 29
+    },
+    "environment": {
+     "score": 30.6352,
+     "rank": 20
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 25.2028,
+     "rank": 42
+    },
+    "transit": {
+     "score": 10.7964,
+     "rank": 31
+    },
+    "education": {
+     "score": 29.5005,
+     "rank": 5
+    },
+    "quality": {
+     "score": 11.8011,
+     "rank": 33
+    },
+    "budget": {
+     "score": 7.8218,
+     "rank": 31
+    },
+    "tax": {
+     "score": 2.8615,
+     "rank": 29
+    },
+    "business": {
+     "score": 17.629,
+     "rank": 45
+    },
+    "food": {
+     "score": 6.5788,
+     "rank": 18
+    },
+    "fire": {
+     "score": 27.2441,
+     "rank": 28
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 17.3333,
+     "rank": 42
+    },
+    "accident": {
+     "score": 34.6688,
+     "rank": 32
+    },
+    "waste": {
+     "score": 44.9399,
+     "rank": 19
+    },
+    "wastewater": {
+     "score": 48.2541,
+     "rank": 2
+    },
+    "air": {
+     "score": 21.5211,
+     "rank": 45
+    },
+    "parks": {
+     "score": 7.8256,
+     "rank": 14
+    }
+   }
+  },
+  {
+   "name": "จอมทอง",
+   "overall": 22.4411,
+   "rank": 25,
+   "dims": {
+    "public": {
+     "score": 13.7935,
+     "rank": 41
+    },
+    "economy": {
+     "score": 6.2011,
+     "rank": 49
+    },
+    "welfare": {
+     "score": 34.4114,
+     "rank": 22
+    },
+    "environment": {
+     "score": 35.3582,
+     "rank": 2
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 26.3526,
+     "rank": 35
+    },
+    "transit": {
+     "score": 9.7756,
+     "rank": 32
+    },
+    "education": {
+     "score": 11.6356,
+     "rank": 30
+    },
+    "quality": {
+     "score": 7.4102,
+     "rank": 47
+    },
+    "budget": {
+     "score": 2.8617,
+     "rank": 48
+    },
+    "tax": {
+     "score": 1.429,
+     "rank": 46
+    },
+    "business": {
+     "score": 17.9551,
+     "rank": 38
+    },
+    "food": {
+     "score": 2.5587,
+     "rank": 43
+    },
+    "fire": {
+     "score": 27.4655,
+     "rank": 27
+    },
+    "flood": {
+     "score": 47.7727,
+     "rank": 14
+    },
+    "crime": {
+     "score": 30.4,
+     "rank": 28
+    },
+    "accident": {
+     "score": 32.0074,
+     "rank": 35
+    },
+    "waste": {
+     "score": 47.0494,
+     "rank": 7
+    },
+    "wastewater": {
+     "score": 44.9974,
+     "rank": 8
+    },
+    "air": {
+     "score": 47.2203,
+     "rank": 4
+    },
+    "parks": {
+     "score": 2.1656,
+     "rank": 42
+    }
+   }
+  },
+  {
+   "name": "ห้วยขวาง",
+   "overall": 22.3791,
+   "rank": 26,
+   "dims": {
+    "public": {
+     "score": 23.3274,
+     "rank": 10
+    },
+    "economy": {
+     "score": 14.1966,
+     "rank": 10
+    },
+    "welfare": {
+     "score": 31.6902,
+     "rank": 32
+    },
+    "environment": {
+     "score": 20.3023,
+     "rank": 46
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 41.7818,
+     "rank": 5
+    },
+    "transit": {
+     "score": 22.9569,
+     "rank": 8
+    },
+    "education": {
+     "score": 11.1887,
+     "rank": 33
+    },
+    "quality": {
+     "score": 17.3824,
+     "rank": 17
+    },
+    "budget": {
+     "score": 8.9722,
+     "rank": 23
+    },
+    "tax": {
+     "score": 11.4475,
+     "rank": 7
+    },
+    "business": {
+     "score": 21.3151,
+     "rank": 5
+    },
+    "food": {
+     "score": 15.0518,
+     "rank": 7
+    },
+    "fire": {
+     "score": 26.2475,
+     "rank": 31
+    },
+    "flood": {
+     "score": 22.1591,
+     "rank": 39
+    },
+    "crime": {
+     "score": 46.7333,
+     "rank": 3
+    },
+    "accident": {
+     "score": 31.6209,
+     "rank": 37
+    },
+    "waste": {
+     "score": 34.2429,
+     "rank": 43
+    },
+    "wastewater": {
+     "score": 14.3636,
+     "rank": 43
+    },
+    "air": {
+     "score": 28.6855,
+     "rank": 39
+    },
+    "parks": {
+     "score": 3.917,
+     "rank": 28
+    }
+   }
+  },
+  {
+   "name": "จตุจักร",
+   "overall": 21.9885,
+   "rank": 27,
+   "dims": {
+    "public": {
+     "score": 23.2697,
+     "rank": 11
+    },
+    "economy": {
+     "score": 11.9711,
+     "rank": 14
+    },
+    "welfare": {
+     "score": 22.6577,
+     "rank": 50
+    },
+    "environment": {
+     "score": 30.0556,
+     "rank": 24
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 29.0172,
+     "rank": 19
+    },
+    "transit": {
+     "score": 43.5347,
+     "rank": 1
+    },
+    "education": {
+     "score": 11.3521,
+     "rank": 32
+    },
+    "quality": {
+     "score": 9.1747,
+     "rank": 44
+    },
+    "budget": {
+     "score": 7.7986,
+     "rank": 32
+    },
+    "tax": {
+     "score": 8.2645,
+     "rank": 10
+    },
+    "business": {
+     "score": 19.3509,
+     "rank": 14
+    },
+    "food": {
+     "score": 12.4703,
+     "rank": 8
+    },
+    "fire": {
+     "score": 21.9565,
+     "rank": 43
+    },
+    "flood": {
+     "score": 13.25,
+     "rank": 47
+    },
+    "crime": {
+     "score": 30.4,
+     "rank": 28
+    },
+    "accident": {
+     "score": 25.0243,
+     "rank": 46
+    },
+    "waste": {
+     "score": 38.4447,
+     "rank": 39
+    },
+    "wastewater": {
+     "score": 31.2595,
+     "rank": 30
+    },
+    "air": {
+     "score": 32.3728,
+     "rank": 37
+    },
+    "parks": {
+     "score": 18.1456,
+     "rank": 6
+    }
+   }
+  },
+  {
+   "name": "หลักสี่",
+   "overall": 21.9414,
+   "rank": 28,
+   "dims": {
+    "public": {
+     "score": 18.2446,
+     "rank": 23
+    },
+    "economy": {
+     "score": 9.8915,
+     "rank": 19
+    },
+    "welfare": {
+     "score": 28.0875,
+     "rank": 39
+    },
+    "environment": {
+     "score": 31.5421,
+     "rank": 16
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 27.5416,
+     "rank": 25
+    },
+    "transit": {
+     "score": 15.5424,
+     "rank": 21
+    },
+    "education": {
+     "score": 12.3913,
+     "rank": 25
+    },
+    "quality": {
+     "score": 17.5029,
+     "rank": 15
+    },
+    "budget": {
+     "score": 12.4444,
+     "rank": 12
+    },
+    "tax": {
+     "score": 4.666,
+     "rank": 16
+    },
+    "business": {
+     "score": 18.9834,
+     "rank": 19
+    },
+    "food": {
+     "score": 3.472,
+     "rank": 34
+    },
+    "fire": {
+     "score": 31.3136,
+     "rank": 9
+    },
+    "flood": {
+     "score": 17.7045,
+     "rank": 40
+    },
+    "crime": {
+     "score": 20.6,
+     "rank": 39
+    },
+    "accident": {
+     "score": 42.732,
+     "rank": 13
+    },
+    "waste": {
+     "score": 44.1485,
+     "rank": 21
+    },
+    "wastewater": {
+     "score": 28.3296,
+     "rank": 34
+    },
+    "air": {
+     "score": 43.3714,
+     "rank": 7
+    },
+    "parks": {
+     "score": 10.3189,
+     "rank": 10
+    }
+   }
+  },
+  {
+   "name": "พระโขนง",
+   "overall": 21.8872,
+   "rank": 29,
+   "dims": {
+    "public": {
+     "score": 14.9367,
+     "rank": 38
+    },
+    "economy": {
+     "score": 9.1918,
+     "rank": 22
+    },
+    "welfare": {
+     "score": 37.8743,
+     "rank": 10
+    },
+    "environment": {
+     "score": 25.5459,
+     "rank": 37
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 27.8924,
+     "rank": 24
+    },
+    "transit": {
+     "score": 6.3012,
+     "rank": 40
+    },
+    "education": {
+     "score": 11.5997,
+     "rank": 31
+    },
+    "quality": {
+     "score": 13.9533,
+     "rank": 25
+    },
+    "budget": {
+     "score": 8.5345,
+     "rank": 25
+    },
+    "tax": {
+     "score": 5.4196,
+     "rank": 15
+    },
+    "business": {
+     "score": 18.828,
+     "rank": 24
+    },
+    "food": {
+     "score": 3.9851,
+     "rank": 30
+    },
+    "fire": {
+     "score": 28.296,
+     "rank": 26
+    },
+    "flood": {
+     "score": 39.9773,
+     "rank": 28
+    },
+    "crime": {
+     "score": 40.2,
+     "rank": 13
+    },
+    "accident": {
+     "score": 43.0241,
+     "rank": 9
+    },
+    "waste": {
+     "score": 43.9102,
+     "rank": 24
+    },
+    "wastewater": {
+     "score": 10.0763,
+     "rank": 45
+    },
+    "air": {
+     "score": 46.087,
+     "rank": 6
+    },
+    "parks": {
+     "score": 2.1101,
+     "rank": 44
+    }
+   }
+  },
+  {
+   "name": "คลองสามวา",
+   "overall": 21.8374,
+   "rank": 30,
+   "dims": {
+    "public": {
+     "score": 12.8284,
+     "rank": 45
+    },
+    "economy": {
+     "score": 6.3619,
+     "rank": 47
+    },
+    "welfare": {
+     "score": 34.1529,
+     "rank": 23
+    },
+    "environment": {
+     "score": 34.0066,
+     "rank": 7
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 24.9772,
+     "rank": 44
+    },
+    "transit": {
+     "score": 1.0,
+     "rank": 50
+    },
+    "education": {
+     "score": 12.6974,
+     "rank": 21
+    },
+    "quality": {
+     "score": 12.6388,
+     "rank": 32
+    },
+    "budget": {
+     "score": 3.0486,
+     "rank": 47
+    },
+    "tax": {
+     "score": 1.0,
+     "rank": 50
+    },
+    "business": {
+     "score": 19.0853,
+     "rank": 15
+    },
+    "food": {
+     "score": 2.3138,
+     "rank": 46
+    },
+    "fire": {
+     "score": 21.8458,
+     "rank": 44
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 30.4,
+     "rank": 28
+    },
+    "accident": {
+     "score": 34.3659,
+     "rank": 33
+    },
+    "waste": {
+     "score": 48.132,
+     "rank": 3
+    },
+    "wastewater": {
+     "score": 46.6053,
+     "rank": 4
+    },
+    "air": {
+     "score": 37.2373,
+     "rank": 27
+    },
+    "parks": {
+     "score": 4.0517,
+     "rank": 25
+    }
+   }
+  },
+  {
+   "name": "สะพานสูง",
+   "overall": 21.7678,
+   "rank": 31,
+   "dims": {
+    "public": {
+     "score": 14.747,
+     "rank": 40
+    },
+    "economy": {
+     "score": 7.6153,
+     "rank": 38
+    },
+    "welfare": {
+     "score": 29.9343,
+     "rank": 36
+    },
+    "environment": {
+     "score": 34.7747,
+     "rank": 3
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 28.6179,
+     "rank": 20
+    },
+    "transit": {
+     "score": 2.7014,
+     "rank": 46
+    },
+    "education": {
+     "score": 10.2359,
+     "rank": 40
+    },
+    "quality": {
+     "score": 17.4329,
+     "rank": 16
+    },
+    "budget": {
+     "score": 7.0561,
+     "rank": 34
+    },
+    "tax": {
+     "score": 2.2082,
+     "rank": 36
+    },
+    "business": {
+     "score": 18.6817,
+     "rank": 28
+    },
+    "food": {
+     "score": 2.5153,
+     "rank": 44
+    },
+    "fire": {
+     "score": 28.739,
+     "rank": 22
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 1.0,
+     "rank": 50
+    },
+    "accident": {
+     "score": 39.9981,
+     "rank": 19
+    },
+    "waste": {
+     "score": 45.8094,
+     "rank": 14
+    },
+    "wastewater": {
+     "score": 41.3941,
+     "rank": 14
+    },
+    "air": {
+     "score": 48.53,
+     "rank": 2
+    },
+    "parks": {
+     "score": 3.3654,
+     "rank": 34
+    }
+   }
+  },
+  {
+   "name": "บางกะปิ",
+   "overall": 21.4348,
+   "rank": 32,
+   "dims": {
+    "public": {
+     "score": 18.5508,
+     "rank": 20
+    },
+    "economy": {
+     "score": 8.889,
+     "rank": 25
+    },
+    "welfare": {
+     "score": 27.8418,
+     "rank": 40
+    },
+    "environment": {
+     "score": 30.4576,
+     "rank": 22
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 26.7666,
+     "rank": 28
+    },
+    "transit": {
+     "score": 19.4287,
+     "rank": 10
+    },
+    "education": {
+     "score": 12.4349,
+     "rank": 24
+    },
+    "quality": {
+     "score": 15.5729,
+     "rank": 21
+    },
+    "budget": {
+     "score": 7.9871,
+     "rank": 29
+    },
+    "tax": {
+     "score": 3.9596,
+     "rank": 21
+    },
+    "business": {
+     "score": 19.0231,
+     "rank": 18
+    },
+    "food": {
+     "score": 4.5863,
+     "rank": 25
+    },
+    "fire": {
+     "score": 34.1373,
+     "rank": 6
+    },
+    "flood": {
+     "score": 1.0,
+     "rank": 50
+    },
+    "crime": {
+     "score": 46.7333,
+     "rank": 3
+    },
+    "accident": {
+     "score": 29.4965,
+     "rank": 41
+    },
+    "waste": {
+     "score": 37.8804,
+     "rank": 41
+    },
+    "wastewater": {
+     "score": 33.1559,
+     "rank": 25
+    },
+    "air": {
+     "score": 48.0756,
+     "rank": 3
+    },
+    "parks": {
+     "score": 2.7183,
+     "rank": 38
+    }
+   }
+  },
+  {
+   "name": "สาทร",
+   "overall": 21.3983,
+   "rank": 33,
+   "dims": {
+    "public": {
+     "score": 16.2604,
+     "rank": 32
+    },
+    "economy": {
+     "score": 11.6207,
+     "rank": 15
+    },
+    "welfare": {
+     "score": 34.4267,
+     "rank": 21
+    },
+    "environment": {
+     "score": 23.2853,
+     "rank": 41
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 27.409,
+     "rank": 27
+    },
+    "transit": {
+     "score": 16.026,
+     "rank": 19
+    },
+    "education": {
+     "score": 10.9818,
+     "rank": 36
+    },
+    "quality": {
+     "score": 10.625,
+     "rank": 37
+    },
+    "budget": {
+     "score": 7.8557,
+     "rank": 30
+    },
+    "tax": {
+     "score": 10.0754,
+     "rank": 8
+    },
+    "business": {
+     "score": 19.5903,
+     "rank": 8
+    },
+    "food": {
+     "score": 8.9615,
+     "rank": 15
+    },
+    "fire": {
+     "score": 18.7175,
+     "rank": 48
+    },
+    "flood": {
+     "score": 28.8409,
+     "rank": 36
+    },
+    "crime": {
+     "score": 46.7333,
+     "rank": 3
+    },
+    "accident": {
+     "score": 43.4149,
+     "rank": 8
+    },
+    "waste": {
+     "score": 39.9741,
+     "rank": 34
+    },
+    "wastewater": {
+     "score": 8.0954,
+     "rank": 46
+    },
+    "air": {
+     "score": 38.6405,
+     "rank": 21
+    },
+    "parks": {
+     "score": 6.4313,
+     "rank": 17
+    }
+   }
+  },
+  {
+   "name": "บางบอน",
+   "overall": 21.2843,
+   "rank": 34,
+   "dims": {
+    "public": {
+     "score": 12.2763,
+     "rank": 48
+    },
+    "economy": {
+     "score": 8.7239,
+     "rank": 28
+    },
+    "welfare": {
+     "score": 35.7744,
+     "rank": 19
+    },
+    "environment": {
+     "score": 28.3626,
+     "rank": 31
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 24.3203,
+     "rank": 49
+    },
+    "transit": {
+     "score": 2.7014,
+     "rank": 46
+    },
+    "education": {
+     "score": 12.1676,
+     "rank": 27
+    },
+    "quality": {
+     "score": 9.9159,
+     "rank": 41
+    },
+    "budget": {
+     "score": 10.0407,
+     "rank": 19
+    },
+    "tax": {
+     "score": 2.7074,
+     "rank": 33
+    },
+    "business": {
+     "score": 18.8712,
+     "rank": 22
+    },
+    "food": {
+     "score": 3.2763,
+     "rank": 36
+    },
+    "fire": {
+     "score": 30.4,
+     "rank": 11
+    },
+    "flood": {
+     "score": 33.2955,
+     "rank": 30
+    },
+    "crime": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "accident": {
+     "score": 29.402,
+     "rank": 42
+    },
+    "waste": {
+     "score": 40.9399,
+     "rank": 33
+    },
+    "wastewater": {
+     "score": 41.6698,
+     "rank": 13
+    },
+    "air": {
+     "score": 23.2318,
+     "rank": 44
+    },
+    "parks": {
+     "score": 7.609,
+     "rank": 16
+    }
+   }
+  },
+  {
+   "name": "ทุ่งครุ",
+   "overall": 21.2727,
+   "rank": 35,
+   "dims": {
+    "public": {
+     "score": 12.4899,
+     "rank": 47
+    },
+    "economy": {
+     "score": 8.4335,
+     "rank": 31
+    },
+    "welfare": {
+     "score": 37.7587,
+     "rank": 12
+    },
+    "environment": {
+     "score": 26.4086,
+     "rank": 36
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 25.5285,
+     "rank": 40
+    },
+    "transit": {
+     "score": 1.3403,
+     "rank": 49
+    },
+    "education": {
+     "score": 7.1324,
+     "rank": 46
+    },
+    "quality": {
+     "score": 15.9583,
+     "rank": 19
+    },
+    "budget": {
+     "score": 11.9835,
+     "rank": 14
+    },
+    "tax": {
+     "score": 1.3482,
+     "rank": 47
+    },
+    "business": {
+     "score": 17.7623,
+     "rank": 43
+    },
+    "food": {
+     "score": 2.6398,
+     "rank": 42
+    },
+    "fire": {
+     "score": 39.0373,
+     "rank": 2
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 27.1333,
+     "rank": 33
+    },
+    "accident": {
+     "score": 34.8642,
+     "rank": 30
+    },
+    "waste": {
+     "score": 47.8401,
+     "rank": 6
+    },
+    "wastewater": {
+     "score": 26.8063,
+     "rank": 35
+    },
+    "air": {
+     "score": 27.2142,
+     "rank": 42
+    },
+    "parks": {
+     "score": 3.7739,
+     "rank": 31
+    }
+   }
+  },
+  {
+   "name": "หนองแขม",
+   "overall": 21.1532,
+   "rank": 36,
+   "dims": {
+    "public": {
+     "score": 12.533,
+     "rank": 46
+    },
+    "economy": {
+     "score": 7.1658,
+     "rank": 43
+    },
+    "welfare": {
+     "score": 33.7867,
+     "rank": 25
+    },
+    "environment": {
+     "score": 31.127,
+     "rank": 18
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 25.8814,
+     "rank": 38
+    },
+    "transit": {
+     "score": 4.7431,
+     "rank": 43
+    },
+    "education": {
+     "score": 6.7589,
+     "rank": 47
+    },
+    "quality": {
+     "score": 12.7488,
+     "rank": 31
+    },
+    "budget": {
+     "score": 8.2381,
+     "rank": 26
+    },
+    "tax": {
+     "score": 1.6729,
+     "rank": 44
+    },
+    "business": {
+     "score": 17.7251,
+     "rank": 44
+    },
+    "food": {
+     "score": 1.0272,
+     "rank": 49
+    },
+    "fire": {
+     "score": 18.2746,
+     "rank": 49
+    },
+    "flood": {
+     "score": 50.0,
+     "rank": 1
+    },
+    "crime": {
+     "score": 30.4,
+     "rank": 28
+    },
+    "accident": {
+     "score": 36.4724,
+     "rank": 26
+    },
+    "waste": {
+     "score": 48.0013,
+     "rank": 5
+    },
+    "wastewater": {
+     "score": 37.902,
+     "rank": 18
+    },
+    "air": {
+     "score": 35.4866,
+     "rank": 35
+    },
+    "parks": {
+     "score": 3.118,
+     "rank": 36
+    }
+   }
+  },
+  {
+   "name": "คลองเตย",
+   "overall": 21.117,
+   "rank": 37,
+   "dims": {
+    "public": {
+     "score": 25.1877,
+     "rank": 5
+    },
+    "economy": {
+     "score": 15.1808,
+     "rank": 7
+    },
+    "welfare": {
+     "score": 26.8566,
+     "rank": 42
+    },
+    "environment": {
+     "score": 17.2428,
+     "rank": 50
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 31.2487,
+     "rank": 16
+    },
+    "transit": {
+     "score": 23.4942,
+     "rank": 6
+    },
+    "education": {
+     "score": 10.4284,
+     "rank": 39
+    },
+    "quality": {
+     "score": 35.5794,
+     "rank": 1
+    },
+    "budget": {
+     "score": 7.519,
+     "rank": 33
+    },
+    "tax": {
+     "score": 17.3603,
+     "rank": 4
+    },
+    "business": {
+     "score": 20.7524,
+     "rank": 6
+    },
+    "food": {
+     "score": 15.0916,
+     "rank": 6
+    },
+    "fire": {
+     "score": 21.0706,
+     "rank": 45
+    },
+    "flood": {
+     "score": 31.0682,
+     "rank": 33
+    },
+    "crime": {
+     "score": 36.9333,
+     "rank": 18
+    },
+    "accident": {
+     "score": 18.3542,
+     "rank": 48
+    },
+    "waste": {
+     "score": 30.4559,
+     "rank": 46
+    },
+    "wastewater": {
+     "score": 8.032,
+     "rank": 47
+    },
+    "air": {
+     "score": 18.2069,
+     "rank": 46
+    },
+    "parks": {
+     "score": 12.2765,
+     "rank": 9
+    }
+   }
+  },
+  {
+   "name": "ดอนเมือง",
+   "overall": 20.6782,
+   "rank": 38,
+   "dims": {
+    "public": {
+     "score": 14.8462,
+     "rank": 39
+    },
+    "economy": {
+     "score": 7.6816,
+     "rank": 37
+    },
+    "welfare": {
+     "score": 29.0206,
+     "rank": 37
+    },
+    "environment": {
+     "score": 31.1647,
+     "rank": 17
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 24.4572,
+     "rank": 48
+    },
+    "transit": {
+     "score": 13.2321,
+     "rank": 26
+    },
+    "education": {
+     "score": 10.719,
+     "rank": 38
+    },
+    "quality": {
+     "score": 10.9764,
+     "rank": 36
+    },
+    "budget": {
+     "score": 5.9956,
+     "rank": 38
+    },
+    "tax": {
+     "score": 3.7284,
+     "rank": 23
+    },
+    "business": {
+     "score": 17.8526,
+     "rank": 40
+    },
+    "food": {
+     "score": 3.1497,
+     "rank": 39
+    },
+    "fire": {
+     "score": 22.7593,
+     "rank": 42
+    },
+    "flood": {
+     "score": 29.9545,
+     "rank": 35
+    },
+    "crime": {
+     "score": 27.1333,
+     "rank": 33
+    },
+    "accident": {
+     "score": 36.2352,
+     "rank": 28
+    },
+    "waste": {
+     "score": 48.0618,
+     "rank": 4
+    },
+    "wastewater": {
+     "score": 29.7285,
+     "rank": 32
+    },
+    "air": {
+     "score": 42.2355,
+     "rank": 13
+    },
+    "parks": {
+     "score": 4.6329,
+     "rank": 22
+    }
+   }
+  },
+  {
+   "name": "บางนา",
+   "overall": 20.5383,
+   "rank": 39,
+   "dims": {
+    "public": {
+     "score": 17.4718,
+     "rank": 27
+    },
+    "economy": {
+     "score": 10.9321,
+     "rank": 16
+    },
+    "welfare": {
+     "score": 30.0922,
+     "rank": 35
+    },
+    "environment": {
+     "score": 23.657,
+     "rank": 40
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 34.4648,
+     "rank": 10
+    },
+    "transit": {
+     "score": 17.3154,
+     "rank": 16
+    },
+    "education": {
+     "score": 11.1372,
+     "rank": 34
+    },
+    "quality": {
+     "score": 6.9698,
+     "rank": 48
+    },
+    "budget": {
+     "score": 10.8018,
+     "rank": 16
+    },
+    "tax": {
+     "score": 8.2985,
+     "rank": 9
+    },
+    "business": {
+     "score": 19.5723,
+     "rank": 9
+    },
+    "food": {
+     "score": 5.0558,
+     "rank": 24
+    },
+    "fire": {
+     "score": 28.7113,
+     "rank": 23
+    },
+    "flood": {
+     "score": 27.7273,
+     "rank": 37
+    },
+    "crime": {
+     "score": 33.6667,
+     "rank": 24
+    },
+    "accident": {
+     "score": 30.2635,
+     "rank": 40
+    },
+    "waste": {
+     "score": 39.1169,
+     "rank": 38
+    },
+    "wastewater": {
+     "score": 16.4386,
+     "rank": 40
+    },
+    "air": {
+     "score": 36.1281,
+     "rank": 31
+    },
+    "parks": {
+     "score": 2.9442,
+     "rank": 37
+    }
+   }
+  },
+  {
+   "name": "บางแค",
+   "overall": 20.1385,
+   "rank": 40,
+   "dims": {
+    "public": {
+     "score": 12.9462,
+     "rank": 44
+    },
+    "economy": {
+     "score": 6.3615,
+     "rank": 48
+    },
+    "welfare": {
+     "score": 33.6602,
+     "rank": 26
+    },
+    "environment": {
+     "score": 27.5861,
+     "rank": 33
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 26.4604,
+     "rank": 32
+    },
+    "transit": {
+     "score": 9.7039,
+     "rank": 33
+    },
+    "education": {
+     "score": 11.0627,
+     "rank": 35
+    },
+    "quality": {
+     "score": 4.558,
+     "rank": 50
+    },
+    "budget": {
+     "score": 3.1035,
+     "rank": 46
+    },
+    "tax": {
+     "score": 2.0535,
+     "rank": 39
+    },
+    "business": {
+     "score": 17.8375,
+     "rank": 41
+    },
+    "food": {
+     "score": 2.4517,
+     "rank": 45
+    },
+    "fire": {
+     "score": 27.2441,
+     "rank": 28
+    },
+    "flood": {
+     "score": 41.0909,
+     "rank": 27
+    },
+    "crime": {
+     "score": 36.9333,
+     "rank": 18
+    },
+    "accident": {
+     "score": 29.3726,
+     "rank": 43
+    },
+    "waste": {
+     "score": 45.3258,
+     "rank": 16
+    },
+    "wastewater": {
+     "score": 34.3954,
+     "rank": 24
+    },
+    "air": {
+     "score": 28.4705,
+     "rank": 40
+    },
+    "parks": {
+     "score": 2.1525,
+     "rank": 43
+    }
+   }
+  },
+  {
+   "name": "สายไหม",
+   "overall": 19.8816,
+   "rank": 41,
+   "dims": {
+    "public": {
+     "score": 13.0876,
+     "rank": 43
+    },
+    "economy": {
+     "score": 5.7452,
+     "rank": 50
+    },
+    "welfare": {
+     "score": 27.3647,
+     "rank": 41
+    },
+    "environment": {
+     "score": 33.3289,
+     "rank": 10
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 25.1708,
+     "rank": 43
+    },
+    "transit": {
+     "score": 7.8593,
+     "rank": 37
+    },
+    "education": {
+     "score": 8.8178,
+     "rank": 43
+    },
+    "quality": {
+     "score": 10.5026,
+     "rank": 38
+    },
+    "budget": {
+     "score": 1.0,
+     "rank": 50
+    },
+    "tax": {
+     "score": 1.0594,
+     "rank": 49
+    },
+    "business": {
+     "score": 18.7258,
+     "rank": 27
+    },
+    "food": {
+     "score": 2.1956,
+     "rank": 48
+    },
+    "fire": {
+     "score": 42.6085,
+     "rank": 1
+    },
+    "flood": {
+     "score": 27.7273,
+     "rank": 37
+    },
+    "crime": {
+     "score": 10.8,
+     "rank": 49
+    },
+    "accident": {
+     "score": 28.3231,
+     "rank": 44
+    },
+    "waste": {
+     "score": 48.6184,
+     "rank": 2
+    },
+    "wastewater": {
+     "score": 41.3676,
+     "rank": 15
+    },
+    "air": {
+     "score": 39.8032,
+     "rank": 17
+    },
+    "parks": {
+     "score": 3.5264,
+     "rank": 33
+    }
+   }
+  },
+  {
+   "name": "ลาดกระบัง",
+   "overall": 19.8168,
+   "rank": 42,
+   "dims": {
+    "public": {
+     "score": 15.646,
+     "rank": 33
+    },
+    "economy": {
+     "score": 9.1689,
+     "rank": 23
+    },
+    "welfare": {
+     "score": 25.4331,
+     "rank": 43
+    },
+    "environment": {
+     "score": 29.0193,
+     "rank": 27
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 24.8514,
+     "rank": 46
+    },
+    "transit": {
+     "score": 6.7131,
+     "rank": 39
+    },
+    "education": {
+     "score": 13.3859,
+     "rank": 20
+    },
+    "quality": {
+     "score": 17.6337,
+     "rank": 14
+    },
+    "budget": {
+     "score": 10.2666,
+     "rank": 18
+    },
+    "tax": {
+     "score": 3.7456,
+     "rank": 22
+    },
+    "business": {
+     "score": 19.0553,
+     "rank": 17
+    },
+    "food": {
+     "score": 3.608,
+     "rank": 33
+    },
+    "fire": {
+     "score": 24.974,
+     "rank": 38
+    },
+    "flood": {
+     "score": 16.5909,
+     "rank": 43
+    },
+    "crime": {
+     "score": 43.4667,
+     "rank": 6
+    },
+    "accident": {
+     "score": 16.7008,
+     "rank": 49
+    },
+    "waste": {
+     "score": 43.3646,
+     "rank": 26
+    },
+    "wastewater": {
+     "score": 37.1656,
+     "rank": 20
+    },
+    "air": {
+     "score": 31.5442,
+     "rank": 38
+    },
+    "parks": {
+     "score": 4.0028,
+     "rank": 26
+    }
+   }
+  },
+  {
+   "name": "สวนหลวง",
+   "overall": 19.7869,
+   "rank": 43,
+   "dims": {
+    "public": {
+     "score": 19.4604,
+     "rank": 16
+    },
+    "economy": {
+     "score": 8.6619,
+     "rank": 30
+    },
+    "welfare": {
+     "score": 31.7248,
+     "rank": 31
+    },
+    "environment": {
+     "score": 19.3007,
+     "rank": 49
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 28.3298,
+     "rank": 22
+    },
+    "transit": {
+     "score": 16.2946,
+     "rank": 18
+    },
+    "education": {
+     "score": 12.6077,
+     "rank": 22
+    },
+    "quality": {
+     "score": 20.6096,
+     "rank": 12
+    },
+    "budget": {
+     "score": 4.2541,
+     "rank": 43
+    },
+    "tax": {
+     "score": 4.4228,
+     "rank": 17
+    },
+    "business": {
+     "score": 19.4114,
+     "rank": 11
+    },
+    "food": {
+     "score": 6.5592,
+     "rank": 19
+    },
+    "fire": {
+     "score": 29.0712,
+     "rank": 20
+    },
+    "flood": {
+     "score": 32.1818,
+     "rank": 32
+    },
+    "crime": {
+     "score": 30.4,
+     "rank": 28
+    },
+    "accident": {
+     "score": 35.2462,
+     "rank": 29
+    },
+    "waste": {
+     "score": 41.276,
+     "rank": 32
+    },
+    "wastewater": {
+     "score": 24.7998,
+     "rank": 38
+    },
+    "air": {
+     "score": 5.5778,
+     "rank": 49
+    },
+    "parks": {
+     "score": 5.549,
+     "rank": 19
+    }
+   }
+  },
+  {
+   "name": "ประเวศ",
+   "overall": 19.7408,
+   "rank": 44,
+   "dims": {
+    "public": {
+     "score": 15.5559,
+     "rank": 34
+    },
+    "economy": {
+     "score": 7.3365,
+     "rank": 41
+    },
+    "welfare": {
+     "score": 28.4773,
+     "rank": 38
+    },
+    "environment": {
+     "score": 27.5936,
+     "rank": 32
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 26.3141,
+     "rank": 36
+    },
+    "transit": {
+     "score": 11.2621,
+     "rank": 30
+    },
+    "education": {
+     "score": 10.9235,
+     "rank": 37
+    },
+    "quality": {
+     "score": 13.7239,
+     "rank": 26
+    },
+    "budget": {
+     "score": 3.1678,
+     "rank": 45
+    },
+    "tax": {
+     "score": 2.8498,
+     "rank": 30
+    },
+    "business": {
+     "score": 18.8366,
+     "rank": 23
+    },
+    "food": {
+     "score": 4.4919,
+     "rank": 26
+    },
+    "fire": {
+     "score": 25.8045,
+     "rank": 34
+    },
+    "flood": {
+     "score": 17.7045,
+     "rank": 40
+    },
+    "crime": {
+     "score": 43.4667,
+     "rank": 6
+    },
+    "accident": {
+     "score": 26.9334,
+     "rank": 45
+    },
+    "waste": {
+     "score": 43.7152,
+     "rank": 25
+    },
+    "wastewater": {
+     "score": 26.6384,
+     "rank": 36
+    },
+    "air": {
+     "score": 16.4428,
+     "rank": 47
+    },
+    "parks": {
+     "score": 23.5779,
+     "rank": 3
+    }
+   }
+  },
+  {
+   "name": "บางขุนเทียน",
+   "overall": 19.6031,
+   "rank": 45,
+   "dims": {
+    "public": {
+     "score": 12.107,
+     "rank": 49
+    },
+    "economy": {
+     "score": 8.2728,
+     "rank": 35
+    },
+    "welfare": {
+     "score": 25.0705,
+     "rank": 44
+    },
+    "environment": {
+     "score": 32.962,
+     "rank": 12
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 26.44,
+     "rank": 33
+    },
+    "transit": {
+     "score": 5.7639,
+     "rank": 41
+    },
+    "education": {
+     "score": 5.9027,
+     "rank": 49
+    },
+    "quality": {
+     "score": 10.3214,
+     "rank": 39
+    },
+    "budget": {
+     "score": 8.1813,
+     "rank": 28
+    },
+    "tax": {
+     "score": 2.9082,
+     "rank": 28
+    },
+    "business": {
+     "score": 18.983,
+     "rank": 20
+    },
+    "food": {
+     "score": 3.0186,
+     "rank": 41
+    },
+    "fire": {
+     "score": 31.6734,
+     "rank": 8
+    },
+    "flood": {
+     "score": 38.8636,
+     "rank": 29
+    },
+    "crime": {
+     "score": 20.6,
+     "rank": 39
+    },
+    "accident": {
+     "score": 9.1449,
+     "rank": 50
+    },
+    "waste": {
+     "score": 43.2909,
+     "rank": 27
+    },
+    "wastewater": {
+     "score": 44.7587,
+     "rank": 10
+    },
+    "air": {
+     "score": 38.9746,
+     "rank": 18
+    },
+    "parks": {
+     "score": 4.8239,
+     "rank": 21
+    }
+   }
+  },
+  {
+   "name": "บึงกุ่ม",
+   "overall": 18.1332,
+   "rank": 46,
+   "dims": {
+    "public": {
+     "score": 14.9395,
+     "rank": 37
+    },
+    "economy": {
+     "score": 7.1304,
+     "rank": 44
+    },
+    "welfare": {
+     "score": 23.3016,
+     "rank": 47
+    },
+    "environment": {
+     "score": 27.1613,
+     "rank": 34
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 27.9642,
+     "rank": 23
+    },
+    "transit": {
+     "score": 8.4861,
+     "rank": 36
+    },
+    "education": {
+     "score": 11.9528,
+     "rank": 28
+    },
+    "quality": {
+     "score": 11.3549,
+     "rank": 35
+    },
+    "budget": {
+     "score": 3.842,
+     "rank": 44
+    },
+    "tax": {
+     "score": 2.0147,
+     "rank": 40
+    },
+    "business": {
+     "score": 19.3921,
+     "rank": 13
+    },
+    "food": {
+     "score": 3.2728,
+     "rank": 37
+    },
+    "fire": {
+     "score": 25.8045,
+     "rank": 34
+    },
+    "flood": {
+     "score": 8.7955,
+     "rank": 48
+    },
+    "crime": {
+     "score": 23.8667,
+     "rank": 37
+    },
+    "accident": {
+     "score": 34.7396,
+     "rank": 31
+    },
+    "waste": {
+     "score": 45.9579,
+     "rank": 13
+    },
+    "wastewater": {
+     "score": 19.0369,
+     "rank": 39
+    },
+    "air": {
+     "score": 35.8341,
+     "rank": 32
+    },
+    "parks": {
+     "score": 7.8165,
+     "rank": 15
+    }
+   }
+  },
+  {
+   "name": "ลาดพร้าว",
+   "overall": 17.8135,
+   "rank": 47,
+   "dims": {
+    "public": {
+     "score": 13.5609,
+     "rank": 42
+    },
+    "economy": {
+     "score": 9.3789,
+     "rank": 21
+    },
+    "welfare": {
+     "score": 23.1435,
+     "rank": 48
+    },
+    "environment": {
+     "score": 25.1707,
+     "rank": 38
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 25.3673,
+     "rank": 41
+    },
+    "transit": {
+     "score": 3.0417,
+     "rank": 45
+    },
+    "education": {
+     "score": 9.9688,
+     "rank": 42
+    },
+    "quality": {
+     "score": 15.8657,
+     "rank": 20
+    },
+    "budget": {
+     "score": 6.1977,
+     "rank": 37
+    },
+    "tax": {
+     "score": 3.2944,
+     "rank": 26
+    },
+    "business": {
+     "score": 19.4005,
+     "rank": 12
+    },
+    "food": {
+     "score": 8.6229,
+     "rank": 16
+    },
+    "fire": {
+     "score": 18.9667,
+     "rank": 47
+    },
+    "flood": {
+     "score": 15.4773,
+     "rank": 45
+    },
+    "crime": {
+     "score": 27.1333,
+     "rank": 33
+    },
+    "accident": {
+     "score": 30.9967,
+     "rank": 38
+    },
+    "waste": {
+     "score": 43.2149,
+     "rank": 28
+    },
+    "wastewater": {
+     "score": 25.2519,
+     "rank": 37
+    },
+    "air": {
+     "score": 28.27,
+     "rank": 41
+    },
+    "parks": {
+     "score": 3.9462,
+     "rank": 27
+    }
+   }
+  },
+  {
+   "name": "บางเขน",
+   "overall": 17.7999,
+   "rank": 48,
+   "dims": {
+    "public": {
+     "score": 11.1028,
+     "rank": 50
+    },
+    "economy": {
+     "score": 6.613,
+     "rank": 46
+    },
+    "welfare": {
+     "score": 30.9901,
+     "rank": 34
+    },
+    "environment": {
+     "score": 22.4934,
+     "rank": 43
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 1.1968,
+     "rank": 50
+    },
+    "transit": {
+     "score": 26.0015,
+     "rank": 4
+    },
+    "education": {
+     "score": 8.6231,
+     "rank": 44
+    },
+    "quality": {
+     "score": 8.5899,
+     "rank": 46
+    },
+    "budget": {
+     "score": 2.3918,
+     "rank": 49
+    },
+    "tax": {
+     "score": 2.0006,
+     "rank": 41
+    },
+    "business": {
+     "score": 18.8041,
+     "rank": 25
+    },
+    "food": {
+     "score": 3.2557,
+     "rank": 38
+    },
+    "fire": {
+     "score": 35.3,
+     "rank": 5
+    },
+    "flood": {
+     "score": 16.5909,
+     "rank": 43
+    },
+    "crime": {
+     "score": 40.2,
+     "rank": 13
+    },
+    "accident": {
+     "score": 31.8696,
+     "rank": 36
+    },
+    "waste": {
+     "score": 45.3136,
+     "rank": 17
+    },
+    "wastewater": {
+     "score": 1.0,
+     "rank": 50
+    },
+    "air": {
+     "score": 39.8433,
+     "rank": 16
+    },
+    "parks": {
+     "score": 3.8169,
+     "rank": 30
+    }
+   }
+  },
+  {
+   "name": "วังทองหลาง",
+   "overall": 17.385,
+   "rank": 49,
+   "dims": {
+    "public": {
+     "score": 15.0482,
+     "rank": 36
+    },
+    "economy": {
+     "score": 8.8011,
+     "rank": 26
+    },
+    "welfare": {
+     "score": 22.8786,
+     "rank": 49
+    },
+    "environment": {
+     "score": 22.812,
+     "rank": 42
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 26.4088,
+     "rank": 34
+    },
+    "transit": {
+     "score": 12.5515,
+     "rank": 27
+    },
+    "education": {
+     "score": 8.2833,
+     "rank": 45
+    },
+    "quality": {
+     "score": 12.9493,
+     "rank": 28
+    },
+    "budget": {
+     "score": 5.5304,
+     "rank": 39
+    },
+    "tax": {
+     "score": 3.1119,
+     "rank": 27
+    },
+    "business": {
+     "score": 20.5538,
+     "rank": 7
+    },
+    "food": {
+     "score": 6.0083,
+     "rank": 21
+    },
+    "fire": {
+     "score": 12.5441,
+     "rank": 50
+    },
+    "flood": {
+     "score": 15.4773,
+     "rank": 45
+    },
+    "crime": {
+     "score": 27.1333,
+     "rank": 33
+    },
+    "accident": {
+     "score": 36.3598,
+     "rank": 27
+    },
+    "waste": {
+     "score": 39.6295,
+     "rank": 35
+    },
+    "wastewater": {
+     "score": 14.7479,
+     "rank": 42
+    },
+    "air": {
+     "score": 35.6203,
+     "rank": 33
+    },
+    "parks": {
+     "score": 1.2502,
+     "rank": 50
+    }
+   }
+  },
+  {
+   "name": "ดินแดง",
+   "overall": 17.3531,
+   "rank": 50,
+   "dims": {
+    "public": {
+     "score": 16.4475,
+     "rank": 31
+    },
+    "economy": {
+     "score": 8.2244,
+     "rank": 36
+    },
+    "welfare": {
+     "score": 23.484,
+     "rank": 46
+    },
+    "environment": {
+     "score": 21.2567,
+     "rank": 44
+    }
+   },
+   "topics": {
+    "health": {
+     "score": 26.5632,
+     "rank": 31
+    },
+    "transit": {
+     "score": 18.6765,
+     "rank": 11
+    },
+    "education": {
+     "score": 6.0086,
+     "rank": 48
+    },
+    "quality": {
+     "score": 14.5416,
+     "rank": 24
+    },
+    "budget": {
+     "score": 5.4418,
+     "rank": 40
+    },
+    "tax": {
+     "score": 3.9783,
+     "rank": 20
+    },
+    "business": {
+     "score": 19.0833,
+     "rank": 16
+    },
+    "food": {
+     "score": 4.3942,
+     "rank": 28
+    },
+    "fire": {
+     "score": 29.3757,
+     "rank": 18
+    },
+    "flood": {
+     "score": 4.3409,
+     "rank": 49
+    },
+    "crime": {
+     "score": 17.3333,
+     "rank": 42
+    },
+    "accident": {
+     "score": 42.8859,
+     "rank": 11
+    },
+    "waste": {
+     "score": 39.1728,
+     "rank": 37
+    },
+    "wastewater": {
+     "score": 1.0485,
+     "rank": 49
+    },
+    "air": {
+     "score": 43.1187,
+     "rank": 8
+    },
+    "parks": {
+     "score": 1.6869,
+     "rank": 48
+    }
+   }
+  }
+ ]
+}

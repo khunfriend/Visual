@@ -1,0 +1,512 @@
+{
+ "source": "Bangkok Index 2025: สวนสาธารณะ (สำนักสิ่งแวดล้อม 2568)",
+ "medianGreenPerCapita": 5.52,
+ "medianAccessiblePerCapita": 0.645,
+ "dindaengGap": {
+  "greenTimes": 2.73,
+  "accessibleM2": 35440,
+  "pocketParks300m2": 118
+ },
+ "districts": [
+  {
+   "name": "ปทุมวัน",
+   "population": 38560,
+   "greenM2": 1025122.6,
+   "accessibleParks": 4,
+   "accessibleM2": 729460,
+   "greenPerCapita": 26.59,
+   "accessiblePerCapita": 18.92,
+   "score": 38.3632
+  },
+  {
+   "name": "บางคอแหลม",
+   "population": 74846,
+   "greenM2": 3690441.33,
+   "accessibleParks": 7,
+   "accessibleM2": 73803.52,
+   "greenPerCapita": 49.31,
+   "accessiblePerCapita": 0.99,
+   "score": 26.7743
+  },
+  {
+   "name": "ประเวศ",
+   "population": 183562,
+   "greenM2": 3096657.79,
+   "accessibleParks": 10,
+   "accessibleM2": 2082306.76,
+   "greenPerCapita": 16.87,
+   "accessiblePerCapita": 11.34,
+   "score": 23.5779
+  },
+  {
+   "name": "บางกอกน้อย",
+   "population": 51091,
+   "greenM2": 2195850.76,
+   "accessibleParks": 4,
+   "accessibleM2": 40174,
+   "greenPerCapita": 42.98,
+   "accessiblePerCapita": 0.79,
+   "score": 23.2748
+  },
+  {
+   "name": "คันนายาว",
+   "population": 93302,
+   "greenM2": 3275176.7,
+   "accessibleParks": 13,
+   "accessibleM2": 38732.3,
+   "greenPerCapita": 35.1,
+   "accessiblePerCapita": 0.42,
+   "score": 18.7603
+  },
+  {
+   "name": "จตุจักร",
+   "population": 154513,
+   "greenM2": 2171948.56,
+   "accessibleParks": 19,
+   "accessibleM2": 1276611.48,
+   "greenPerCapita": 14.06,
+   "accessiblePerCapita": 8.26,
+   "score": 18.1456
+  },
+  {
+   "name": "ทวีวัฒนา",
+   "population": 80816,
+   "greenM2": 1821884.5,
+   "accessibleParks": 8,
+   "accessibleM2": 372920.6,
+   "greenPerCapita": 22.54,
+   "accessiblePerCapita": 4.61,
+   "score": 17.7673
+  },
+  {
+   "name": "พระนคร",
+   "population": 38408,
+   "greenM2": 626671.52,
+   "accessibleParks": 11,
+   "accessibleM2": 270655.6,
+   "greenPerCapita": 16.32,
+   "accessiblePerCapita": 7.05,
+   "score": 17.7286
+  },
+  {
+   "name": "คลองเตย",
+   "population": 88304,
+   "greenM2": 1151880.84,
+   "accessibleParks": 4,
+   "accessibleM2": 364800,
+   "greenPerCapita": 13.04,
+   "accessiblePerCapita": 4.13,
+   "score": 12.2765
+  },
+  {
+   "name": "หลักสี่",
+   "population": 97352,
+   "greenM2": 1809521.28,
+   "accessibleParks": 9,
+   "accessibleM2": 41678.4,
+   "greenPerCapita": 18.59,
+   "accessiblePerCapita": 0.43,
+   "score": 10.3189
+  },
+  {
+   "name": "บางกอกใหญ่",
+   "population": 58804,
+   "greenM2": 1022757.6,
+   "accessibleParks": 6,
+   "accessibleM2": 8424,
+   "greenPerCapita": 17.39,
+   "accessiblePerCapita": 0.14,
+   "score": 9.338
+  },
+  {
+   "name": "ดุสิต",
+   "population": 72788,
+   "greenM2": 1151908,
+   "accessibleParks": 2,
+   "accessibleM2": 27760,
+   "greenPerCapita": 15.83,
+   "accessiblePerCapita": 0.38,
+   "score": 8.8439
+  },
+  {
+   "name": "ราชเทวี",
+   "population": 61377,
+   "greenM2": 699452.12,
+   "accessibleParks": 7,
+   "accessibleM2": 103376,
+   "greenPerCapita": 11.4,
+   "accessiblePerCapita": 1.68,
+   "score": 8.2629
+  },
+  {
+   "name": "ตลิ่งชัน",
+   "population": 100433,
+   "greenM2": 1391024.69,
+   "accessibleParks": 3,
+   "accessibleM2": 37781.6,
+   "greenPerCapita": 13.85,
+   "accessiblePerCapita": 0.38,
+   "score": 7.8256
+  },
+  {
+   "name": "บึงกุ่ม",
+   "population": 134892,
+   "greenM2": 843673.2,
+   "accessibleParks": 3,
+   "accessibleM2": 454935.2,
+   "greenPerCapita": 6.25,
+   "accessiblePerCapita": 3.37,
+   "score": 7.8165
+  },
+  {
+   "name": "บางบอน",
+   "population": 98160,
+   "greenM2": 977908.34,
+   "accessibleParks": 4,
+   "accessibleM2": 171416,
+   "greenPerCapita": 9.96,
+   "accessiblePerCapita": 1.75,
+   "score": 7.609
+  },
+  {
+   "name": "สาทร",
+   "population": 69219,
+   "greenM2": 336293.56,
+   "accessibleParks": 5,
+   "accessibleM2": 197628,
+   "greenPerCapita": 4.86,
+   "accessiblePerCapita": 2.86,
+   "score": 6.4313
+  },
+  {
+   "name": "มีนบุรี",
+   "population": 140449,
+   "greenM2": 993693.52,
+   "accessibleParks": 8,
+   "accessibleM2": 243046.8,
+   "greenPerCapita": 7.08,
+   "accessiblePerCapita": 1.73,
+   "score": 6.1099
+  },
+  {
+   "name": "สวนหลวง",
+   "population": 123291,
+   "greenM2": 750818.4,
+   "accessibleParks": 1,
+   "accessibleM2": 208000,
+   "greenPerCapita": 6.09,
+   "accessiblePerCapita": 1.69,
+   "score": 5.549
+  },
+  {
+   "name": "หนองจอก",
+   "population": 187987,
+   "greenM2": 1368205.48,
+   "accessibleParks": 7,
+   "accessibleM2": 203800,
+   "greenPerCapita": 7.28,
+   "accessiblePerCapita": 1.08,
+   "score": 5.3767
+  },
+  {
+   "name": "บางขุนเทียน",
+   "population": 185160,
+   "greenM2": 271907.24,
+   "accessibleParks": 5,
+   "accessibleM2": 547056,
+   "greenPerCapita": 1.47,
+   "accessiblePerCapita": 2.95,
+   "score": 4.8239
+  },
+  {
+   "name": "ดอนเมือง",
+   "population": 165594,
+   "greenM2": 727296.12,
+   "accessibleParks": 4,
+   "accessibleM2": 273408,
+   "greenPerCapita": 4.39,
+   "accessiblePerCapita": 1.65,
+   "score": 4.6329
+  },
+  {
+   "name": "ยานนาวา",
+   "population": 72413,
+   "greenM2": 491773.6,
+   "accessibleParks": 7,
+   "accessibleM2": 35010.25,
+   "greenPerCapita": 6.79,
+   "accessiblePerCapita": 0.48,
+   "score": 4.3493
+  },
+  {
+   "name": "สัมพันธวงศ์",
+   "population": 18329,
+   "greenM2": 141024.62,
+   "accessibleParks": 2,
+   "accessibleM2": 1918.28,
+   "greenPerCapita": 7.69,
+   "accessiblePerCapita": 0.1,
+   "score": 4.321
+  },
+  {
+   "name": "คลองสามวา",
+   "population": 215427,
+   "greenM2": 977951,
+   "accessibleParks": 9,
+   "accessibleM2": 246452.8,
+   "greenPerCapita": 4.54,
+   "accessiblePerCapita": 1.14,
+   "score": 4.0517
+  },
+  {
+   "name": "ลาดกระบัง",
+   "population": 182191,
+   "greenM2": 753101.32,
+   "accessibleParks": 10,
+   "accessibleM2": 230796.8,
+   "greenPerCapita": 4.13,
+   "accessiblePerCapita": 1.27,
+   "score": 4.0028
+  },
+  {
+   "name": "ลาดพร้าว",
+   "population": 110660,
+   "greenM2": 661803.08,
+   "accessibleParks": 8,
+   "accessibleM2": 54536.48,
+   "greenPerCapita": 5.98,
+   "accessiblePerCapita": 0.49,
+   "score": 3.9462
+  },
+  {
+   "name": "ห้วยขวาง",
+   "population": 84038,
+   "greenM2": 471358.75,
+   "accessibleParks": 5,
+   "accessibleM2": 51868.8,
+   "greenPerCapita": 5.61,
+   "accessiblePerCapita": 0.62,
+   "score": 3.917
+  },
+  {
+   "name": "ป้อมปราบศัตรูพ่าย",
+   "population": 35900,
+   "greenM2": 256620.64,
+   "accessibleParks": 1,
+   "accessibleM2": 80,
+   "greenPerCapita": 7.15,
+   "accessiblePerCapita": 0,
+   "score": 3.9088
+  },
+  {
+   "name": "บางเขน",
+   "population": 183306,
+   "greenM2": 856722.87,
+   "accessibleParks": 7,
+   "accessibleM2": 166756,
+   "greenPerCapita": 4.67,
+   "accessiblePerCapita": 0.91,
+   "score": 3.8169
+  },
+  {
+   "name": "ทุ่งครุ",
+   "population": 123887,
+   "greenM2": 597483,
+   "accessibleParks": 1,
+   "accessibleM2": 101280,
+   "greenPerCapita": 4.82,
+   "accessiblePerCapita": 0.82,
+   "score": 3.7739
+  },
+  {
+   "name": "คลองสาน",
+   "population": 61832,
+   "greenM2": 255440,
+   "accessibleParks": 6,
+   "accessibleM2": 58728,
+   "greenPerCapita": 4.13,
+   "accessiblePerCapita": 0.95,
+   "score": 3.591
+  },
+  {
+   "name": "สายไหม",
+   "population": 212912,
+   "greenM2": 1155484.18,
+   "accessibleParks": 8,
+   "accessibleM2": 82519.04,
+   "greenPerCapita": 5.43,
+   "accessiblePerCapita": 0.39,
+   "score": 3.5264
+  },
+  {
+   "name": "สะพานสูง",
+   "population": 97812,
+   "greenM2": 548587.85,
+   "accessibleParks": 4,
+   "accessibleM2": 18724,
+   "greenPerCapita": 5.61,
+   "accessiblePerCapita": 0.19,
+   "score": 3.3654
+  },
+  {
+   "name": "ราษฎร์บูรณะ",
+   "population": 74092,
+   "greenM2": 291318.92,
+   "accessibleParks": 5,
+   "accessibleM2": 49593,
+   "greenPerCapita": 3.93,
+   "accessiblePerCapita": 0.67,
+   "score": 3.1257
+  },
+  {
+   "name": "หนองแขม",
+   "population": 154690,
+   "greenM2": 827069.24,
+   "accessibleParks": 10,
+   "accessibleM2": 16093.16,
+   "greenPerCapita": 5.35,
+   "accessiblePerCapita": 0.1,
+   "score": 3.118
+  },
+  {
+   "name": "บางนา",
+   "population": 84574,
+   "greenM2": 376844,
+   "accessibleParks": 4,
+   "accessibleM2": 27240,
+   "greenPerCapita": 4.46,
+   "accessiblePerCapita": 0.32,
+   "score": 2.9442
+  },
+  {
+   "name": "บางกะปิ",
+   "population": 140901,
+   "greenM2": 215756,
+   "accessibleParks": 6,
+   "accessibleM2": 183736,
+   "greenPerCapita": 1.53,
+   "accessiblePerCapita": 1.3,
+   "score": 2.7183
+  },
+  {
+   "name": "พญาไท",
+   "population": 62275,
+   "greenM2": 206184.04,
+   "accessibleParks": 3,
+   "accessibleM2": 30685,
+   "greenPerCapita": 3.31,
+   "accessiblePerCapita": 0.49,
+   "score": 2.5789
+  },
+  {
+   "name": "บางพลัด",
+   "population": 85791,
+   "greenM2": 277109.23,
+   "accessibleParks": 2,
+   "accessibleM2": 43972,
+   "greenPerCapita": 3.23,
+   "accessiblePerCapita": 0.51,
+   "score": 2.5631
+  },
+  {
+   "name": "บางรัก",
+   "population": 40549,
+   "greenM2": 170258.28,
+   "accessibleParks": 3,
+   "accessibleM2": 2450.8,
+   "greenPerCapita": 4.2,
+   "accessiblePerCapita": 0.06,
+   "score": 2.4737
+  },
+  {
+   "name": "จอมทอง",
+   "population": 137869,
+   "greenM2": 478346.48,
+   "accessibleParks": 4,
+   "accessibleM2": 15292,
+   "greenPerCapita": 3.47,
+   "accessiblePerCapita": 0.11,
+   "score": 2.1656
+  },
+  {
+   "name": "บางแค",
+   "population": 191997,
+   "greenM2": 375925.36,
+   "accessibleParks": 3,
+   "accessibleM2": 134111,
+   "greenPerCapita": 1.96,
+   "accessiblePerCapita": 0.7,
+   "score": 2.1525
+  },
+  {
+   "name": "พระโขนง",
+   "population": 84014,
+   "greenM2": 269578.35,
+   "accessibleParks": 5,
+   "accessibleM2": 14380.4,
+   "greenPerCapita": 3.21,
+   "accessiblePerCapita": 0.17,
+   "score": 2.1101
+  },
+  {
+   "name": "บางซื่อ",
+   "population": 116600,
+   "greenM2": 283656,
+   "accessibleParks": 2,
+   "accessibleM2": 55284,
+   "greenPerCapita": 2.43,
+   "accessiblePerCapita": 0.47,
+   "score": 2.1051
+  },
+  {
+   "name": "ธนบุรี",
+   "population": 95666,
+   "greenM2": 279038,
+   "accessibleParks": 8,
+   "accessibleM2": 25640,
+   "greenPerCapita": 2.92,
+   "accessiblePerCapita": 0.27,
+   "score": 2.086
+  },
+  {
+   "name": "ภาษีเจริญ",
+   "population": 120980,
+   "greenM2": 389893.28,
+   "accessibleParks": 2,
+   "accessibleM2": 1600,
+   "greenPerCapita": 3.22,
+   "accessiblePerCapita": 0.01,
+   "score": 1.9127
+  },
+  {
+   "name": "ดินแดง",
+   "population": 109047,
+   "greenM2": 219930.76,
+   "accessibleParks": 5,
+   "accessibleM2": 34426.8,
+   "greenPerCapita": 2.02,
+   "accessiblePerCapita": 0.32,
+   "score": 1.6869
+  },
+  {
+   "name": "วัฒนา",
+   "population": 79736,
+   "greenM2": 147557.76,
+   "accessibleParks": 3,
+   "accessibleM2": 9900,
+   "greenPerCapita": 1.85,
+   "accessiblePerCapita": 0.12,
+   "score": 1.3536
+  },
+  {
+   "name": "วังทองหลาง",
+   "population": 102281,
+   "greenM2": 181937.7,
+   "accessibleParks": 4,
+   "accessibleM2": 7437.72,
+   "greenPerCapita": 1.78,
+   "accessiblePerCapita": 0.07,
+   "score": 1.2502
+  }
+ ]
+}

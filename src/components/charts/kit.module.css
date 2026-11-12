@@ -1,0 +1,145 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  gap: 16px;
+}
+
+.cardHead {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardTitle {
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.cardNote {
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+  line-height: 1.45;
+}
+
+.cardBody {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* ---- legend ---- */
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+}
+
+.key {
+  flex: none;
+  display: inline-block;
+}
+
+.key_dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--k);
+}
+
+.key_line {
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--k);
+}
+
+.key_dash {
+  width: 24px;
+  height: 0;
+  border-top: 3px dashed var(--k);
+}
+
+/* ---- tooltip ---- */
+.tip {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.08);
+  min-width: 220px;
+}
+
+.tipTitle {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: 6px;
+}
+
+.tipRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  font-size: 18px;
+  color: var(--c-textMuted);
+  line-height: 1.6;
+}
+
+.tipRow b {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+/* ---- stat tile ---- */
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+}
+
+.statKey {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  flex: none;
+}
+
+.statValue {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--c-text);
+  line-height: 1.15;
+}
+
+.statUnit {
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--c-textMuted);
+}
+
+.statSub {
+  font-size: var(--fs-source);
+  color: var(--c-textFaint);
+}

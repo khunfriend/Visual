@@ -1,0 +1,990 @@
+{
+ "source": "Bangkok Index 2025: อุทกภัย (น้ำท่วมขังบนถนนสายหลัก 2568); ข้อบัญญัติงบประมาณ กทม. 2568",
+ "districts": [
+  {
+   "name": "บางกะปิ",
+   "floods": 44,
+   "drainBudget": 15181000,
+   "totalBudget": 553270900,
+   "floodRank": 1,
+   "budgetRank": 22
+  },
+  {
+   "name": "ดินแดง",
+   "floods": 41,
+   "drainBudget": 8383200,
+   "totalBudget": 373612180,
+   "floodRank": 2,
+   "budgetRank": 31
+  },
+  {
+   "name": "บึงกุ่ม",
+   "floods": 37,
+   "drainBudget": 15781700,
+   "totalBudget": 419728200,
+   "floodRank": 3,
+   "budgetRank": 21
+  },
+  {
+   "name": "จตุจักร",
+   "floods": 33,
+   "drainBudget": 19119000,
+   "totalBudget": 600990600,
+   "floodRank": 4,
+   "budgetRank": 17
+  },
+  {
+   "name": "ลาดพร้าว",
+   "floods": 31,
+   "drainBudget": 10351200,
+   "totalBudget": 395588100,
+   "floodRank": 5,
+   "budgetRank": 27
+  },
+  {
+   "name": "วังทองหลาง",
+   "floods": 31,
+   "drainBudget": 9061700,
+   "totalBudget": 352213700,
+   "floodRank": 5,
+   "budgetRank": 30
+  },
+  {
+   "name": "บางเขน",
+   "floods": 30,
+   "drainBudget": 13315900,
+   "totalBudget": 518100800,
+   "floodRank": 7,
+   "budgetRank": 23
+  },
+  {
+   "name": "ลาดกระบัง",
+   "floods": 30,
+   "drainBudget": 16848400,
+   "totalBudget": 797063900,
+   "floodRank": 7,
+   "budgetRank": 20
+  },
+  {
+   "name": "ประเวศ",
+   "floods": 29,
+   "drainBudget": 8308800,
+   "totalBudget": 546835200,
+   "floodRank": 9,
+   "budgetRank": 32
+  },
+  {
+   "name": "ราชเทวี",
+   "floods": 29,
+   "drainBudget": 1492000,
+   "totalBudget": 328778800,
+   "floodRank": 9,
+   "budgetRank": 48
+  },
+  {
+   "name": "หลักสี่",
+   "floods": 29,
+   "drainBudget": 70664300,
+   "totalBudget": 467593100,
+   "floodRank": 9,
+   "budgetRank": 2
+  },
+  {
+   "name": "ห้วยขวาง",
+   "floods": 25,
+   "drainBudget": 6378500,
+   "totalBudget": 346266570,
+   "floodRank": 12,
+   "budgetRank": 38
+  },
+  {
+   "name": "บางนา",
+   "floods": 20,
+   "drainBudget": 25133000,
+   "totalBudget": 378902550,
+   "floodRank": 13,
+   "budgetRank": 12
+  },
+  {
+   "name": "สายไหม",
+   "floods": 20,
+   "drainBudget": 22536900,
+   "totalBudget": 543511500,
+   "floodRank": 13,
+   "budgetRank": 14
+  },
+  {
+   "name": "สาทร",
+   "floods": 19,
+   "drainBudget": 2134800,
+   "totalBudget": 270010510,
+   "floodRank": 15,
+   "budgetRank": 45
+  },
+  {
+   "name": "ดอนเมือง",
+   "floods": 18,
+   "drainBudget": 46981500,
+   "totalBudget": 585384000,
+   "floodRank": 16,
+   "budgetRank": 5
+  },
+  {
+   "name": "คลองเตย",
+   "floods": 17,
+   "drainBudget": 3730800,
+   "totalBudget": 338611545,
+   "floodRank": 17,
+   "budgetRank": 42
+  },
+  {
+   "name": "พญาไท",
+   "floods": 17,
+   "drainBudget": 6007400,
+   "totalBudget": 300819800,
+   "floodRank": 17,
+   "budgetRank": 39
+  },
+  {
+   "name": "สวนหลวง",
+   "floods": 16,
+   "drainBudget": 7469200,
+   "totalBudget": 393620800,
+   "floodRank": 19,
+   "budgetRank": 35
+  },
+  {
+   "name": "บางบอน",
+   "floods": 15,
+   "drainBudget": 17612200,
+   "totalBudget": 425078100,
+   "floodRank": 20,
+   "budgetRank": 19
+  },
+  {
+   "name": "วัฒนา",
+   "floods": 15,
+   "drainBudget": 40018100,
+   "totalBudget": 376731900,
+   "floodRank": 20,
+   "budgetRank": 6
+  },
+  {
+   "name": "บางขุนเทียน",
+   "floods": 10,
+   "drainBudget": 24719900,
+   "totalBudget": 734130300,
+   "floodRank": 22,
+   "budgetRank": 13
+  },
+  {
+   "name": "พระโขนง",
+   "floods": 9,
+   "drainBudget": 35566600,
+   "totalBudget": 338937150,
+   "floodRank": 23,
+   "budgetRank": 8
+  },
+  {
+   "name": "บางแค",
+   "floods": 8,
+   "drainBudget": 52532900,
+   "totalBudget": 569534200,
+   "floodRank": 24,
+   "budgetRank": 4
+  },
+  {
+   "name": "บางรัก",
+   "floods": 7,
+   "drainBudget": 6578800,
+   "totalBudget": 263344910,
+   "floodRank": 25,
+   "budgetRank": 37
+  },
+  {
+   "name": "ปทุมวัน",
+   "floods": 7,
+   "drainBudget": 1665700,
+   "totalBudget": 323201300,
+   "floodRank": 25,
+   "budgetRank": 47
+  },
+  {
+   "name": "ภาษีเจริญ",
+   "floods": 7,
+   "drainBudget": 17881900,
+   "totalBudget": 411694510,
+   "floodRank": 25,
+   "budgetRank": 18
+  },
+  {
+   "name": "สัมพันธวงศ์",
+   "floods": 6,
+   "drainBudget": 1194000,
+   "totalBudget": 223390700,
+   "floodRank": 28,
+   "budgetRank": 50
+  },
+  {
+   "name": "คลองสาน",
+   "floods": 5,
+   "drainBudget": 3106900,
+   "totalBudget": 309674300,
+   "floodRank": 29,
+   "budgetRank": 44
+  },
+  {
+   "name": "พระนคร",
+   "floods": 4,
+   "drainBudget": 1810600,
+   "totalBudget": 415976200,
+   "floodRank": 30,
+   "budgetRank": 46
+  },
+  {
+   "name": "มีนบุรี",
+   "floods": 4,
+   "drainBudget": 37669100,
+   "totalBudget": 579922700,
+   "floodRank": 30,
+   "budgetRank": 7
+  },
+  {
+   "name": "ดุสิต",
+   "floods": 3,
+   "drainBudget": 12074900,
+   "totalBudget": 382649100,
+   "floodRank": 32,
+   "budgetRank": 24
+  },
+  {
+   "name": "คันนายาว",
+   "floods": 2,
+   "drainBudget": 25425970,
+   "totalBudget": 342226810,
+   "floodRank": 33,
+   "budgetRank": 11
+  },
+  {
+   "name": "จอมทอง",
+   "floods": 2,
+   "drainBudget": 9654300,
+   "totalBudget": 402416100,
+   "floodRank": 33,
+   "budgetRank": 28
+  },
+  {
+   "name": "บางคอแหลม",
+   "floods": 2,
+   "drainBudget": 9415600,
+   "totalBudget": 315487400,
+   "floodRank": 33,
+   "budgetRank": 29
+  },
+  {
+   "name": "ป้อมปราบศัตรูพ่าย",
+   "floods": 2,
+   "drainBudget": 1480700,
+   "totalBudget": 246964300,
+   "floodRank": 33,
+   "budgetRank": 49
+  },
+  {
+   "name": "ยานนาวา",
+   "floods": 2,
+   "drainBudget": 11655800,
+   "totalBudget": 287724611,
+   "floodRank": 33,
+   "budgetRank": 25
+  },
+  {
+   "name": "บางกอกน้อย",
+   "floods": 1,
+   "drainBudget": 34318100,
+   "totalBudget": 413243900,
+   "floodRank": 38,
+   "budgetRank": 9
+  },
+  {
+   "name": "บางกอกใหญ่",
+   "floods": 1,
+   "drainBudget": 5488300,
+   "totalBudget": 250337500,
+   "floodRank": 38,
+   "budgetRank": 40
+  },
+  {
+   "name": "คลองสามวา",
+   "floods": 0,
+   "drainBudget": 25886100,
+   "totalBudget": 636710300,
+   "floodRank": 40,
+   "budgetRank": 10
+  },
+  {
+   "name": "ตลิ่งชัน",
+   "floods": 0,
+   "drainBudget": 59708900,
+   "totalBudget": 391101700,
+   "floodRank": 40,
+   "budgetRank": 3
+  },
+  {
+   "name": "ทวีวัฒนา",
+   "floods": 0,
+   "drainBudget": 7518600,
+   "totalBudget": 433432600,
+   "floodRank": 40,
+   "budgetRank": 34
+  },
+  {
+   "name": "ทุ่งครุ",
+   "floods": 0,
+   "drainBudget": 19417600,
+   "totalBudget": 583815100,
+   "floodRank": 40,
+   "budgetRank": 16
+  },
+  {
+   "name": "ธนบุรี",
+   "floods": 0,
+   "drainBudget": 6717700,
+   "totalBudget": 420324740,
+   "floodRank": 40,
+   "budgetRank": 36
+  },
+  {
+   "name": "บางซื่อ",
+   "floods": 0,
+   "drainBudget": 3266400,
+   "totalBudget": 372748200,
+   "floodRank": 40,
+   "budgetRank": 43
+  },
+  {
+   "name": "บางพลัด",
+   "floods": 0,
+   "drainBudget": 8007200,
+   "totalBudget": 309501200,
+   "floodRank": 40,
+   "budgetRank": 33
+  },
+  {
+   "name": "ราษฎร์บูรณะ",
+   "floods": 0,
+   "drainBudget": 20050300,
+   "totalBudget": 344534800,
+   "floodRank": 40,
+   "budgetRank": 15
+  },
+  {
+   "name": "สะพานสูง",
+   "floods": 0,
+   "drainBudget": 10617600,
+   "totalBudget": 366168100,
+   "floodRank": 40,
+   "budgetRank": 26
+  },
+  {
+   "name": "หนองแขม",
+   "floods": 0,
+   "drainBudget": 181906200,
+   "totalBudget": 615048900,
+   "floodRank": 40,
+   "budgetRank": 1
+  },
+  {
+   "name": "หนองจอก",
+   "floods": 0,
+   "drainBudget": 4802000,
+   "totalBudget": 763970000,
+   "floodRank": 40,
+   "budgetRank": 41
+  }
+ ],
+ "medianDrainBudget": 11136700.0,
+ "groups": {
+  "zero": {
+   "count": 11,
+   "drainBudget": 347898600,
+   "names": [
+    "คลองสามวา",
+    "ตลิ่งชัน",
+    "ทวีวัฒนา",
+    "ทุ่งครุ",
+    "ธนบุรี",
+    "บางซื่อ",
+    "บางพลัด",
+    "ราษฎร์บูรณะ",
+    "สะพานสูง",
+    "หนองแขม",
+    "หนองจอก"
+   ]
+  },
+  "top": {
+   "count": 11,
+   "minFloods": 29,
+   "drainBudget": 188507200,
+   "names": [
+    "บางกะปิ",
+    "ดินแดง",
+    "บึงกุ่ม",
+    "จตุจักร",
+    "ลาดพร้าว",
+    "วังทองหลาง",
+    "บางเขน",
+    "ลาดกระบัง",
+    "ประเวศ",
+    "ราชเทวี",
+    "หลักสี่"
+   ]
+  }
+ },
+ "spearman": 0.0058,
+ "spearmanP": 0.97,
+ "systemCapacityMm": 60,
+ "dindaeng": {
+  "events": [
+   {
+    "date": "2025-04-15",
+    "spot": "รัชดาภิเษก แยกเทียมร่วมมิตร",
+    "road": "ถนนรัชดาภิเษก",
+    "levelMin": 5,
+    "levelMax": 10,
+    "dryMin": 15,
+    "rain": 63.5
+   },
+   {
+    "date": "2025-04-15",
+    "spot": "ถนนดินแดง หน้าโรงเรียนพิบูลประชาสรรค์",
+    "road": "ถนนดินแดง",
+    "levelMin": 5,
+    "levelMax": 10,
+    "dryMin": 40,
+    "rain": 63.5
+   },
+   {
+    "date": "2025-04-15",
+    "spot": "ถนนดินแดง หน้าโรงเรียนพิบูลประชาสรรค์",
+    "road": "ถนนดินแดง",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 40,
+    "rain": 63.5
+   },
+   {
+    "date": "2025-05-01",
+    "spot": "รัชดาภิเษก แยกเทียมร่วมมิตร",
+    "road": "ถนนรัชดาภิเษก",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 25,
+    "rain": 50.5
+   },
+   {
+    "date": "2025-05-01",
+    "spot": "ประชาสงเคราะห์ หน้าตลาดห้วยขวาง",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 55,
+    "rain": 50.5
+   },
+   {
+    "date": "2025-05-01",
+    "spot": "ประชาสุข ซอยอินทามระ 45–53",
+    "road": "ถนนประชาสุข",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 110,
+    "rain": 50.5
+   },
+   {
+    "date": "2025-05-10",
+    "spot": "รัชดาภิเษก แยกเทียมร่วมมิตร",
+    "road": "ถนนรัชดาภิเษก",
+    "levelMin": 25,
+    "levelMax": 30,
+    "dryMin": 145,
+    "rain": 88.0
+   },
+   {
+    "date": "2025-05-10",
+    "spot": "ประชาสงเคราะห์ ซอย 9",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 10,
+    "levelMax": 20,
+    "dryMin": 190,
+    "rain": 88.0
+   },
+   {
+    "date": "2025-05-10",
+    "spot": "ประชาสงเคราะห์ หน้าตลาดห้วยขวาง",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 20,
+    "levelMax": 25,
+    "dryMin": 190,
+    "rain": 88.0
+   },
+   {
+    "date": "2025-05-10",
+    "spot": "ถนนดินแดง หน้าโรงเรียนพิบูลประชาสรรค์",
+    "road": "ถนนดินแดง",
+    "levelMin": 5,
+    "levelMax": 10,
+    "dryMin": 210,
+    "rain": 88.0
+   },
+   {
+    "date": "2025-05-10",
+    "spot": "ประชาสุข ซอยอินทามระ 34",
+    "road": "ถนนประชาสุข",
+    "levelMin": 15,
+    "levelMax": 20,
+    "dryMin": 290,
+    "rain": 88.0
+   },
+   {
+    "date": "2025-05-12",
+    "spot": "ประชาสุข ซอยอินทามระ 45–53",
+    "road": "ถนนประชาสุข",
+    "levelMin": 5,
+    "levelMax": 10,
+    "dryMin": 75,
+    "rain": 36.0
+   },
+   {
+    "date": "2025-05-20",
+    "spot": "ประชาสุข ซอยอินทามระ 34",
+    "road": "ถนนประชาสุข",
+    "levelMin": 15,
+    "levelMax": 15,
+    "dryMin": 35,
+    "rain": 49.5
+   },
+   {
+    "date": "2025-06-08",
+    "spot": "ประชาสุข ซอยอินทามระ 34",
+    "road": "ถนนประชาสุข",
+    "levelMin": 10,
+    "levelMax": 20,
+    "dryMin": 194,
+    "rain": 74.0
+   },
+   {
+    "date": "2025-09-05",
+    "spot": "ประชาสงเคราะห์ หน้าตลาดห้วยขวาง",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 5,
+    "levelMax": 10,
+    "dryMin": 30,
+    "rain": 60.0
+   },
+   {
+    "date": "2025-09-05",
+    "spot": "รัชดาภิเษก แยกเทียมร่วมมิตร",
+    "road": "ถนนรัชดาภิเษก",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 35,
+    "rain": 60.0
+   },
+   {
+    "date": "2025-09-05",
+    "spot": "ประชาสุข ซอยอินทามระ 34",
+    "road": "ถนนประชาสุข",
+    "levelMin": 10,
+    "levelMax": 20,
+    "dryMin": 55,
+    "rain": 60.0
+   },
+   {
+    "date": "2025-09-05",
+    "spot": "รัชดาภิเษก แยกเทียมร่วมมิตร",
+    "road": "ถนนรัชดาภิเษก",
+    "levelMin": 20,
+    "levelMax": 25,
+    "dryMin": 120,
+    "rain": 60.0
+   },
+   {
+    "date": "2025-09-05",
+    "spot": "รัชดาภิเษก หน้าสถานทูตจีน",
+    "road": "ถนนรัชดาภิเษก",
+    "levelMin": 15,
+    "levelMax": 20,
+    "dryMin": 140,
+    "rain": 60.0
+   },
+   {
+    "date": "2025-09-05",
+    "spot": "ประชาสงเคราะห์ หน้าตลาดห้วยขวาง",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 20,
+    "levelMax": 25,
+    "dryMin": 150,
+    "rain": 60.0
+   },
+   {
+    "date": "2025-09-05",
+    "spot": "ประชาสุข ซอยอินทามระ 34",
+    "road": "ถนนประชาสุข",
+    "levelMin": 10,
+    "levelMax": 20,
+    "dryMin": 150,
+    "rain": 60.0
+   },
+   {
+    "date": "2025-10-01",
+    "spot": "ประชาสงเคราะห์ หน้าตลาดห้วยขวาง",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 40,
+    "rain": 56.5
+   },
+   {
+    "date": "2025-10-01",
+    "spot": "ประชาสงเคราะห์ ซอย 9",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 10,
+    "levelMax": 20,
+    "dryMin": 45,
+    "rain": 56.5
+   },
+   {
+    "date": "2025-10-01",
+    "spot": "ประชาสงเคราะห์ ซอยเปรมสมบัติ แยก 33",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 5,
+    "levelMax": 10,
+    "dryMin": 45,
+    "rain": 56.5
+   },
+   {
+    "date": "2025-10-01",
+    "spot": "รัชดาภิเษก แยกเทียมร่วมมิตร",
+    "road": "ถนนรัชดาภิเษก",
+    "levelMin": 5,
+    "levelMax": 10,
+    "dryMin": 45,
+    "rain": 56.5
+   },
+   {
+    "date": "2025-10-01",
+    "spot": "ประชาสุข ซอยอินทามระ 34",
+    "road": "ถนนประชาสุข",
+    "levelMin": 10,
+    "levelMax": 20,
+    "dryMin": 55,
+    "rain": 56.5
+   },
+   {
+    "date": "2025-10-04",
+    "spot": "ถนนดินแดง หน้าโรงเรียนพิบูลประชาสรรค์",
+    "road": "ถนนดินแดง",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 91,
+    "rain": 78.0
+   },
+   {
+    "date": "2025-10-04",
+    "spot": "ประชาสงเคราะห์ (ไม่ระบุช่วง)",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 5,
+    "levelMax": 10,
+    "dryMin": 130,
+    "rain": 78.0
+   },
+   {
+    "date": "2025-10-19",
+    "spot": "ประชาสุข ซอยอินทามระ 34",
+    "road": "ถนนประชาสุข",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 20,
+    "rain": 38.0
+   },
+   {
+    "date": "2025-11-02",
+    "spot": "รัชดาภิเษก แยกเทียมร่วมมิตร",
+    "road": "ถนนรัชดาภิเษก",
+    "levelMin": 5,
+    "levelMax": 10,
+    "dryMin": 45,
+    "rain": 43.0
+   },
+   {
+    "date": "2025-11-02",
+    "spot": "ประชาสุข ซอยอินทามระ 34",
+    "road": "ถนนประชาสุข",
+    "levelMin": 15,
+    "levelMax": 20,
+    "dryMin": 195,
+    "rain": 43.0
+   },
+   {
+    "date": "2025-11-02",
+    "spot": "ประชาสงเคราะห์ ซอยเปรมสมบัติ แยก 33",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 85,
+    "rain": 43.0
+   },
+   {
+    "date": "2025-11-02",
+    "spot": "ประชาสงเคราะห์ หน้าตลาดห้วยขวาง",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 115,
+    "rain": 43.0
+   },
+   {
+    "date": "2025-11-13",
+    "spot": "รัชดาภิเษก หน้าสถานทูตจีน",
+    "road": "ถนนรัชดาภิเษก",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 55,
+    "rain": 73.5
+   },
+   {
+    "date": "2025-11-13",
+    "spot": "วิภาวดีรังสิต ขาออก (กรมทหารราบที่ 1)",
+    "road": "ถนนวิภาวดีรังสิต",
+    "levelMin": 20,
+    "levelMax": 25,
+    "dryMin": 70,
+    "rain": 73.5
+   },
+   {
+    "date": "2025-11-13",
+    "spot": "ถนนดินแดง ซอยสุทธิพร 2",
+    "road": "ถนนดินแดง",
+    "levelMin": 15,
+    "levelMax": 20,
+    "dryMin": 75,
+    "rain": 73.5
+   },
+   {
+    "date": "2025-11-13",
+    "spot": "รัชดาภิเษก แยกเทียมร่วมมิตร",
+    "road": "ถนนรัชดาภิเษก",
+    "levelMin": 20,
+    "levelMax": 25,
+    "dryMin": 80,
+    "rain": 73.5
+   },
+   {
+    "date": "2025-11-13",
+    "spot": "ประชาสงเคราะห์ ซอยเปรมสมบัติ แยก 33",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 10,
+    "levelMax": 15,
+    "dryMin": 90,
+    "rain": 73.5
+   },
+   {
+    "date": "2025-11-13",
+    "spot": "ประชาสงเคราะห์ หน้าตลาดห้วยขวาง",
+    "road": "ถนนประชาสงเคราะห์",
+    "levelMin": 20,
+    "levelMax": 25,
+    "dryMin": 155,
+    "rain": 73.5
+   },
+   {
+    "date": "2025-11-13",
+    "spot": "ถนนดินแดง หน้าโรงเรียนพิบูลประชาสรรค์",
+    "road": "ถนนดินแดง",
+    "levelMin": 15,
+    "levelMax": 20,
+    "dryMin": 250,
+    "rain": 73.5
+   },
+   {
+    "date": "2025-11-13",
+    "spot": "ประชาสุข ซอยอินทามระ 34",
+    "road": "ถนนประชาสุข",
+    "levelMin": 15,
+    "levelMax": 20,
+    "dryMin": 285,
+    "rain": 73.5
+   }
+  ],
+  "days": [
+   {
+    "date": "2025-04-15",
+    "rain": 63.5,
+    "spots": 3
+   },
+   {
+    "date": "2025-05-01",
+    "rain": 50.5,
+    "spots": 3
+   },
+   {
+    "date": "2025-05-10",
+    "rain": 88.0,
+    "spots": 5
+   },
+   {
+    "date": "2025-05-12",
+    "rain": 36.0,
+    "spots": 1
+   },
+   {
+    "date": "2025-05-20",
+    "rain": 49.5,
+    "spots": 1
+   },
+   {
+    "date": "2025-06-08",
+    "rain": 74.0,
+    "spots": 1
+   },
+   {
+    "date": "2025-09-05",
+    "rain": 60.0,
+    "spots": 7
+   },
+   {
+    "date": "2025-10-01",
+    "rain": 56.5,
+    "spots": 5
+   },
+   {
+    "date": "2025-10-04",
+    "rain": 78.0,
+    "spots": 2
+   },
+   {
+    "date": "2025-10-19",
+    "rain": 38.0,
+    "spots": 1
+   },
+   {
+    "date": "2025-11-02",
+    "rain": 43.0,
+    "spots": 4
+   },
+   {
+    "date": "2025-11-13",
+    "rain": 73.5,
+    "spots": 8
+   }
+  ],
+  "hotspots": [
+   {
+    "spot": "ประชาสุข ซอยอินทามระ 34",
+    "count": 9,
+    "levelMax": 20,
+    "dryAvg": 142,
+    "rainAvg": 60.3,
+    "lat": null,
+    "lng": null
+   },
+   {
+    "spot": "รัชดาภิเษก แยกเทียมร่วมมิตร",
+    "count": 8,
+    "levelMax": 30,
+    "dryAvg": 64,
+    "rainAvg": 61.9,
+    "lat": null,
+    "lng": null
+   },
+   {
+    "spot": "ประชาสงเคราะห์ หน้าตลาดห้วยขวาง",
+    "count": 7,
+    "levelMax": 25,
+    "dryAvg": 105,
+    "rainAvg": 61.6,
+    "lat": null,
+    "lng": null
+   },
+   {
+    "spot": "ถนนดินแดง หน้าโรงเรียนพิบูลประชาสรรค์",
+    "count": 5,
+    "levelMax": 20,
+    "dryAvg": 126,
+    "rainAvg": 73.3,
+    "lat": null,
+    "lng": null
+   },
+   {
+    "spot": "ประชาสงเคราะห์ ซอยเปรมสมบัติ แยก 33",
+    "count": 3,
+    "levelMax": 15,
+    "dryAvg": 73,
+    "rainAvg": 57.7,
+    "lat": null,
+    "lng": null
+   },
+   {
+    "spot": "ประชาสุข ซอยอินทามระ 45–53",
+    "count": 2,
+    "levelMax": 15,
+    "dryAvg": 92,
+    "rainAvg": 43.2,
+    "lat": null,
+    "lng": null
+   },
+   {
+    "spot": "ประชาสงเคราะห์ ซอย 9",
+    "count": 2,
+    "levelMax": 20,
+    "dryAvg": 118,
+    "rainAvg": 72.2,
+    "lat": null,
+    "lng": null
+   },
+   {
+    "spot": "รัชดาภิเษก หน้าสถานทูตจีน",
+    "count": 2,
+    "levelMax": 20,
+    "dryAvg": 98,
+    "rainAvg": 66.8,
+    "lat": null,
+    "lng": null
+   },
+   {
+    "spot": "ประชาสงเคราะห์ (ไม่ระบุช่วง)",
+    "count": 1,
+    "levelMax": 10,
+    "dryAvg": 130,
+    "rainAvg": 78.0,
+    "lat": null,
+    "lng": null
+   },
+   {
+    "spot": "วิภาวดีรังสิต ขาออก (กรมทหารราบที่ 1)",
+    "count": 1,
+    "levelMax": 25,
+    "dryAvg": 70,
+    "rainAvg": 73.5,
+    "lat": null,
+    "lng": null
+   },
+   {
+    "spot": "ถนนดินแดง ซอยสุทธิพร 2",
+    "count": 1,
+    "levelMax": 20,
+    "dryAvg": 75,
+    "rainAvg": 73.5,
+    "lat": null,
+    "lng": null
+   }
+  ],
+  "rainPerDayAvg": 59.2,
+  "totalHours": 71.1,
+  "dryAvgMin": 104.0
+ },
+ "scoreFormula": {
+  "lo": 0,
+  "hi": 44,
+  "note": "คะแนน = 1 + 49 × (hi − ครั้ง) ÷ (hi − lo)"
+ }
+}

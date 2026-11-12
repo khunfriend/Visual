@@ -1,0 +1,8 @@
+/* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
+.grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 64px;
+}

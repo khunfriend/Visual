@@ -1,0 +1,52 @@
+/* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
+.grid {
+  flex: 1;
+  min-height: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px 32px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--c-surfaceAlt);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.q {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  color: var(--c-text);
+  line-height: 1.4;
+}
+
+.num {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--c-text);
+  color: var(--c-surface);
+  font-size: 14px;
+  display: inline-grid;
+  place-items: center;
+  transform: translateY(-2px);
+}
+
+.a {
+  font-size: 19px;
+  color: var(--c-textMuted);
+  line-height: 1.5;
+}

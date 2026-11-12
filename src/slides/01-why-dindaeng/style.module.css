@@ -1,0 +1,50 @@
+/* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
+.grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 0.85fr;
+  gap: 64px;
+}
+
+.medianTag {
+  position: absolute;
+  right: 8px;
+  top: 0;
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+}
+
+.budget {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.ratio {
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+}
+
+.ratio b {
+  color: var(--c-text);
+}
+
+.miniTitle {
+  margin-top: 16px;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--c-text);
+}
+
+.miniChart {
+  flex: 1;
+  min-height: 0;
+}

@@ -1,0 +1,97 @@
+{
+ "note": "คำนวณจากคะแนนจริง 16 หัวข้อ × 50 เขต สมมติให้เขตอื่นคงที่",
+ "cases": [
+  {
+   "key": "now",
+   "label": "ตอนนี้ (2568)",
+   "crime": 17,
+   "floods": 41,
+   "eduScore": 6.01,
+   "bod": 25.81,
+   "score": 17.35,
+   "rank": 50
+  },
+  {
+   "key": "careful",
+   "label": "ปีแรก ระมัดระวัง",
+   "crime": 12,
+   "floods": 31,
+   "eduScore": 12.35,
+   "bod": 25.81,
+   "score": 19.47,
+   "rank": 46
+  },
+  {
+   "key": "target",
+   "label": "ปีแรก ตามเป้า",
+   "crime": 9,
+   "floods": 29,
+   "eduScore": 12.35,
+   "bod": 25.81,
+   "score": 20.22,
+   "rank": 40
+  },
+  {
+   "key": "good",
+   "label": "ปีแรก กรณีดี",
+   "crime": 8,
+   "floods": 27,
+   "eduScore": 12.35,
+   "bod": 25.81,
+   "score": 20.56,
+   "rank": 39
+  },
+  {
+   "key": "longterm",
+   "label": "ระยะยาว ตามเป้า",
+   "crime": 9,
+   "floods": 29,
+   "eduScore": 12.35,
+   "bod": 15,
+   "score": 21.73,
+   "rank": 32
+  }
+ ],
+ "waterfall": [
+  {
+   "label": "ตอนนี้",
+   "value": 17.35
+  },
+  {
+   "label": "จุดเสี่ยง 17 → 9 จุด",
+   "topicFrom": 17.33,
+   "topicTo": 43.47,
+   "delta": 1.633
+  },
+  {
+   "label": "น้ำท่วม 41 → 29 ครั้ง",
+   "topicFrom": 4.34,
+   "topicTo": 17.7,
+   "delta": 0.835
+  },
+  {
+   "label": "การศึกษา +1 โรงเรียน +88 ครู",
+   "topicFrom": 6.01,
+   "topicTo": 12.35,
+   "delta": 0.396
+  },
+  {
+   "label": "หลังแก้ (ปีแรก ตามเป้า)",
+   "value": 20.22
+  }
+ ],
+ "single": {
+  "crimeOnly": {
+   "score": 18.99,
+   "rank": 46
+  },
+  "floodOnly": {
+   "score": 18.19,
+   "rank": 46
+  },
+  "eduOnly": {
+   "score": 17.75,
+   "rank": 49
+  }
+ }
+}
