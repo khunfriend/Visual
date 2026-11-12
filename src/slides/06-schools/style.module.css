@@ -3,12 +3,14 @@
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 1.15fr 0.6fr 0.75fr;
-  gap: 48px;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 64px;
 }
 
 .mapCard {
   min-width: 0;
+  position: relative;
+  z-index: 2; /* กล่อง hover ของแผนที่ลอยทับคอลัมน์ขวาได้ */
 }
 
 .mapWrap {
@@ -34,7 +36,8 @@
 .side {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 16px;
+  min-height: 0;
 }
 
 .blockTitle {
@@ -63,4 +66,153 @@
 .asideList small {
   color: var(--c-textMuted);
   font-size: var(--fs-source);
+}
+
+/* ตัวกรองโรงเรียน (แบบเดียวกับหน้าจุดเสี่ยง) */
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.toggle {
+  display: inline-flex;
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.toggle button {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.toggle button.on {
+  background: var(--c-text);
+  color: var(--c-surface);
+}
+
+.pinKey {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+  white-space: nowrap;
+}
+
+.pinSolid,
+.pinHollow {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  background: var(--c-text);
+  margin-left: 6px;
+}
+
+.pinHollow {
+  box-shadow: inset 0 0 0 4px var(--c-text);
+  background: var(--c-surface);
+}
+
+/* กล่อง hover ลอยตามเมาส์บนแผนที่ */
+.followWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.followTip {
+  position: absolute;
+  transform: translate(16px, calc(-100% - 12px));
+  pointer-events: none;
+  z-index: 5;
+  white-space: nowrap;
+}
+
+.why {
+  margin: 0;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--fs-label);
+  color: var(--c-text);
+}
+
+/* ปุ่มเปิด/ปิดชั้นความหนาแน่นเด็ก */
+.kidsBtn {
+  border: 1px solid var(--c-border);
+  background: var(--c-surface);
+  font: inherit;
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.kidsBtn.on {
+  background: var(--c-text);
+  border-color: var(--c-text);
+  color: var(--c-surface);
+}
+
+.heatKey {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+}
+
+.heatKey i {
+  width: 120px;
+  height: 12px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.heatKey small {
+  width: 100%;
+  font-size: var(--fs-source);
+  color: var(--c-textFaint);
+}
+
+/* แผนที่หมุนเป็นแนวนอน: กล่องในสลับกว้าง/สูงกับกล่องนอก แล้วหมุน −90° */
+.rotBox {
+  position: absolute;
+  inset: 0;
+  container-type: size;
+  overflow: hidden;
+}
+
+.rotInner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100cqh;
+  height: 100cqw;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.north {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  font-size: var(--fs-source);
+  font-weight: 600;
+  color: var(--c-textMuted);
+  pointer-events: none;
 }

@@ -15,6 +15,7 @@
 ห้ามแก้ไฟล์ใน src/data/ ด้วยมือ ให้แก้ที่นี่แล้วรันใหม่
 """
 import csv
+import math
 import json
 import statistics as st
 import sys
@@ -392,6 +393,12 @@ check('อันดับนักเรียนต่อครู (มาก�
 check('มัธยฐานนักเรียนต่อครู', r2(med_spt, 1), 19.8)
 
 
+# ครูที่เสนอเพิ่ม: 50 คน (ปรับจาก 88 เมื่อ 12 พ.ย.) · 88 คือจำนวนที่ทำให้ถึงค่ากลาง 19.8 พอดี
+# เหตุผลที่ใช้ 50 ดู ข้อมูลรวม_ตรวจแล้ว.md หัวข้อ "เพิ่มโรงเรียนและครู"
+TEACHERS_ADD = 50
+TEACHERS_TO_MEDIAN = 88
+
+
 def edu_scenario(add_schools, add_teachers):
     rows = [dict(r) for r in edu]
     d = next(r for r in rows if r['name'] == DD)
@@ -402,16 +409,21 @@ def edu_scenario(add_schools, add_teachers):
             'rank': rank_desc(list(s.values()), s[DD])}
 
 
-edu_scen = [edu_scenario(0, 0), edu_scenario(1, 0), edu_scenario(0, 88), edu_scenario(1, 88)]
-for sc, want in zip(edu_scen, [(6.01, 48), (6.52, 48), (11.83, 29), (12.35, 26)]):
+check('ครูที่ต้องเพิ่มถึงค่ากลาง', math.ceil(dd_e['students'] / med_spt - dd_e['teachers']), TEACHERS_TO_MEDIAN)
+edu_scen = [edu_scenario(0, 0), edu_scenario(1, 0), edu_scenario(0, TEACHERS_ADD), edu_scenario(1, TEACHERS_ADD)]
+for sc, want in zip(edu_scen, [(6.01, 48), (6.52, 48), (9.54, 43), (10.05, 42)]):
     check(f"ฉากทัศน์การศึกษา +{sc['addSchools']} รร. +{sc['addTeachers']} ครู", (sc['score'], sc['rank']), want)
 write('education', {
     'source': 'Bangkok Index 2025: การศึกษา (ปีการศึกษา 2568)',
     'medianStudentsPerTeacher': r2(med_spt, 2),
     'medianSchoolsPer1000': r2(st.median(r['schools'] / r['children'] * 1000 for r in edu), 3),
     'schoolsBreakdown': {DD: {'bma': 3, 'obec': 5}, PT: {'bma': 7, 'obec': 3}},
-    'teachersNeeded': 88,
-    'teacherSalary': {'monthly': 18220, 'annualTotal88': 88 * 18220 * 12, 'note': 'ครูผู้ช่วย วุฒิ ป.ตรี 4 ปี (ยังไม่ยืนยันอัตรา กทม.)'},
+    'teachersNeeded': TEACHERS_ADD,
+    'teachersToMedian': TEACHERS_TO_MEDIAN,
+    'studentsPerTeacherAfter': r2(dd_e['students'] / (dd_e['teachers'] + TEACHERS_ADD), 2),
+    'avgTeachersPerSchool': r2(dd_e['teachers'] / dd_e['schools'], 1),
+    'teacherSalary': {'monthly': 18220, 'annualTotal': TEACHERS_ADD * 18220 * 12, 'annualTotalToMedian': TEACHERS_TO_MEDIAN * 18220 * 12,
+                      'note': 'ครูผู้ช่วย วุฒิ ป.ตรี 4 ปี (ยังไม่ยืนยันอัตรา กทม.)'},
     'districts': sorted(edu, key=lambda r: -r['score']),
     'scenarios': edu_scen,
 })
@@ -470,7 +482,7 @@ write('parks', {
 
 # ---------- 8. ฉากทัศน์คะแนนรวม ----------
 print('8) ฉากทัศน์คะแนนรวม (เพิ่มทั้งโรงเรียนและครู)')
-EDU_BOTH = next(s for s in edu_scen if s['addSchools'] == 1 and s['addTeachers'] == 88)['score']
+EDU_BOTH = next(s for s in edu_scen if s['addSchools'] == 1 and s['addTeachers'] == TEACHERS_ADD)['score']
 
 
 def overall_scenario(crime_pts=None, floods=None, edu_score=None, bod_val=None):
@@ -501,21 +513,21 @@ for key, label, kw in CASES:
     scen.append({'key': key, 'label': label, 'crime': kw.get('crime_pts', 17), 'floods': kw.get('floods', 41),
                  'eduScore': kw.get('edu_score', r2(scores[DD]['education'])), 'bod': kw.get('bod_val', 25.81),
                  'score': s, 'rank': rk})
-for sc, want in zip(scen, [(17.35, 50), (19.47, 46), (20.22, 40), (20.56, 39), (21.73, 32)]):
+for sc, want in zip(scen, [(17.35, 50), (19.32, 46), (20.07, 41), (20.42, 40), (21.59, 32)]):
     check(f"ฉากทัศน์ {sc['label']}", (sc['score'], sc['rank']), want)
 
 base_o = TBL[DD]['overall']
 steps = [
     ('จุดเสี่ยง 17 → 9 จุด', 'crime', minmax_inv(9, cmin, cmax)),
     ('น้ำท่วม 41 → 29 ครั้ง', 'flood', minmax_inv(29, fmin, fmax)),
-    ('การศึกษา +1 โรงเรียน +88 ครู', 'education', EDU_BOTH),
+    (f'การศึกษา +1 โรงเรียน +{TEACHERS_ADD} ครู', 'education', EDU_BOTH),
 ]
 waterfall = [{'label': 'ตอนนี้', 'value': r2(base_o)}]
 for label, k, new in steps:
     waterfall.append({'label': label, 'topicFrom': r2(scores[DD][k]), 'topicTo': r2(new),
                       'delta': r2((new - scores[DD][k]) / 16, 3)})
 waterfall.append({'label': 'หลังแก้ (ปีแรก ตามเป้า)', 'value': scen[2]['score']})
-check('waterfall รวม', r2(base_o + sum(w.get('delta', 0) for w in waterfall[1:-1])), 20.22, 0.011)
+check('waterfall รวม', r2(base_o + sum(w.get('delta', 0) for w in waterfall[1:-1])), 20.07, 0.011)
 write('scenarios', {
     'note': 'คำนวณจากคะแนนจริง 16 หัวข้อ × 50 เขต สมมติให้เขตอื่นคงที่',
     'cases': scen,

@@ -7,6 +7,9 @@
 - osm_boundary_dindaeng.json : ขอบเขตเขตดินแดง OSM relation 2938031 (Overpass, ODbL)
 - osm_roads_schools.json     : ถนนสายหลัก (motorway/trunk/primary/secondary) และโรงเรียน (amenity=school) ในเขต
 - risk_areas_bma_2567_2568.csv : บัญชีพื้นที่เสี่ยงและพื้นที่อันตราย กทม. สำนักเทศกิจ (data.bangkok.go.th ชุด ced48, encoding cp874)
+- worldpop_5_19_dindaeng.json  : ประชากรอายุ 5–19 ปี (WorldPop 2020 Constrained Age/Sex, ตาราง ~100 ม.)
+                                 ตัดจากไฟล์ประเทศไทย 6 ไฟล์ (tha_{f,m}_{5,10,15}_2020_constrained.tif) รวมกัน
+                                 ไฟล์ใหญ่ไม่เก็บใน repo · ดาวน์โหลดได้จาก data.worldpop.org
 
 ขั้นตอน
 1. ต่อเส้นขอบเขต (stitch) ให้เป็นวงปิด
@@ -140,6 +143,9 @@ road_labels = [{'name': n.replace('ถนน', 'ถ.'), 'x': x, 'y': y, 'angle':
                for n, (L, x, y, a) in sorted(label_cand.items(), key=lambda kv: -kv[1][0]) if L > 60]
 print(f'  · ถนน {len(roads)} เส้น · ป้ายชื่อ {len(road_labels)}: {[r["name"] for r in road_labels]}')
 
+# โรงเรียนเอกชน (ผู้ใช้ยืนยันสังกัดเอง 12 พ.ย. จากเว็บโรงเรียน/ฐานข้อมูล สช.) · ที่เหลือยังไม่ได้แยกสังกัด
+PRIVATE_SCHOOLS = {'โรงเรียนนิธิปริญญา', 'โรงเรียนอำนวยพิทยา', 'โรงเรียนจำนงค์พิทยา', 'โรงเรียนแม่พระฟาติมา'}
+
 schools = []
 for e in osm:
     t = e.get('tags', {})
@@ -149,9 +155,11 @@ for e in osm:
     x, y = to_px(c['lon'], c['lat'])
     if not inside(x, y):
         continue
-    schools.append({'name': t.get('name') or t.get('name:en') or '(ไม่มีชื่อใน OSM)', 'x': x, 'y': y,
-                    'lat': c['lat'], 'lng': c['lon'], 'osm': f"{e['type']}/{e['id']}"})
-print(f'  · โรงเรียนใน OSM ภายในขอบเขต {len(schools)} แห่ง (ยังไม่แยกสังกัด ดัชนีนับ 8 แห่ง)')
+    name = t.get('name') or t.get('name:en') or '(ไม่มีชื่อ)'
+    schools.append({'name': name, 'x': x, 'y': y, 'lat': c['lat'], 'lng': c['lon'], 'osm': f"{e['type']}/{e['id']}",
+                    'private': name in PRIVATE_SCHOOLS})
+print(f'  · โรงเรียนใน OSM ภายในขอบเขต {len(schools)} แห่ง (ดัชนีนับ 8 แห่ง)')
+check('โรงเรียนเอกชนที่ยืนยันแล้วอยู่บนแผนที่ครบ', sorted(x['name'] for x in schools if x['private']), sorted(PRIVATE_SCHOOLS))
 
 # ---------- 3. จุดเสี่ยง ----------
 print('3) จุดเสี่ยง (สำนักเทศกิจ)')
@@ -231,6 +239,26 @@ for c in coords:
 flood_pts.sort(key=lambda p: -p['count'])
 print(f"  · วางบนแผนที่ {sum('x' in p for p in flood_pts)} จุด รวม {sum(p['count'] for p in flood_pts if 'x' in p)} จาก {sum(p['count'] for p in flood_pts)} ครั้ง")
 
+# ---------- 5. ความหนาแน่นเด็กอายุ 5–19 ปี (WorldPop) ----------
+print('5) ประชากรเด็ก 5–19 ปี (WorldPop 2020)')
+wp = json.loads((RAW / 'worldpop_5_19_dindaeng.json').read_text())
+cell, lon_o, lat_o = wp['cell'], wp['origin']['lon'], wp['origin']['lat']
+kids_cells, kids_inside = [], 0.0
+for r, row in enumerate(wp['values']):
+    for c, v in enumerate(row):
+        if v <= 0:
+            continue
+        xa, ya = to_px(lon_o + c * cell, lat_o - r * cell)  # มุมซ้ายบนของช่อง
+        xb, yb = to_px(lon_o + (c + 1) * cell, lat_o - (r + 1) * cell)
+        cx, cy = (xa + xb) / 2, (ya + yb) / 2
+        if inside(cx, cy):
+            kids_inside += v
+        if -50 < cx < W + 50 and -50 < cy < H + 50:  # เก็บช่องรอบเขตด้วย แผนที่จะตัดขอบให้เอง
+            kids_cells.append([round(xa, 1), round(ya, 1), round(xb - xa, 1), round(yb - ya, 1), round(v, 1)])
+kids_max = max(c[4] for c in kids_cells)
+print(f'  · เด็ก 5–19 ปีในเขต (ประมาณ) {kids_inside:,.0f} คน · ช่องละสูงสุด {kids_max:.0f} คน · {len(kids_cells)} ช่อง')
+check('เด็ก 5–19 ปีในเขตอยู่ในช่วงที่สมเหตุสมผล (5,000–30,000)', 5000 < kids_inside < 30000, True)
+
 if ERRORS:
     print(f'\n✗ ตรวจไม่ผ่าน {len(ERRORS)} รายการ: {ERRORS}\n  ไม่ได้เขียน {OUT.name}')
     sys.exit(1)
@@ -252,8 +280,15 @@ OUT.write_text(json.dumps({
         'note': 'ตำแหน่งโดยประมาณ หาจากชื่อถนน/ซอย/สถานที่อ้างอิงใน OSM (ข้อมูลต้นทางไม่มีพิกัด) · 1 จุดไม่ระบุตำแหน่ง',
         'points': flood_pts,
     },
+    'kids': {
+        'source': 'WorldPop 2020 Constrained Age/Sex structures · อายุ 5–19 ปี · ตาราง ~100 ม. (data.worldpop.org)',
+        'note': 'ประมาณการจากแบบจำลอง ไม่ใช่ที่อยู่นักเรียนจริง · ปี 2020 (2563)',
+        'total': round(kids_inside),
+        'max': round(kids_max, 1),
+        'cells': kids_cells,  # [x, y, w, h, คน]
+    },
     'schools': {
-        'note': 'จาก OSM (amenity=school) รวมทุกสังกัด ยังไม่ได้แยกว่าแห่งไหนเป็น กทม./สพฐ./เอกชน',
+        'note': 'จาก OSM (amenity=school) · private = โรงเรียนเอกชนที่ยืนยันแล้ว 4 แห่ง ที่เหลือยังไม่แยก กทม./สพฐ.',
         'items': schools,
     },
 }, ensure_ascii=False, indent=1), encoding='utf-8')

@@ -6,6 +6,7 @@ import Wastewater from './slides/03-wastewater/Slide.jsx'
 import EducationScore from './slides/05-education-score/Slide.jsx'
 import Schools from './slides/06-schools/Slide.jsx'
 import RiskPoints from './slides/07-risk-points/Slide.jsx'
+import RiskFix from './slides/07b-risk-fix/Slide.jsx'
 import PocketParks from './slides/08-pocket-parks/Slide.jsx'
 import ParkGap from './slides/09-park-gap/Slide.jsx'
 import Summary from './slides/10-summary/Slide.jsx'
@@ -20,6 +21,7 @@ const slides = [
   { id: '05-education-score', Component: EducationScore },
   { id: '06-schools', Component: Schools },
   { id: '07-risk-points', Component: RiskPoints },
+  { id: '07b-risk-fix', Component: RiskFix },
   { id: '08-pocket-parks', Component: PocketParks },
   { id: '09-park-gap', Component: ParkGap },
   { id: '10-summary', Component: Summary },

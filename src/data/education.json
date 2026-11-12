@@ -12,10 +12,14 @@
    "obec": 3
   }
  },
- "teachersNeeded": 88,
+ "teachersNeeded": 50,
+ "teachersToMedian": 88,
+ "studentsPerTeacherAfter": 21.1,
+ "avgTeachersPerSchool": 64.8,
  "teacherSalary": {
   "monthly": 18220,
-  "annualTotal88": 19240320,
+  "annualTotal": 10932000,
+  "annualTotalToMedian": 19240320,
   "note": "ครูผู้ช่วย วุฒิ ป.ตรี 4 ปี (ยังไม่ยืนยันอัตรา กทม.)"
  },
  "districts": [
@@ -585,15 +589,15 @@
   },
   {
    "addSchools": 0,
-   "addTeachers": 88,
-   "score": 11.83,
-   "rank": 29
+   "addTeachers": 50,
+   "score": 9.54,
+   "rank": 43
   },
   {
    "addSchools": 1,
-   "addTeachers": 88,
-   "score": 12.35,
-   "rank": 26
+   "addTeachers": 50,
+   "score": 10.05,
+   "rank": 42
   }
  ]
 }

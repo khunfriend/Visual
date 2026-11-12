@@ -57,7 +57,7 @@ export default function AppendixParks() {
           <Stat label="พื้นที่สีเขียวต้องเพิ่ม" value={`${fmt.dec(gap.greenTimes)}×`} sub={`จาก ${fmt.dec(dd.greenPerCapita)} เป็น ${fmt.dec(parks.medianGreenPerCapita)} ตร.ม./คน`} />
           <Stat label="สวนที่เข้าถึงได้ต้องเพิ่ม" value={fmt.int(gap.accessibleM2)} unit="ตร.ม." sub={`จาก ${fmt.dec(dd.accessiblePerCapita)} เป็น ${fmt.dec(parks.medianAccessiblePerCapita)} ตร.ม./คน`} />
           <Stat label="เท่ากับ Pocket Park" value={fmt.int(gap.pocketParks300m2)} unit="แห่ง" sub="แห่งละ 300 ตร.ม." />
-          <p className={s.note}>ข้อเสนอหลักจึงใช้สวนหย่อมเพื่อลดจุดเสี่ยง (สไลด์ 7) แทนการไล่คะแนนสวน</p>
+          <p className={s.note}>ข้อเสนอหลักจึงใช้สวนหย่อมเพื่อลดจุดเสี่ยง (สไลด์ 8) แทนการไล่คะแนนสวน</p>
         </div>
       </div>
     </SlideFrame>

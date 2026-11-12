@@ -16,7 +16,8 @@ const ASK = {
     { topic: 'น้ำท่วม', detail: 'ล้างท่อจุดท่วมซ้ำซาก · สำรวจท่อ · ถังดักไขมันตลาด 4 แห่ง', amount: null },
     { topic: 'น้ำเสีย', detail: 'สำรวจและออกแบบระบบรวบรวมน้ำเสีย', amount: null },
     { topic: 'การศึกษา', detail: `ครู ${ed.teachersNeeded} คน + โรงเรียน 1 แห่ง`, amount: null },
-    { topic: 'จุดเสี่ยง', detail: 'ไฟส่องสว่าง · กล้อง CCTV · Pocket Park', amount: null },
+    // ประมาณการจากหน้า 7 (แก้จุดเสี่ยง) · ไม่ใช่ราคากลาง ดู ข้อมูลรวม
+    { topic: 'จุดเสี่ยง', detail: 'CCTV · ไฟ LED · อาสาจราจร · ปรับที่รกร้าง (ประมาณการ)', amount: 3.53 },
   ],
 }
 const PENDING = '[รอยอด]'
@@ -42,14 +43,14 @@ const dd = ed.districts.find((d) => d.name === 'ดินแดง')
 const KPI = [
   { name: 'จุดเสี่ยง', now: `${now.crime} จุด`, goal: `${target.crime} จุด` },
   { name: 'น้ำท่วมขังบนถนนสายหลัก', now: `${now.floods} ครั้ง`, goal: `${target.floods} ครั้ง` },
-  { name: 'นักเรียนต่อครู', now: fmt.dec(dd.studentsPerTeacher, 1), goal: fmt.dec(ed.medianStudentsPerTeacher, 1) },
+  { name: 'นักเรียนต่อครู', now: fmt.dec(dd.studentsPerTeacher, 1), goal: fmt.dec(ed.studentsPerTeacherAfter, 1) },
   { name: 'BOD คลอง (ระยะยาว)', now: `${fmt.dec(now.bod)} มก./ล.`, goal: `${wastewater.standard} มก./ล.` },
 ]
 
 export default function Summary() {
   return (
     <SlideFrame
-      kicker="09 · สรุปผล"
+      kicker="10 · สรุปผล"
       title={`ขอเพิ่ม ${ASK.total ? fmt.dec(ASK.total, 1) : PENDING} ล้านบาท คะแนนรวมขึ้นจาก ${fmt.dec(now.score)} เป็น ${fmt.dec(target.score)} อันดับ ${now.rank} เป็น ${target.rank}`}
       subtitle={`ปีแรก กรณีตามเป้า · วัดผลด้วย Bangkok Index ปีถัดไป · ระยะยาวถ้า BOD ลดถึงมาตรฐาน อันดับขึ้นถึง ${scenarios.cases.find((c) => c.key === 'longterm').rank}`}
       source={`คำนวณจากคะแนนจริงของ Bangkok Index 2025 ทั้ง 16 หัวข้อ × 50 เขต โดยสมมติให้เขตอื่นคงที่ · คะแนนรวม = ค่าเฉลี่ย 16 หัวข้อ · แกนกราฟซ้ายเริ่มที่ ${Y0}`}
@@ -115,7 +116,7 @@ export default function Summary() {
                     <b>{it.topic}</b>
                     <small>{it.detail}</small>
                   </span>
-                  <span className={`${s.amount} num`}>{it.amount != null ? `${fmt.dec(it.amount, 1)} ล้าน` : PENDING}</span>
+                  <span className={`${s.amount} num`}>{it.amount != null ? `${fmt.dec(it.amount, 2)} ล้าน` : PENDING}</span>
                 </li>
               ))}
               <li className={s.askTotal}>
