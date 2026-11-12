@@ -6,3 +6,54 @@
   grid-template-columns: 1.5fr 1fr;
   gap: 64px;
 }
+
+/* แท่งเทียบมาตรฐาน (การ์ดขวา) */
+.barWrap {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.barSvg {
+  width: 100%;
+  height: auto;
+  font-family: var(--font);
+}
+
+.barTip {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  pointer-events: none;
+}
+
+/* การ์ดขวาโผล่หลังกดแท่งดินแดง */
+.reveal {
+  display: flex;
+  min-height: 0;
+  will-change: transform, opacity;
+}
+
+.reveal > * {
+  flex: 1;
+}
+
+
+/* ก่อนกด: บอกใบ้เบา ๆ */
+.hint {
+  align-self: center;
+  justify-self: center;
+  font-size: var(--fs-label);
+  color: var(--c-textFaint);
+}
+
+/* แท่งดินแดงกดได้ */
+.clickable {
+  cursor: pointer;
+}
+
+/* ไม่ให้กรอบโฟกัสขึ้นตอนกดกราฟ */
+.grid :global(.recharts-surface):focus {
+  outline: none;
+}

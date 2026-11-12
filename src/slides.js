@@ -3,7 +3,6 @@
 import WhyDindaeng from './slides/01-why-dindaeng/Slide.jsx'
 import Flood from './slides/02-flood/Slide.jsx'
 import Wastewater from './slides/03-wastewater/Slide.jsx'
-import Education from './slides/04-education/Slide.jsx'
 import EducationScore from './slides/05-education-score/Slide.jsx'
 import Schools from './slides/06-schools/Slide.jsx'
 import RiskPoints from './slides/07-risk-points/Slide.jsx'
@@ -18,7 +17,6 @@ const slides = [
   { id: '01-why-dindaeng', Component: WhyDindaeng },
   { id: '02-flood', Component: Flood },
   { id: '03-wastewater', Component: Wastewater },
-  { id: '04-education', Component: Education },
   { id: '05-education-score', Component: EducationScore },
   { id: '06-schools', Component: Schools },
   { id: '07-risk-points', Component: RiskPoints },

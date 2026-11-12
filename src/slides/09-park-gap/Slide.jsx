@@ -78,7 +78,7 @@ function BrokenBars({ metric }) {
 export default function ParkGap() {
   return (
     <SlideFrame
-      kicker="09 · สวนหย่อม (ต่อ)"
+      kicker="08 · สวนหย่อม (ต่อ)"
       title="ไม่ว่าจะวัดแบบไหน ดินแดงก็ต่ำกว่าค่ากลาง"
       subtitle={`พื้นที่สีเขียว ${fmt.dec(dd.greenPerCapita)} ตร.ม./คน (ค่ากลาง ${fmt.dec(parks.medianGreenPerCapita)}) · สวนที่เข้าถึงได้ ${fmt.dec(dd.accessiblePerCapita)} ตร.ม./คน (ค่ากลาง ${fmt.dec(parks.medianAccessiblePerCapita)})`}
       source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (สวนสาธารณะ 2568); บัญชีพื้นที่เสี่ยง สำนักเทศกิจ 2567–2568 · ค่ากลาง = มัธยฐาน 50 เขต (ใช้แทนค่าเฉลี่ยเพราะไม่กี่เขตที่สูงมากดึงค่าเฉลี่ยขึ้น) · แท่งปทุมวันสูงเกินกรอบจึงแสดงเต็มกรอบ ตัวเลขบนแท่งคือค่าจริง"
@@ -116,7 +116,7 @@ export default function ParkGap() {
             ))}
           </ul>
           <p className={s.whyText}>
-            {parkRisk.length} จาก {map.risk.points.length} จุดเสี่ยงอยู่ในสวนเอง ปรับปรุงสวนเดิมให้สว่างและมีคนใช้ และเปลี่ยนที่รกร้างเป็นสวนหย่อม ลดจุดเสี่ยงได้โดยตรง (หมายเลขตรงกับสไลด์ 7)
+            {parkRisk.length} จาก {map.risk.points.length} จุดเสี่ยงอยู่ในสวนเอง ปรับปรุงสวนเดิมให้สว่างและมีคนใช้ และเปลี่ยนที่รกร้างเป็นสวนหย่อม ลดจุดเสี่ยงได้โดยตรง (หมายเลขตรงกับสไลด์ 6)
           </p>
         </aside>
       </div>
