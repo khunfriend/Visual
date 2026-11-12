@@ -3,8 +3,25 @@
   flex: 1;
   min-height: 0;
   display: grid;
+  grid-template-columns: 1fr 0fr; /* ตอนแรกกราฟ 50 เขตเต็มหน้า */
+  gap: 0;
+  transition: grid-template-columns 0.45s cubic-bezier(0.16, 1, 0.3, 1), column-gap 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.grid.open {
   grid-template-columns: 1.5fr 1fr;
-  gap: 64px;
+  column-gap: 64px;
+}
+
+.side {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+
+.side > * {
+  flex: 1;
+  min-width: 0;
 }
 
 /* แท่งรายจุดตรวจ (การ์ดขวา) */
@@ -101,12 +118,6 @@
 
 
 /* ก่อนกด: บอกใบ้เบา ๆ */
-.hint {
-  align-self: center;
-  justify-self: center;
-  font-size: var(--fs-label);
-  color: var(--c-textFaint);
-}
 
 /* แท่งดินแดงกดได้ */
 .clickable {

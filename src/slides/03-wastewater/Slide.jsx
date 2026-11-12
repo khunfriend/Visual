@@ -86,7 +86,7 @@ function GrowFrom({ from, closing, onClosed, children }) {
     const el = ref.current
     if (!el || !from) return
     const r = el.getBoundingClientRect()
-    const k = r.width / el.offsetWidth || 1 // สเกลของเวที 1920×1080 ที่ย่อให้พอดีจอ
+    const k = r.height / el.offsetHeight || 1 // สเกลของเวที 1920×1080 ที่ย่อให้พอดีจอ (ใช้ความสูง เพราะความกว้างกำลังขยายอยู่)
     el.style.transformOrigin = `${(from.x + from.width / 2 - r.left) / k}px ${(from.y + from.height / 2 - r.top) / k}px`
     const small = { transform: 'scale(0.03)', opacity: 0 }
     const full = { transform: 'scale(1)', opacity: 1 }
@@ -118,10 +118,10 @@ export default function Wastewater() {
       title="น้ำในคลองดินแดงแย่อันดับ 49 ทั้งที่มีโรงบำบัดใหญ่ที่สุดของกรุงเทพฯ"
       source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (น้ำเสีย: ค่าเฉลี่ยคุณภาพคลองปี 2540–2567, สำนักการระบายน้ำ); จุดตรวจรายจุด: data.bangkok.go.th ชุด waterquality ม.ค.–เม.ย. 2566 · BOD ยิ่งสูงยิ่งเน่า · มาตรฐานคุณภาพน้ำในคลอง 15 มก./ล."
     >
-      <div className={s.grid}>
+      <div className={`${s.grid} ${std && !std.closing ? s.open : ''}`}>
         <ChartCard
           title="BOD เฉลี่ยของคลอง 50 เขต"
-          note={`เรียงจากน้ำดีไปน้ำแย่ · ${exceed} เขตเกินมาตรฐาน`}
+          note={`เรียงจากน้ำดีไปน้ำแย่ · ${exceed} เขตเกินมาตรฐาน${std ? '' : ' · กดแท่งดินแดงเพื่อดูจุดตรวจน้ำในเขต'}`}
           legend={[
             { label: 'ดินแดง', color: color.dindaeng },
             { label: 'เขตข้างเคียง', color: color.neighbor },
@@ -159,7 +159,9 @@ export default function Wastewater() {
           </ResponsiveContainer>
         </ChartCard>
 
-        {std ? (
+        {/* คอลัมน์ขวา: ตอนแรกกว้าง 0 (กราฟ 50 เขตเต็มหน้า) · กดแท่งดินแดงแล้วกราฟซ้ายหดและการ์ดนี้ขยายออกมา */}
+        <div className={s.side}>
+        {std && (
         <GrowFrom from={std.from} closing={std.closing} onClosed={() => setStd(null)}>
         <ChartCard
           title={`${doZero} ใน ${stations.length} จุดตรวจในดินแดง น้ำไม่มีออกซิเจนเลย`}
@@ -173,9 +175,8 @@ export default function Wastewater() {
           <StationBars />
         </ChartCard>
         </GrowFrom>
-        ) : (
-          <div className={s.hint}>กดที่แท่งดินแดง เพื่อดูจุดตรวจน้ำในเขต</div>
         )}
+        </div>
       </div>
     </SlideFrame>
   )
