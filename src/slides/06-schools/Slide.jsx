@@ -93,7 +93,7 @@ export default function Schools() {
   )
   return (
     <SlideFrame
-      kicker="05 · เพิ่มโรงเรียนและครู"
+      kicker="06 · เพิ่มโรงเรียนและครู"
       title={`มีโรงเรียนต้องมีครู: เพิ่มโรงเรียน 1 แห่งและครู ${ed.teachersNeeded} คน คะแนนการศึกษาขึ้นเป็น ${fmt.dec(both.score)}`}
       subtitle={`อันดับการศึกษาขยับจาก ${now.rank} เป็นราว ${both.rank} · เพิ่มโรงเรียนอย่างเดียวอันดับไม่ขยับ เพราะตัวชี้วัดที่ฉุดคือนักเรียนต่อครู`}
       source={`คำนวณจากสูตร Bangkok Index 2025 (การศึกษา = เฉลี่ยคะแนนโรงเรียนต่อเด็ก 1,000 คน กับนักเรียนต่อครู) โดยสมมติให้เขตอื่นคงที่ · ตำแหน่งโรงเรียนและแผนที่ฐาน © OpenStreetMap contributors · โรงเรียนเอกชน 4 แห่งยืนยันสังกัดจากเว็บโรงเรียน/สช. · เงินเดือนครูผู้ช่วย ${fmt.int(salary.monthly)} บาท/เดือน ยังไม่ยืนยันอัตรา กทม.`}
@@ -169,14 +169,8 @@ export default function Schools() {
           <Stat label="สร้างโรงเรียน 1 แห่ง" value="[รอข้อมูล]" sub="ค่าก่อสร้างและที่ดิน" />
           <p className={s.note}>
             ครู {fmt.int(dd.teachers)} → {fmt.int(dd.teachers + ed.teachersNeeded)} คน นักเรียนต่อครูลดจาก {fmt.dec(dd.studentsPerTeacher, 1)} เหลือ{' '}
-            {fmt.dec(ed.studentsPerTeacherAfter, 1)} (ค่ากลาง {fmt.dec(ed.medianStudentsPerTeacher, 1)} ต้องเพิ่ม {ed.teachersToMedian} คน)
+            {fmt.dec(ed.studentsPerTeacherAfter, 1)}
           </p>
-          <h2 className={s.blockTitle}>ทำไม {ed.teachersNeeded} คน ไม่ใช่ {ed.teachersToMedian}</h2>
-          <ul className={s.why}>
-            <li>ประหยัด {fmt.mb(salary.annualTotalToMedian - salary.annualTotal, 1)} ล้าน/ปี แต่อันดับรวมเป้าปีแรกตกแค่ 1 อันดับ</li>
-            <li>พอดีกับโรงเรียนใหม่ 1 แห่ง (ครูเฉลี่ย {fmt.dec(ed.avgTeachersPerSchool, 0)} คน/โรงเรียน)</li>
-            <li>เขตจ้างได้เฉพาะโรงเรียนสังกัด กทม. ไม่ใช่ทั้ง {dd.schools} แห่ง</li>
-          </ul>
         </div>
       </div>
     </SlideFrame>

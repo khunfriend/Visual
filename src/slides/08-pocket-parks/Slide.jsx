@@ -32,7 +32,7 @@ function Dot({ cx, cy, payload }) {
 export default function PocketParks() {
   return (
     <SlideFrame
-      kicker="08 · สวนหย่อม"
+      kicker="09 · สวนหย่อม"
       title={`คะแนนสวนอันดับ ${parkRank} แต่การไล่คะแนนสวนไม่คุ้ม สวนหย่อมควรใช้แก้จุดเสี่ยง`}
       subtitle={`พื้นที่สีเขียว ${fmt.dec(dd.greenPerCapita)} ตร.ม./คน (มัธยฐาน ${fmt.dec(parks.medianGreenPerCapita)}) · ${parkRisk.length} จาก ${map.risk.points.length} จุดเสี่ยงอยู่ในสวนหรือสวนหย่อม`}
       source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (สวนสาธารณะ 2568, เฉพาะสวนที่สำนักงานสวนสาธารณะดูแล); บัญชีพื้นที่เสี่ยง สำนักเทศกิจ 2567–2568 · Pocket Park คิดแห่งละ 300 ตร.ม."
@@ -90,7 +90,7 @@ export default function PocketParks() {
                 </li>
               ))}
             </ul>
-            <p className={s.note}>ปรับปรุงสวนเดิมให้สว่างและมีคนใช้ และเปลี่ยนที่รกร้างเป็นสวนหย่อม ลดจุดเสี่ยงได้โดยตรง (หมายเลขตรงกับสไลด์ 6)</p>
+            <p className={s.note}>ปรับปรุงสวนเดิมให้สว่างและมีคนใช้ และเปลี่ยนที่รกร้างเป็นสวนหย่อม ลดจุดเสี่ยงได้โดยตรง (หมายเลขตรงกับสไลด์ 7)</p>
           </section>
         </div>
       </div>

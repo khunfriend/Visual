@@ -114,7 +114,7 @@ export default function Wastewater() {
   }
   return (
     <SlideFrame
-      kicker="03 · น้ำเสีย"
+      kicker="04 · น้ำเสีย"
       title="น้ำในคลองดินแดงแย่อันดับ 49 ทั้งที่มีโรงบำบัดใหญ่ที่สุดของกรุงเทพฯ"
       source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (น้ำเสีย: ค่าเฉลี่ยคุณภาพคลองปี 2540–2567, สำนักการระบายน้ำ); จุดตรวจรายจุด: data.bangkok.go.th ชุด waterquality ม.ค.–เม.ย. 2566 · BOD ยิ่งสูงยิ่งเน่า · มาตรฐานคุณภาพน้ำในคลอง 15 มก./ล."
     >

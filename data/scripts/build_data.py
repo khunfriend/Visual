@@ -265,6 +265,20 @@ hotspots = [{'spot': r['จุด'], 'count': int(r['ครั้งที่ท
              'lng': float(r['ลองจิจูด (ใส่เอง)']) if r['ลองจิจูด (ใส่เอง)'] else None} for r in hs]
 check('ผลรวมครั้งจากจุดท่วม', sum(h['count'] for h in hotspots), 41)
 
+# บัญชีจุดเสี่ยงน้ำท่วม กทม. 737 จุด (ถอดบทเรียนปี 2565) พร้อมสถานะและโครงการ (ไฟล์ปรับปรุง พ.ย. 2567)
+# คัดเฉพาะแถวที่คอลัมน์เขต = ดินแดง ลง flood_risk_bma_dindaeng.csv ด้วยมือจาก flood_risk_bma_737_status.pdf
+bma = read_csv('flood_risk_bma_dindaeng.csv')
+hs_count = {h['spot']: h['count'] for h in hotspots}
+check('จุดเสี่ยงน้ำท่วม กทม. ในดินแดง', len(bma), 8)
+check('สถานะ เสร็จบางส่วน', sum(r['status'] == 'แก้ไขแล้วเสร็จบางส่วน' for r in bma), 3)
+check('สถานะ อยู่ระหว่างดำเนินการ', sum(r['status'] == 'อยู่ระหว่างดำเนินการแก้ไข' for r in bma), 5)
+check('ชื่อจุดที่จับคู่กับจุดท่วม 2568 มีอยู่จริง', all(r['match_2568'] in hs_count for r in bma if r['match_2568']), True)
+matched = {r['match_2568'] for r in bma if r['match_2568']}
+bma_risk = [{'no': r['no'], 'list': r['list'], 'point': r['point'], 'status': r['status'],
+             'floods2568': hs_count.get(r['match_2568'], 0), 'projects': r['projects'].split(' · ')} for r in bma]
+not_listed = [h for h in hotspots if h['spot'] not in matched]
+check('จุดท่วมบ่อยที่สุดไม่อยู่ในบัญชี กทม.', (not_listed[0]['spot'], not_listed[0]['count']), ('ประชาสุข ซอยอินทามระ 34', 9))
+
 write('flood', {
     'source': 'Bangkok Index 2025: อุทกภัย (น้ำท่วมขังบนถนนสายหลัก 2568); ข้อบัญญัติงบประมาณ กทม. 2568',
     'districts': sorted(fl_rows, key=lambda r: r['floodRank']),
@@ -276,6 +290,11 @@ write('flood', {
     'spearman': r2(rho, 4),
     'spearmanP': 0.97,
     'systemCapacityMm': 60,
+    'bmaRisk': {
+        'source': 'บัญชีจุดเสี่ยงน้ำท่วม 737 จุด (ถอดบทเรียนน้ำท่วมปี 2565) สถานะและโครงการ · กทม. (ไฟล์ปรับปรุง พ.ย. 2567)',
+        'points': bma_risk,
+        'notListed': [{'spot': h['spot'], 'count': h['count']} for h in not_listed],
+    },
     'dindaeng': {
         'events': events, 'days': days, 'hotspots': hotspots,
         'rainPerDayAvg': r2(st.mean(d['rain'] for d in days), 1),

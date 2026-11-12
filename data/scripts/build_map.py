@@ -7,6 +7,7 @@
 - osm_boundary_dindaeng.json : ขอบเขตเขตดินแดง OSM relation 2938031 (Overpass, ODbL)
 - osm_roads_schools.json     : ถนนสายหลัก (motorway/trunk/primary/secondary) และโรงเรียน (amenity=school) ในเขต
 - risk_areas_bma_2567_2568.csv : บัญชีพื้นที่เสี่ยงและพื้นที่อันตราย กทม. สำนักเทศกิจ (data.bangkok.go.th ชุด ced48, encoding cp874)
+- bangkok_districts.geojson    : เส้นเขต 50 เขตกรุงเทพฯ จาก chingchai/OpenGISData-Thailand (CC BY 4.0) ตัดเฉพาะ pro_code 10
 - worldpop_5_19_dindaeng.json  : ประชากรอายุ 5–19 ปี (WorldPop 2020 Constrained Age/Sex, ตาราง ~100 ม.)
                                  ตัดจากไฟล์ประเทศไทย 6 ไฟล์ (tha_{f,m}_{5,10,15}_2020_constrained.tif) รวมกัน
                                  ไฟล์ใหญ่ไม่เก็บใน repo · ดาวน์โหลดได้จาก data.worldpop.org
@@ -259,6 +260,37 @@ kids_max = max(c[4] for c in kids_cells)
 print(f'  · เด็ก 5–19 ปีในเขต (ประมาณ) {kids_inside:,.0f} คน · ช่องละสูงสุด {kids_max:.0f} คน · {len(kids_cells)} ช่อง')
 check('เด็ก 5–19 ปีในเขตอยู่ในช่วงที่สมเหตุสมผล (5,000–30,000)', 5000 < kids_inside < 30000, True)
 
+# ---------- 6. แผนที่กรุงเทพฯ 50 เขต (ใช้ในสไลด์ 1) ----------
+print('6) แผนที่กรุงเทพฯ 50 เขต')
+bk = json.loads((RAW / 'bangkok_districts.geojson').read_text())['features']
+check('จำนวนเขตกรุงเทพฯ', len(bk), 50)
+allpts = [pt for f in bk for poly in f['geometry']['coordinates'] for ringc in poly for pt in ringc]
+blat0 = sum(p[1] for p in allpts) / len(allpts)
+bkx = math.cos(math.radians(blat0))
+bx0, bx1 = min(p[0] for p in allpts) * bkx, max(p[0] for p in allpts) * bkx
+by0, by1 = -max(p[1] for p in allpts), -min(p[1] for p in allpts)
+BW, BPAD = 800, 8
+bS = (BW - 2 * BPAD) / (bx1 - bx0)
+BH = round((by1 - by0) * bS + 2 * BPAD)
+
+
+def bpx(lon, lat):
+    return round((lon * bkx - bx0) * bS + BPAD, 1), round((-lat - by0) * bS + BPAD, 1)
+
+
+bkk_districts = []
+for f in bk:
+    d = ''
+    sx = sy = n = 0
+    for poly in f['geometry']['coordinates']:
+        for ringc in poly:
+            pts = [bpx(*pt) for pt in ringc]
+            d += 'M' + ' L'.join(f'{x},{y}' for x, y in pts) + ' Z '
+            for x, y in pts:
+                sx, sy, n = sx + x, sy + y, n + 1
+    bkk_districts.append({'name': f['properties']['amp_th'], 'd': d.strip(), 'cx': round(sx / n, 1), 'cy': round(sy / n, 1)})
+print(f'  · viewBox {BW}×{BH} · {sum(len(x["d"]) for x in bkk_districts) / 1024:.0f} KB path')
+
 if ERRORS:
     print(f'\n✗ ตรวจไม่ผ่าน {len(ERRORS)} รายการ: {ERRORS}\n  ไม่ได้เขียน {OUT.name}')
     sys.exit(1)
@@ -279,6 +311,11 @@ OUT.write_text(json.dumps({
     'flood': {
         'note': 'ตำแหน่งโดยประมาณ หาจากชื่อถนน/ซอย/สถานที่อ้างอิงใน OSM (ข้อมูลต้นทางไม่มีพิกัด) · 1 จุดไม่ระบุตำแหน่ง',
         'points': flood_pts,
+    },
+    'bangkok': {
+        'source': 'เส้นเขต: OpenGISData-Thailand (chingchai) CC BY 4.0',
+        'viewBox': [0, 0, BW, BH],
+        'districts': bkk_districts,
     },
     'kids': {
         'source': 'WorldPop 2020 Constrained Age/Sex structures · อายุ 5–19 ปี · ตาราง ~100 ม. (data.worldpop.org)',

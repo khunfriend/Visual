@@ -2,6 +2,7 @@
 // สไลด์หลักได้เลขหน้า 1, 2, 3 … ตามลำดับ ภาคผนวก (appendix: true) ได้ A1, A2 … และต้องอยู่ท้ายสุด
 import WhyDindaeng from './slides/01-why-dindaeng/Slide.jsx'
 import Flood from './slides/02-flood/Slide.jsx'
+import FloodFix from './slides/02b-flood-fix/Slide.jsx'
 import Wastewater from './slides/03-wastewater/Slide.jsx'
 import EducationScore from './slides/05-education-score/Slide.jsx'
 import Schools from './slides/06-schools/Slide.jsx'
@@ -17,6 +18,7 @@ import AppendixLimits from './slides/A3-appendix-limits/Slide.jsx'
 const slides = [
   { id: '01-why-dindaeng', Component: WhyDindaeng },
   { id: '02-flood', Component: Flood },
+  { id: '02b-flood-fix', Component: FloodFix },
   { id: '03-wastewater', Component: Wastewater },
   { id: '05-education-score', Component: EducationScore },
   { id: '06-schools', Component: Schools },

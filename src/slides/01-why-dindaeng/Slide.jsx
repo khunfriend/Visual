@@ -1,9 +1,10 @@
 import {
-  Bar, BarChart, CartesianGrid, Cell, LabelList, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis,
+  Bar, BarChart, CartesianGrid, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts'
+import { useState } from 'react'
 import SlideFrame from '../../components/SlideFrame.jsx'
-import { ChartCard, DD, PT, Stat, SvgLabel, TipBox, axisCommon, districtColor, fmt, gridProps } from '../../components/charts/kit.jsx'
-import { budget, index } from '../../lib/data.js'
+import { ChartCard, DD, PT, Stat, SvgLabel, TipBox, axisCommon, fmt, gridProps } from '../../components/charts/kit.jsx'
+import { budget, index, map } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
 import s from './style.module.css'
 
@@ -40,6 +41,57 @@ const budgetRows = [
   { name: shortName[drain.name], pct: drain[`${DD}_pct`], drain: true },
 ]
 
+// ---- แผนที่คะแนนรวม: เขตอื่นไล่เฉดเทา (อ่อน = คะแนนต่ำ, เข้ม = สูง) · ดินแดงส้ม ปทุมวันฟ้า ----
+const byName = Object.fromEntries(overall.map((d) => [d.name, d]))
+const sMin = Math.min(...overall.map((d) => d.overall))
+const sMax = Math.max(...overall.map((d) => d.overall))
+const hex = (h) => [1, 3, 5].map((k) => parseInt(h.slice(k, k + 2), 16))
+const [lo, hi] = [hex(color.grid), hex(color.reference)]
+const shade = (v) => {
+  const t = (v - sMin) / (sMax - sMin)
+  return `rgb(${lo.map((c, k) => Math.round(c + (hi[k] - c) * t)).join(',')})`
+}
+const fillOf = (name) => (name === DD ? color.dindaeng : name === PT ? color.pathumwan : shade(byName[name].overall))
+const bkk = map.bangkok
+
+function BangkokMap() {
+  const [hover, setHover] = useState(null)
+  const [, , W, H] = bkk.viewBox
+  const label = (name, dx, anchor, dy = 0) => {
+    const d = bkk.districts.find((x) => x.name === name)
+    return (
+      <text x={d.cx + dx} y={d.cy + dy} dy="0.35em" textAnchor={anchor} fontSize={24} fontWeight={700} fill={color.text}
+        stroke={color.surface} strokeWidth={5} paintOrder="stroke" pointerEvents="none" style={{ fontFamily: 'var(--font)' }}>
+        {name} {fmt.dec(byName[name].overall)}
+      </text>
+    )
+  }
+  return (
+    <div className={s.mapWrap}>
+      <svg viewBox={`0 0 ${W} ${H}`} className={s.mapSvg} role="img" aria-label="แผนที่คะแนนรวม 50 เขต">
+        {bkk.districts.map((d) => (
+          <path key={d.name} d={d.d} fill={fillOf(d.name)} stroke={hover?.name === d.name ? color.text : color.surface}
+            strokeWidth={hover?.name === d.name ? 2.5 : 1} fillRule="evenodd"
+            onMouseEnter={() => setHover(d)} onMouseLeave={() => setHover(null)} />
+        ))}
+        {label(DD, 22, 'start', -18)}
+        {label(PT, 22, 'start', 20)}
+      </svg>
+      <div className={s.mapKey}>
+        <span>คะแนนต่ำ {fmt.dec(sMin)}</span>
+        <i style={{ background: `linear-gradient(90deg, ${color.grid}, ${color.reference})` }} />
+        <span>สูง {fmt.dec(sMax)}</span>
+      </div>
+      {hover && (
+        <div className={s.mapTip} style={{ left: `${(hover.cx / W) * 100}%`, top: `${(hover.cy / H) * 100}%` }}>
+          <TipBox active payload={[{ payload: byName[hover.name] }]}
+            render={(r) => ({ title: `${r.name} · อันดับ ${r.rank}`, rows: [['คะแนนรวม', fmt.dec(r.overall)]] })} />
+        </div>
+      )}
+    </div>
+  )
+}
+
 const dDD = budget.districts[DD]
 const dPT = budget.districts[PT]
 
@@ -48,46 +100,18 @@ export default function WhyDindaeng() {
     <SlideFrame
       kicker="01 · ทำไมต้องเป็นเขตดินแดง"
       title="ดินแดงอยู่อันดับ 50 จาก 50 เขต ไม่ใช่เพราะแย่ด้านเดียว แต่ต่ำกว่าค่ากลางทุกด้าน"
-      source="ที่มา: Bangkok Index 2025 – Rocket Media Lab; ข้อบัญญัติงบประมาณ กทม. 2568 · คะแนน 1–50 ยิ่งมากยิ่งดี"
+      source="ที่มา: Bangkok Index 2025 – Rocket Media Lab; ข้อบัญญัติงบประมาณ กทม. 2568 · คะแนน 1–50 ยิ่งมากยิ่งดี · เส้นเขต: OpenGISData-Thailand (CC BY 4.0)"
     >
       <div className={s.grid}>
-        {/* ---- คะแนนรวม 50 เขต ---- */}
+        {/* ---- คะแนนรวม 50 เขต (แผนที่) ---- */}
         <ChartCard
           title="คะแนนรวม 50 เขต"
           legend={[
-            { label: 'ดินแดง', color: color.dindaeng },
+            { label: 'ดินแดง (อันดับ 50)', color: color.dindaeng },
             { label: 'ปทุมวัน (อันดับ 1)', color: color.pathumwan },
-            { label: 'เขตอื่น', color: color.other },
           ]}
         >
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={overall} margin={{ top: 40, right: 8, bottom: 8, left: 0 }} barCategoryGap={2}>
-              <CartesianGrid {...gridProps} />
-              <XAxis dataKey="name" tick={false} axisLine={{ stroke: color.border }} tickLine={false} />
-              <YAxis {...axisCommon} domain={[0, 35]} ticks={[0, 10, 20, 30]} width={44} />
-              <ReferenceLine y={index.medians.overall} stroke={color.reference} strokeDasharray="6 5" strokeWidth={2} />
-              <Tooltip
-                cursor={{ fill: color.grid }}
-                content={<TipBox render={(r) => ({ title: `${r.name} · อันดับ ${r.rank}`, rows: [['คะแนนรวม', fmt.dec(r.overall)]] })} />}
-              />
-              <Bar dataKey="overall" radius={[4, 4, 0, 0]} maxBarSize={24} isAnimationActive={false}>
-                {overall.map((d) => (
-                  <Cell key={d.name} fill={districtColor(d.name)} />
-                ))}
-                <LabelList
-                  dataKey="name"
-                  content={({ x, y, width, value }) =>
-                    value === DD || value === PT ? (
-                      <SvgLabel x={x + width / 2} y={y - 12} anchor={value === DD ? 'end' : 'start'}>
-                        {value} {fmt.dec(value === DD ? dd.overall : pt.overall)}
-                      </SvgLabel>
-                    ) : null
-                  }
-                />
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-          <p className={s.medianTag}>เส้นประ = มัธยฐาน {fmt.dec(index.medians.overall)}</p>
+          <BangkokMap />
         </ChartCard>
 
         {/* ---- 4 ด้าน ---- */}
