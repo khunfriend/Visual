@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, Stat, fmt } from '../../components/charts/kit.jsx'
 import { vacant } from '../../lib/data.js'
@@ -11,20 +12,90 @@ import s from './style.module.css'
 const { groups, total, plan, gapM2 } = vacant
 const pct0 = (v) => `${Math.round(v)}%`
 
+// แปลงที่จะทำก่อน 3 แห่ง (เลขแปลงตามแผนในภาคผนวก A3) เรียงตามที่กลุ่มเลือก
+const FIRST = [3, 1, 6]
+const firstSites = FIRST.map((no) => plan.sites.find((x) => x.no === no))
+const firstArea = firstSites.reduce((a, x) => a + x.areaM2, 0)
+const withMaint = (baht) => baht * (1 + plan.maintenanceRate) // งบ = ค่าก่อสร้าง + ค่าบำรุงรักษา 10%
+const firstBudget = firstSites.reduce((a, x) => a + withMaint(x.buildBaht), 0)
+
+/** ตาราง: จะทำแค่ 3 แห่ง · พื้นที่ · งบ (ค่าก่อสร้าง + บำรุงรักษา) */
+function FirstSites() {
+  return (
+    <table className={s.firstTable}>
+      <caption>
+        จะทำแค่ {firstSites.length} แห่ง
+        <small>งบ = ค่าก่อสร้าง {fmt.int(plan.costPerM2)} บาท/ตร.ม. + ค่าบำรุงรักษา {fmt.int(plan.maintenanceRate * 100)}% · ไม่รวมค่าที่ดิน</small>
+      </caption>
+      <thead>
+        <tr>
+          <th>แปลง</th>
+          <th>พื้นที่ ตร.ม. (% ของที่ต้องเพิ่ม)</th>
+          <th>งบประมาณ (ล้านบาท)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {firstSites.map((x) => (
+          <tr key={x.no}>
+            <td>
+              <span className={s.no} style={{ background: color.vacantGroup[x.group] }}>{x.no}</span>
+              {x.name}
+            </td>
+            <td className="num">
+              {fmt.int(x.areaM2)} <span className={s.pct}>({fmt.dec(x.pctOfGap, 1)}%)</span>
+            </td>
+            <td className="num">{fmt.mb(withMaint(x.buildBaht), 2)}</td>
+          </tr>
+        ))}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>รวม {firstSites.length} แห่ง</td>
+          <td className="num">
+            {fmt.int(firstArea)} <span className={s.pct}>({fmt.dec((firstArea / gapM2) * 100, 1)}%)</span>
+          </td>
+          <td className="num">{fmt.mb(firstBudget, 2)}</td>
+        </tr>
+      </tfoot>
+    </table>
+  )
+}
+
 /** กราฟ 1: ที่ว่างทั้งหมดแยกตามเจ้าของ เทียบกับพื้นที่ที่ต้องเพิ่ม */
 function OwnerBar() {
   const gapPos = (gapM2 / total.areaM2) * 100
+  const [hover, setHover] = useState(null)
+  const h = hover == null ? null : groups[hover]
+  // ตำแหน่งกึ่งกลางของแต่ละสี (% ของความกว้างแท่ง) สำหรับวางกล่องข้อความ
+  const mids = groups.map((g, i) => (groups.slice(0, i).reduce((a, x) => a + x.areaM2, 0) + g.areaM2 / 2) / total.areaM2 * 100)
   return (
     <div className={s.ownerChart}>
       <div className={s.barArea}>
         <span className={s.gapLabel} style={{ left: `${gapPos}%` }}>
           พื้นที่ที่ต้องเพิ่ม {fmt.int(gapM2)} ตร.ม.
         </span>
-        <div className={s.bar}>
-          {groups.map((g) => (
-            <div key={g.owner} style={{ flex: g.areaM2, background: color.vacantOwner[g.owner] }} title={`${g.owner} ${fmt.int(g.areaM2)} ตร.ม.`} />
+        <div className={s.bar} onMouseLeave={() => setHover(null)}>
+          {groups.map((g, i) => (
+            <div
+              key={g.owner}
+              className={`${s.seg} ${hover === i ? s.segOn : ''}`}
+              style={{ flex: g.areaM2, background: color.vacantOwner[g.owner] }}
+              onMouseEnter={() => setHover(i)}
+              onClick={() => setHover(hover === i ? null : i)}
+            />
           ))}
         </div>
+        {h && (
+          <div className={s.tip} style={{ left: `${Math.min(Math.max(mids[hover], 12), 88)}%` }}>
+            <b>
+              {h.owner} <span className="num">{fmt.dec(h.pctOfGap, 1)}%</span>
+            </b>
+            <span>ของพื้นที่ที่ต้องเพิ่ม {fmt.int(gapM2)} ตร.ม.</span>
+            <span>
+              {fmt.int(h.plots)} แปลง · {fmt.int(h.areaM2)} ตร.ม.
+            </span>
+          </div>
+        )}
         <span className={s.gapLine} style={{ left: `${gapPos}%` }} />
       </div>
       <div className={s.ownerLegend}>
@@ -32,20 +103,12 @@ function OwnerBar() {
           <div key={g.owner} className={s.ownerItem}>
             <b>
               <i style={{ background: color.vacantOwner[g.owner] }} />
-              {g.owner} {pct0(g.pctOfGap)}
+              {g.owner}
             </b>
-            <small>{fmt.int(g.plots)} แปลง · {fmt.int(g.areaM2)} ตร.ม.</small>
           </div>
         ))}
-        <div className={`${s.ownerItem} ${s.ownerTotal}`}>
-          <b>รวมทั้งหมด {pct0(total.pctOfGap)}</b>
-          <small>{fmt.int(total.plots)} แปลง · {fmt.int(total.areaM2)} ตร.ม.</small>
-        </div>
       </div>
-      <p className={s.ownerNote}>
-        ที่เอกชนใช้ได้ผ่านการยกเว้นภาษีที่ดิน (ม.8 พ.ร.บ.ภาษีที่ดินฯ 2562) ใช้แค่ราว{' '}
-        <b className="num">{fmt.int(plan.sites.at(-1).areaM2)}</b> ตร.ม. จาก {fmt.int(groups[2].areaM2)} ตร.ม. ก็พอ
-      </p>
+      <FirstSites />
     </div>
   )
 }
@@ -74,7 +137,7 @@ export default function VacantLand() {
           <OwnerBar />
         </ChartCard>
         <aside className={s.side}>
-          <Stat label={`ที่รัฐ + ศาสนสถาน ${pubPlots} แปลง`} value={pct0(plan.publicPctOfGap)} sub={`${fmt.int(plan.publicAreaM2)} ตร.ม. ของที่ต้องเพิ่ม`} />
+          <Stat label={`ที่รัฐ + ศาสนสถาน ${pubPlots} แปลง`} value={fmt.int(plan.publicAreaM2)} unit="ตร.ม." sub={`คิดเป็น ${pct0(plan.publicPctOfGap)} ของพื้นที่ที่ต้องเพิ่ม ${fmt.int(gapM2)} ตร.ม.`} />
           <Stat label="ที่เหลือใช้ที่เอกชน" value={fmt.int(plan.sites.at(-1).areaM2)} unit="ตร.ม." sub={`จากที่ว่างเอกชน ${fmt.int(groups[2].areaM2)} ตร.ม.`} />
           <Stat label="งบสร้างสวนให้ถึงค่ากลาง" value={fmt.mb(plan.totalBaht, 2)} unit="ล้านบาท" sub="รวมค่าบำรุงรักษาปีแรก · ไม่รวมค่าที่ดิน · รายแปลงดูภาคผนวก A3" />
         </aside>

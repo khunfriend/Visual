@@ -29,8 +29,8 @@
 .ownerChart {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding-top: 40px;
+  gap: 24px;
+  padding-top: 8px;
 }
 
 .barArea {
@@ -41,7 +41,7 @@
 .bar {
   display: flex;
   gap: 4px;
-  height: 120px;
+  height: 88px;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -66,9 +66,9 @@
 
 .ownerLegend {
   display: grid;
-  grid-template-columns: repeat(4, auto);
-  justify-content: space-between;
-  gap: 12px 20px;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 12px 48px;
 }
 
 .ownerItem {
@@ -92,25 +92,113 @@
   color: var(--c-textMuted);
 }
 
-.ownerTotal {
-  align-items: flex-end;
-}
 
-.ownerTotal small {
-  padding-left: 0;
-}
 
-.ownerNote {
-  padding: 12px 20px;
-  border-radius: 12px;
-  background: var(--c-surfaceAlt);
-  border-left: 6px solid var(--c-reference);
+
+/* ---- ตาราง 3 แห่งที่จะทำ ---- */
+.firstTable {
+  width: 100%;
+  border-collapse: collapse;
   font-size: var(--fs-label);
-  line-height: 1.5;
-  color: var(--c-textMuted);
-}
-
-.ownerNote b {
   color: var(--c-text);
 }
 
+.firstTable caption {
+  text-align: left;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+
+.firstTable caption small {
+  margin-left: 16px;
+  font-size: var(--fs-source);
+  font-weight: 400;
+  color: var(--c-textMuted);
+}
+
+.firstTable th {
+  font-size: var(--fs-source);
+  font-weight: 500;
+  color: var(--c-textMuted);
+  text-align: right;
+  padding: 0 0 6px 24px;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.firstTable td {
+  padding: 8px 0 8px 24px;
+  text-align: right;
+  border-bottom: 1px solid var(--c-grid);
+}
+
+.firstTable th:first-child,
+.firstTable td:first-child {
+  text-align: left;
+  padding-left: 0;
+}
+
+.firstTable tbody td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.firstTable tfoot td {
+  border-top: 3px solid var(--c-text);
+  border-bottom: none;
+  font-weight: 700;
+}
+
+.no {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-surface);
+}
+
+/* ---- ชี้ที่สีในแท่งแล้วบอก % ---- */
+.seg {
+  cursor: pointer;
+  transition: opacity 120ms;
+}
+
+.bar:hover .seg:not(.segOn) {
+  opacity: 0.45;
+}
+
+.tip {
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -70%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: max-content;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.14);
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+  pointer-events: none;
+}
+
+.tip b {
+  font-size: var(--fs-body);
+  color: var(--c-text);
+}
+
+.pct {
+  font-size: var(--fs-source);
+  font-weight: 400;
+  color: var(--c-textMuted);
+}
