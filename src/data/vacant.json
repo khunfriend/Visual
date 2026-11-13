@@ -1,0 +1,144 @@
+{
+ "source": "ทะเบียนพื้นที่สีเขียว เขตดินแดง (greenparks.bangkok.go.th รายงาน 19) · ที่ว่างบันทึกปี 2553–2563",
+ "links": {
+  "park_index": "https://rocketmedialab.co/database-park-bangkok-index-2025/",
+  "green_registry": "https://greenparks.bangkok.go.th/green-parks-admin/reports/report19-list.php?dcode=1026",
+  "land_tax_exemption": "https://www.matichon.co.th/local/news_3519697",
+  "cost_wat_hua_lamphong_budget": "https://thestandard.co/key-messages-parks-green-areas-in-bangkok/",
+  "cost_wat_hua_lamphong_area": "https://www.timeout.com/bangkok/th/attractions/สวนวัดหัวลำโพงรุกขนิเวศน์",
+  "cost_15min_avg": "https://siamrath.co.th/bangkok/e81304bb-2cab-46a3-a69d-8a6cc4723873"
+ },
+ "population": 109047,
+ "accessibleM2": 34426.8,
+ "medianPerCapita": 0.645,
+ "gapM2": 35908.5,
+ "perCapitaIfAll": 1.46,
+ "years": [
+  2553,
+  2563
+ ],
+ "groups": [
+  {
+   "owner": "รัฐบาล",
+   "plots": 5,
+   "areaM2": 11248,
+   "pctOfGap": 31.3
+  },
+  {
+   "owner": "ศาสนสถาน",
+   "plots": 2,
+   "areaM2": 9400,
+   "pctOfGap": 26.2
+  },
+  {
+   "owner": "เอกชน",
+   "plots": 57,
+   "areaM2": 104408,
+   "pctOfGap": 290.8
+  }
+ ],
+ "total": {
+  "plots": 64,
+  "areaM2": 125056,
+  "pctOfGap": 348.3
+ },
+ "plan": {
+  "costPerM2": 2000,
+  "maintenanceRate": 0.1,
+  "sites": [
+   {
+    "no": 1,
+    "name": "สถานีวิทยุกระจายเสียงแห่งประเทศไทย",
+    "owner": "สถานีวิทยุกระจายเสียงแห่งประเทศไทย",
+    "group": "หน่วยงานราชการ (สถานีวิทยุ)",
+    "use": "สวนพักผ่อนในที่ราชการ",
+    "areaM2": 5600,
+    "year": 2558,
+    "pctOfGap": 15.6,
+    "buildBaht": 11200000
+   },
+   {
+    "no": 2,
+    "name": "เกาะกลางใต้ทางด่วนดินแดง - บางนา",
+    "owner": "การทางพิเศษแห่งประเทศไทย",
+    "group": "การทางพิเศษ (ใต้ทางด่วน)",
+    "use": "สวนหรือลานกีฬาใต้ทางด่วน",
+    "areaM2": 2400,
+    "year": 2553,
+    "pctOfGap": 6.7,
+    "buildBaht": 4800000
+   },
+   {
+    "no": 3,
+    "name": "ริมลำรางนาซองใต้ทางด่วนดินแดง - บางนา",
+    "owner": "การทางพิเศษแห่งประเทศไทย",
+    "group": "การทางพิเศษ (ใต้ทางด่วน)",
+    "use": "สวนหรือลานกีฬาใต้ทางด่วน",
+    "areaM2": 780,
+    "year": 2553,
+    "pctOfGap": 2.2,
+    "buildBaht": 1560000
+   },
+   {
+    "no": 4,
+    "name": "แฟลต 29-30 ดินแดง",
+    "owner": "การเคหะดินแดง",
+    "group": "การเคหะ (แฟลต)",
+    "use": "สวนชุมชนในแฟลต",
+    "areaM2": 1520,
+    "year": 2556,
+    "pctOfGap": 4.2,
+    "buildBaht": 3040000
+   },
+   {
+    "no": 5,
+    "name": "หัวมุมแฟลต ค2 เคหะชุมชนดินแดง 2 ถนนประชาสงเคราะห์",
+    "owner": "การเคหะแห่งชาติ",
+    "group": "การเคหะ (แฟลต)",
+    "use": "สวนชุมชนในแฟลต",
+    "areaM2": 948,
+    "year": 2553,
+    "pctOfGap": 2.6,
+    "buildBaht": 1896000
+   },
+   {
+    "no": 6,
+    "name": "ลานวัดพรหมวงศาราม",
+    "owner": "วัดพรหมวงศาราม",
+    "group": "ศาสนสถาน (วัด คริสตจักร)",
+    "use": "ลานต้นไม้ร่วมกับศาสนสถาน",
+    "areaM2": 6200,
+    "year": 2553,
+    "pctOfGap": 17.3,
+    "buildBaht": 12400000
+   },
+   {
+    "no": 7,
+    "name": "คริสตจักรประชาคม ถนนประชาสงเคราะห์ 23",
+    "owner": "คริสจักรฯ",
+    "group": "ศาสนสถาน (วัด คริสตจักร)",
+    "use": "ลานต้นไม้ร่วมกับศาสนสถาน",
+    "areaM2": 3200,
+    "year": 2553,
+    "pctOfGap": 8.9,
+    "buildBaht": 6400000
+   },
+   {
+    "no": null,
+    "name": "ที่ว่างเอกชน (เลือกจาก 57 แปลงที่ยังว่าง)",
+    "owner": "เอกชน",
+    "group": "ที่ว่างเอกชน (ส่วนที่ยังขาด)",
+    "use": "ให้ กทม. ใช้ทำสวน 15 นาที แลกยกเว้นภาษีที่ดิน",
+    "areaM2": 15261,
+    "privatePlots": 57,
+    "pctOfGap": 42.5,
+    "buildBaht": 30522000
+   }
+  ],
+  "publicAreaM2": 20648,
+  "publicPctOfGap": 57.5,
+  "buildBaht": 71818000,
+  "maintenanceBaht": 7181800,
+  "totalBaht": 78999800
+ }
+}

@@ -499,6 +499,80 @@ write('parks', {
     'districts': parks,
 })
 
+# ---------- 7b. ที่ว่างในเขตสำหรับทำสวน (สไลด์ 11) ----------
+# ต้นทาง: data/raw/parks_vacant/ (ทะเบียนพื้นที่สีเขียว กทม. รายแปลง + ข้อกำหนดกราฟของกลุ่ม)
+# ฐาน % ใช้พื้นที่สวนจริง 34,426.8 ตร.ม. (ไม่ปัด 0.32 ก่อนคูณ) จึงได้ 35,909 ไม่ใช่ 35,440 ของหน้า 9
+print('7b) ที่ว่างในเขตสำหรับทำสวน')
+vac_rows = [r for r in read_csv('parks_vacant/vacant_land_dindaeng_bma.csv') if r['ลำดับ'].strip()]
+vac_total_row = next(r for r in read_csv('parks_vacant/vacant_land_dindaeng_bma.csv') if not r['ลำดับ'].strip())
+vac_spec = json.loads((RAW / 'parks_vacant' / 'park_charts_data.json').read_text(encoding='utf-8'))
+gap_exact = med_a * dd_p['population'] - dd_p['accessibleM2']
+check('พื้นที่สวนที่ต้องเพิ่ม (คิดจากพื้นที่จริง)', round(gap_exact), 35909, 0.5)
+check('ตรงกับ gap_m2 ในไฟล์ต้นทาง', r2(gap_exact, 1), vac_spec['baseline']['gap_m2'], 0.1)
+OWNERS = ['รัฐบาล', 'ศาสนสถาน', 'เอกชน']
+vac_groups = []
+for o in OWNERS:
+    rs = [r for r in vac_rows if r['กลุ่มเจ้าของ'] == o]
+    a = sum(float(r['พื้นที่ (ตร.ม.)']) for r in rs)
+    vac_groups.append({'owner': o, 'plots': len(rs), 'areaM2': round(a), 'pctOfGap': r2(a / gap_exact * 100, 1)})
+vac_area = sum(g['areaM2'] for g in vac_groups)
+check('จำนวนแปลงที่ว่าง', len(vac_rows), 64)
+check('ทุกแปลงมีกลุ่มเจ้าของ', sum(g['plots'] for g in vac_groups), len(vac_rows))
+check('พื้นที่ว่างรวม (ตร.ม.)', vac_area, float(vac_total_row['พื้นที่ (ตร.ม.)']))
+check('แปลงตามเจ้าของ (รัฐ/ศาสนา/เอกชน)', [g['plots'] for g in vac_groups], [5, 2, 57])
+check('พื้นที่ตามเจ้าของ', [g['areaM2'] for g in vac_groups], [11248, 9400, 104408])
+check('ที่ว่างทั้งหมดเทียบที่ต้องเพิ่ม (%)', r2(vac_area / gap_exact * 100, 1), 348.3)
+years = [int(r['ปีที่บันทึก']) for r in vac_rows]
+
+# แผนสร้างสวน: แปลงรัฐ + ศาสนสถานทั้ง 7 แปลง แล้วเติมที่เอกชนเท่าที่ยังขาด
+c2 = vac_spec['chart2_where_to_build']
+COST_M2, MAINT = c2['cost_per_m2_baht'], c2['maintenance_rate']
+sites = []
+for sp in c2['sites']:
+    if sp['no'] is None:
+        continue
+    row = next(r for r in vac_rows if float(r['พื้นที่ (ตร.ม.)']) == sp['area_m2'] and r['เจ้าของ'].startswith(sp['owner'][:4]))
+    check(f"แปลงในแผน {sp['no']} อยู่ในกลุ่มรัฐ/ศาสนา", row['กลุ่มเจ้าของ'] in ('รัฐบาล', 'ศาสนสถาน'), True)
+    sites.append({'no': sp['no'], 'name': sp['name'], 'owner': sp['owner'], 'group': sp['group'], 'use': sp['use'],
+                  'areaM2': sp['area_m2'], 'year': int(row['ปีที่บันทึก'])})
+pub_area = sum(site['areaM2'] for site in sites)
+check('ที่รัฐ + ศาสนสถานในแผน = ทั้งหมดของ 2 กลุ่ม', pub_area, vac_groups[0]['areaM2'] + vac_groups[1]['areaM2'])
+priv = next(sp for sp in c2['sites'] if sp['no'] is None)
+sites.append({'no': None, 'name': priv['name'], 'owner': priv['owner'], 'group': priv['group'], 'use': priv['use'],
+              'areaM2': round(gap_exact - pub_area), 'privatePlots': vac_groups[2]['plots']})
+for site in sites:
+    site['pctOfGap'] = r2(site['areaM2'] / gap_exact * 100, 1)
+    site['buildBaht'] = site['areaM2'] * COST_M2
+build_total = sum(site['buildBaht'] for site in sites)
+check('ที่เอกชนที่ยังขาด (ตร.ม.)', sites[-1]['areaM2'], 15261)
+check('รัฐ + ศาสนสถาน (% ของที่ต้องเพิ่ม)', r2(pub_area / gap_exact * 100, 1), 57.5)
+check('ค่าก่อสร้างรวม (ล้านบาท)', r2(build_total / 1e6), 71.82)
+check('ค่าบำรุงรักษาต่อปี (ล้านบาท)', r2(build_total * MAINT / 1e6), 7.18)
+check('รวมทั้งหมด (ล้านบาท)', r2(build_total * (1 + MAINT) / 1e6), 79.00)
+write('vacant', {
+    'source': 'ทะเบียนพื้นที่สีเขียว เขตดินแดง (greenparks.bangkok.go.th รายงาน 19) · ที่ว่างบันทึกปี '
+              f'{min(years)}–{max(years)}',
+    'links': vac_spec['meta']['sources'],
+    'population': dd_p['population'],
+    'accessibleM2': dd_p['accessibleM2'],
+    'medianPerCapita': med_a,
+    'gapM2': r2(gap_exact, 1),
+    'perCapitaIfAll': r2((dd_p['accessibleM2'] + vac_area) / dd_p['population']),
+    'years': [min(years), max(years)],
+    'groups': vac_groups,
+    'total': {'plots': len(vac_rows), 'areaM2': vac_area, 'pctOfGap': r2(vac_area / gap_exact * 100, 1)},
+    'plan': {
+        'costPerM2': COST_M2,
+        'maintenanceRate': MAINT,
+        'sites': sites,
+        'publicAreaM2': pub_area,
+        'publicPctOfGap': r2(pub_area / gap_exact * 100, 1),
+        'buildBaht': build_total,
+        'maintenanceBaht': round(build_total * MAINT),
+        'totalBaht': round(build_total * (1 + MAINT)),
+    },
+})
+
 # ---------- 8. ฉากทัศน์คะแนนรวม ----------
 print('8) ฉากทัศน์คะแนนรวม (เพิ่มทั้งโรงเรียนและครู)')
 EDU_BOTH = next(s for s in edu_scen if s['addSchools'] == 1 and s['addTeachers'] == TEACHERS_ADD)['score']

@@ -3,7 +3,7 @@ import { fmt } from '../../components/charts/kit.jsx'
 import { budget, flood, map } from '../../lib/data.js'
 import s from './style.module.css'
 
-// สไลด์ A3 (ภาคผนวก): แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
+// สไลด์ A4 (ภาคผนวก): แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
 // คำถาม–คำตอบที่เตรียมไว้ (จากแผนการนำเสนอ หัวข้อ 4) ปรับตัวเลขตาม ข้อมูลรวม_ตรวจแล้ว.md
 
 const dd = budget.districts['ดินแดง']

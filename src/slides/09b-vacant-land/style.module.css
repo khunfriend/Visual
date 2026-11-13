@@ -1,0 +1,204 @@
+/* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
+.grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 48px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 36px;
+  padding: 32px 36px;
+  border-radius: 12px;
+  background: var(--c-surfaceAlt);
+}
+
+.grid i {
+  display: inline-block;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+/* ---- กราฟ 1: ตามเจ้าของ ---- */
+.ownerChart {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.barArea {
+  position: relative;
+  padding-top: 40px;
+}
+
+.bar {
+  display: flex;
+  gap: 4px;
+  height: 88px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.gapLine {
+  position: absolute;
+  top: 32px;
+  bottom: -14px;
+  border-left: 4px dashed var(--c-text);
+  transform: translateX(-2px);
+}
+
+.gapLabel {
+  position: absolute;
+  top: 0;
+  transform: translateX(-30%);
+  white-space: nowrap;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.ownerLegend {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 12px 48px;
+}
+
+.ownerItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ownerItem b {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.ownerItem small {
+  padding-left: 28px;
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+}
+
+
+
+
+/* ---- ตาราง 3 แห่งที่จะทำ ---- */
+.firstTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-label);
+  color: var(--c-text);
+}
+
+.firstTable caption {
+  text-align: left;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+
+.firstTable caption small {
+  margin-left: 16px;
+  font-size: var(--fs-source);
+  font-weight: 400;
+  color: var(--c-textMuted);
+}
+
+.firstTable th {
+  font-size: var(--fs-source);
+  font-weight: 500;
+  color: var(--c-textMuted);
+  text-align: right;
+  padding: 0 0 6px 24px;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.firstTable td {
+  padding: 8px 0 8px 24px;
+  text-align: right;
+  border-bottom: 1px solid var(--c-grid);
+}
+
+.firstTable th:first-child,
+.firstTable td:first-child {
+  text-align: left;
+  padding-left: 0;
+}
+
+.firstTable tbody td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.firstTable tfoot td {
+  border-top: 3px solid var(--c-text);
+  border-bottom: none;
+  font-weight: 700;
+}
+
+.no {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-surface);
+}
+
+/* ---- ชี้ที่สีในแท่งแล้วบอก % ---- */
+.seg {
+  cursor: pointer;
+  transition: opacity 120ms;
+}
+
+.bar:hover .seg:not(.segOn) {
+  opacity: 0.45;
+}
+
+.tip {
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -70%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: max-content;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.14);
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+  pointer-events: none;
+}
+
+.tip b {
+  font-size: var(--fs-body);
+  color: var(--c-text);
+}
+
+.pct {
+  font-size: var(--fs-source);
+  font-weight: 400;
+  color: var(--c-textMuted);
+}
