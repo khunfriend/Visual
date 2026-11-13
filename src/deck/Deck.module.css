@@ -129,3 +129,54 @@
   font-size: var(--fs-body);
   color: var(--c-textMuted);
 }
+
+/* ---- โหมดพิมพ์ / PDF (?print) ---- */
+.printRoot {
+  background: var(--c-bg);
+  font-family: var(--font);
+  color: var(--c-text);
+  padding: 24px 0;
+}
+
+.printHint {
+  text-align: center;
+  font-size: 20px;
+  color: var(--c-textMuted);
+  margin-bottom: 24px;
+}
+
+.printPage {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto 32px;
+  background: var(--c-surface);
+  overflow: hidden;
+  box-shadow: 0 2px 24px rgb(0 0 0 / 0.08);
+}
+
+@media print {
+  .printRoot {
+    padding: 0;
+    background: none;
+    overflow: hidden; /* กันของที่ลอยเกินหน้าสุดท้ายสร้างหน้าว่าง */
+    height: var(--print-h);
+  }
+
+  .printHint {
+    display: none;
+  }
+
+  .printPage {
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .printPage + .printPage {
+    break-before: page;
+  }
+
+  .printRoot :global(#stage-overlay) {
+    display: none;
+  }
+}

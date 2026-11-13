@@ -107,7 +107,9 @@ function GrowFrom({ from, closing, onClosed, children }) {
 
 export default function Wastewater() {
   // กดแท่งดินแดงแล้วกราฟเทียบมาตรฐานขยายออกมาจากแท่ง · กดอีกครั้งหดกลับ
-  const [std, setStd] = useState(null) // null | { from: DOMRect, closing: boolean }
+  // โหมดทำ PDF (?print) เปิดกราฟจุดตรวจไว้เลย เพราะกดไม่ได้
+  const PRINT = new URLSearchParams(window.location.search).has('print')
+  const [std, setStd] = useState(PRINT ? { from: null, closing: false } : null) // null | { from: DOMRect, closing: boolean }
   const toggleStd = (e) => {
     const from = e.currentTarget.getBoundingClientRect()
     setStd((v) => (!v ? { from, closing: false } : v.closing ? v : { ...v, closing: true }))

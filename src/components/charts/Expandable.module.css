@@ -130,3 +130,10 @@
     opacity: 0;
   }
 }
+
+/* ไม่พิมพ์ปุ่มขยายลง PDF */
+@media print {
+  .expandBtn {
+    display: none;
+  }
+}

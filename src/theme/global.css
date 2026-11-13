@@ -38,3 +38,28 @@ p {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* โหมดพิมพ์ (?print): ให้เลื่อนดูได้ และพิมพ์ 1 สไลด์ต่อ 1 หน้า ขนาด 1920×1080 พร้อมสีพื้นหลัง */
+html.print-mode,
+html.print-mode body,
+html.print-mode #root {
+  height: auto;
+  overflow: auto;
+}
+
+@media print {
+  @page {
+    size: 1920px 1080px;
+    margin: 0;
+  }
+
+  html,
+  body,
+  #root {
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

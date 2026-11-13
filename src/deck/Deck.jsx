@@ -24,7 +24,11 @@ const readHash = () => {
 
 export default function Deck() {
   const cssVars = useMemo(() => toCssVars(), [])
-  const only = new URLSearchParams(window.location.search).get('only')
+  const params = new URLSearchParams(window.location.search)
+  const only = params.get('only')
+
+  // โหมดพิมพ์/ทำ PDF ?print : ทุกสไลด์เรียงต่อกัน 1 สไลด์ = 1 หน้า 1920×1080 แล้วกด Cmd/Ctrl + P → Save as PDF
+  if (params.has('print')) return <PrintDeck cssVars={cssVars} />
 
   // โหมดดูหน้าเดียว ?only=3 หรือ ?only=A1 (PRD F6)
   if (only !== null) {
@@ -52,6 +56,40 @@ export default function Deck() {
   }
 
   return <Presenter cssVars={cssVars} />
+}
+
+function PrintDeck({ cssVars }) {
+  // ปลดล็อกการเลื่อนหน้า (โหมดปกติล็อกไว้ให้พอดีจอ)
+  useEffect(() => {
+    document.documentElement.classList.add('print-mode')
+    // ตอนพิมพ์ ล็อกความสูงทั้งเอกสาร = จำนวนหน้า × 1080 px กันหน้าว่างท้ายไฟล์
+    const st = document.createElement('style')
+    const h = `${labelled.length * 1080}px`
+    st.textContent = `@media print { html, body, #root { height: ${h} !important; max-height: ${h} !important; overflow: hidden !important; } }`
+    document.head.appendChild(st)
+    return () => {
+      document.documentElement.classList.remove('print-mode')
+      st.remove()
+    }
+  }, [])
+  return (
+    <div style={{ ...cssVars, '--print-h': `${labelled.length * 1080}px` }} className={s.printRoot}>
+      <p className={s.printHint}>โหมดทำ PDF · กด Cmd/Ctrl + P แล้วเลือก "บันทึกเป็น PDF" (ขนาดกระดาษตั้งให้อัตโนมัติ)</p>
+      {labelled.map((sl) => {
+        const progress = sl.appendix ? 1 : Number(sl.label) / mainCount
+        return (
+          <div key={sl.id} className={s.printPage}>
+            <ErrorBoundary label={sl.label}>
+              <sl.Component />
+            </ErrorBoundary>
+            <div className={s.progress} style={{ transform: `scaleX(${progress})` }} />
+            <div className={s.pageNo}>{sl.appendix ? `ภาคผนวก ${sl.label}` : `${sl.label} / ${mainCount}`}</div>
+          </div>
+        )
+      })}
+      <div id="stage-overlay" />
+    </div>
+  )
 }
 
 function Presenter({ cssVars }) {

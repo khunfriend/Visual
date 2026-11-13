@@ -101,64 +101,62 @@ export default function Schools() {
       <div className={s.grid}>
         <ChartCard title="โรงเรียนในเขตตอนนี้" note={`พบ ${allSchools.length} แห่ง (เอกชน ${nPrivate}) · ดัชนีนับเฉพาะสังกัด กทม. + สพฐ. ${ed.districts.find((d) => d.name === 'ดินแดง').schools} แห่ง`} className={s.mapCard}>
           <div className={s.mapWrap}>
-            <div className={s.filterRow}>
-              {filterBar}
-              {kidsToggle}
-              <span className={s.pinKey}><i className={s.pinSolid} /> อื่น ๆ <i className={s.pinHollow} /> เอกชน</span>
+            <div className={s.mapArea}>
+              <Expandable
+                title="โรงเรียนในเขตดินแดง"
+                note="สี่เหลี่ยมโปร่ง = เอกชน (ยืนยันแล้ว 4 แห่ง) · ที่เหลือยังไม่ได้แยกว่าเป็นสังกัด กทม. / สพฐ."
+                toolbar={<>{filterBar}{kidsToggle}</>}
+                aside={
+                  <ol className={s.asideList}>
+                    {schools.map((sc) => (
+                      <li key={sc.osm}>
+                        {sc.no}. {sc.name}{sc.private ? ' · เอกชน' : ''}
+                      </li>
+                    ))}
+                  </ol>
+                }
+              >
+                {({ expanded }) => (
+                  <FollowTip tip={hover && (
+                    <TipBox active payload={[{ payload: hover }]}
+                      render={(r) => ({ title: `${r.no}. ${r.name}`, rows: [['ประเภท', r.private ? 'เอกชน' : 'ยังไม่แยกสังกัด']] })} />
+                  )}>
+                  <MapBase labelSize={expanded ? 18 : 24} children={showKids ? kidLayer : null} overlay={(
+                      <g>
+                        {schools.map((sc) => (
+                          <g key={sc.osm} onMouseEnter={() => setHover(sc)} onMouseLeave={() => setHover(null)} style={{ cursor: 'default' }}>
+                            {/* เอกชน = สี่เหลี่ยมโปร่ง · อื่น ๆ = สี่เหลี่ยมทึบ (แยกด้วยรูปทรง ไม่ต้องเพิ่มสี) */}
+                            <rect x={sc.x - 11} y={sc.y - 11} width={22} height={22} rx={4} fill={color.text} stroke={color.surface} strokeWidth={3} />
+                            {sc.private && <rect x={sc.x - 6} y={sc.y - 6} width={12} height={12} rx={2} fill={color.surface} />}
+                            {expanded && (
+                              <text x={sc.x + 16} y={sc.y} dy="0.35em" fontSize={17} fontWeight={600} fill={color.text}
+                                stroke={color.surface} strokeWidth={4} paintOrder="stroke" style={{ fontFamily: 'var(--font)' }}>
+                                {sc.no}
+                              </text>
+                            )}
+                          </g>
+                        ))}
+                      </g>
+                    )} />
+                  </FollowTip>
+                )}
+              </Expandable>
             </div>
-            <Expandable
-              title="โรงเรียนในเขตดินแดง"
-              note="สี่เหลี่ยมโปร่ง = เอกชน (ยืนยันแล้ว 4 แห่ง) · ที่เหลือยังไม่ได้แยกว่าเป็นสังกัด กทม. / สพฐ."
-              toolbar={<>{filterBar}{kidsToggle}</>}
-              aside={
-                <ol className={s.asideList}>
-                  {schools.map((sc) => (
-                    <li key={sc.osm}>
-                      {sc.no}. {sc.name}{sc.private ? ' · เอกชน' : ''}
-                    </li>
-                  ))}
-                </ol>
-              }
-            >
-              {({ expanded }) => (
-                <FollowTip tip={hover && (
-                  <TipBox active payload={[{ payload: hover }]}
-                    render={(r) => ({ title: `${r.no}. ${r.name}`, rows: [['ประเภท', r.private ? 'เอกชน' : 'ยังไม่แยกสังกัด']] })} />
-                )}>
-                {/* หมุนแผนที่ −90° ให้เป็นแนวนอน (เขตดินแดงยาวเหนือ–ใต้ วางนอนแล้วใหญ่ขึ้นราว 2 เท่า) · ทิศเหนืออยู่ซ้าย */}
-                <div className={s.rotBox}>
-                <div className={s.rotInner}>
-                <MapBase labelSize={expanded ? 18 : 24} children={showKids ? kidLayer : null} overlay={(
-                    <g>
-                      {schools.map((sc) => (
-                        <g key={sc.osm} onMouseEnter={() => setHover(sc)} onMouseLeave={() => setHover(null)} style={{ cursor: 'default' }}>
-                          {/* เอกชน = สี่เหลี่ยมโปร่ง · อื่น ๆ = สี่เหลี่ยมทึบ (แยกด้วยรูปทรง ไม่ต้องเพิ่มสี) */}
-                          <rect x={sc.x - 11} y={sc.y - 11} width={22} height={22} rx={4} fill={color.text} stroke={color.surface} strokeWidth={3} />
-                          {sc.private && <rect x={sc.x - 6} y={sc.y - 6} width={12} height={12} rx={2} fill={color.surface} />}
-                          {expanded && (
-                            <text x={sc.x} y={sc.y - 16} dy="0.35em" textAnchor="middle" transform={`rotate(90 ${sc.x} ${sc.y - 16})`} fontSize={17} fontWeight={600} fill={color.text}
-                              stroke={color.surface} strokeWidth={4} paintOrder="stroke" style={{ fontFamily: 'var(--font)' }}>
-                              {sc.no}
-                            </text>
-                          )}
-                        </g>
-                      ))}
-                    </g>
-                  )} />
-                </div>
-                </div>
-                <span className={s.north}>← ทิศเหนือ</span>
-                </FollowTip>
-              )}
-            </Expandable>
-            {showKids && (
-              <div className={s.heatKey}>
-                <span>เด็ก 5–19 ปี น้อยกว่า</span>
-                <i style={{ background: `linear-gradient(90deg, ${color.heat.join(',')})` }} />
-                <span>มากกว่า</span>
-                <small>ประมาณจาก WorldPop 2020</small>
+            <div className={s.controls}>
+              <div className={s.filterRow}>
+                {filterBar}
+                {kidsToggle}
+                <span className={s.pinKey}><i className={s.pinSolid} /> อื่น ๆ <i className={s.pinHollow} /> เอกชน</span>
               </div>
-            )}
+              {showKids && (
+                <div className={s.heatKey}>
+                  <span>เด็ก 5–19 ปี น้อยกว่า</span>
+                  <i style={{ background: `linear-gradient(90deg, ${color.heat.join(',')})` }} />
+                  <span>มากกว่า</span>
+                  <small>ประมาณจาก WorldPop 2020</small>
+                </div>
+              )}
+            </div>
           </div>
         </ChartCard>
 
