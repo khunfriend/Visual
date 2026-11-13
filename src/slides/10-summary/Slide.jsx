@@ -69,7 +69,8 @@ export default function Summary() {
               <Bar dataKey="base" stackId="w" fill="transparent" isAnimationActive={false} />
               <Bar dataKey="val" stackId="w" radius={[4, 4, 0, 0]} maxBarSize={96} isAnimationActive={false}>
                 {wfRows.map((r) => (
-                  <Cell key={r.label} fill={r.total ? (r.label === 'ตอนนี้' ? color.other : color.dindaeng) : '#F4A27A'} />
+                  <Cell key={r.label} fill={r.total ? (r.label === 'ตอนนี้' ? color.other : color.contrast) : color.contrast}
+                    fillOpacity={r.total ? 1 : 0.55} />
                 ))}
                 <LabelList
                   dataKey="val"
@@ -96,7 +97,11 @@ export default function Summary() {
               <li key={c.key} className={c.key === 'target' ? s.caseOn : ''}>
                 <span className={s.caseLabel}>{c.label}</span>
                 <span className={s.caseTrack}>
-                  <span className={s.caseBar} style={{ width: `${((51 - c.rank) / 50) * 100}%`, background: c.key === 'now' ? color.other : c.key === 'target' ? color.dindaeng : '#F4A27A' }} />
+                  <span className={s.caseBar} style={{
+                    width: `${((51 - c.rank) / 50) * 100}%`,
+                    background: c.key === 'now' ? color.other : color.contrast,
+                    opacity: c.key === 'now' || c.key === 'target' ? 1 : 0.55,
+                  }} />
                 </span>
                 <span className={`${s.caseRank} num`}>#{c.rank}</span>
                 <span className={`${s.caseScore} num`}>{fmt.dec(c.score)}</span>
