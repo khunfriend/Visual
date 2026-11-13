@@ -100,13 +100,7 @@ export default function Wastewater() {
       <div className={s.grid}>
         <ChartCard
           title={`BOD เฉลี่ยของคลอง ${rows.length} เขต`}
-          note={(
-            <>
-              ปี 2540–2567 · {exceed} เขตเกินเกณฑ์ · หน่วย มก./ล.
-              <br />
-              เขตข้างเคียงทั้ง 4 เขตมี BOD ต่ำกว่าดินแดง โดยห้วยขวางและราชเทวียังเกินเกณฑ์
-            </>
-          )}
+          note={`ปี 2540–2567 · ${exceed} เขตเกินเกณฑ์ · หน่วย มก./ล.`}
           legend={[
             { label: 'ดินแดง', color: color.dindaeng },
             { label: 'เขตข้างเคียง', color: neighborColor },
