@@ -3,7 +3,7 @@ import {
   Tooltip, XAxis, YAxis,
 } from 'recharts'
 import SlideFrame from '../../components/SlideFrame.jsx'
-import { ChartCard, DD, PT, Stat, SvgLabel, TipBox, axisCommon, districtColor, fmt, gridProps } from '../../components/charts/kit.jsx'
+import { ChartCard, DD, Stat, SvgLabel, TipBox, axisCommon, fmt, gridProps } from '../../components/charts/kit.jsx'
 import MapBase from '../../components/charts/MapBase.jsx'
 import Expandable from '../../components/charts/Expandable.jsx'
 import { flood, map } from '../../lib/data.js'
@@ -17,26 +17,22 @@ const pts = flood.districts.map((d) => ({ ...d, m: d.drainBudget / 1e6 }))
 const med = flood.medianDrainBudget / 1e6
 const sortedFloods = pts.map((d) => d.floods).sort((a, b) => a - b)
 const medFlood = (sortedFloods[24] + sortedFloods[25]) / 2 // มัธยฐานจำนวนครั้งน้ำท่วม 50 เขต
+const medFloodLabel = fmt.dec(medFlood, Number.isInteger(medFlood) ? 0 : 1)
 const dd = pts.find((d) => d.name === DD)
 const fd = flood.dindaeng
-
-// เขตที่ท่วมน้อยแต่ได้งบมาก: ท่วมไม่เกิน 5 ครั้ง และได้งบระบายน้ำเกิน 30 ล้าน (เกือบ 3 เท่าของค่ากลาง)
-const LOW_FLOOD_MAX = 5
-const HIGH_BUDGET_M = 30
-const isLowHigh = (d) => d.floods <= LOW_FLOOD_MAX && d.m > HIGH_BUDGET_M
-const lowHigh = pts.filter(isLowHigh)
+const comparisons = [
+  { label: 'น้ำท่วมขัง', value: fmt.int(dd.floods), median: medFloodLabel, unit: 'ครั้ง' },
+  { label: 'งบระบายน้ำ', value: fmt.dec(dd.m), median: fmt.dec(med), unit: 'ล้านบาท' },
+]
 
 function Dot({ cx, cy, payload }) {
-  const special = isLowHigh(payload)
-  const c = special ? color.contrast : districtColor(payload.name)
-  const big = payload.name === DD || payload.name === PT || special
+  const isDindaeng = payload.name === DD
   return (
     <g>
-      <circle cx={cx} cy={cy} r={big ? 10 : 7} fill={c} stroke={color.surface} strokeWidth={2} />
-      {payload.name === DD && (
-        <SvgLabel x={cx} y={cy + 34} anchor="end" weight={700}>
-          {`ดินแดง · ${dd.floods} ครั้ง / ${fmt.dec(dd.m, 1)} ล.`}
-        </SvgLabel>
+      <circle cx={cx} cy={cy} r={isDindaeng ? 12 : 7}
+        fill={isDindaeng ? color.dindaeng : color.other} stroke={color.surface} strokeWidth={2} />
+      {isDindaeng && (
+        <SvgLabel x={cx + 16} y={cy - 12} anchor="start" weight={700} size={24}>ดินแดง</SvgLabel>
       )}
     </g>
   )
@@ -53,48 +49,79 @@ export default function Flood() {
   return (
     <SlideFrame
       kicker="02 · น้ำท่วม"
-      title="ท่วมบ่อยไม่ได้แปลว่าได้งบมาก"
-      source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (อุทกภัย: น้ำท่วมขังบนถนนสายหลัก 2568); ข้อบัญญัติงบประมาณ กทม. 2568 · ρ = Spearman correlation · ตำแหน่งจุดท่วมหาจากชื่อถนน/ซอยใน OSM (เส้นประ = ความมั่นใจปานกลาง, ไม่ได้วาง 1 จุดที่ไม่ระบุตำแหน่ง) · แผนที่ฐาน © OpenStreetMap contributors"
+      title="ดินแดงท่วมบ่อยกว่ามัธยฐาน แต่งบระบายน้ำต่ำกว่า"
+      subtitle="เปรียบเทียบน้ำท่วมขังบนถนนสายหลักกับงบระบายน้ำของสำนักงานเขตทั้ง 50 เขต ปี 2568"
+      source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (น้ำท่วมขังบนถนนสายหลัก ปี 2568) · ข้อบัญญัติงบประมาณ กทม. 2568 · พิกัดจุดท่วมอ้างอิงชื่อถนน/ซอย (เส้นประ = ความมั่นใจปานกลาง, 1 จุดไม่ระบุตำแหน่ง) · แผนที่ฐาน © OpenStreetMap contributors"
     >
       <div className={s.grid}>
-        <ChartCard
-          title="จำนวนครั้งที่ท่วม กับงบระบายน้ำของเขต (50 เขต)"
-          legend={[
-            { label: 'ดินแดง', color: color.dindaeng },
-            { label: 'ปทุมวัน', color: color.pathumwan },
-            { label: `ท่วมไม่เกิน ${LOW_FLOOD_MAX} ครั้ง แต่ได้งบเกิน ${HIGH_BUDGET_M} ล้าน (${lowHigh.length} เขต)`, color: color.contrast },
-            { label: 'เขตอื่น', color: color.other },
-            { label: `มัธยฐานงบ ${fmt.dec(med, 1)} ล้าน · มัธยฐานน้ำท่วม ${Number.isInteger(medFlood) ? medFlood : fmt.dec(medFlood, 1)} ครั้ง`, color: color.reference, kind: 'dash' },
-          ]}
-        >
-          <ResponsiveContainer width="100%" height="100%">
-            <ScatterChart margin={{ top: 24, right: 32, bottom: 36, left: 8 }}>
-              <CartesianGrid {...gridProps} vertical />
-              <XAxis
-                type="number" dataKey="floods" {...axisCommon} domain={[0, 46]} ticks={[0, 10, 20, 30, 40]}
-                label={{ value: 'จำนวนครั้งน้ำท่วมขัง ปี 2568', position: 'bottom', offset: 12, fill: color.textMuted, fontSize: size.label }}
-              />
-              <YAxis
-                type="number" dataKey="m" scale="log" domain={[1, 250]} ticks={[1, 2, 5, 10, 20, 50, 100, 200]}
-                allowDataOverflow {...axisCommon} width={56}
-              />
-              <ReferenceLine y={med} stroke={color.reference} strokeDasharray="6 5" strokeWidth={2} />
-              <ReferenceLine x={medFlood} stroke={color.reference} strokeDasharray="6 5" strokeWidth={2} />
-              <Tooltip
-                cursor={false}
-                content={
-                  <TipBox
-                    render={(r) => ({
-                      title: r.name,
-                      rows: [['ท่วม', `${r.floods} ครั้ง (อันดับ ${r.floodRank})`], ['งบระบายน้ำ', `${fmt.dec(r.m, 1)} ล้าน (อันดับ ${r.budgetRank})`]],
-                    })}
+        <div className={s.overview}>
+          <div className={s.comparisons}>
+            {comparisons.map(({ label, value, median, unit }) => (
+              <div className={s.comparison} key={label}>
+                <p>{label}</p>
+                <p className={s.comparisonValue}><strong className="num">{value}</strong> {unit}</p>
+                <p className={s.comparisonMedian}>มัธยฐาน 50 เขต <b className="num">{median} {unit}</b></p>
+              </div>
+            ))}
+          </div>
+          <ChartCard
+            className={s.scatter}
+            title="น้ำท่วมขังกับงบระบายน้ำ"
+            legend={[
+              { label: 'ดินแดง', color: color.dindaeng },
+              { label: 'เขตอื่น', color: color.other },
+              { label: 'มัธยฐาน 50 เขต', color: color.reference, kind: 'dash' },
+            ]}
+          >
+            <div className={s.plot}>
+              <p className={s.axisTitle}>งบระบายน้ำ (ล้านบาท · สเกลลอการิทึม)</p>
+              <ResponsiveContainer width="100%" height="100%">
+                <ScatterChart margin={{ top: 34, right: 144, bottom: 35, left: 0 }}>
+                  <CartesianGrid {...gridProps} />
+                  <XAxis
+                    type="number" dataKey="floods" {...axisCommon} domain={[0, 50]} ticks={[0, 10, 20, 30, 40, 50]}
+                    label={{ value: 'จำนวนครั้งน้ำท่วมขัง', position: 'bottom', offset: 8, fill: color.textMuted, fontSize: size.label }}
                   />
-                }
-              />
-              <Scatter data={pts} shape={Dot} isAnimationActive={false} />
-            </ScatterChart>
-          </ResponsiveContainer>
-        </ChartCard>
+                  <YAxis
+                    type="number" dataKey="m" scale="log" domain={[1, 200]} ticks={[1, 5, 10, 20, 50, 100, 200]}
+                    allowDataOverflow {...axisCommon} width={48} interval={0}
+                  />
+                  <ReferenceLine
+                    y={med} stroke={color.reference} strokeDasharray="7 5" strokeWidth={2}
+                    label={({ viewBox }) => (
+                      <SvgLabel x={viewBox.x + viewBox.width + 10} y={viewBox.y} dy="0.35em" anchor="start" fill={color.reference} size={22}>
+                        {fmt.dec(med)} ล้านบาท
+                      </SvgLabel>
+                    )}
+                  />
+                  <ReferenceLine
+                    x={medFlood} stroke={color.reference} strokeDasharray="7 5" strokeWidth={2}
+                    label={({ viewBox }) => (
+                      <SvgLabel x={viewBox.x} y={viewBox.y - 10} fill={color.reference} size={22}>
+                        {medFloodLabel} ครั้ง
+                      </SvgLabel>
+                    )}
+                  />
+                  <Tooltip
+                    cursor={false}
+                    content={
+                      <TipBox
+                        render={(r) => ({
+                          title: r.name,
+                          rows: [['ท่วม', `${r.floods} ครั้ง (อันดับ ${r.floodRank})`], ['งบระบายน้ำ', `${fmt.dec(r.m)} ล้าน (อันดับ ${r.budgetRank})`]],
+                        })}
+                      />
+                    }
+                  />
+                  <Scatter data={pts} shape={Dot} isAnimationActive={false} />
+                </ScatterChart>
+              </ResponsiveContainer>
+            </div>
+          </ChartCard>
+          <p className={s.correlation}>
+            ความสัมพันธ์เชิงอันดับระหว่างความถี่น้ำท่วมกับงบใกล้ศูนย์ <b className="num">(Spearman ρ = {fmt.dec(flood.spearman, 3)})</b>
+          </p>
+        </div>
 
         <ChartCard title="ตำแหน่งจุดท่วม" className={s.mapCard}>
           <Expandable
