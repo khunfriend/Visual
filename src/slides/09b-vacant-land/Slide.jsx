@@ -56,7 +56,7 @@ export default function VacantLand() {
     <SlideFrame
       kicker="11 · สวนหย่อม (ที่ว่าง)"
       title={`ที่ว่างมีพอ: ที่รัฐและศาสนสถาน ${pubPlots} แปลงได้ ${pct0(plan.publicPctOfGap)} ของสวนที่ต้องเพิ่ม`}
-      subtitle={`ที่ว่าง ${fmt.int(total.plots)} แปลง ${fmt.int(total.areaM2)} ตร.ม. = ${pct0(total.pctOfGap)} ของพื้นที่ที่ต้องเพิ่ม ${fmt.int(gapM2)} ตร.ม. · แผนรายแปลงอยู่ในภาคผนวก A4`}
+      subtitle={`ที่ว่าง ${fmt.int(total.plots)} แปลง ${fmt.int(total.areaM2)} ตร.ม. = ${pct0(total.pctOfGap)} ของพื้นที่ที่ต้องเพิ่ม ${fmt.int(gapM2)} ตร.ม. · แผนรายแปลงอยู่ในภาคผนวก A3`}
       source={
         <>
           ที่มา: <a href={vacant.links.green_registry} target="_blank" rel="noreferrer">ทะเบียนพื้นที่สีเขียว เขตดินแดง – กทม.</a>{' '}
@@ -76,7 +76,7 @@ export default function VacantLand() {
         <aside className={s.side}>
           <Stat label={`ที่รัฐ + ศาสนสถาน ${pubPlots} แปลง`} value={pct0(plan.publicPctOfGap)} sub={`${fmt.int(plan.publicAreaM2)} ตร.ม. ของที่ต้องเพิ่ม`} />
           <Stat label="ที่เหลือใช้ที่เอกชน" value={fmt.int(plan.sites.at(-1).areaM2)} unit="ตร.ม." sub={`จากที่ว่างเอกชน ${fmt.int(groups[2].areaM2)} ตร.ม.`} />
-          <Stat label="งบสร้างสวนให้ถึงค่ากลาง" value={fmt.mb(plan.totalBaht, 2)} unit="ล้านบาท" sub="รวมค่าบำรุงรักษาปีแรก · ไม่รวมค่าที่ดิน · รายแปลงดูภาคผนวก A4" />
+          <Stat label="งบสร้างสวนให้ถึงค่ากลาง" value={fmt.mb(plan.totalBaht, 2)} unit="ล้านบาท" sub="รวมค่าบำรุงรักษาปีแรก · ไม่รวมค่าที่ดิน · รายแปลงดูภาคผนวก A3" />
         </aside>
       </div>
     </SlideFrame>
