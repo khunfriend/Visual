@@ -3,8 +3,64 @@
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 1.2fr 0.55fr 1fr;
-  gap: 48px;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.55fr) minmax(0, 1fr);
+  gap: 32px;
+}
+
+.overview {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  gap: 18px;
+}
+
+.comparisons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.comparison {
+  padding: 12px 18px;
+  border-left: 4px solid var(--c-dindaeng);
+  border-radius: 6px;
+  background: var(--c-surfaceAlt);
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+}
+
+.comparisonValue {
+  color: var(--c-text);
+}
+
+.comparisonValue strong {
+  font-size: 42px;
+  line-height: 1.12;
+}
+
+.comparisonMedian b {
+  color: var(--c-text);
+}
+
+.scatter {
+  flex: 1;
+}
+
+.plot {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.axisTitle,
+.correlation {
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+}
+
+.axisTitle {
+  padding-left: 48px;
 }
 
 .mapCard {

@@ -1,27 +1,11 @@
 /* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
 .grid {
+  --wastewater-neighbor-color: color-mix(in srgb, var(--c-pathumwan) 78%, var(--c-surface));
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 1fr 0fr; /* ตอนแรกกราฟ 50 เขตเต็มหน้า */
-  gap: 0;
-  transition: grid-template-columns 0.45s cubic-bezier(0.16, 1, 0.3, 1), column-gap 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.grid.open {
-  grid-template-columns: 1.5fr 1fr;
-  column-gap: 64px;
-}
-
-.side {
-  display: flex;
-  min-width: 0;
-  min-height: 0;
-}
-
-.side > * {
-  flex: 1;
-  min-width: 0;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: 56px;
 }
 
 /* แท่งรายจุดตรวจ (การ์ดขวา) */
@@ -30,7 +14,14 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
+
+.stRows {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  display: grid;
+  grid-auto-rows: minmax(0, 1fr);
 }
 
 .stRow,
@@ -57,15 +48,33 @@
 .stLabel span {
   font-size: var(--fs-source);
   color: var(--c-textMuted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .stTrack {
   position: relative;
   height: 26px;
   margin-right: 72px;
+}
+
+.stAxis .stTrack,
+.stGuide .stTrack {
+  grid-column: 2;
+}
+
+.stGuide {
+  position: absolute;
+  inset: 0;
+  align-items: stretch;
+  pointer-events: none;
+}
+
+.stGuide .stTrack {
+  height: auto;
+}
+
+.stAxis .stTrack {
+  height: 66px;
+  border-top: 1px solid var(--c-border);
 }
 
 .stBar {
@@ -84,17 +93,27 @@
 
 .stStd {
   position: absolute;
-  top: -10px;
-  bottom: -10px;
+  inset-block: 0;
   border-left: 2px dashed var(--c-reference);
 }
 
+.stTick,
 .stStdLabel {
   position: absolute;
   transform: translateX(-50%);
-  font-size: var(--fs-source);
+  font-size: var(--fs-label);
   color: var(--c-textMuted);
   white-space: nowrap;
+}
+
+.stTick {
+  top: 6px;
+}
+
+.stStdLabel {
+  top: 32px;
+  color: var(--c-reference);
+  font-weight: 600;
 }
 
 .stTip {
@@ -103,28 +122,4 @@
   right: 0;
   pointer-events: none;
   z-index: 5;
-}
-
-/* การ์ดขวาโผล่หลังกดแท่งดินแดง */
-.reveal {
-  display: flex;
-  min-height: 0;
-  will-change: transform, opacity;
-}
-
-.reveal > * {
-  flex: 1;
-}
-
-
-/* ก่อนกด: บอกใบ้เบา ๆ */
-
-/* แท่งดินแดงกดได้ */
-.clickable {
-  cursor: pointer;
-}
-
-/* ไม่ให้กรอบโฟกัสขึ้นตอนกดกราฟ */
-.grid :global(.recharts-surface):focus {
-  outline: none;
 }
