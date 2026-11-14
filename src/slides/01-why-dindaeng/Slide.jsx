@@ -90,7 +90,7 @@ export default function WhyDindaeng() {
   return (
     <SlideFrame
       kicker="01 · ทำไมต้องเป็นเขตดินแดง"
-      title="ดินแดงอยู่อันดับ 50 จาก 50 เขต ไม่ใช่เพราะแย่ด้านเดียว แต่ต่ำกว่าค่ากลางทุกด้าน"
+      title="ดินแดงอยู่อันดับ 50 จาก 50 เขต ต่ำกว่าค่ากลางทุกด้าน"
       source="ที่มา: Bangkok Index 2025 – Rocket Media Lab; ข้อบัญญัติงบประมาณ กทม. 2568 · คะแนน 1–50 ยิ่งมากยิ่งดี · เส้นเขต: OpenGISData-Thailand (CC BY 4.0)"
     >
       <div className={s.grid}>

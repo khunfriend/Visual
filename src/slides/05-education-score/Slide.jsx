@@ -29,13 +29,13 @@ export default function EducationScore() {
     <SlideFrame
       kicker="06 · การศึกษา (คะแนน)"
       title={`ดินแดงได้คะแนนการศึกษาอันดับ ${scoreRank(dd)} จาก ${rows.length} เขต`}
-      subtitle={`เทียบกับปทุมวัน ดินแดงมีเด็กอายุ 0–18 ปีราว ${fmt.int(dd.children / pt.children)} เท่า มีครูใกล้เคียงกัน และมีโรงเรียนน้อยกว่า`}
+      subtitle={`ดินแดงมีเด็ก 0–18 ปีมากกว่าปทุมวันราว ${fmt.int(dd.children / pt.children)} เท่า แต่ครูใกล้เคียงกัน และโรงเรียนน้อยกว่า`}
       source={`ที่มา: Bangkok Index 2025 – Rocket Media Lab (การศึกษา ปีการศึกษา 2568) · โรงเรียนดินแดง ${dd.schools} แห่ง = สังกัด กทม. ${bk[DD].bma} + สพฐ. ${bk[DD].obec} · ปทุมวัน ${pt.schools} แห่ง = ${bk[PT].bma} + ${bk[PT].obec}`}
     >
       <div className={s.grid}>
         <ChartCard
           title="คะแนนการศึกษา Bangkok Index 2025 (50 เขต)"
-          note="เรียงจากมากไปน้อย · คะแนน 1–50 เฉลี่ยจากโรงเรียนต่อเด็ก 1,000 คน และนักเรียนต่อครู"
+          note="เรียงจากมากไปน้อย · คะแนน 1–50"
           legend={[
             { label: 'ดินแดง', color: color.dindaeng },
             { label: 'ปทุมวัน', color: color.pathumwan },

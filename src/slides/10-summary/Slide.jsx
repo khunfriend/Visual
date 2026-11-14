@@ -55,8 +55,8 @@ export default function Summary() {
   return (
     <SlideFrame
       kicker="13 · สรุปผล"
-      title={`ขอเพิ่ม ${m2(ONCE)} ล้านบาท + ${m2(YEARLY)} ล้านบาท/ปี คะแนนรวมขึ้นจาก ${fmt.dec(now.score)} เป็น ${fmt.dec(target.score)} อันดับ ${now.rank} เป็น ${target.rank}`}
-      subtitle={`ปีแรก กรณีตามเป้า · วัดผลด้วย Bangkok Index ปีถัดไป · ระยะยาวถ้า BOD ลดถึงมาตรฐาน อันดับขึ้นถึง ${scenarios.cases.find((c) => c.key === 'longterm').rank}`}
+      title={`ขอเพิ่ม ${m2(ONCE)} ล้านบาท + ${m2(YEARLY)} ล้านบาท/ปี อันดับขึ้นจาก ${now.rank} เป็น ${target.rank}`}
+      subtitle={`ปีแรก กรณีตามเป้า · ระยะยาวถ้า BOD ลดถึงเกณฑ์ ขึ้นถึงอันดับ ${scenarios.cases.find((c) => c.key === 'longterm').rank}`}
       source={`คำนวณจากคะแนนจริงของ Bangkok Index 2025 ทั้ง 16 หัวข้อ × 50 เขต โดยสมมติให้เขตอื่นคงที่ · คะแนนรวม = ค่าเฉลี่ย 16 หัวข้อ · แกนกราฟซ้ายเริ่มที่ ${Y0}`}
     >
       <div className={s.grid}>
