@@ -123,3 +123,56 @@
   pointer-events: none;
   z-index: 5;
 }
+
+/* กราฟฟอง BOD 50 เขต วางตามทิศจริงจากดินแดง (การ์ดซ้าย) */
+.bubbles {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font);
+  overflow: visible;
+}
+
+.bubbles circle {
+  cursor: default;
+}
+
+.bLabel {
+  font-size: 11px;
+  fill: var(--c-text);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.bLabelKey,
+.bLabelDd {
+  font-size: 17px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.bLabelKey {
+  fill: var(--c-text);
+}
+
+.bLabelDd {
+  font-size: 21px;
+  fill: var(--c-surface);
+}
+
+.compass path {
+  fill: none;
+  stroke: var(--c-textMuted);
+  stroke-width: 1.5;
+}
+
+.compass text,
+.sizeKey text {
+  font-size: 14px;
+  fill: var(--c-textMuted);
+}
+
+.sizeKey circle {
+  fill: none;
+  stroke: var(--c-textFaint);
+}

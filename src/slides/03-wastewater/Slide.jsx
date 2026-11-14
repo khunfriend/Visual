@@ -1,9 +1,6 @@
-import {
-  Bar, BarChart, CartesianGrid, Cell, LabelList, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis,
-} from 'recharts'
 import { useState } from 'react'
 import SlideFrame from '../../components/SlideFrame.jsx'
-import { ChartCard, DD, SvgLabel, TipBox, axisCommon, fmt, gridProps } from '../../components/charts/kit.jsx'
+import { ChartCard, DD, TipBox, fmt } from '../../components/charts/kit.jsx'
 import { wastewater as ww } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
 import s from './style.module.css'
@@ -20,15 +17,92 @@ const BOD_TICKS = [0, 10, 20, 30, 40]
 const pct = (bod) => `${(bod / BOD_MAX) * 100}%`
 const standardLabel = `${ww.standard} มก./ล.`
 
-// ขยับป้ายของเขตที่มีแท่งอยู่ใกล้กันให้อ่านได้พร้อมกัน
-const NEAR = {
-  พญาไท: { anchor: 'end', dy: 0 },
-  จตุจักร: { anchor: 'end', dy: 0 },
-  ราชเทวี: { anchor: 'end', dy: 0 },
-  ห้วยขวาง: { anchor: 'end', dy: 32 },
-}
+const NEAR = new Set(ww.neighbors)
 const neighborColor = 'var(--wastewater-neighbor-color)'
-const barColor = (name) => (name === DD ? color.dindaeng : NEAR[name] ? neighborColor : color.other)
+
+// กราฟฟอง: ขนาดวงตาม BOD (พื้นที่วง ∝ BOD) และวางทุกเขตตามทิศจริงจากดินแดง
+// ทิศ/ระยะ (east, north กม.) มาจากจุดศูนย์ถ่วงของรูปเขต (build_data.py ส่วนน้ำเสีย)
+// วางทีละเขตจากใกล้ไปไกล: เริ่มที่ทิศจริง ขยับออกจากกลางทีละน้อยจนไม่ทับวงที่วางแล้ว
+// เขตที่ติดดินแดงเบี่ยงทิศได้ไม่เกิน 12° · เขตที่ไกลออกไปเบี่ยงได้ถึง 72° และบีบแนวตั้งเหลือ 60%
+// ให้กราฟกว้างพอดีการ์ด (กรุงเทพฯ ยาวแนวเหนือ-ใต้) ทิศของเขตไกลจึงเป็นทิศโดยประมาณ
+const K = 9 // รัศมี (หน่วย viewBox) = K × √BOD
+const GAP = 3
+const radius = (bod) => K * Math.sqrt(bod)
+const bubbles = (() => {
+  const placed = [{ ...dd, x: 0, y: 0, r: radius(dd.bod) }]
+  const others = rows.filter((d) => d.name !== DD).sort((a, b) => Math.hypot(a.east, a.north) - Math.hypot(b.east, b.north))
+  const free = (x, y, r) => placed.every((p) => Math.hypot(p.x - x, p.y - y) >= p.r + r + GAP)
+  const turnsUpTo = (max) => [0].concat(...Array.from({ length: max / 6 }, (_, i) => [(i + 1) * 6, -(i + 1) * 6])).map((d) => (d * Math.PI) / 180)
+  const TURNS_NEAR = turnsUpTo(12)
+  const TURNS_FAR = turnsUpTo(72)
+  for (const d of others) {
+    const r = radius(d.bod)
+    const theta = Math.atan2(-d.north, d.east)
+    let spot = null
+    for (let dist = placed[0].r + r + GAP; !spot; dist += 2) {
+      for (const t of NEAR.has(d.name) ? TURNS_NEAR : TURNS_FAR) {
+        const x = Math.cos(theta + t) * dist
+        const y = Math.sin(theta + t) * dist * (NEAR.has(d.name) ? 1 : 0.6)
+        if (free(x, y, r)) { spot = { x, y }; break }
+      }
+    }
+    placed.push({ ...d, ...spot, r })
+  }
+  return placed
+})()
+const PAD = 8
+const minX = Math.min(...bubbles.map((b) => b.x - b.r)) - PAD
+const maxX = Math.max(...bubbles.map((b) => b.x + b.r)) + PAD
+const minY = Math.min(...bubbles.map((b) => b.y - b.r)) - PAD
+const maxY = Math.max(...bubbles.map((b) => b.y + b.r)) + PAD
+const SIZE_KEY = [5, 15, 25]
+
+function BodBubbles() {
+  const fillOf = (b) => (b.name === DD ? color.dindaeng : NEAR.has(b.name) ? neighborColor : color.other)
+  const keyX = maxX + 24
+  return (
+    <svg className={s.bubbles} viewBox={`${minX} ${minY} ${keyX + 150 - minX} ${maxY - minY}`} role="img"
+      aria-label={`BOD เฉลี่ยของคลอง ${rows.length} เขต วางตามทิศจริงจากดินแดง`}>
+      <g className={s.compass} transform={`translate(${minX + 18} ${minY + 10})`}>
+        <path d="M0 22 L0 2 M-5 8 L0 0 L5 8" />
+        <text x="10" y="14">เหนือ</text>
+      </g>
+      {bubbles.map((b) => {
+        const key = b.name === DD || NEAR.has(b.name)
+        const over = b.bod > ww.standard
+        return (
+          <g key={b.name}>
+            <circle cx={b.x} cy={b.y} r={b.r} fill={fillOf(b)} fillOpacity={key || over ? 1 : 0.4} stroke={color.surface} strokeWidth="1.5">
+              <title>{`${b.name} · BOD ${fmt.dec(b.bod)} มก./ล. · อันดับ ${b.rank} จาก ${rows.length}${over ? ' · เกินเกณฑ์' : ''}`}</title>
+            </circle>
+            {key ? (
+              <text x={b.x} y={b.y} textAnchor="middle" className={b.name === DD ? s.bLabelDd : s.bLabelKey}>
+                <tspan x={b.x} dy="-0.15em">{b.name}</tspan>
+                <tspan x={b.x} dy="1.15em" className="num">{fmt.dec(b.bod)}</tspan>
+              </text>
+            ) : b.r >= 26 ? (
+              <text x={b.x} y={b.y} dy="0.35em" textAnchor="middle" className={s.bLabel}>{b.name}</text>
+            ) : null}
+          </g>
+        )
+      })}
+      <g className={s.sizeKey} transform={`translate(${keyX} ${maxY - 150})`}>
+        <text x="0" y="0">ขนาดวง = BOD</text>
+        <text x="0" y="16">(มก./ล.)</text>
+        {SIZE_KEY.map((v) => {
+          const r = radius(v)
+          const cy = 140 - r
+          return (
+            <g key={v}>
+              <circle cx={r} cy={cy} r={r} />
+              <text x={2 * radius(SIZE_KEY.at(-1)) + 6} y={cy - r + 12}>{v}</text>
+            </g>
+          )
+        })}
+      </g>
+    </svg>
+  )
+}
 
 // จุดตรวจคุณภาพน้ำที่อยู่ในเขตดินแดง (ม.ค.–เม.ย. 2566) เรียงจาก BOD มากไปน้อย
 const stations = ww.stations
@@ -87,7 +161,6 @@ function StationBars() {
   )
 }
 
-const bodTip = <TipBox render={(r) => ({ title: `${r.name} · อันดับ ${r.rank}`, rows: [['BOD เฉลี่ย', `${fmt.dec(r.bod)} มก./ล.`], ['จำนวนคลอง', `${r.canals}`]] })} />
 
 export default function Wastewater() {
   return (
@@ -100,46 +173,15 @@ export default function Wastewater() {
       <div className={s.grid}>
         <ChartCard
           title={`BOD เฉลี่ยของคลอง ${rows.length} เขต`}
-          note={`ปี 2540–2567 · ${exceed} เขตเกินเกณฑ์ · หน่วย มก./ล.`}
+          note={`ปี 2540–2567 · ${exceed} เขตเกินเกณฑ์ ${standardLabel} · วางทุกเขตตามทิศจริงจากดินแดง`}
           legend={[
             { label: 'ดินแดง', color: color.dindaeng },
-            { label: 'เขตข้างเคียง', color: neighborColor },
-            { label: 'เขตอื่น', color: color.other },
+            { label: 'เขตที่ติดดินแดง', color: neighborColor },
+            { label: 'เขตอื่นที่เกินเกณฑ์', color: color.other },
+            { label: 'เขตอื่นที่อยู่ในเกณฑ์', color: 'color-mix(in srgb, var(--c-other) 40%, transparent)' },
           ]}
         >
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={rows} margin={{ top: 12, right: 8, bottom: 8, left: 0 }} barCategoryGap={2}>
-              <CartesianGrid {...gridProps} />
-              <XAxis dataKey="name" tick={false} axisLine={{ stroke: color.border }} tickLine={false} />
-              <YAxis {...axisCommon} domain={[0, BOD_MAX]} ticks={BOD_TICKS} width={44} />
-              <Tooltip cursor={{ fill: color.grid }} content={bodTip} />
-              <Bar dataKey="bod" radius={[4, 4, 0, 0]} maxBarSize={24} isAnimationActive={false}>
-                {rows.map((d) => (
-                  <Cell key={d.name} fill={barColor(d.name)} />
-                ))}
-                <LabelList
-                  dataKey="name"
-                  content={({ x, y, width, value }) =>
-                    value === DD ? (
-                      <SvgLabel x={x + width / 2} y={y - 12} anchor="end">ดินแดง {fmt.dec(dd.bod)}</SvgLabel>
-                    ) : NEAR[value] ? (
-                      <SvgLabel x={x + width / 2} y={y - 12 - NEAR[value].dy} anchor={NEAR[value].anchor} weight={500}>
-                        {value} {fmt.dec(rows.find((d) => d.name === value).bod)}
-                      </SvgLabel>
-                    ) : null
-                  }
-                />
-              </Bar>
-              <ReferenceLine
-                y={ww.standard} stroke={color.reference} strokeDasharray="6 5" strokeWidth={2}
-                label={({ viewBox }) => (
-                  <SvgLabel x={viewBox.x + 10} y={viewBox.y - 12} anchor="start" fill={color.reference}>
-                    เกณฑ์ {standardLabel}
-                  </SvgLabel>
-                )}
-              />
-            </BarChart>
-          </ResponsiveContainer>
+          <BodBubbles />
         </ChartCard>
 
         <ChartCard

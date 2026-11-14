@@ -380,6 +380,58 @@ check('จุดเกินมาตรฐาน 15', sum(x['bod'] > 15 for x i
 check('จุดที่ DO = 0 ทุกเดือน', sum(x['doZeroAll'] for x in stations), 6)
 check('อันดับ BOD ดินแดง', dd_b['rank'], 49)
 check('มัธยฐาน BOD', r2(st.median(r['bod'] for r in bod)), 11.59)
+
+# ทิศและระยะของแต่ละเขตจากดินแดง (หน้า 4 กราฟฟองวางตามทิศจริง)
+# จุดศูนย์ถ่วงของรูปเขตจาก map/bangkok_districts.geojson (OpenGISData-Thailand) · ระยะเป็น กม. ตะวันออก (east) / เหนือ (north)
+geo = json.loads((RAW / 'map' / 'bangkok_districts.geojson').read_text(encoding='utf-8'))['features']
+
+
+def rings_of(f):
+    g = f['geometry']
+    return [p[0] for p in g['coordinates']] if g['type'] == 'MultiPolygon' else [g['coordinates'][0]]
+
+
+def centroid(f):
+    a = cx = cy = 0.0
+    for ring in rings_of(f):
+        pts = [p[:2] for p in ring]
+        for (x1, y1), (x2, y2) in zip(pts, pts[1:] + pts[:1]):
+            k = x1 * y2 - x2 * y1
+            a += k
+            cx += (x1 + x2) * k
+            cy += (y1 + y2) * k
+    return cx / (3 * a), cy / (3 * a)
+
+
+cents = {fix_name(f['properties']['amp_th']): centroid(f) for f in geo}
+check('ทุกเขตใน BOD มีรูปเขต', sorted(set(r['name'] for r in bod) - set(cents)), [])
+lon0, lat0 = cents[DD]
+KM_LAT, KM_LON = 111.32, 111.32 * math.cos(math.radians(lat0))
+for r in bod:
+    lon, lat = cents[r['name']]
+    r['east'] = r2((lon - lon0) * KM_LON, 2)
+    r['north'] = r2((lat - lat0) * KM_LAT, 2)
+# เขตที่ติดดินแดงจริง = มีจุดบนเส้นเขตห่างจากเส้นขอบดินแดงไม่เกิน 100 ม. (ไฟล์เส้นเขตถูกทำให้หยาบ จุดจึงไม่ทับกันพอดี)
+def seg_dist(px, py, ax, ay, bx, by):
+    dx, dy = bx - ax, by - ay
+    t = 0 if dx == dy == 0 else max(0, min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)))
+    return math.hypot(px - ax - t * dx, py - ay - t * dy)
+
+
+km = lambda p: ((p[0] - lon0) * KM_LON, (p[1] - lat0) * KM_LAT)
+dd_segs = [(km(a), km(b)) for f in geo if fix_name(f['properties']['amp_th']) == DD
+           for ring in rings_of(f) for a, b in zip(ring, ring[1:] + ring[:1])]
+touch = []
+for f in geo:
+    n = fix_name(f['properties']['amp_th'])
+    if n == DD:
+        continue
+    pts = [km(p) for ring in rings_of(f) for p in ring]
+    if any(abs(x) < 6 and abs(y) < 6 for x, y in pts):
+        near = min(seg_dist(x, y, a[0], a[1], b[0], b[1]) for x, y in pts for a, b in dd_segs)
+        if near < 0.1:
+            touch.append(n)
+check('เขตที่ติดดินแดงตามเส้นเขต', sorted(touch), sorted(['ห้วยขวาง', 'ราชเทวี', 'จตุจักร', 'พญาไท']))
 write('wastewater', {
     'source': 'Bangkok Index 2025: น้ำเสีย (ค่าเฉลี่ยคุณภาพคลอง 2540–2567, สำนักการระบายน้ำ)',
     'standard': 15,
