@@ -55,13 +55,11 @@ const minX = Math.min(...bubbles.map((b) => b.x - b.r)) - PAD
 const maxX = Math.max(...bubbles.map((b) => b.x + b.r)) + PAD
 const minY = Math.min(...bubbles.map((b) => b.y - b.r)) - PAD
 const maxY = Math.max(...bubbles.map((b) => b.y + b.r)) + PAD
-const SIZE_KEY = [5, 15, 25]
 
 function BodBubbles() {
   const fillOf = (b) => (b.name === DD ? color.dindaeng : NEAR.has(b.name) ? neighborColor : color.other)
-  const keyX = maxX + 24
   return (
-    <svg className={s.bubbles} viewBox={`${minX} ${minY} ${keyX + 150 - minX} ${maxY - minY}`} role="img"
+    <svg className={s.bubbles} viewBox={`${minX} ${minY} ${maxX - minX} ${maxY - minY}`} role="img"
       aria-label={`BOD เฉลี่ยของคลอง ${rows.length} เขต วางตามทิศจริงจากดินแดง`}>
       <g className={s.compass} transform={`translate(${minX + 18} ${minY + 10})`}>
         <path d="M0 22 L0 2 M-5 8 L0 0 L5 8" />
@@ -86,20 +84,6 @@ function BodBubbles() {
           </g>
         )
       })}
-      <g className={s.sizeKey} transform={`translate(${keyX} ${maxY - 150})`}>
-        <text x="0" y="0">ขนาดวง = BOD</text>
-        <text x="0" y="16">(มก./ล.)</text>
-        {SIZE_KEY.map((v) => {
-          const r = radius(v)
-          const cy = 140 - r
-          return (
-            <g key={v}>
-              <circle cx={r} cy={cy} r={r} />
-              <text x={2 * radius(SIZE_KEY.at(-1)) + 6} y={cy - r + 12}>{v}</text>
-            </g>
-          )
-        })}
-      </g>
     </svg>
   )
 }
@@ -173,7 +157,7 @@ export default function Wastewater() {
       <div className={s.grid}>
         <ChartCard
           title={`BOD เฉลี่ยของคลอง ${rows.length} เขต`}
-          note={`ปี 2540–2567 · ${exceed} เขตเกินเกณฑ์ ${standardLabel} · วางทุกเขตตามทิศจริงจากดินแดง`}
+          note={`ปี 2540–2567 · ${exceed} เขตเกินเกณฑ์ ${standardLabel} · วงใหญ่ = BOD สูง · วางทุกเขตตามทิศจริงจากดินแดง`}
           legend={[
             { label: 'ดินแดง', color: color.dindaeng },
             { label: 'เขตที่ติดดินแดง', color: neighborColor },
