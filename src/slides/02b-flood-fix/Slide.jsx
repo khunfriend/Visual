@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, SvgLabel, TipBox, axisCommon, gridProps } from '../../components/charts/kit.jsx'
@@ -85,6 +86,7 @@ const nowCase = scenarios.cases.find((c) => c.key === 'now')
 const targetCase = scenarios.cases.find((c) => c.key === 'target')
 
 export default function FloodFix() {
+  const [open, setOpen] = useState(null) // แถวที่เปิดดูสูตรคำนวณ
   return (
     <SlideFrame
       kicker="03 · แก้น้ำท่วม"
@@ -113,11 +115,30 @@ export default function FloodFix() {
                 ))}
               </ul>
               <div className={s.cost}>
-                {/* รายละเอียดวิธีคิด (จำนวน × ราคา) ดูได้เมื่อชี้ที่ยอดเงิน */}
-                <b className={`${s.money} num`} title={g.cost.map((c) => `${c.label} ${th(c.qty)} ${c.unit} × ${th(c.price)} บาท`).join('\n')}>
+                <b className={`${s.money} num`}>
                   {mb(g.sum)} <small>ล้านบาท{g.kind === 'ต่อปี' ? '/ปี' : ' (ครั้งเดียว)'}</small>
                 </b>
+                <button type="button" className={s.formulaBtn} aria-expanded={open === i}
+                  onClick={() => setOpen(open === i ? null : i)}>
+                  {open === i ? 'ซ่อนสูตรคำนวณ ▴' : 'ดูสูตรคำนวณ ▾'}
+                </button>
               </div>
+              {open === i && (
+                <div className={s.formula}>
+                  {g.cost.map((c) => (
+                    <div key={c.short} className={s.fLine}>
+                      <span>{c.label}</span>
+                      <span className="num">{th(c.qty)} {c.unit} × {th(c.price)} บาท</span>
+                      <b className="num">= {mb(c.sum)} ล้าน</b>
+                    </div>
+                  ))}
+                  <div className={`${s.fLine} ${s.fTotal}`}>
+                    <span>รวม</span>
+                    <span />
+                    <b className="num">= {mb(g.sum)} ล้าน{g.kind === 'ต่อปี' ? '/ปี' : ''}</b>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
