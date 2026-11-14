@@ -1,10 +1,7 @@
 import { useState } from 'react'
 import SlideFrame from '../../components/SlideFrame.jsx'
-import MapBase from '../../components/charts/MapBase.jsx'
-import Expandable from '../../components/charts/Expandable.jsx'
-import { ChartCard, Stat, TipBox, fmt } from '../../components/charts/kit.jsx'
-import { education as ed, map } from '../../lib/data.js'
-import { color } from '../../theme/theme.js'
+import { ChartCard, Stat, fmt } from '../../components/charts/kit.jsx'
+import { education as ed } from '../../lib/data.js'
 import s from './style.module.css'
 
 // สไลด์ 06: แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
@@ -14,42 +11,68 @@ const LABEL = (sc) =>
   sc.addSchools && sc.addTeachers ? `โรงเรียน +1 และครู +${sc.addTeachers}` : sc.addSchools ? 'โรงเรียน +1' : sc.addTeachers ? `ครู +${sc.addTeachers}` : 'ตอนนี้'
 const rows = ed.scenarios.map((sc) => ({ ...sc, label: LABEL(sc), chosen: !sc.addSchools && sc.addTeachers })) // 14 พ.ย.: ใช้กรณีเพิ่มครูอย่างเดียว (ตัดโรงเรียนออก)
 const both = rows.find((r) => r.chosen) // ครู +50
-const allSchools = map.schools.items.map((sc, i) => ({ ...sc, no: i + 1 })) // เลขคงที่ไม่ว่าจะกรองแบบไหน
-// สังกัด: กทม. / สพฐ. / เอกชน / อื่น ๆ (ยืนยันจากเว็บสำนักงานเขตดินแดง ดู build_map.py)
-const AFFILS = ['กทม.', 'สพฐ.', 'เอกชน', 'อื่น ๆ']
-const FILTERS = [['all', 'ทั้งหมด', () => true], ...AFFILS.map((a) => [a, a, (sc) => sc.affil === a])]
-// แยกสังกัดด้วยรูปทรง ไม่ต้องเพิ่มสี: กทม. = สี่เหลี่ยมทึบ · สพฐ. = วงกลมทึบ · เอกชน = สี่เหลี่ยมโปร่ง · อื่น ๆ = วงกลมโปร่ง
-const ROUND = { 'สพฐ.': true, 'อื่น ๆ': true }
-const HOLLOW = { 'เอกชน': true, 'อื่น ๆ': true }
-function Pin({ x, y, affil, size = 11 }) {
-  const r = ROUND[affil] ? size : 4
-  const inner = size - 5
-  return (
-    <>
-      <rect x={x - size} y={y - size} width={size * 2} height={size * 2} rx={r} fill={color.text} stroke={color.surface} strokeWidth={3} />
-      {HOLLOW[affil] && <rect x={x - inner} y={y - inner} width={inner * 2} height={inner * 2} rx={ROUND[affil] ? inner : 2} fill={color.surface} />}
-    </>
-  )
-}
 const salary = ed.teacherSalary
 const dd = ed.districts.find((d) => d.name === 'ดินแดง')
+const pt = ed.districts.find((d) => d.name === 'ปทุมวัน')
+const now = rows.find((r) => !r.addSchools && !r.addTeachers)
 
-/** กล่อง hover ที่ลอยตามเมาส์บนแผนที่ (คิดตำแหน่งในหน่วยของเวที 1920×1080 ที่ถูกย่อ) */
-function FollowTip({ children, tip }) {
-  const [pos, setPos] = useState(null)
-  const onMove = (e) => {
-    const box = e.currentTarget.getBoundingClientRect()
-    const k = box.width / e.currentTarget.offsetWidth || 1
-    setPos({ x: (e.clientX - box.left) / k, y: (e.clientY - box.top) / k })
-  }
+// ภาพนับคน: ครู 1 คนดูแลนักเรียนกี่คน (1 ตัว = นักเรียน 1 คน ปัดเป็นจำนวนเต็ม · ตัวเลขข้างแถวคือค่าจริง)
+function Person({ x, y, h, className }) {
+  const r = h * 0.2
   return (
-    <div className={s.followWrap} onMouseMove={onMove} onMouseLeave={() => setPos(null)}>
-      {children}
-      {tip && pos && (
-        <div className={s.followTip} style={{ left: pos.x, top: pos.y }}>
-          {tip}
-        </div>
-      )}
+    <g className={className} transform={`translate(${x} ${y})`}>
+      <circle cx={h * 0.3} cy={r} r={r} />
+      <path d={`M0 ${h} L0 ${h * 0.68} Q0 ${h * 0.44} ${h * 0.3} ${h * 0.44} Q${h * 0.6} ${h * 0.44} ${h * 0.6} ${h * 0.68} L${h * 0.6} ${h} Z`} />
+    </g>
+  )
+}
+
+function TeacherPictogram() {
+  const [added, setAdded] = useState(false)
+  const ddNow = dd.studentsPerTeacher
+  const ddAfter = ed.studentsPerTeacherAfter
+  const lines = [
+    { key: 'dd', label: 'ดินแดง', sub: added ? `ครู ${fmt.int(dd.teachers + ed.teachersNeeded)} คน` : `ครู ${fmt.int(dd.teachers)} คน`, value: added ? ddAfter : ddNow, max: ddNow, cls: s.pxDd },
+    { key: 'pt', label: 'ปทุมวัน', sub: 'เขตอันดับ 1', value: pt.studentsPerTeacher, max: pt.studentsPerTeacher, cls: s.pxPt },
+    { key: 'med', label: 'ค่ากลาง 50 เขต', sub: '', value: ed.medianStudentsPerTeacher, max: ed.medianStudentsPerTeacher, cls: s.pxMed },
+  ]
+  const H = 34
+  const STEP = 25
+  const X0 = 64
+  return (
+    <div className={s.picto}>
+      <div className={s.pxRows}>
+        {lines.map((l) => (
+          <div key={l.key} className={`${s.pxRow} ${l.cls}`}>
+            <div className={s.pxHead}>
+              <b>{l.label}</b>
+              {l.sub && <small>{l.sub}</small>}
+              <span className={`${s.pxValue} num`}>{fmt.dec(l.value, 1)}<small> คน</small></span>
+            </div>
+            <svg viewBox={`0 0 ${X0 + STEP * 24} ${H + 4}`} className={s.pxSvg} role="img"
+              aria-label={`${l.label}: ครู 1 คนต่อนักเรียน ${fmt.dec(l.value, 1)} คน`}>
+              <Person x={6} y={0} h={H + 4} className={s.pxTeacher} />
+              <line x1={X0 - 16} x2={X0 - 16} y1={6} y2={H} className={s.pxDivider} />
+              {Array.from({ length: Math.round(l.max) }, (_, i) => (
+                <Person key={i} x={X0 + i * STEP} y={8} h={H - 8}
+                  className={`${s.pxKid} ${i >= Math.round(l.value) ? s.pxGone : ''}`} />
+              ))}
+            </svg>
+          </div>
+        ))}
+      </div>
+      <div className={s.pxFoot}>
+        <button type="button" className={`${s.pxBtn} ${added ? s.pxBtnOn : ''}`} onClick={() => setAdded((v) => !v)}>
+          {added ? '↺ ย้อนกลับ' : `+ เพิ่มครู ${ed.teachersNeeded} คน`}
+        </button>
+        <p className={s.pxResult}>
+          {added ? (
+            <>นักเรียนต่อครู <b className="num">{fmt.dec(ddNow, 1)} → {fmt.dec(ddAfter, 1)}</b> เท่าปทุมวัน · คะแนนการศึกษา <b className="num">{fmt.dec(now.score)} → {fmt.dec(both.score)}</b> อันดับ {now.rank} → {both.rank}</>
+          ) : (
+            <>ครู 1 คนในดินแดงดูแลนักเรียนมากกว่าปทุมวันราว {fmt.int(ddNow - pt.studentsPerTeacher)} คน · กดปุ่มเพื่อดูผลของการเพิ่มครู</>
+          )}
+        </p>
+      </div>
     </div>
   )
 }
@@ -61,82 +84,15 @@ const EXTRA = [
 ]
 
 export default function Schools() {
-  const [filter, setFilter] = useState('all')
-  const [hover, setHover] = useState(null) // โรงเรียนที่เมาส์ชี้อยู่
-  const schools = allSchools.filter(FILTERS.find(([k]) => k === filter)[2])
-  const count = (a) => allSchools.filter((sc) => sc.affil === a).length
-  const filterBar = (
-    <div className={s.toggle} role="tablist" aria-label="กรองโรงเรียน">
-      {FILTERS.map(([k, label, fn]) => (
-        <button key={k} role="tab" aria-selected={filter === k} className={filter === k ? s.on : ''}
-          onClick={(e) => (e.stopPropagation(), setFilter(k))}>
-          {label} ({allSchools.filter(fn).length})
-        </button>
-      ))}
-    </div>
-  )
   return (
     <SlideFrame
       kicker="07 · เพิ่มครูและประสิทธิภาพการสอน"
       title={`เพิ่มครู ${ed.teachersNeeded} คนและเพิ่มประสิทธิภาพการสอน คะแนนการศึกษาขึ้นเป็น ${fmt.dec(both.score)}`}
-      source={`คำนวณจากสูตร Bangkok Index 2025 (การศึกษา = เฉลี่ยคะแนนโรงเรียนต่อเด็ก 1,000 คน กับนักเรียนต่อครู) โดยสมมติให้เขตอื่นคงที่ · ตำแหน่งโรงเรียนและแผนที่ฐาน © OpenStreetMap contributors · สังกัดโรงเรียน: สำนักงานเขตดินแดง · เงินเดือนครูผู้ช่วย ${fmt.int(salary.monthly)} บาท/เดือน ยังไม่ยืนยันอัตรา กทม.`}
+      source={`คำนวณจากสูตร Bangkok Index 2025 (การศึกษา = เฉลี่ยคะแนนโรงเรียนต่อเด็ก 1,000 คน กับนักเรียนต่อครู) โดยสมมติให้เขตอื่นคงที่ · เงินเดือนครูผู้ช่วย ${fmt.int(salary.monthly)} บาท/เดือน ยังไม่ยืนยันอัตรา กทม.`}
     >
       <div className={s.grid}>
-        <ChartCard title="โรงเรียนในเขตตอนนี้" note={`${AFFILS.map((a) => `${a} ${count(a)}`).join(' · ')} · ดัชนีนับ กทม. + สพฐ. ${ed.districts.find((d) => d.name === 'ดินแดง').schools} แห่ง`} className={s.mapCard}>
-          <div className={s.mapWrap}>
-            <div className={s.mapArea}>
-              <Expandable
-                title="โรงเรียนในเขตดินแดง"
-                note="■ กทม. · ● สพฐ. · □ เอกชน · ○ อื่น ๆ (โรงเรียนกีฬา กทม. ไม่นับในดัชนี) · ดัชนีนับ สพฐ. 5 แห่ง แต่ OpenStreetMap มี 3 แห่ง"
-                toolbar={filterBar}
-                aside={
-                  <ol className={s.asideList}>
-                    {schools.map((sc) => (
-                      <li key={sc.osm}>
-                        {sc.no}. {sc.name} · {sc.affil}
-                      </li>
-                    ))}
-                  </ol>
-                }
-              >
-                {({ expanded }) => (
-                  <FollowTip tip={hover && (
-                    <TipBox active payload={[{ payload: hover }]}
-                      render={(r) => ({ title: `${r.no}. ${r.name}`, rows: [['สังกัด', r.affil]] })} />
-                  )}>
-                  <MapBase labelSize={expanded ? 18 : 24} overlay={(
-                      <g>
-                        {schools.map((sc) => (
-                          <g key={sc.osm} onMouseEnter={() => setHover(sc)} onMouseLeave={() => setHover(null)} style={{ cursor: 'default' }}>
-                            <Pin x={sc.x} y={sc.y} affil={sc.affil} />
-                            {expanded && (
-                              <text x={sc.x + 16} y={sc.y} dy="0.35em" fontSize={17} fontWeight={600} fill={color.text}
-                                stroke={color.surface} strokeWidth={4} paintOrder="stroke" style={{ fontFamily: 'var(--font)' }}>
-                                {sc.no}
-                              </text>
-                            )}
-                          </g>
-                        ))}
-                      </g>
-                    )} />
-                  </FollowTip>
-                )}
-              </Expandable>
-            </div>
-            <div className={s.controls}>
-              <div className={s.filterRow}>
-                {filterBar}
-                <span className={s.pinKey}>
-                  {AFFILS.map((a) => (
-                    <span key={a} className={s.pinItem}>
-                      <svg width="18" height="18" viewBox="-12 -12 24 24" aria-hidden="true"><Pin x={0} y={0} affil={a} size={9} /></svg>
-                      {a}
-                    </span>
-                  ))}
-                </span>
-              </div>
-            </div>
-          </div>
+        <ChartCard title="ครู 1 คนดูแลนักเรียนกี่คน" note={`1 ตัว = นักเรียน 1 คน · ดัชนีนับครูของโรงเรียน กทม. + สพฐ. ${dd.schools} แห่ง`} className={s.mapCard}>
+          <TeacherPictogram />
         </ChartCard>
 
         <div className={s.side}>

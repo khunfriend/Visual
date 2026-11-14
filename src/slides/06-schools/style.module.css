@@ -16,9 +16,14 @@
 .mapWrap {
   height: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px; /* แผนที่แนวตั้งเต็มความสูง · ปุ่มและคำอธิบายอยู่ขวา */
-  gap: 24px;
+  grid-template-columns: 230px minmax(0, 1fr); /* แผนที่ย่อซ้าย (กดขยายได้) · ภาพนับคนขวา */
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px 32px;
 }
+
+.mapWrap > .mapArea { grid-column: 1; grid-row: 1; }
+.mapWrap > .controls { grid-column: 1; grid-row: 2; padding-top: 0; }
+.mapWrap > .picto { grid-column: 2; grid-row: 1 / span 2; }
 
 .mapArea {
   min-width: 0;
@@ -296,5 +301,120 @@
 
 .extraList b {
   font-size: var(--fs-label);
+  color: var(--c-text);
+}
+
+/* ภาพนับคน: ครู 1 คนดูแลนักเรียนกี่คน */
+.picto {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+}
+
+.pxRows {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pxRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pxHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  line-height: 1.25;
+}
+
+.pxHead b {
+  font-size: var(--fs-label);
+  color: var(--c-text);
+}
+
+.pxHead small {
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+}
+
+.pxHead .pxValue {
+  margin-left: auto;
+}
+
+.pxSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.pxTeacher { fill: var(--c-text); }
+.pxDivider { stroke: var(--c-border); stroke-width: 2; }
+
+.pxKid {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.pxDd .pxKid { fill: var(--c-dindaeng); }
+.pxPt .pxKid { fill: var(--c-pathumwan); }
+.pxMed .pxKid { fill: var(--c-other); }
+
+.pxGone {
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+.pxValue {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--c-text);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.pxValue small {
+  font-size: var(--fs-source);
+  font-weight: 400;
+  color: var(--c-textMuted);
+}
+
+.pxFoot {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.pxBtn {
+  flex: none;
+  padding: 12px 22px;
+  border: 2px solid var(--c-dindaeng);
+  border-radius: 999px;
+  background: var(--c-dindaeng);
+  color: var(--c-surface);
+  font: inherit;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pxBtnOn {
+  background: var(--c-surface);
+  color: var(--c-dindaeng);
+}
+
+.pxResult {
+  font-size: var(--fs-label);
+  line-height: 1.45;
+  color: var(--c-textMuted);
+}
+
+.pxResult b {
   color: var(--c-text);
 }
