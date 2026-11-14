@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import SlideFrame from '../../components/SlideFrame.jsx'
-import MapBase, { heatColor } from '../../components/charts/MapBase.jsx'
+import MapBase from '../../components/charts/MapBase.jsx'
 import Expandable from '../../components/charts/Expandable.jsx'
 import { ChartCard, Stat, TipBox, fmt } from '../../components/charts/kit.jsx'
 import { education as ed, map } from '../../lib/data.js'
@@ -16,36 +16,22 @@ const rows = ed.scenarios.map((sc) => ({ ...sc, label: LABEL(sc), chosen: sc.add
 const now = rows[0]
 const both = rows.find((r) => r.chosen)
 const allSchools = map.schools.items.map((sc, i) => ({ ...sc, no: i + 1 })) // เลขคงที่ไม่ว่าจะกรองแบบไหน
-// ความหนาแน่นเด็ก 5–19 ปี (WorldPop) วาดเป็นช่อง ~100 ม. ใต้หมุดโรงเรียน (แผนที่ตัดขอบเขตให้เอง)
-const kids = map.kids
-// ระบายสีตามลำดับเปอร์เซ็นไทล์ (ไม่ใช่ค่าดิบ) เพราะเกือบทั้งเขตหนาแน่น ค่าดิบจะส้มทั้งแผ่น · ดูได้แค่ "ตรงไหนมากกว่าตรงไหน"
-const sortedKids = kids.cells.map((c) => c[4]).sort((a, b) => a - b)
-const pctl = (v) => {
-  let lo = 0
-  let hi = sortedKids.length
-  while (lo < hi) {
-    const mid = (lo + hi) >> 1
-    if (sortedKids[mid] < v) lo = mid + 1
-    else hi = mid
-  }
-  return lo / sortedKids.length
+// สังกัด: กทม. / สพฐ. / เอกชน / อื่น ๆ (ยืนยันจากเว็บสำนักงานเขตดินแดง ดู build_map.py)
+const AFFILS = ['กทม.', 'สพฐ.', 'เอกชน', 'อื่น ๆ']
+const FILTERS = [['all', 'ทั้งหมด', () => true], ...AFFILS.map((a) => [a, a, (sc) => sc.affil === a])]
+// แยกสังกัดด้วยรูปทรง ไม่ต้องเพิ่มสี: กทม. = สี่เหลี่ยมทึบ · สพฐ. = วงกลมทึบ · เอกชน = สี่เหลี่ยมโปร่ง · อื่น ๆ = วงกลมโปร่ง
+const ROUND = { 'สพฐ.': true, 'อื่น ๆ': true }
+const HOLLOW = { 'เอกชน': true, 'อื่น ๆ': true }
+function Pin({ x, y, affil, size = 11 }) {
+  const r = ROUND[affil] ? size : 4
+  const inner = size - 5
+  return (
+    <>
+      <rect x={x - size} y={y - size} width={size * 2} height={size * 2} rx={r} fill={color.text} stroke={color.surface} strokeWidth={3} />
+      {HOLLOW[affil] && <rect x={x - inner} y={y - inner} width={inner * 2} height={inner * 2} rx={ROUND[affil] ? inner : 2} fill={color.surface} />}
+    </>
+  )
 }
-const kidCells = kids.cells
-  .map(([x, y, w, h, v]) => ({ x, y, w, h, n: pctl(v) }))
-  .filter((c) => c.n >= 0.25) // ตัดช่องที่เด็กน้อยที่สุด 1 ใน 4 ออก ให้เห็นถนนและพื้นที่ว่าง
-const kidLayer = (
-  <g>
-    {kidCells.map((c, i) => (
-      <rect key={i} x={c.x} y={c.y} width={c.w + 0.5} height={c.h + 0.5} fill={heatColor(c.n)} fillOpacity={0.15 + 0.6 * c.n} />
-    ))}
-  </g>
-)
-
-const FILTERS = [
-  ['all', 'ทั้งหมด', () => true],
-  ['private', 'เอกชน', (sc) => sc.private],
-  ['other', 'อื่น ๆ', (sc) => !sc.private],
-]
 const salary = ed.teacherSalary
 const dd = ed.districts.find((d) => d.name === 'ดินแดง')
 
@@ -72,15 +58,8 @@ function FollowTip({ children, tip }) {
 export default function Schools() {
   const [filter, setFilter] = useState('all')
   const [hover, setHover] = useState(null) // โรงเรียนที่เมาส์ชี้อยู่
-  const [showKids, setShowKids] = useState(true) // ชั้นความหนาแน่นเด็ก
   const schools = allSchools.filter(FILTERS.find(([k]) => k === filter)[2])
-  const nPrivate = allSchools.filter((sc) => sc.private).length
-  const kidsToggle = (
-    <button type="button" className={`${s.kidsBtn} ${showKids ? s.on : ''}`} aria-pressed={showKids}
-      onClick={(e) => (e.stopPropagation(), setShowKids((v) => !v))}>
-      ความหนาแน่นเด็ก {showKids ? 'เปิด' : 'ปิด'}
-    </button>
-  )
+  const count = (a) => allSchools.filter((sc) => sc.affil === a).length
   const filterBar = (
     <div className={s.toggle} role="tablist" aria-label="กรองโรงเรียน">
       {FILTERS.map(([k, label, fn]) => (
@@ -93,24 +72,24 @@ export default function Schools() {
   )
   return (
     <SlideFrame
-      kicker="06 · เพิ่มโรงเรียนและครู"
+      kicker="07 · เพิ่มโรงเรียนและครู"
       title={`มีโรงเรียนต้องมีครู: เพิ่มโรงเรียน 1 แห่งและครู ${ed.teachersNeeded} คน คะแนนการศึกษาขึ้นเป็น ${fmt.dec(both.score)}`}
       subtitle={`อันดับการศึกษาขยับจาก ${now.rank} เป็นราว ${both.rank} · เพิ่มโรงเรียนอย่างเดียวอันดับไม่ขยับ เพราะตัวชี้วัดที่ฉุดคือนักเรียนต่อครู`}
-      source={`คำนวณจากสูตร Bangkok Index 2025 (การศึกษา = เฉลี่ยคะแนนโรงเรียนต่อเด็ก 1,000 คน กับนักเรียนต่อครู) โดยสมมติให้เขตอื่นคงที่ · ตำแหน่งโรงเรียนและแผนที่ฐาน © OpenStreetMap contributors · โรงเรียนเอกชน 4 แห่งยืนยันสังกัดจากเว็บโรงเรียน/สช. · เงินเดือนครูผู้ช่วย ${fmt.int(salary.monthly)} บาท/เดือน ยังไม่ยืนยันอัตรา กทม.`}
+      source={`คำนวณจากสูตร Bangkok Index 2025 (การศึกษา = เฉลี่ยคะแนนโรงเรียนต่อเด็ก 1,000 คน กับนักเรียนต่อครู) โดยสมมติให้เขตอื่นคงที่ · ตำแหน่งโรงเรียนและแผนที่ฐาน © OpenStreetMap contributors · สังกัดโรงเรียน: สำนักงานเขตดินแดง · เงินเดือนครูผู้ช่วย ${fmt.int(salary.monthly)} บาท/เดือน ยังไม่ยืนยันอัตรา กทม.`}
     >
       <div className={s.grid}>
-        <ChartCard title="โรงเรียนในเขตตอนนี้" note={`พบ ${allSchools.length} แห่ง (เอกชน ${nPrivate}) · ดัชนีนับเฉพาะสังกัด กทม. + สพฐ. ${ed.districts.find((d) => d.name === 'ดินแดง').schools} แห่ง`} className={s.mapCard}>
+        <ChartCard title="โรงเรียนในเขตตอนนี้" note={`${AFFILS.map((a) => `${a} ${count(a)}`).join(' · ')} · ดัชนีนับ กทม. + สพฐ. ${ed.districts.find((d) => d.name === 'ดินแดง').schools} แห่ง`} className={s.mapCard}>
           <div className={s.mapWrap}>
             <div className={s.mapArea}>
               <Expandable
                 title="โรงเรียนในเขตดินแดง"
-                note="สี่เหลี่ยมโปร่ง = เอกชน (ยืนยันแล้ว 4 แห่ง) · ที่เหลือยังไม่ได้แยกว่าเป็นสังกัด กทม. / สพฐ."
-                toolbar={<>{filterBar}{kidsToggle}</>}
+                note="■ กทม. · ● สพฐ. · □ เอกชน · ○ อื่น ๆ (โรงเรียนกีฬา กทม. ไม่นับในดัชนี) · ดัชนีนับ สพฐ. 5 แห่ง แต่ OpenStreetMap มี 3 แห่ง"
+                toolbar={filterBar}
                 aside={
                   <ol className={s.asideList}>
                     {schools.map((sc) => (
                       <li key={sc.osm}>
-                        {sc.no}. {sc.name}{sc.private ? ' · เอกชน' : ''}
+                        {sc.no}. {sc.name} · {sc.affil}
                       </li>
                     ))}
                   </ol>
@@ -119,15 +98,13 @@ export default function Schools() {
                 {({ expanded }) => (
                   <FollowTip tip={hover && (
                     <TipBox active payload={[{ payload: hover }]}
-                      render={(r) => ({ title: `${r.no}. ${r.name}`, rows: [['ประเภท', r.private ? 'เอกชน' : 'ยังไม่แยกสังกัด']] })} />
+                      render={(r) => ({ title: `${r.no}. ${r.name}`, rows: [['สังกัด', r.affil]] })} />
                   )}>
-                  <MapBase labelSize={expanded ? 18 : 24} children={showKids ? kidLayer : null} overlay={(
+                  <MapBase labelSize={expanded ? 18 : 24} overlay={(
                       <g>
                         {schools.map((sc) => (
                           <g key={sc.osm} onMouseEnter={() => setHover(sc)} onMouseLeave={() => setHover(null)} style={{ cursor: 'default' }}>
-                            {/* เอกชน = สี่เหลี่ยมโปร่ง · อื่น ๆ = สี่เหลี่ยมทึบ (แยกด้วยรูปทรง ไม่ต้องเพิ่มสี) */}
-                            <rect x={sc.x - 11} y={sc.y - 11} width={22} height={22} rx={4} fill={color.text} stroke={color.surface} strokeWidth={3} />
-                            {sc.private && <rect x={sc.x - 6} y={sc.y - 6} width={12} height={12} rx={2} fill={color.surface} />}
+                            <Pin x={sc.x} y={sc.y} affil={sc.affil} />
                             {expanded && (
                               <text x={sc.x + 16} y={sc.y} dy="0.35em" fontSize={17} fontWeight={600} fill={color.text}
                                 stroke={color.surface} strokeWidth={4} paintOrder="stroke" style={{ fontFamily: 'var(--font)' }}>
@@ -145,17 +122,15 @@ export default function Schools() {
             <div className={s.controls}>
               <div className={s.filterRow}>
                 {filterBar}
-                {kidsToggle}
-                <span className={s.pinKey}><i className={s.pinSolid} /> อื่น ๆ <i className={s.pinHollow} /> เอกชน</span>
+                <span className={s.pinKey}>
+                  {AFFILS.map((a) => (
+                    <span key={a} className={s.pinItem}>
+                      <svg width="18" height="18" viewBox="-12 -12 24 24" aria-hidden="true"><Pin x={0} y={0} affil={a} size={9} /></svg>
+                      {a}
+                    </span>
+                  ))}
+                </span>
               </div>
-              {showKids && (
-                <div className={s.heatKey}>
-                  <span>เด็ก 5–19 ปี น้อยกว่า</span>
-                  <i style={{ background: `linear-gradient(90deg, ${color.heat.join(',')})` }} />
-                  <span>มากกว่า</span>
-                  <small>ประมาณจาก WorldPop 2020</small>
-                </div>
-              )}
             </div>
           </div>
         </ChartCard>

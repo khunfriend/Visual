@@ -27,7 +27,7 @@ const bk = ed.schoolsBreakdown
 export default function EducationScore() {
   return (
     <SlideFrame
-      kicker="05 · การศึกษา (คะแนน)"
+      kicker="06 · การศึกษา (คะแนน)"
       title={`ดินแดงได้คะแนนการศึกษาอันดับ ${scoreRank(dd)} จาก ${rows.length} เขต`}
       subtitle={`เทียบกับปทุมวัน ดินแดงมีเด็กอายุ 0–18 ปีราว ${fmt.int(dd.children / pt.children)} เท่า มีครูใกล้เคียงกัน และมีโรงเรียนน้อยกว่า`}
       source={`ที่มา: Bangkok Index 2025 – Rocket Media Lab (การศึกษา ปีการศึกษา 2568) · โรงเรียนดินแดง ${dd.schools} แห่ง = สังกัด กทม. ${bk[DD].bma} + สพฐ. ${bk[DD].obec} · ปทุมวัน ${pt.schools} แห่ง = ${bk[PT].bma} + ${bk[PT].obec}`}

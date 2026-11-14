@@ -75,7 +75,7 @@ function BrokenBars({ metric }) {
 export default function ParkGap() {
   return (
     <SlideFrame
-      kicker="10 · สวนหย่อม"
+      kicker="11 · สวนหย่อม"
       title="ดินแดงมีพื้นที่สีเขียวและสวนที่เข้าถึงได้ต่อคนต่ำกว่าค่ากลาง"
       subtitle={`เขตดินแดงมีประชากร ${fmt.int(dd.population)} คน`}
       source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (สวนสาธารณะ 2568) · ค่ากลาง = มัธยฐาน 50 เขต (ใช้แทนค่าเฉลี่ยเพราะไม่กี่เขตที่สูงมากดึงค่าเฉลี่ยขึ้น) · แท่งปทุมวันสูงเกินกรอบจึงแสดงเต็มกรอบ ตัวเลขบนแท่งคือค่าจริง"

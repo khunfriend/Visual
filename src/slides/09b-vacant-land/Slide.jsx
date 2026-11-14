@@ -75,7 +75,7 @@ export default function VacantLand() {
   const pubPlots = plan.sites.filter((x) => x.no).length
   return (
     <SlideFrame
-      kicker="11 · สวนหย่อม (ที่ว่าง)"
+      kicker="12 · สวนหย่อม (ที่ว่าง)"
       title={`ที่ว่างมีพอ: ที่รัฐและศาสนสถาน ${pubPlots} แปลงได้ ${pct0(plan.publicPctOfGap)} ของสวนที่ต้องเพิ่ม`}
       source={
         <>

@@ -16,7 +16,7 @@ const comparison = [
 export default function ParkPlan() {
   return (
     <SlideFrame
-      kicker="12 · แผนพัฒนาสวนหย่อม"
+      kicker="13 · แผนพัฒนาสวนหย่อม"
       title={`เสนอทำสวน ${firstSites.length} แห่ง เพิ่มพื้นที่ ${fmt.int(firstArea)} ตร.ม.`}
       subtitle={`คิดเป็น ${fmt.int(shareOfGap)}% ของพื้นที่สวนที่ต้องเพิ่มเพื่อให้ถึงค่ากลาง 50 เขต`}
       source={

@@ -4,6 +4,7 @@ import WhyDindaeng from './slides/01-why-dindaeng/Slide.jsx'
 import Flood from './slides/02-flood/Slide.jsx'
 import FloodFix from './slides/02b-flood-fix/Slide.jsx'
 import Wastewater from './slides/03-wastewater/Slide.jsx'
+import WastewaterFix from './slides/03b-wastewater-fix/Slide.jsx'
 import EducationScore from './slides/05-education-score/Slide.jsx'
 import Schools from './slides/06-schools/Slide.jsx'
 import RiskPoints from './slides/07-risk-points/Slide.jsx'
@@ -24,6 +25,7 @@ const slides = [
   { id: '02-flood', Component: Flood },
   { id: '02b-flood-fix', Component: FloodFix },
   { id: '03-wastewater', Component: Wastewater },
+  { id: '03b-wastewater-fix', Component: WastewaterFix },
   { id: '05-education-score', Component: EducationScore },
   { id: '06-schools', Component: Schools },
   { id: '07-risk-points', Component: RiskPoints },

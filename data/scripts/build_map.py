@@ -144,23 +144,55 @@ road_labels = [{'name': n.replace('ถนน', 'ถ.'), 'x': x, 'y': y, 'angle':
                for n, (L, x, y, a) in sorted(label_cand.items(), key=lambda kv: -kv[1][0]) if L > 60]
 print(f'  · ถนน {len(roads)} เส้น · ป้ายชื่อ {len(road_labels)}: {[r["name"] for r in road_labels]}')
 
-# โรงเรียนเอกชน (ผู้ใช้ยืนยันสังกัดเอง 12 พ.ย. จากเว็บโรงเรียน/ฐานข้อมูล สช.) · ที่เหลือยังไม่ได้แยกสังกัด
-PRIVATE_SCHOOLS = {'โรงเรียนนิธิปริญญา', 'โรงเรียนอำนวยพิทยา', 'โรงเรียนจำนงค์พิทยา', 'โรงเรียนแม่พระฟาติมา'}
+# สังกัดโรงเรียน (ยืนยัน 14 พ.ย.)
+# - กทม. 3 แห่ง: สำนักงานเขตดินแดง หน้า "โรงเรียนในสังกัดกทม." (webportal.bangkok.go.th/dindaeng/page/sub/625) ตรงกับดัชนี (กทม. 3)
+# - เอกชน 5 แห่ง: สำนักงานเขตดินแดง หน้า "โรงเรียนในสังกัดคณะกรรมการศึกษาเอกชน" (page/sub/626) + ผู้ใช้ยืนยัน 4 แห่งเมื่อ 12 พ.ย.
+# - สพฐ.: สุรศักดิ์มนตรี (สพม.กท 2) · พิบูลประชาสรรค์ (สำนักบริหารงานการศึกษาพิเศษ) · กุนนทีรุทธารามวิทยาคม (มัธยม สพฐ.)
+#   ดัชนีนับ สพฐ. 5 แห่ง แต่ OSM มีแค่ 3 แห่งนี้
+# - อื่น ๆ: โรงเรียนกีฬากรุงเทพมหานคร = สังกัดสำนักวัฒนธรรม กีฬาและการท่องเที่ยว กทม. ไม่อยู่ในรายชื่อโรงเรียนของเขตและไม่นับในดัชนี
+AFFIL = {
+    'โรงเรียนสามเสนนอก': 'กทม.', 'โรงเรียนวิชูทิศ': 'กทม.', 'โรงเรียนวิชากร กรุงเทพมหานคร': 'กทม.',
+    'โรงเรียนกุนนทีรุทธารามวิทยาคม': 'สพฐ.', 'โรงเรียนสุรศักดิ์มนตรี': 'สพฐ.', 'โรงเรียนพิบูลประชาสรรค์': 'สพฐ.',
+    'โรงเรียนนิธิปริญญา': 'เอกชน', 'โรงเรียนอำนวยพิทยา': 'เอกชน', 'โรงเรียนจำนงค์พิทยา': 'เอกชน',
+    'โรงเรียนแม่พระฟาติมา': 'เอกชน', 'โรงเรียนสามัคคีบำรุงวิทยา': 'เอกชน',
+    'โรงเรียนกีฬากรุงเทพมหานคร': 'อื่น ๆ',
+}
+AFFIL_ORDER = ['กทม.', 'สพฐ.', 'เอกชน', 'อื่น ๆ']
+# แก้ข้อมูล OSM (ผู้ใช้สั่ง 14 พ.ย.): ตัด way/368559626 "โรงเรียนสามเสนนอก" ที่ซ้ำ และ way/1348158696 ที่ไม่มีชื่อ
+# · way/368559627 ชื่ออังกฤษ "Samsen Nok School" ใช้ชื่อไทย · "บํารุง" ใน OSM สะกดด้วยนิคหิต+สระอา แก้เป็น "บำรุง"
+OSM_DROP = {'way/368559626', 'way/1348158696'}
+OSM_RENAME = {'way/368559627': 'โรงเรียนสามเสนนอก',
+              'way/1319861811': 'โรงเรียนกีฬากรุงเทพมหานคร'}  # ผู้ใช้แก้ 14 พ.ย. (เดิม "โรงเรียนฝึกอาชีพกรุงเทพมหานคร")
+# ย้ายตำแหน่ง: ใช้กึ่งกลางแปลง OSM way/1326472120 "โรงเรียนกีฬา กทม." ถนนมิตรไมตรี (ค้นจาก Nominatim 14 พ.ย.)
+OSM_COORDS = {'way/1319861811': (13.7684105, 100.5524754)}
 
 schools = []
 for e in osm:
     t = e.get('tags', {})
     if t.get('amenity') != 'school':
         continue
+    oid = f"{e['type']}/{e['id']}"
+    if oid in OSM_DROP:
+        continue
     c = e.get('center') or {'lat': e.get('lat'), 'lon': e.get('lon')}
+    if oid in OSM_COORDS:
+        c = {'lat': OSM_COORDS[oid][0], 'lon': OSM_COORDS[oid][1]}
     x, y = to_px(c['lon'], c['lat'])
     if not inside(x, y):
         continue
-    name = t.get('name') or t.get('name:en') or '(ไม่มีชื่อ)'
-    schools.append({'name': name, 'x': x, 'y': y, 'lat': c['lat'], 'lng': c['lon'], 'osm': f"{e['type']}/{e['id']}",
-                    'private': name in PRIVATE_SCHOOLS})
-print(f'  · โรงเรียนใน OSM ภายในขอบเขต {len(schools)} แห่ง (ดัชนีนับ 8 แห่ง)')
-check('โรงเรียนเอกชนที่ยืนยันแล้วอยู่บนแผนที่ครบ', sorted(x['name'] for x in schools if x['private']), sorted(PRIVATE_SCHOOLS))
+    name = OSM_RENAME.get(oid) or t.get('name') or t.get('name:en') or '(ไม่มีชื่อ)'
+    name = name.replace('ํา', 'ำ')
+    affil = AFFIL.get(name)
+    if affil is None:
+        ERRORS.append(f'โรงเรียนยังไม่ระบุสังกัด: {name} ({oid})')
+        affil = 'อื่น ๆ'
+    schools.append({'name': name, 'x': x, 'y': y, 'lat': c['lat'], 'lng': c['lon'], 'osm': oid,
+                    'affil': affil, 'private': affil == 'เอกชน'})
+schools.sort(key=lambda sc: (AFFIL_ORDER.index(sc['affil']), sc['name']))
+print(f'  · โรงเรียนบนแผนที่ {len(schools)} แห่ง: ' + ', '.join(f"{a} {sum(sc['affil'] == a for sc in schools)}" for a in AFFIL_ORDER))
+check('โรงเรียนบนแผนที่', len(schools), 12)
+check('ระบุสังกัดครบทุกแห่ง', sorted(sc['name'] for sc in schools), sorted(AFFIL))
+check('สังกัด กทม. (ตรงกับดัชนี)', sum(sc['affil'] == 'กทม.' for sc in schools), 3)
 
 # ---------- 3. จุดเสี่ยง ----------
 print('3) จุดเสี่ยง (สำนักเทศกิจ)')
@@ -325,7 +357,7 @@ OUT.write_text(json.dumps({
         'cells': kids_cells,  # [x, y, w, h, คน]
     },
     'schools': {
-        'note': 'จาก OSM (amenity=school) · private = โรงเรียนเอกชนที่ยืนยันแล้ว 4 แห่ง ที่เหลือยังไม่แยก กทม./สพฐ.',
+        'note': 'จาก OSM (amenity=school) · affil = สังกัด (กทม. / สพฐ. / เอกชน / อื่น ๆ) ยืนยันจากเว็บสำนักงานเขตดินแดง',
         'items': schools,
     },
 }, ensure_ascii=False, indent=1), encoding='utf-8')

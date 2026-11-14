@@ -2,7 +2,7 @@ import SlideFrame from '../../components/SlideFrame.jsx'
 import { vacant } from '../../lib/data.js'
 import s from './style.module.css'
 
-// สไลด์ A5 (ภาคผนวก): แหล่งที่มาของราคาอ้างอิงและข้อมูล หน้า 3 แก้น้ำท่วม + หน้า 11 สวนหย่อม (ที่ว่าง)
+// สไลด์ A5 (ภาคผนวก): แหล่งที่มาของราคาอ้างอิงและข้อมูล หน้า 3 แก้น้ำท่วม + หน้า 5 แก้น้ำเสีย + หน้า 12 สวนหย่อม (ที่ว่าง)
 // แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md) · รายละเอียดตัวเลขอยู่ใน ข้อมูลรวม_ตรวจแล้ว.md หัวข้อ "หน้าแก้น้ำท่วม"
 
 const GROUPS = [
@@ -22,6 +22,12 @@ const GROUPS = [
     ],
   },
   {
+    title: 'แก้น้ำเสียในคลอง (หน้า 5)', col: 1,
+    items: [
+      { what: 'อุปกรณ์บำบัดในคลองทุกรายการ', src: 'ตะแกรง ถังดักไขมัน คอกตะกอน เครื่องเติมอากาศ แพไบโอฟิล์ม EM: ประมาณการของกลุ่ม', ref: 'ไม่พบราคากลางในแหล่งข้อมูลเปิด', est: true },
+    ],
+  },
+  {
     title: 'แก้น้ำท่วม: น้ำท่วมและฝน', col: 2,
     items: [
       { what: 'จุดท่วม จำนวนครั้ง และฝนรายวัน ปี 2568', src: 'Bangkok Index 2025 – Rocket Media Lab (น้ำท่วมขังบนถนนสายหลัก)', ref: 'rocketmedialab.co' },
@@ -29,7 +35,7 @@ const GROUPS = [
     ],
   },
   {
-    title: 'สวนหย่อมบนที่ว่าง (หน้า 11)', col: 2,
+    title: 'สวนหย่อมบนที่ว่าง (หน้า 12)', col: 2,
     items: [
       { what: 'สวนสาธารณะ 2,000 บาท/ตร.ม. (60% ของพื้นที่)', src: 'สวนวัดหัวลำโพงรุกขนิเวศน์: งบโครงการ ÷ พื้นที่สวน', ref: 'THE STANDARD (งบ) · Time Out Bangkok (พื้นที่)', est: true, links: [vacant.links.cost_wat_hua_lamphong_budget, vacant.links.cost_wat_hua_lamphong_area] },
       { what: 'สวน 15 นาที ≈ 1,000 บาท/ตร.ม. (40% ของพื้นที่)', src: 'ค่าเฉลี่ยสวน 15 นาทีของ กทม.', ref: 'สยามรัฐ', est: true, links: [vacant.links.cost_15min_avg] },
@@ -44,7 +50,7 @@ export default function AppendixFloodCost() {
   return (
     <SlideFrame
       kicker="ภาคผนวก · แหล่งที่มา"
-      title="แหล่งที่มาของราคาอ้างอิง: แก้น้ำท่วมและสวนหย่อม"
+      title="แหล่งที่มาของราคาอ้างอิง: น้ำท่วม น้ำเสีย และสวนหย่อม"
       source="รายละเอียดตัวเลขและวิธีคำนวณทั้งหมดอยู่ใน ข้อมูลรวม_ตรวจแล้ว.md · สำเนาตารางท่อของเขต: data/raw/drain_soi_dindaeng.csv · ข้อมูลที่ว่าง: data/raw/parks_vacant/"
     >
       <div className={s.cols}>

@@ -150,7 +150,7 @@ export default function RiskPoints() {
 
   return (
     <SlideFrame
-      kicker="07 · จุดเสี่ยง"
+      kicker="08 · จุดเสี่ยง"
       title={`ดินแดงมี ${dd.points} จุดเสี่ยง สูงกว่ามัธยฐานกรุงเทพฯ ${dd.points - risk.median} จุด`}
       source={`ที่มา: บัญชีพื้นที่เสี่ยงและพื้นที่อันตราย กทม. สำนักเทศกิจ ปีงบประมาณ 2567–2568 (data.bangkok.go.th); ${map.credit} · เป็นพื้นที่เฝ้าระวัง ไม่ใช่จุดเกิดคดี · สถานที่เดิมอยู่ในบัญชีทั้ง 2 ปี (เลขหมุดในมุมมองทุกปี) ${repeats.join(', ')}`}
     >

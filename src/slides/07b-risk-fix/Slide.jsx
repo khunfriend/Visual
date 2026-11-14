@@ -64,7 +64,7 @@ const mb = (b) => (b / 1e6).toFixed(2)
 export default function RiskFix() {
   return (
     <SlideFrame
-      kicker="08 · แก้จุดเสี่ยง"
+      kicker="09 · แก้จุดเสี่ยง"
       title="จุดเสี่ยง 4 ประเภท แก้อย่างไร ใช้เงินเท่าไร"
       source="ที่มา: ข้อมูลจุดเสี่ยง กทม. ปี 2567–2568 · ค่าใช้จ่ายเป็นประมาณการของกลุ่ม"
     >

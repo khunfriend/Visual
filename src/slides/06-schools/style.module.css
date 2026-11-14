@@ -121,8 +121,9 @@
 
 .pinKey {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-size: var(--fs-source);
   color: var(--c-textMuted);
   white-space: nowrap;
@@ -240,4 +241,11 @@
   flex-wrap: wrap;
   border-radius: 18px;
   max-width: 100%;
+}
+
+.pinItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 10px;
 }
