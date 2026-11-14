@@ -558,6 +558,55 @@ check('รัฐ + ศาสนสถาน (% ของที่ต้องเ
 check('ค่าก่อสร้างรวม (ล้านบาท)', r2(build_total / 1e6), 71.82)
 check('ค่าบำรุงรักษาต่อปี (ล้านบาท)', r2(build_total * MAINT / 1e6), 7.18)
 check('รวมทั้งหมด (ล้านบาท)', r2(build_total * (1 + MAINT) / 1e6), 79.00)
+
+# ระยะแรก 3 แห่ง: เลือกให้กระจายทั่วเขตที่สุด วัดเป็น % ของพื้นที่เขตที่อยู่ในระยะเส้นตรง 800 ม. (เดินราว 10 นาที)
+# จากแปลงใหม่อย่างน้อย 1 แห่ง · พิกัด = กึ่งกลางรูปแปลง GIS ในหน้ารายละเอียดทะเบียนพื้นที่สีเขียว (vacant_public_coords.csv)
+# เส้นเขตจาก map/bangkok_districts.geojson · ตาราง 0.0005° (ราว 55 ม.) · ยังไม่นับสวนเดิม และไม่ใช่ระยะเดินจริง
+FIRST_PHASE, WALK_M = [5, 1, 6], 800
+coords = {int(r['แปลงในแผน']): (float(r['lat']), float(r['lon']))
+          for r in read_csv('parks_vacant/vacant_public_coords.csv')}
+check('มีพิกัดครบทุกแปลงรัฐ + ศาสนสถาน', sorted(coords), [x['no'] for x in sites if x['no']])
+dd_geom = next(f for f in json.loads((RAW / 'map' / 'bangkok_districts.geojson').read_text(encoding='utf-8'))['features']
+               if f['properties']['amp_th'] == DD)['geometry']
+dd_rings = [p[0] for p in dd_geom['coordinates']] if dd_geom['type'] == 'MultiPolygon' else [dd_geom['coordinates'][0]]
+
+
+def in_ring(lon, lat, ring):
+    inside = False
+    for (x1, y1), (x2, y2) in zip(ring, ring[1:] + ring[:1]):
+        if (y1 > lat) != (y2 > lat) and lon < (x2 - x1) * (lat - y1) / (y2 - y1) + x1:
+            inside = not inside
+    return inside
+
+
+all_pts = [pt[:2] for ring in dd_rings for pt in ring]
+lon0, lon1 = min(p[0] for p in all_pts), max(p[0] for p in all_pts)
+lat0, lat1 = min(p[1] for p in all_pts), max(p[1] for p in all_pts)
+STEP = 0.0005
+cells = [(lat0 + i * STEP, lon0 + j * STEP)
+         for i in range(int((lat1 - lat0) / STEP) + 1) for j in range(int((lon1 - lon0) / STEP) + 1)
+         if any(in_ring(lon0 + j * STEP, lat0 + i * STEP, [p[:2] for p in ring]) for ring in dd_rings)]
+M_LAT, M_LON = 111320, 111320 * math.cos(math.radians((lat0 + lat1) / 2))
+
+
+def coverage(nos):
+    pts = [coords[n] for n in nos]
+    near = sum(any(math.hypot((c[0] - p[0]) * M_LAT, (c[1] - p[1]) * M_LON) <= WALK_M for p in pts) for c in cells)
+    return near / len(cells) * 100
+
+
+from itertools import combinations  # noqa: E402
+cover_all = {combo: coverage(combo) for combo in combinations(sorted(coords), 3)}
+first_cover = coverage(FIRST_PHASE)
+check('ระยะแรก: พื้นที่เขตในระยะ 800 ม. (%)', r2(first_cover, 1), 45.7, 0.15)
+check('ระยะแรกครอบคลุมดีที่สุดใน 35 ชุด', r2(first_cover, 3), r2(max(cover_all.values()), 3))
+check('ชุดเดิม (แปลง 3, 1, 6) ครอบคลุม (%)', r2(coverage([3, 1, 6]), 1), 36.2, 0.15)
+first_area = sum(x['areaM2'] for x in sites if x['no'] in FIRST_PHASE)
+check('ระยะแรก 3 แห่ง (ตร.ม.)', first_area, 12748)
+north = max(coords.values())[0]
+print(f'  · ระยะแรก {FIRST_PHASE} ครอบคลุม {first_cover:.1f}% · แปลงรัฐ/ศาสนาเหนือสุดที่ lat {north:.4f} '
+      f'(เขตยาวถึง {lat1:.4f})')
+
 write('vacant', {
     'source': 'ทะเบียนพื้นที่สีเขียว เขตดินแดง (greenparks.bangkok.go.th รายงาน 19) · ที่ว่างบันทึกปี '
               f'{min(years)}–{max(years)}',
@@ -579,6 +628,13 @@ write('vacant', {
         'buildBaht': build_total,
         'maintenanceBaht': round(build_total * MAINT),
         'totalBaht': round(build_total * (1 + MAINT)),
+    },
+    'firstPhase': {
+        'sites': FIRST_PHASE,
+        'walkM': WALK_M,
+        'coveragePct': r2(first_cover, 1),
+        'coveragePctOld': r2(coverage([3, 1, 6]), 1),
+        'combos': len(cover_all),
     },
 })
 

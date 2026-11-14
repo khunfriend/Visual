@@ -133,7 +133,7 @@
 
 .comparison {
   grid-row: span 2;
-  padding: 28px;
+  padding: 22px 28px;
   border-radius: 12px;
   background: var(--c-surfaceAlt);
 }
@@ -147,7 +147,7 @@
 
 .bars {
   display: grid;
-  gap: 24px;
+  gap: 16px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -157,7 +157,7 @@
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   font-size: var(--fs-body);
 }
 
@@ -166,7 +166,7 @@
 }
 
 .track {
-  height: 30px;
+  height: 24px;
   overflow: hidden;
   border-radius: 4px;
   background: var(--c-surface);
@@ -187,9 +187,38 @@
 }
 
 .remaining {
-  margin-top: 26px;
+  margin-top: 16px;
   font-size: var(--fs-label);
   color: var(--c-textMuted);
+}
+
+.why {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--c-border);
+}
+
+.why h3 {
+  margin-bottom: 4px;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.why p {
+  font-size: var(--fs-label);
+  line-height: 1.5;
+  color: var(--c-textMuted);
+}
+
+.why strong {
+  color: var(--c-text);
+}
+
+.why .whyNote {
+  margin-top: 6px;
+  font-size: var(--fs-source);
+  color: var(--c-textFaint);
 }
 
 .sites {
