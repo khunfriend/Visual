@@ -249,10 +249,19 @@ for r in ev:
     events.append({'date': f'{y:04d}-{m:02d}-{d:02d}', 'spot': r['จุด'], 'road': road,
                    'levelMin': int(r['ระดับน้ำต่ำสุด (ซม.)']), 'levelMax': int(r['ระดับน้ำสูงสุด (ซม.)']),
                    'dryMin': int(r['เวลาแห้ง (นาที)']), 'rain': float(r['ฝนรวม (มม.)'])})
+# วันละ 1 แถว · ฝนเป็นค่าเดียวของทั้งวัน (ทุกจุดในวันเดียวกันใช้ค่าฝนเดียวกัน)
+# events = จำนวนครั้งที่ท่วมในวันนั้น · spots = จำนวนจุดที่ท่วม (จุดเดียวท่วมได้หลายครั้งในวันเดียว)
 days = {}
 for e in events:
-    days.setdefault(e['date'], {'date': e['date'], 'rain': e['rain'], 'spots': 0})['spots'] += 1
-days = sorted(days.values(), key=lambda d: d['date'])
+    d = days.setdefault(e['date'], {'date': e['date'], 'rain': e['rain'], 'events': 0, 'spotNames': set()})
+    d['events'] += 1
+    d['spotNames'].add(e['spot'])
+    if d['rain'] != e['rain']:
+        ERRORS.append(f"ฝนในวันเดียวกันไม่เท่ากัน {e['date']}")
+days = [{'date': d['date'], 'rain': d['rain'], 'events': d['events'], 'spots': len(d['spotNames'])}
+        for d in sorted(days.values(), key=lambda d: d['date'])]
+check('วันที่ท่วม (วัน)', len(days), 12)
+check('ผลรวมครั้งที่ท่วมรายวัน', sum(d['events'] for d in days), 41)
 check('จำนวนเหตุการณ์', len(events), 41)
 check('ฝนเฉลี่ยต่อวันที่ท่วม (มม.)', r2(st.mean(d['rain'] for d in days), 1), 59.2)
 check('เวลาท่วมรวม (ชม.)', round(sum(e['dryMin'] for e in events) / 60), 71)
