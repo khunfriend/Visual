@@ -739,7 +739,23 @@ print('8) ฉากทัศน์คะแนนรวม (เพิ่มค�
 EDU_BOTH = next(s for s in edu_scen if s['addSchools'] == 0 and s['addTeachers'] == TEACHERS_ADD)['score']
 
 
-def overall_scenario(crime_pts=None, floods=None, edu_score=None, bod_val=None):
+# สวน (หน้า 12): ใช้ที่ว่าง 50% ทำสวน → เพิ่มทั้งสวนที่เข้าถึงได้และพื้นที่สีเขียวของดินแดง
+# คะแนนหัวข้อสวน = เฉลี่ยคะแนน 1–50 (min–max) ของพื้นที่สีเขียวต่อคน กับสวนที่เข้าถึงได้ต่อคน
+pk_g = [r['greenPerCapita'] for r in parks]
+pk_a = [r['accessiblePerCapita'] for r in parks]
+
+
+def park_topic(g, a):
+    return (1 + 49 * (g - min(pk_g)) / (max(pk_g) - min(pk_g)) + 1 + 49 * (a - min(pk_a)) / (max(pk_a) - min(pk_a))) / 2
+
+
+check('สูตรคะแนนสวนตรงกับดัชนี (คลาดสูงสุด)',
+      r2(max(abs(park_topic(r['greenPerCapita'], r['accessiblePerCapita']) - scores[r['name']]['parks']) for r in parks), 2), 0, 0.03)
+PARK_NEW = park_topic((dd_p['greenM2'] + half_m2) / dd_p['population'], (dd_p['accessibleM2'] + half_m2) / dd_p['population'])
+print(f'  · สวนหลังใช้ที่ว่าง 50%: คะแนนหัวข้อสวน {scores[DD]["parks"]:.2f} → {PARK_NEW:.2f}')
+
+
+def overall_scenario(crime_pts=None, floods=None, edu_score=None, bod_val=None, park=None):
     sc = {n: dict(v) for n, v in scores.items()}
     d = sc[DD]
     if crime_pts is not None:
@@ -750,24 +766,30 @@ def overall_scenario(crime_pts=None, floods=None, edu_score=None, bod_val=None):
         d['education'] = edu_score
     if bod_val is not None:
         d['wastewater'] = minmax_inv(bod_val, bmin, bmax)
+    if park is not None:
+        d['parks'] = park
     o = {n: overall_of(v)[0] for n, v in sc.items()}
     return r2(o[DD]), rank_desc(list(o.values()), o[DD])
 
 
+SCEN_WANT = [(17.35, 50), (19.36, 46), (20.11, 41), (20.45, 40), (21.62, 32)]  # 14 พ.ย. รวมสวน (เดิม 19.29 / 20.04 / 20.39 / 21.56)
 CASES = [
     ('now', 'ตอนนี้ (2568)', dict()),
-    ('careful', 'ปีแรก ระมัดระวัง', dict(crime_pts=12, floods=31, edu_score=EDU_BOTH)),
-    ('target', 'ปีแรก ตามเป้า', dict(crime_pts=9, floods=29, edu_score=EDU_BOTH)),
-    ('good', 'ปีแรก กรณีดี', dict(crime_pts=8, floods=27, edu_score=EDU_BOTH)),
-    ('longterm', 'ระยะยาว ตามเป้า', dict(crime_pts=9, floods=29, edu_score=EDU_BOTH, bod_val=15)),
+    # 14 พ.ย.: รวมสวน (ใช้ที่ว่าง 50% หน้า 12) ทุกกรณีหลังแก้ · น้ำเสียเป็นเป้าระยะยาว
+    ('careful', 'ปีแรก ระมัดระวัง', dict(crime_pts=12, floods=31, edu_score=EDU_BOTH, park=PARK_NEW)),
+    ('target', 'ปีแรก ตามเป้า', dict(crime_pts=9, floods=29, edu_score=EDU_BOTH, park=PARK_NEW)),
+    ('good', 'ปีแรก กรณีดี', dict(crime_pts=8, floods=27, edu_score=EDU_BOTH, park=PARK_NEW)),
+    ('longterm', 'ระยะยาว ตามเป้า', dict(crime_pts=9, floods=29, edu_score=EDU_BOTH, bod_val=15, park=PARK_NEW)),
 ]
 scen = []
 for key, label, kw in CASES:
     s, rk = overall_scenario(**kw)
     scen.append({'key': key, 'label': label, 'crime': kw.get('crime_pts', 17), 'floods': kw.get('floods', 41),
                  'eduScore': kw.get('edu_score', r2(scores[DD]['education'])), 'bod': kw.get('bod_val', 25.81),
-                 'score': s, 'rank': rk})
-for sc, want in zip(scen, [(17.35, 50), (19.29, 46), (20.04, 41), (20.39, 40), (21.56, 32)]):
+                 'parkScore': r2(kw.get('park', scores[DD]['parks'])), 'score': s, 'rank': rk})
+for sc in scen:
+    print(f"  · ฉากทัศน์ {sc['label']}: {sc['score']} อันดับ {sc['rank']}")
+for sc, want in zip(scen, SCEN_WANT):
     check(f"ฉากทัศน์ {sc['label']}", (sc['score'], sc['rank']), want)
 
 base_o = TBL[DD]['overall']
@@ -775,13 +797,27 @@ steps = [
     ('จุดเสี่ยง 17 → 9 จุด', 'crime', minmax_inv(9, cmin, cmax)),
     ('น้ำท่วม 41 → 29 ครั้ง', 'flood', minmax_inv(29, fmin, fmax)),
     (f'การศึกษา +{TEACHERS_ADD} ครู', 'education', EDU_BOTH),
+    ('สวน ใช้ที่ว่าง 50%', 'parks', PARK_NEW),
 ]
-waterfall = [{'label': 'ตอนนี้', 'value': r2(base_o)}]
-for label, k, new in steps:
-    waterfall.append({'label': label, 'topicFrom': r2(scores[DD][k]), 'topicTo': r2(new),
-                      'delta': r2((new - scores[DD][k]) / 16, 3)})
-waterfall.append({'label': 'หลังแก้ (ปีแรก ตามเป้า)', 'value': scen[2]['score']})
-check('waterfall รวม', r2(base_o + sum(w.get('delta', 0) for w in waterfall[1:-1])), 20.04, 0.011)
+
+
+def wf_step(label, k, new):
+    return {'label': label, 'topicFrom': r2(scores[DD][k]), 'topicTo': r2(new), 'delta': r2((new - scores[DD][k]) / 16, 3)}
+
+
+target_c = next(c for c in scen if c['key'] == 'target')
+long_c = next(c for c in scen if c['key'] == 'longterm')
+waterfall = [{'label': 'ตอนนี้', 'key': 'now', 'value': r2(base_o), 'rank': scen[0]['rank']}]
+waterfall += [wf_step(*st) for st in steps]
+waterfall.append({'label': 'ปีแรก', 'key': 'target', 'value': target_c['score'], 'rank': target_c['rank']})
+waterfall.append({**wf_step('น้ำเสีย BOD 25.81 → 15', 'wastewater', minmax_inv(15, bmin, bmax)), 'longTerm': True})
+waterfall.append({'label': 'ระยะยาว', 'key': 'longterm', 'value': long_c['score'], 'rank': long_c['rank']})
+run_wf = base_o
+for w in waterfall[1:]:
+    if 'delta' in w:
+        run_wf += w['delta']
+    else:
+        check(f"waterfall ถึง{w['label']}", r2(run_wf), w['value'], 0.012)
 check('น้ำเสียเรื่องเดียว BOD 15', overall_scenario(bod_val=15), (18.87, 46))
 write('scenarios', {
     'note': 'คำนวณจากคะแนนจริง 16 หัวข้อ × 50 เขต สมมติให้เขตอื่นคงที่',

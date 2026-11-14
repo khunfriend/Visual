@@ -23,20 +23,21 @@ const YEARLY = ASK.reduce((a, r) => a + r.yearly, 0)
 const PENDING = '[รอข้อมูล]'
 const m2 = (v) => fmt.dec(v, 2)
 
-// ---- waterfall: ตอนนี้ → +จุดเสี่ยง → +น้ำท่วม → +การศึกษา → หลังแก้ ----
+// ---- waterfall: ตอนนี้ → จุดเสี่ยง → น้ำท่วม → การศึกษา → สวน → ปีแรก → น้ำเสีย (ระยะยาว) → ระยะยาว ----
+// แถวที่มี value = ยอดรวม (ตอนนี้ / ปีแรก / ระยะยาว) · แถวที่มี delta = ส่วนเพิ่มของแต่ละเรื่อง (build_data.py ส่วน 8)
 const wf = scenarios.waterfall
-const start = wf[0].value
-let run = start
-const wfRows = [
-  { label: 'ตอนนี้', base: 0, val: start, total: true, rank: scenarios.cases[0].rank },
-  ...wf.slice(1, -1).map((w) => {
-    const row = { label: w.label.split(' ')[0], full: w.label, base: run, val: w.delta, from: w.topicFrom, to: w.topicTo }
-    run += w.delta
-    return row
-  }),
-  { label: 'หลังแก้', base: 0, val: wf.at(-1).value, total: true, rank: scenarios.cases.find((c) => c.key === 'target').rank },
-]
+let run = 0
+const wfRows = wf.map((w) => {
+  if (w.value != null) {
+    run = w.value
+    return { label: w.label, base: 0, val: w.value, total: true, rank: w.rank, key: w.key }
+  }
+  const row = { label: w.label.split(' ')[0], full: w.label, base: run, val: w.delta, from: w.topicFrom, to: w.topicTo, longTerm: w.longTerm }
+  run += w.delta
+  return row
+})
 const Y0 = 16 // แกนเริ่มที่ 16 เพื่อให้เห็นส่วนเพิ่ม (เขียนกำกับไว้ใต้กราฟ)
+const Y1 = 23
 
 const target = scenarios.cases.find((c) => c.key === 'target')
 const now = scenarios.cases[0]
@@ -45,6 +46,7 @@ const KPI = [
   { name: 'จุดเสี่ยง', now: `${now.crime} จุด`, goal: `${target.crime} จุด` },
   { name: 'น้ำท่วมขังบนถนนสายหลัก', now: `${now.floods} ครั้ง`, goal: `${target.floods} ครั้ง` },
   { name: 'นักเรียนต่อครู', now: fmt.dec(dd.studentsPerTeacher, 1), goal: fmt.dec(ed.studentsPerTeacherAfter, 1) },
+  { name: 'สวนที่เข้าถึงได้ต่อคน', now: `${fmt.dec(vacant.accessibleM2 / vacant.population)} ตร.ม.`, goal: `${fmt.dec(vacant.half.perCapitaAfter)} ตร.ม.` },
   { name: 'BOD คลอง (ระยะยาว)', now: `${fmt.dec(now.bod)} มก./ล.`, goal: `${wastewater.standard} มก./ล.` },
 ]
 
@@ -57,12 +59,12 @@ export default function Summary() {
       source={`คำนวณจากคะแนนจริงของ Bangkok Index 2025 ทั้ง 16 หัวข้อ × 50 เขต โดยสมมติให้เขตอื่นคงที่ · คะแนนรวม = ค่าเฉลี่ย 16 หัวข้อ · แกนกราฟซ้ายเริ่มที่ ${Y0}`}
     >
       <div className={s.grid}>
-        <ChartCard title="คะแนนรวมเพิ่มจากแต่ละเรื่อง" note="ปีแรก กรณีตามเป้า">
+        <ChartCard title="คะแนนรวมเพิ่มจากแต่ละเรื่อง" note="กรณีตามเป้า · 4 เรื่องแรกวัดผลได้ในปีแรก · น้ำเสียเป็นเป้าระยะยาว (BOD ลดถึง 15 มก./ล.)">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={wfRows} margin={{ top: 56, right: 8, bottom: 8, left: 0 }} barCategoryGap="22%">
               <CartesianGrid {...gridProps} />
               <XAxis dataKey="label" {...axisCommon} interval={0} />
-              <YAxis {...axisCommon} domain={[Y0, 21]} ticks={[16, 17, 18, 19, 20, 21]} allowDataOverflow width={40} />
+              <YAxis {...axisCommon} domain={[Y0, Y1]} ticks={[16, 17, 18, 19, 20, 21, 22, 23]} allowDataOverflow width={40} />
               <Tooltip cursor={{ fill: color.grid }}
                 content={<TipBox render={(r) => r.total
                   ? { title: r.label, rows: [['คะแนนรวม', fmt.dec(r.val)], ['อันดับ', `${r.rank} จาก 50`]] }
@@ -70,7 +72,8 @@ export default function Summary() {
               <Bar dataKey="base" stackId="w" fill="transparent" isAnimationActive={false} />
               <Bar dataKey="val" stackId="w" radius={[4, 4, 0, 0]} maxBarSize={96} isAnimationActive={false}>
                 {wfRows.map((r) => (
-                  <Cell key={r.label} fill={r.total ? (r.label === 'ตอนนี้' ? color.other : color.good) : '#8CCBB2'} />
+                  <Cell key={r.label} fill={r.total ? (r.key === 'now' ? color.other : color.good) : color.good}
+                    fillOpacity={r.total ? (r.key === 'longterm' ? 0.75 : 1) : r.longTerm ? 0.3 : 0.5} />
                 ))}
                 <LabelList
                   dataKey="val"

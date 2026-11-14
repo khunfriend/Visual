@@ -8,6 +8,7 @@
    "floods": 41,
    "eduScore": 6.01,
    "bod": 25.81,
+   "parkScore": 1.69,
    "score": 17.35,
    "rank": 50
   },
@@ -18,7 +19,8 @@
    "floods": 31,
    "eduScore": 9.54,
    "bod": 25.81,
-   "score": 19.29,
+   "parkScore": 2.73,
+   "score": 19.36,
    "rank": 46
   },
   {
@@ -28,7 +30,8 @@
    "floods": 29,
    "eduScore": 9.54,
    "bod": 25.81,
-   "score": 20.04,
+   "parkScore": 2.73,
+   "score": 20.11,
    "rank": 41
   },
   {
@@ -38,7 +41,8 @@
    "floods": 27,
    "eduScore": 9.54,
    "bod": 25.81,
-   "score": 20.39,
+   "parkScore": 2.73,
+   "score": 20.45,
    "rank": 40
   },
   {
@@ -48,14 +52,17 @@
    "floods": 29,
    "eduScore": 9.54,
    "bod": 15,
-   "score": 21.56,
+   "parkScore": 2.73,
+   "score": 21.62,
    "rank": 32
   }
  ],
  "waterfall": [
   {
    "label": "ตอนนี้",
-   "value": 17.35
+   "key": "now",
+   "value": 17.35,
+   "rank": 50
   },
   {
    "label": "จุดเสี่ยง 17 → 9 จุด",
@@ -76,8 +83,29 @@
    "delta": 0.221
   },
   {
-   "label": "หลังแก้ (ปีแรก ตามเป้า)",
-   "value": 20.04
+   "label": "สวน ใช้ที่ว่าง 50%",
+   "topicFrom": 1.69,
+   "topicTo": 2.73,
+   "delta": 0.065
+  },
+  {
+   "label": "ปีแรก",
+   "key": "target",
+   "value": 20.11,
+   "rank": 41
+  },
+  {
+   "label": "น้ำเสีย BOD 25.81 → 15",
+   "topicFrom": 1.05,
+   "topicTo": 25.25,
+   "delta": 1.513,
+   "longTerm": true
+  },
+  {
+   "label": "ระยะยาว",
+   "key": "longterm",
+   "value": 21.62,
+   "rank": 32
   }
  ],
  "single": {

@@ -79,7 +79,7 @@
 .side {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   min-height: 0;
 }
 
@@ -87,7 +87,7 @@
   font-size: var(--fs-body);
   font-weight: 700;
   color: var(--c-text);
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
 .ask {
@@ -101,12 +101,12 @@
   font-weight: 500;
   color: var(--c-textMuted);
   font-size: var(--fs-source);
-  padding: 4px 0;
+  padding: 2px 0;
   border-bottom: 1px solid var(--c-border);
 }
 
 .ask td {
-  padding: 4px 0;
+  padding: 2px 0;
   color: var(--c-text);
   border-bottom: 1px solid var(--c-grid);
   vertical-align: top;
@@ -152,12 +152,12 @@
   font-weight: 500;
   color: var(--c-textMuted);
   font-size: var(--fs-source);
-  padding: 4px 0;
+  padding: 2px 0;
   border-bottom: 1px solid var(--c-border);
 }
 
 .kpi td {
-  padding: 4px 0;
+  padding: 2px 0;
   color: var(--c-text);
   border-bottom: 1px solid var(--c-grid);
 }

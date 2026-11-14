@@ -62,7 +62,7 @@ export default function WastewaterFix() {
     <SlideFrame
       kicker="05 · แก้น้ำเสีย"
       title="บำบัดน้ำเสียในคลอง"
-      subtitle={`ผลต่อคะแนนรวม (ระยะยาว) +${fmt.dec(bodOnly.score - nowCase.score)} คะแนน · ถ้าทำเรื่องนี้เรื่องเดียว อันดับรวม ${nowCase.rank} → ${bodOnly.rank}`}
+      subtitle={`ผลต่อคะแนนรวม (ระยะยาว) +${fmt.dec(scenarios.waterfall.find((w) => w.label.startsWith('น้ำเสีย')).delta)} คะแนน · ถ้าทำเรื่องนี้เรื่องเดียว อันดับรวม ${nowCase.rank} → ${bodOnly.rank}`}
       source={`ราคาทั้งหมดเป็นประมาณการของกลุ่ม (ไม่พบราคากลางในแหล่งเปิด) · ติดตั้งที่ ${SPOTS} จุดตรวจที่ BOD เกินเกณฑ์ ใน${canals.join(' ')} · คุณภาพน้ำ: สำนักการระบายน้ำ กทม. (data.bangkok.go.th) ม.ค.–เม.ย. 2566`}
     >
       <div className={s.page}>
