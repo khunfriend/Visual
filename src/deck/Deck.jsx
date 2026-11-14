@@ -96,6 +96,37 @@ function Presenter({ cssVars }) {
   const [index, setIndex] = useState(readHash)
   const [jump, setJump] = useState('') // ตัวเลขที่กำลังพิมพ์เพื่อกระโดดไปหน้า (PRD F3)
   const jumpTimer = useRef(null)
+  const [fs, setFs] = useState(false) // โหมดนำเสนอ = เต็มจอของเบราว์เซอร์ (ซ่อนแถบ URL และแท็บ)
+  const [idle, setIdle] = useState(false) // เมาส์นิ่ง → ซ่อนเคอร์เซอร์และปุ่ม
+  const idleTimer = useRef(null)
+
+  const toggleFs = useCallback(() => {
+    if (document.fullscreenElement) document.exitFullscreen()
+    else document.documentElement.requestFullscreen?.().catch(() => {})
+  }, [])
+
+  useEffect(() => {
+    const onFs = () => setFs(!!document.fullscreenElement)
+    document.addEventListener('fullscreenchange', onFs)
+    return () => document.removeEventListener('fullscreenchange', onFs)
+  }, [])
+
+  // ขยับเมาส์หรือกดแป้น = โชว์ปุ่ม · นิ่ง 2.5 วิ = ซ่อน (แบบ Canva)
+  useEffect(() => {
+    const wake = () => {
+      setIdle(false)
+      clearTimeout(idleTimer.current)
+      idleTimer.current = setTimeout(() => setIdle(true), 2500)
+    }
+    wake()
+    window.addEventListener('mousemove', wake)
+    window.addEventListener('keydown', wake)
+    return () => {
+      window.removeEventListener('mousemove', wake)
+      window.removeEventListener('keydown', wake)
+      clearTimeout(idleTimer.current)
+    }
+  }, [])
 
   const go = useCallback((i) => {
     const next = Math.max(0, Math.min(labelled.length - 1, i))
@@ -140,21 +171,17 @@ function Presenter({ cssVars }) {
         go(index - 1)
       } else if (k === 'Home') go(0)
       else if (k === 'End') go(labelled.length - 1)
-      else if (k === 'f' || k === 'F') {
-        // เต็มจอ (PRD F7)
-        if (document.fullscreenElement) document.exitFullscreen()
-        else document.documentElement.requestFullscreen?.()
-      }
+      else if (k === 'f' || k === 'F' || k === 'p' || k === 'P') toggleFs() // เต็มจอ / นำเสนอ (PRD F7)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [index, jump, go])
+  }, [index, jump, go, toggleFs])
 
   const sl = labelled[index]
   const progress = sl.appendix ? 1 : Number(sl.label) / mainCount
 
   return (
-    <div style={cssVars} className={s.root}>
+    <div style={cssVars} className={`${s.root} ${idle ? s.idle : ''}`}>
       <Stage>
         <ErrorBoundary key={sl.label} label={sl.label}>
           <sl.Component />
@@ -166,6 +193,13 @@ function Presenter({ cssVars }) {
       </Stage>
 
       {jump && <div className={s.jump}>ไปหน้า {jump} · กด Enter</div>}
+
+      {/* ปุ่มนำเสนอ: เต็มจอ ไม่เห็นแถบ URL (กด Esc เพื่อออก) */}
+      {!fs && (
+        <button className={s.presentBtn} onClick={(e) => (toggleFs(), e.currentTarget.blur())} title="เต็มจอ ซ่อนแถบ URL (กด F หรือ P)">
+          ▶ นำเสนอ
+        </button>
+      )}
 
       {/* ปุ่มสำหรับเมาส์/จอสัมผัส */}
       <button

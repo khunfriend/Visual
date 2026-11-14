@@ -72,6 +72,36 @@
   cursor: default;
 }
 
+/* ---- โหมดนำเสนอ (แบบ Canva) ---- */
+.presentBtn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--c-dindaeng);
+  color: var(--c-surface);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 0.18);
+  transition: opacity 250ms;
+  z-index: 10;
+}
+
+/* เมาส์นิ่ง: ซ่อนเคอร์เซอร์และปุ่มทั้งหมด */
+.idle {
+  cursor: none;
+}
+
+.idle .presentBtn,
+.idle .nav {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
 .navPrev {
   left: 8px;
 }
