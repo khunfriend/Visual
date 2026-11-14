@@ -34,7 +34,6 @@ export default function PocketParks() {
     <SlideFrame
       kicker="09 · สวนหย่อม"
       title={`คะแนนสวนอันดับ ${parkRank} แต่การไล่คะแนนสวนไม่คุ้ม สวนหย่อมควรใช้แก้จุดเสี่ยง`}
-      subtitle={`พื้นที่สีเขียว ${fmt.dec(dd.greenPerCapita)} ตร.ม./คน (มัธยฐาน ${fmt.dec(parks.medianGreenPerCapita)}) · ${parkRisk.length} จาก ${map.risk.points.length} จุดเสี่ยงอยู่ในสวนหรือสวนหย่อม`}
       source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (สวนสาธารณะ 2568, เฉพาะสวนที่สำนักงานสวนสาธารณะดูแล); บัญชีพื้นที่เสี่ยง สำนักเทศกิจ 2567–2568 · Pocket Park คิดแห่งละ 300 ตร.ม."
     >
       <div className={s.grid}>

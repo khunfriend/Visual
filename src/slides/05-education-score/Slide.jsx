@@ -29,7 +29,7 @@ export default function EducationScore() {
     <SlideFrame
       kicker="05 · การศึกษา (คะแนน)"
       title="เด็กมากกว่าปทุมวัน 3 เท่า แต่มีครูเท่ากัน"
-      subtitle={`นักเรียนต่อครู ${fmt.dec(dd.studentsPerTeacher, 1)} คน สูงเป็นอันดับ ${dd.rankStudentsPerTeacher} ของกรุงเทพฯ (มัธยฐาน ${fmt.dec(ed.medianStudentsPerTeacher, 1)}) · คะแนนการศึกษา ${fmt.dec(dd.score)} อันดับ ${scoreRank(dd)}`}
+      subtitle={`นักเรียนต่อครู ${fmt.dec(dd.studentsPerTeacher, 1)} คน สูงเป็นอันดับ ${dd.rankStudentsPerTeacher} ของกรุงเทพฯ`}
       source={`ที่มา: Bangkok Index 2025 – Rocket Media Lab (การศึกษา ปีการศึกษา 2568) · โรงเรียนดินแดง ${dd.schools} แห่ง = สังกัด กทม. ${bk[DD].bma} + สพฐ. ${bk[DD].obec} · ปทุมวัน ${pt.schools} แห่ง = ${bk[PT].bma} + ${bk[PT].obec}`}
     >
       <div className={s.grid}>

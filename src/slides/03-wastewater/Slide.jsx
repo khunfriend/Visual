@@ -94,13 +94,12 @@ export default function Wastewater() {
     <SlideFrame
       kicker="04 · น้ำเสีย"
       title={`ดินแดงมีค่า BOD สูงเป็นอันดับ ${highRank} จาก ${rows.length} เขต`}
-      subtitle={`BOD เฉลี่ย ${fmt.dec(dd.bod)} มก./ล. เทียบกับเกณฑ์ ${standardLabel} · BOD ยิ่งสูง คุณภาพน้ำยิ่งต่ำ`}
       source="ที่มา Bangkok Index 2025 – Rocket Media Lab (ข้อมูลคลองจากสำนักการระบายน้ำ) · จุดตรวจจากชุดข้อมูล waterquality ของกรุงเทพมหานคร (data.bangkok.go.th)"
     >
       <div className={s.grid}>
         <ChartCard
           title={`BOD เฉลี่ยของคลอง ${rows.length} เขต`}
-          note={`ปี 2540–2567 · ${exceed} เขตเกินเกณฑ์ · หน่วย มก./ล.`}
+          note={`ปี 2540–2567 · ${exceed} เขตเกินเกณฑ์ · ยิ่งสูง น้ำยิ่งเน่า`}
           legend={[
             { label: 'ดินแดง', color: color.dindaeng },
             { label: 'เขตข้างเคียง', color: neighborColor },
