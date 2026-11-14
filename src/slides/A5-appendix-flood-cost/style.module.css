@@ -30,9 +30,10 @@
 
 .item {
   display: flex;
-  flex-direction: column;
-  gap: 1px;
-  padding: 7px 0;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 14px;
+  padding: 8px 0;
   border-bottom: 1px solid var(--c-border);
   font-size: var(--fs-label);
   color: var(--c-text);
@@ -40,7 +41,7 @@
 }
 
 .item span {
-  color: var(--c-text);
+  color: var(--c-textMuted);
 }
 
 .item small {
@@ -62,4 +63,24 @@
   font-weight: 400;
   color: var(--c-textMuted);
   white-space: nowrap;
+}
+
+.links {
+  margin-top: 4px;
+}
+
+.links ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: start;
+  gap: 6px 40px;
+  font-size: var(--fs-source);
+}
+
+.links a {
+  color: var(--c-text);
+  text-decoration: underline;
 }
