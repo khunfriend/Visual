@@ -1,6 +1,6 @@
 /* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
 .grid {
-  --wastewater-neighbor-color: var(--c-neighbor); /* แดงอ่อน (ผู้ใช้เลือก) · ใกล้เทาเขตอื่น แต่ทุกแท่งเขตข้างเคียงมีป้ายชื่อกำกับ */
+  --wastewater-neighbor-color: var(--c-pathumwan); /* ฟ้า (ผู้ใช้เลือก 14 พ.ย.) · เขตที่ติดดินแดง */
   flex: 1;
   min-height: 0;
   display: grid;
@@ -152,7 +152,7 @@
 }
 
 .bLabelKey {
-  fill: var(--c-text);
+  fill: var(--c-surface);
 }
 
 .bLabelDd {
@@ -166,13 +166,8 @@
   stroke-width: 1.5;
 }
 
-.compass text,
-.sizeKey text {
+.compass text {
   font-size: 14px;
   fill: var(--c-textMuted);
 }
 
-.sizeKey circle {
-  fill: none;
-  stroke: var(--c-textFaint);
-}
