@@ -167,7 +167,7 @@ export default function WhyDindaeng() {
       {/* ---- แผนที่นำทาง: 5 เรื่องที่จะเล่า ---- */}
       <div className={s.story}>
         <p className={s.storyHead}>
-          <b>5 เรื่องที่จะเล่า</b>
+          <b>5 เรื่องที่ควรแก้</b>
         </p>
         <ol className={s.storyList}>
           {STORY.map((t) => (
