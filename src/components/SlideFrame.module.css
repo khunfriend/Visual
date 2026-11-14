@@ -25,9 +25,20 @@
   font-size: var(--fs-title);
   font-weight: 700;
   line-height: 1.25;
-  color: var(--c-text);
+  color: var(--c-heading);
   max-width: 1600px;
   text-wrap: balance;
+}
+
+/* ขีดแดงสั้นใต้หัวเรื่อง (ตามภาพตัวอย่าง) */
+.title::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: 14px;
+  border-radius: 2px;
+  background: var(--c-dindaeng);
 }
 
 .subtitle {
