@@ -23,9 +23,10 @@ const YEARLY = ASK.reduce((a, r) => a + r.yearly, 0)
 const PENDING = '[รอข้อมูล]'
 const m2 = (v) => fmt.dec(v, 2)
 
-// ---- waterfall: ตอนนี้ → จุดเสี่ยง → น้ำท่วม → การศึกษา → สวน → ปีแรก → น้ำเสีย (ระยะยาว) → ระยะยาว ----
+// ---- waterfall: ตอนนี้ → จุดเสี่ยง → น้ำท่วม → การศึกษา → สวน → ปีแรก ----
 // แถวที่มี value = ยอดรวม (ตอนนี้ / ปีแรก / ระยะยาว) · แถวที่มี delta = ส่วนเพิ่มของแต่ละเรื่อง (build_data.py ส่วน 8)
-const wf = scenarios.waterfall
+// หน้านี้แสดงถึงยอดปีแรกเท่านั้น (น้ำเสียระยะยาวอยู่ในบรรทัดรองและหน้า 5)
+const wf = scenarios.waterfall.slice(0, scenarios.waterfall.findIndex((w) => w.key === 'target') + 1)
 let run = 0
 const wfRows = wf.map((w) => {
   if (w.value != null) {
@@ -37,7 +38,7 @@ const wfRows = wf.map((w) => {
   return row
 })
 const Y0 = 16 // แกนเริ่มที่ 16 เพื่อให้เห็นส่วนเพิ่ม (เขียนกำกับไว้ใต้กราฟ)
-const Y1 = 23
+const Y1 = 21
 
 const target = scenarios.cases.find((c) => c.key === 'target')
 const now = scenarios.cases[0]
@@ -59,12 +60,12 @@ export default function Summary() {
       source={`คำนวณจากคะแนนจริงของ Bangkok Index 2025 ทั้ง 16 หัวข้อ × 50 เขต โดยสมมติให้เขตอื่นคงที่ · คะแนนรวม = ค่าเฉลี่ย 16 หัวข้อ · แกนกราฟซ้ายเริ่มที่ ${Y0}`}
     >
       <div className={s.grid}>
-        <ChartCard title="คะแนนรวมเพิ่มจากแต่ละเรื่อง" note="กรณีตามเป้า · 4 เรื่องแรกวัดผลได้ในปีแรก · น้ำเสียเป็นเป้าระยะยาว (BOD ลดถึง 15 มก./ล.)">
+        <ChartCard title="คะแนนรวมเพิ่มจากแต่ละเรื่อง" note="ปีแรก กรณีตามเป้า">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={wfRows} margin={{ top: 56, right: 8, bottom: 8, left: 0 }} barCategoryGap="22%">
               <CartesianGrid {...gridProps} />
               <XAxis dataKey="label" {...axisCommon} interval={0} />
-              <YAxis {...axisCommon} domain={[Y0, Y1]} ticks={[16, 17, 18, 19, 20, 21, 22, 23]} allowDataOverflow width={40} />
+              <YAxis {...axisCommon} domain={[Y0, Y1]} ticks={[16, 17, 18, 19, 20, 21]} allowDataOverflow width={40} />
               <Tooltip cursor={{ fill: color.grid }}
                 content={<TipBox render={(r) => r.total
                   ? { title: r.label, rows: [['คะแนนรวม', fmt.dec(r.val)], ['อันดับ', `${r.rank} จาก 50`]] }
