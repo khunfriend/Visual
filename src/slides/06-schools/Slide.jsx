@@ -27,8 +27,7 @@ function Person({ x, y, h, className }) {
   )
 }
 
-function TeacherPictogram() {
-  const [added, setAdded] = useState(false)
+function TeacherPictogram({ added, setAdded }) {
   const ddNow = dd.studentsPerTeacher
   const ddAfter = ed.studentsPerTeacherAfter
   const lines = [
@@ -84,15 +83,19 @@ const EXTRA = [
 ]
 
 export default function Schools() {
+  // เปิดหน้ามาเป็นสถานะก่อนเพิ่มครู · กดปุ่มแล้วหัวเรื่องและกล่องขวาจึงเปลี่ยนเป็นผลหลังเพิ่มครู
+  const [added, setAdded] = useState(false)
   return (
     <SlideFrame
       kicker="07 · เพิ่มครูและประสิทธิภาพการสอน"
-      title={`เพิ่มครู ${ed.teachersNeeded} คนและเพิ่มประสิทธิภาพการสอน คะแนนการศึกษาขึ้นเป็น ${fmt.dec(both.score)}`}
+      title={added
+        ? `เพิ่มครู ${ed.teachersNeeded} คนและเพิ่มประสิทธิภาพการสอน คะแนนการศึกษาขึ้นเป็น ${fmt.dec(both.score)}`
+        : `ครู 1 คนในดินแดงดูแลนักเรียน ${fmt.dec(dd.studentsPerTeacher, 1)} คน มากเป็นอันดับ ${dd.rankStudentsPerTeacher} ของกรุงเทพฯ`}
       source={`คำนวณจากสูตร Bangkok Index 2025 (การศึกษา = เฉลี่ยคะแนนโรงเรียนต่อเด็ก 1,000 คน กับนักเรียนต่อครู) โดยสมมติให้เขตอื่นคงที่ · เงินเดือนครูผู้ช่วย ${fmt.int(salary.monthly)} บาท/เดือน ยังไม่ยืนยันอัตรา กทม.`}
     >
       <div className={s.grid}>
         <ChartCard title="ครู 1 คนดูแลนักเรียนกี่คน" note={`1 ตัว = นักเรียน 1 คน · ดัชนีนับครูของโรงเรียน กทม. + สพฐ. ${dd.schools} แห่ง`} className={s.mapCard}>
-          <TeacherPictogram />
+          <TeacherPictogram added={added} setAdded={setAdded} />
         </ChartCard>
 
         <div className={s.side}>
@@ -100,8 +103,12 @@ export default function Schools() {
           <Stat label={`เงินเดือนครู ${ed.teachersNeeded} คน`} value={fmt.mb(salary.annualTotal, 1)} unit="ล้านบาท/ปี"
             sub={`${ed.teachersNeeded} × ${fmt.int(salary.monthly)} บาท × 12 เดือน (ยังไม่รวมสวัสดิการ)`} />
           <p className={s.note}>
-            ครู {fmt.int(dd.teachers)} → {fmt.int(dd.teachers + ed.teachersNeeded)} คน นักเรียนต่อครูลดจาก {fmt.dec(dd.studentsPerTeacher, 1)} เหลือ{' '}
-            {fmt.dec(ed.studentsPerTeacherAfter, 1)}
+            {added ? (
+              <>ครู {fmt.int(dd.teachers)} → {fmt.int(dd.teachers + ed.teachersNeeded)} คน นักเรียนต่อครูลดจาก {fmt.dec(dd.studentsPerTeacher, 1)} เหลือ{' '}
+                {fmt.dec(ed.studentsPerTeacherAfter, 1)}</>
+            ) : (
+              <>ตอนนี้ครู {fmt.int(dd.teachers)} คน นักเรียนต่อครู {fmt.dec(dd.studentsPerTeacher, 1)} · กดปุ่มทางซ้ายเพื่อดูผล</>
+            )}
           </p>
           {/* เพิ่มประสิทธิภาพการสอน: ไม่ทำให้คะแนนดัชนีขยับ แต่แก้ปัญหาได้ทันที · ยังไม่ได้ประเมินงบ (ดู ข้อมูลรวม_ตรวจแล้ว.md) */}
           <div className={s.extra}>
