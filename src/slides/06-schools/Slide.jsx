@@ -3,7 +3,7 @@ import SlideFrame from '../../components/SlideFrame.jsx'
 import MapBase from '../../components/charts/MapBase.jsx'
 import Expandable from '../../components/charts/Expandable.jsx'
 import { ChartCard, Stat, TipBox, fmt } from '../../components/charts/kit.jsx'
-import { education as ed, map, scenarios } from '../../lib/data.js'
+import { education as ed, map } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
 import s from './style.module.css'
 
@@ -13,7 +13,6 @@ import s from './style.module.css'
 const LABEL = (sc) =>
   sc.addSchools && sc.addTeachers ? `โรงเรียน +1 และครู +${sc.addTeachers}` : sc.addSchools ? 'โรงเรียน +1' : sc.addTeachers ? `ครู +${sc.addTeachers}` : 'ตอนนี้'
 const rows = ed.scenarios.map((sc) => ({ ...sc, label: LABEL(sc), chosen: !sc.addSchools && sc.addTeachers })) // 14 พ.ย.: ใช้กรณีเพิ่มครูอย่างเดียว (ตัดโรงเรียนออก)
-const now = rows[0]
 const both = rows.find((r) => r.chosen) // ครู +50
 const allSchools = map.schools.items.map((sc, i) => ({ ...sc, no: i + 1 })) // เลขคงที่ไม่ว่าจะกรองแบบไหน
 // สังกัด: กทม. / สพฐ. / เอกชน / อื่น ๆ (ยืนยันจากเว็บสำนักงานเขตดินแดง ดู build_map.py)
@@ -33,8 +32,6 @@ function Pin({ x, y, affil, size = 11 }) {
   )
 }
 const salary = ed.teacherSalary
-const eduDelta = scenarios.waterfall.find((w) => w.label.startsWith('การศึกษา')).delta // ผลต่อคะแนนรวม (ตรงกับ waterfall หน้าสรุป)
-const nowRank = scenarios.cases.find((c) => c.key === 'now').rank
 const dd = ed.districts.find((d) => d.name === 'ดินแดง')
 
 /** กล่อง hover ที่ลอยตามเมาส์บนแผนที่ (คิดตำแหน่งในหน่วยของเวที 1920×1080 ที่ถูกย่อ) */
@@ -82,7 +79,6 @@ export default function Schools() {
     <SlideFrame
       kicker="07 · เพิ่มครูและประสิทธิภาพการสอน"
       title={`เพิ่มครู ${ed.teachersNeeded} คนและเพิ่มประสิทธิภาพการสอน คะแนนการศึกษาขึ้นเป็น ${fmt.dec(both.score)}`}
-      subtitle={`ผลต่อคะแนนรวม +${fmt.dec(eduDelta)} คะแนน · ถ้าทำเรื่องนี้เรื่องเดียว อันดับรวม ${nowRank} → ${scenarios.single.eduOnly.rank} · อันดับด้านการศึกษา ${now.rank} → ราว ${both.rank}`}
       source={`คำนวณจากสูตร Bangkok Index 2025 (การศึกษา = เฉลี่ยคะแนนโรงเรียนต่อเด็ก 1,000 คน กับนักเรียนต่อครู) โดยสมมติให้เขตอื่นคงที่ · ตำแหน่งโรงเรียนและแผนที่ฐาน © OpenStreetMap contributors · สังกัดโรงเรียน: สำนักงานเขตดินแดง · เงินเดือนครูผู้ช่วย ${fmt.int(salary.monthly)} บาท/เดือน ยังไม่ยืนยันอัตรา กทม.`}
     >
       <div className={s.grid}>

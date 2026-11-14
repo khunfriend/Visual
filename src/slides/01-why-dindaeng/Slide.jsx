@@ -156,7 +156,10 @@ export default function WhyDindaeng() {
             <p className={s.ratio}>
               ปทุมวันได้มากกว่า <b className="num">{fmt.dec(Math.floor((dPT.perCapita / dDD.perCapita) * 10) / 10, 1)} เท่า</b>
             </p>
-            <p className={s.miniTitle}>งบทั้งเขตดินแดง ปี 2568 {fmt.mb(dDD.total)} ล้านบาท</p>
+            <p className={s.miniTitle}>
+              งบทั้งเขต ปี 2568<br />
+              ดินแดง <b className="num">{fmt.mb(dDD.total)}</b> ล้านบาท · ปทุมวัน <b className="num">{fmt.mb(dPT.total)}</b> ล้านบาท
+            </p>
           </div>
         </ChartCard>
       </div>

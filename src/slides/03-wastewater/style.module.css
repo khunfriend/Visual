@@ -1,6 +1,6 @@
 /* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
 .grid {
-  --wastewater-neighbor-color: var(--c-pathumwan); /* เทาถ่าน: หน้านี้ไม่มีปทุมวัน · ผ่านตัวตรวจสีคู่กับแดงและเทาเขตอื่น */
+  --wastewater-neighbor-color: var(--c-neighbor); /* แดงอ่อน (ผู้ใช้เลือก) · ใกล้เทาเขตอื่น แต่ทุกแท่งเขตข้างเคียงมีป้ายชื่อกำกับ */
   flex: 1;
   min-height: 0;
   display: grid;

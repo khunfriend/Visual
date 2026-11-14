@@ -49,7 +49,7 @@ function StationBars() {
                 <span>{x.point}</span>
               </div>
               <div className={s.stTrack}>
-                <div className={s.stBar} style={{ width: pct(x.bod), background: over ? color.dindaeng : color.contrast }} />
+                <div className={s.stBar} style={{ width: pct(x.bod), background: over ? color.dindaeng : color.good }} />
                 <span className={`${s.stVal} num`} style={{ left: pct(x.bod) }}>{fmt.dec(x.bod)}</span>
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function Wastewater() {
           note="BOD เฉลี่ย ม.ค.–เม.ย. 2566 · หน่วย มก./ล."
           legend={[
             { label: 'เกินเกณฑ์', color: color.dindaeng },
-            { label: 'อยู่ในเกณฑ์', color: color.contrast },
+            { label: 'อยู่ในเกณฑ์', color: color.good },
             { label: 'เกณฑ์ BOD', color: color.reference, kind: 'dash' },
           ]}
         >
