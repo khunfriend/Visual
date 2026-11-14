@@ -12,12 +12,8 @@ import RiskFix from './slides/07b-risk-fix/Slide.jsx'
 import PocketParks from './slides/08-pocket-parks/Slide.jsx'
 import ParkGap from './slides/09-park-gap/Slide.jsx'
 import VacantLand from './slides/09b-vacant-land/Slide.jsx'
-import ParkPlan from './slides/09c-park-plan/Slide.jsx'
 import Summary from './slides/10-summary/Slide.jsx'
-import AppendixParks from './slides/A1-appendix-parks/Slide.jsx'
 import Appendix2569 from './slides/A2-appendix-2569/Slide.jsx'
-import AppendixVacantPlan from './slides/A3-appendix-vacant-plan/Slide.jsx'
-import AppendixLimits from './slides/A4-appendix-limits/Slide.jsx'
 import AppendixFloodCost from './slides/A5-appendix-flood-cost/Slide.jsx'
 
 const slides = [
@@ -33,12 +29,8 @@ const slides = [
   { id: '08-pocket-parks', Component: PocketParks },
   { id: '09-park-gap', Component: ParkGap },
   { id: '09b-vacant-land', Component: VacantLand },
-  { id: '09c-park-plan', Component: ParkPlan },
   { id: '10-summary', Component: Summary },
-  { id: 'A1-appendix-parks', Component: AppendixParks, appendix: true },
   { id: 'A2-appendix-2569', Component: Appendix2569, appendix: true },
-  { id: 'A3-appendix-vacant-plan', Component: AppendixVacantPlan, appendix: true },
-  { id: 'A4-appendix-limits', Component: AppendixLimits, appendix: true },
   { id: 'A5-appendix-flood-cost', Component: AppendixFloodCost, appendix: true },
 ]
 

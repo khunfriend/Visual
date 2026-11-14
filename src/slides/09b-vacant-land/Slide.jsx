@@ -80,7 +80,7 @@ export default function VacantLand() {
       source={
         <>
           ที่มา: Bangkok Index 2025 · <a href={vacant.links.green_registry} target="_blank" rel="noreferrer">ทะเบียนพื้นที่สีเขียว เขตดินแดง – กทม.</a>{' '}
-          (ที่ว่างบันทึกปี {vacant.years[0]}–{vacant.years[1]}) · รายแปลงดูภาคผนวก A3
+          (ที่ว่างบันทึกปี {vacant.years[0]}–{vacant.years[1]})
         </>
       }
     >
