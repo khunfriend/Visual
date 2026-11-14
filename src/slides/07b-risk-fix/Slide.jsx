@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import SlideFrame from '../../components/SlideFrame.jsx'
 import { fmt } from '../../components/charts/kit.jsx'
 import { map, risk, scenarios } from '../../lib/data.js'
@@ -65,6 +66,7 @@ const grand = typeRows.reduce((a, r) => a + r.sum, 0)
 const mb = (b) => (b / 1e6).toFixed(2)
 
 export default function RiskFix() {
+  const [open, setOpen] = useState({})
   return (
     <SlideFrame
       kicker="09 · แก้จุดเสี่ยง"
@@ -93,8 +95,14 @@ export default function RiskFix() {
               <p className={s.text}>{r.fix}</p>
               <div className={s.costCell}>
                 <b className={`${s.money} num`}>{mb(r.sum)} <small>ล้านบาท</small></b>
-                {r.cost.map((c) => (
-                  <span key={c.label}>
+                <button
+                  type="button" className={s.detailBtn} aria-expanded={!!open[r.type]}
+                  onClick={() => setOpen((o) => ({ ...o, [r.type]: !o[r.type] }))}
+                >
+                  {open[r.type] ? 'ซ่อนรายละเอียด ▴' : 'ดูรายละเอียด ▾'}
+                </button>
+                {open[r.type] && r.cost.map((c) => (
+                  <span key={c.label} className={s.detail}>
                     {c.label} {c.qty.toLocaleString('th-TH')} {c.unit} × {c.price.toLocaleString('th-TH')}
                   </span>
                 ))}

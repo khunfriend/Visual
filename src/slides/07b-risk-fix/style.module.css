@@ -88,7 +88,24 @@
   gap: 4px;
 }
 
-.costCell span {
+.detailBtn {
+  align-self: flex-start;
+  padding: 2px 10px;
+  font: inherit;
+  font-size: var(--fs-source);
+  color: var(--c-dindaeng);
+  background: transparent;
+  border: 1px solid var(--c-dindaeng);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.detailBtn:hover {
+  background: var(--c-dindaeng);
+  color: var(--c-surface);
+}
+
+.detail {
   font-size: var(--fs-source);
   color: var(--c-textMuted);
 }

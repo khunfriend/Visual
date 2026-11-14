@@ -70,7 +70,7 @@ export default function Summary() {
               <Bar dataKey="base" stackId="w" fill="transparent" isAnimationActive={false} />
               <Bar dataKey="val" stackId="w" radius={[4, 4, 0, 0]} maxBarSize={96} isAnimationActive={false}>
                 {wfRows.map((r) => (
-                  <Cell key={r.label} fill={r.total ? (r.label === 'ตอนนี้' ? color.other : color.dindaeng) : color.neighbor} />
+                  <Cell key={r.label} fill={r.total ? (r.label === 'ตอนนี้' ? color.other : color.good) : '#8CCBB2'} />
                 ))}
                 <LabelList
                   dataKey="val"
