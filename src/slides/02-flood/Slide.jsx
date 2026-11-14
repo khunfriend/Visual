@@ -1,5 +1,5 @@
 import {
-  Bar, BarChart, CartesianGrid, Cell, LabelList, ReferenceLine, ResponsiveContainer, Scatter, ScatterChart,
+  Bar, BarChart, CartesianGrid, Cell, LabelList, ReferenceArea, ReferenceLine, ResponsiveContainer, Scatter, ScatterChart,
   Tooltip, XAxis, YAxis,
 } from 'recharts'
 import SlideFrame from '../../components/SlideFrame.jsx'
@@ -18,6 +18,7 @@ const med = flood.medianDrainBudget / 1e6
 const sortedFloods = pts.map((d) => d.floods).sort((a, b) => a - b)
 const medFlood = (sortedFloods[24] + sortedFloods[25]) / 2 // มัธยฐานจำนวนครั้งน้ำท่วม 50 เขต
 const medFloodLabel = fmt.dec(medFlood, Number.isInteger(medFlood) ? 0 : 1)
+const MID = 25.5 // กึ่งกลางอันดับ 1–50 (เส้นมัธยฐาน)
 const dd = pts.find((d) => d.name === DD)
 const fd = flood.dindaeng
 const comparisons = [
@@ -32,7 +33,7 @@ function Dot({ cx, cy, payload }) {
       <circle cx={cx} cy={cy} r={isDindaeng ? 12 : 7}
         fill={isDindaeng ? color.dindaeng : color.other} stroke={color.surface} strokeWidth={2} />
       {isDindaeng && (
-        <SvgLabel x={cx + 16} y={cy - 12} anchor="start" weight={700} size={24}>ดินแดง</SvgLabel>
+        <SvgLabel x={cx + 12} y={cy + 40} anchor="end" weight={700} size={24}>ดินแดง</SvgLabel>
       )}
     </g>
   )
@@ -75,37 +76,28 @@ export default function Flood() {
           >
             <div className={s.plot}>
               <ResponsiveContainer width="100%" height="100%">
-                <ScatterChart margin={{ top: 34, right: 144, bottom: 35, left: 0 }}>
+                <ScatterChart margin={{ top: 20, right: 24, bottom: 35, left: 12 }}>
                   <CartesianGrid {...gridProps} />
-                  <XAxis
-                    type="number" dataKey="floods" {...axisCommon} domain={[0, 50]} ticks={[0, 10, 20, 30, 40, 50]}
-                    label={{ value: 'จำนวนครั้งน้ำท่วมขัง', position: 'bottom', offset: 8, fill: color.textMuted, fontSize: size.label }}
-                  />
-                  <YAxis
-                    type="number" dataKey="m" scale="log" domain={[1, 200]} ticks={[1, 5, 10, 20, 50, 100, 200]}
-                    allowDataOverflow {...axisCommon} width={48} interval={0}
-                  />
-                  <ReferenceLine
-                    y={med} stroke={color.reference} strokeDasharray="7 5" strokeWidth={2}
+                  <ReferenceArea
+                    x1={MID} x2={0} y1={MID} y2={51} zIndex={500} fill={color.dindaeng} fillOpacity={0.07} stroke="none"
                     label={({ viewBox }) => (
-                      <g>
-                        <SvgLabel x={viewBox.x + viewBox.width + 10} y={viewBox.y - 12} dy="0.35em" anchor="start" fill={color.reference} size={22}>
-                          {fmt.dec(med)}
-                        </SvgLabel>
-                        <SvgLabel x={viewBox.x + viewBox.width + 10} y={viewBox.y + 14} dy="0.35em" anchor="start" fill={color.reference} size={22}>
-                          ล้านบาท
-                        </SvgLabel>
-                      </g>
-                    )}
-                  />
-                  <ReferenceLine
-                    x={medFlood} stroke={color.reference} strokeDasharray="7 5" strokeWidth={2}
-                    label={({ viewBox }) => (
-                      <SvgLabel x={viewBox.x} y={viewBox.y - 10} fill={color.reference} size={22}>
-                        {medFloodLabel} ครั้ง
+                      <SvgLabel x={viewBox.x + 12} y={viewBox.y + 30} anchor="start" fill={color.dindaeng} size={22} weight={700}>
+                        ท่วมบ่อย แต่งบน้อย
                       </SvgLabel>
                     )}
                   />
+                  <XAxis
+                    type="number" dataKey="floodRank" {...axisCommon} reversed domain={[0, 51]}
+                    ticks={[50, 40, 30, 20, 10, 1]} interval={0}
+                    label={{ value: 'อันดับน้ำท่วม (ขวา = ท่วมบ่อยกว่า)', position: 'bottom', offset: 8, fill: color.textMuted, fontSize: size.label }}
+                  />
+                  <YAxis
+                    type="number" dataKey="budgetRank" {...axisCommon} reversed domain={[0, 51]}
+                    ticks={[50, 40, 30, 20, 10, 1]} interval={0} width={48}
+                    label={{ value: 'อันดับงบระบายน้ำ (บน = งบมากกว่า)', angle: -90, position: 'insideLeft', offset: -4, fill: color.textMuted, fontSize: size.label, style: { textAnchor: 'middle' } }}
+                  />
+                  <ReferenceLine y={MID} stroke={color.reference} strokeDasharray="7 5" strokeWidth={2} />
+                  <ReferenceLine x={MID} stroke={color.reference} strokeDasharray="7 5" strokeWidth={2} />
                   <Tooltip
                     cursor={false}
                     content={
