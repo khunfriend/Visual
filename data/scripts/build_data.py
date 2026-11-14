@@ -729,6 +729,7 @@ for label, k, new in steps:
                       'delta': r2((new - scores[DD][k]) / 16, 3)})
 waterfall.append({'label': 'หลังแก้ (ปีแรก ตามเป้า)', 'value': scen[2]['score']})
 check('waterfall รวม', r2(base_o + sum(w.get('delta', 0) for w in waterfall[1:-1])), 20.07, 0.011)
+check('น้ำเสียเรื่องเดียว BOD 15', overall_scenario(bod_val=15), (18.87, 46))
 write('scenarios', {
     'note': 'คำนวณจากคะแนนจริง 16 หัวข้อ × 50 เขต สมมติให้เขตอื่นคงที่',
     'cases': scen,
@@ -737,6 +738,8 @@ write('scenarios', {
         'crimeOnly': dict(zip(('score', 'rank'), overall_scenario(crime_pts=9))),
         'floodOnly': dict(zip(('score', 'rank'), overall_scenario(floods=29))),
         'eduOnly': dict(zip(('score', 'rank'), overall_scenario(edu_score=EDU_BOTH))),
+        # น้ำเสียเรื่องเดียว (ระยะยาว BOD → มาตรฐาน 15) ใช้ในแถบผลต่อคะแนนหน้าแก้น้ำเสีย
+        'bodOnly': dict(zip(('score', 'rank'), overall_scenario(bod_val=15))),
     },
 })
 

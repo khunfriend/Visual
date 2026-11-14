@@ -92,6 +92,10 @@
   "eduOnly": {
    "score": 17.61,
    "rank": 49
+  },
+  "bodOnly": {
+   "score": 18.87,
+   "rank": 46
   }
  }
 }

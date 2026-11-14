@@ -1,5 +1,5 @@
 import {
-  Bar, BarChart, CartesianGrid, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis,
+  Bar, BarChart, CartesianGrid, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts'
 import { useState } from 'react'
 import SlideFrame from '../../components/SlideFrame.jsx'
@@ -22,24 +22,6 @@ const dims = index.dims.map((dm) => ({
   median: index.medians.dims[dm.key],
   pt: pt.dims[dm.key].score,
 }))
-
-// โครงสร้างงบดินแดง: หมวดใหญ่ 3 หมวด + ระบายน้ำ + รวมที่เหลือ
-const cats = [...budget.categories].sort((a, b) => b[`${DD}_pct`] - a[`${DD}_pct`])
-const isDrain = (c) => c.name.startsWith('ระบายน้ำ')
-const shortName = {
-  'เงินเดือนและค่าจ้างบุคลากร': 'ค่าจ้างบุคลากร',
-  'โรงเรียนและฝ่ายการศึกษา': 'โรงเรียน',
-  'ซ่อมบำรุง (ถนน ทางเท้า)': 'ซ่อมถนน',
-  'ระบายน้ำและแก้น้ำท่วม': 'ระบายน้ำ',
-}
-const top3 = cats.filter((c) => !isDrain(c)).slice(0, 3)
-const drain = cats.find(isDrain)
-const restPct = 100 - [...top3, drain].reduce((a, c) => a + c[`${DD}_pct`], 0)
-const budgetRows = [
-  ...top3.map((c) => ({ name: shortName[c.name] || c.name, pct: c[`${DD}_pct`], drain: false })),
-  { name: 'หมวดอื่นรวม', pct: restPct, drain: false },
-  { name: shortName[drain.name], pct: drain[`${DD}_pct`], drain: true },
-]
 
 // ---- แผนที่คะแนนรวม: เขตอื่นไล่เฉดเทา (อ่อน = คะแนนต่ำ, เข้ม = สูง) · ดินแดงส้ม ปทุมวันฟ้า ----
 const byName = Object.fromEntries(overall.map((d) => [d.name, d]))
@@ -91,6 +73,15 @@ function BangkokMap() {
     </div>
   )
 }
+
+// ---- 5 เรื่องที่จะเล่า (ลำดับตามสไลด์) · หัวข้อที่ดินแดงอยู่ท้ายตาราง และแก้ได้ด้วยงบเขต ----
+const STORY = [
+  { key: 'flood', label: 'น้ำท่วม', page: 2 },
+  { key: 'wastewater', label: 'น้ำเสีย', page: 4 },
+  { key: 'education', label: 'การศึกษา', page: 6 },
+  { key: 'crime', label: 'จุดเสี่ยง', page: 8 },
+  { key: 'parks', label: 'สวนสาธารณะ', page: 10 },
+].map((t) => ({ ...t, ...dd.topics[t.key], median: index.medians.topics[t.key] }))
 
 const dDD = budget.districts[DD]
 const dPT = budget.districts[PT]
@@ -165,37 +156,27 @@ export default function WhyDindaeng() {
             <p className={s.ratio}>
               ปทุมวันได้มากกว่า <b className="num">{fmt.dec(Math.floor((dPT.perCapita / dDD.perCapita) * 10) / 10, 1)} เท่า</b>
             </p>
-            <p className={s.miniTitle}>สัดส่วนงบดินแดง {fmt.mb(dDD.total)} ล้านบาท</p>
-            <div className={s.miniChart}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={budgetRows} layout="vertical" margin={{ top: 0, right: 80, bottom: 0, left: 0 }} barCategoryGap="28%">
-                  <XAxis type="number" hide domain={[0, 60]} />
-                  <YAxis type="category" dataKey="name" {...axisCommon} axisLine={false} width={140} />
-                  <Bar dataKey="pct" radius={[0, 4, 4, 0]} maxBarSize={22} isAnimationActive={false}>
-                    {budgetRows.map((r) => (
-                      <Cell key={r.name} fill={r.drain ? color.dindaeng : color.other} />
-                    ))}
-                    <LabelList
-                      dataKey="pct"
-                      content={({ x, y, width, height, value, index: i }) => (
-                        <SvgLabel
-                          x={x + width + 10}
-                          y={y + height / 2}
-                          dy="0.35em"
-                          anchor="start"
-                          weight={budgetRows[i].drain ? 700 : 500}
-                          fill={budgetRows[i].drain ? color.text : color.textMuted}
-                        >
-                          {fmt.dec(value, 1)}%
-                        </SvgLabel>
-                      )}
-                    />
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
+            <p className={s.miniTitle}>งบทั้งเขตดินแดง ปี 2568 {fmt.mb(dDD.total)} ล้านบาท</p>
           </div>
         </ChartCard>
+      </div>
+
+      {/* ---- แผนที่นำทาง: 5 เรื่องที่จะเล่า ---- */}
+      <div className={s.story}>
+        <p className={s.storyHead}>
+          <b>5 เรื่องที่จะเล่า</b>
+          <span>หัวข้อที่ดินแดงอยู่ท้ายตาราง และแก้ได้ด้วยงบเขต · แต่ละเรื่อง: ปัญหา → วิธีแก้ → งบ → คะแนนขยับ</span>
+        </p>
+        <ol className={s.storyList}>
+          {STORY.map((t) => (
+            <li key={t.key}>
+              <span className={s.storyPage}>หน้า {t.page}</span>
+              <b>{t.label}</b>
+              <span className="num">อันดับ <strong>{t.rank}</strong> จาก 50</span>
+              <small className="num">คะแนน {fmt.dec(t.score)} · ค่ากลาง {fmt.dec(t.median)}</small>
+            </li>
+          ))}
+        </ol>
       </div>
     </SlideFrame>
   )

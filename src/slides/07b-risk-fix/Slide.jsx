@@ -1,4 +1,5 @@
 import SlideFrame from '../../components/SlideFrame.jsx'
+import { fmt } from '../../components/charts/kit.jsx'
 import { map, risk, scenarios } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
 import s from './style.module.css'
@@ -22,6 +23,8 @@ const points = map.risk.points.map((p, i) => ({ ...p, no: i + 1 }))
 const total = points.length // 17
 const target = scenarios.cases.find((c) => c.key === 'target').crime // 9 (ฉากทัศน์ "ปีแรก ตามเป้า" ในหน้าสรุป)
 const { lo, hi } = risk.scoreFormula
+const nowRank = scenarios.cases.find((c) => c.key === 'now').rank
+const wfDelta = (k) => scenarios.waterfall.find((w) => w.label.startsWith(k)).delta // ผลต่อคะแนนรวม (ตรงกับ waterfall หน้าสรุป)
 const score = (n) => 1 + (49 * (hi - n)) / (hi - lo) // สูตรคะแนนด้านจุดเสี่ยงของ Bangkok Index
 
 // วิธีแก้ต่อประเภท (ข้อเสนอของกลุ่ม) · ชื่อประเภทตรงกับข้อมูล กทม.
@@ -66,6 +69,7 @@ export default function RiskFix() {
     <SlideFrame
       kicker="09 · แก้จุดเสี่ยง"
       title="จุดเสี่ยง 4 ประเภท แก้อย่างไร ใช้เงินเท่าไร"
+      subtitle={`ผลต่อคะแนนรวม +${fmt.dec(wfDelta('จุดเสี่ยง'))} คะแนน · ถ้าทำเรื่องนี้เรื่องเดียว อันดับรวม ${nowRank} → ${scenarios.single.crimeOnly.rank}`}
       source="ที่มา: ข้อมูลจุดเสี่ยง กทม. ปี 2567–2568 · ค่าใช้จ่ายเป็นประมาณการของกลุ่ม"
     >
       <div className={s.page}>

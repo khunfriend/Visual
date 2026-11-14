@@ -24,12 +24,13 @@
 
 .stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-top: 8px;
 }
 
 .ratio {
-  font-size: var(--fs-label);
+  font-size: var(--fs-body);
   color: var(--c-textMuted);
 }
 
@@ -38,15 +39,11 @@
 }
 
 .miniTitle {
-  margin-top: 16px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--c-grid);
   font-size: var(--fs-label);
-  font-weight: 600;
-  color: var(--c-text);
-}
-
-.miniChart {
-  flex: 1;
-  min-height: 0;
+  color: var(--c-textMuted);
 }
 
 /* แผนที่คะแนนรวม 50 เขต */
@@ -85,4 +82,65 @@
   pointer-events: none;
   z-index: 5;
   white-space: nowrap;
+}
+
+/* ---- แผนที่นำทาง 5 เรื่อง ---- */
+.story {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 2px solid var(--c-text);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.storyHead {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin: 0;
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+}
+
+.storyHead b {
+  font-size: var(--fs-body);
+  color: var(--c-text);
+}
+
+.storyList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.storyList li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 14px;
+  border-left: 4px solid var(--c-dindaeng);
+  font-size: var(--fs-label);
+  color: var(--c-text);
+}
+
+.storyList b {
+  font-size: var(--fs-body);
+}
+
+.storyList strong {
+  color: var(--c-text);
+}
+
+.storyList small {
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+}
+
+.storyPage {
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
 }

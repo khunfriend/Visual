@@ -3,24 +3,26 @@ import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, SvgLabel, TipBox, axisCommon, fmt, gridProps } from '../../components/charts/kit.jsx'
 import { education as ed, scenarios, wastewater } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
+import { firstBudget, firstSites } from '../09b-vacant-land/firstPhase.js'
 import s from './style.module.css'
 
 // สไลด์ 10: แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
 // ตัวเลขทุกตัวต้องตรงกับ ข้อมูลรวม_ตรวจแล้ว.md
 
-// ---- งบที่ขอ: รอผู้ใช้ส่งยอดจริง (ยอดใน xlsx ชีต 9 ห้ามใช้) ----
-// เมื่อได้ยอดแล้ว ให้ใส่ total (ล้านบาท) และ amount ของแต่ละเรื่อง
-const ASK = {
-  total: null,
-  items: [
-    { topic: 'น้ำท่วม', detail: 'ล้างท่อจุดท่วมซ้ำซาก · สำรวจท่อ · ถังดักไขมันตลาด 4 แห่ง', amount: null },
-    { topic: 'น้ำเสีย', detail: 'สำรวจและออกแบบระบบรวบรวมน้ำเสีย', amount: null },
-    { topic: 'การศึกษา', detail: `ครู ${ed.teachersNeeded} คน + โรงเรียน 1 แห่ง`, amount: null },
-    // ประมาณการจากหน้า 7 (แก้จุดเสี่ยง) · ไม่ใช่ราคากลาง ดู ข้อมูลรวม
-    { topic: 'จุดเสี่ยง', detail: 'CCTV · ไฟ LED · อาสาจราจร · ปรับที่รกร้าง (ประมาณการ)', amount: 3.53 },
-  ],
-}
-const PENDING = '[รอยอด]'
+// ---- งบที่ขอ: ดึงยอดจากหน้าแก้แต่ละเรื่อง (ล้านบาท) · ตรงกับ ข้อมูลรวม_ตรวจแล้ว.md ----
+// น้ำท่วม = หน้า 3 (ล้างท่อ+ท่อใหม่ / ทีมเก็บขยะ) · น้ำเสีย = หน้า 5 (ขั้นต้น 2.55 + ชีวภาพ 3.90 · EM+ค่าไฟ/ปี)
+// จุดเสี่ยง = หน้า 9 (รวมอาสาจราจรปีแรก) · สวน = หน้า 13 ระยะแรก (รวมค่าบำรุงปีแรกแล้ว) · ส่วนใหญ่เป็นประมาณการของกลุ่ม
+const ASK = [
+  { topic: 'น้ำท่วม', detail: 'ล้างท่อ วางท่อใหม่ · ทีมเก็บขยะหน้าท่อ', once: 36.94, yearly: 1.61 },
+  { topic: 'น้ำเสีย', detail: 'บำบัดในคลอง 2 ขั้น ที่ 6 จุด', once: 6.45, yearly: 1.07 },
+  { topic: 'การศึกษา', detail: `ครู ${ed.teachersNeeded} คน + โรงเรียน 1 แห่ง`, once: null, yearly: Math.round(ed.teacherSalary.annualTotal / 1e4) / 100 },
+  { topic: 'จุดเสี่ยง', detail: 'CCTV · ไฟ LED · อาสาจราจร · ปรับที่รกร้าง', once: 3.53, yearly: 0 },
+  { topic: 'สวน (ระยะแรก)', detail: `ทำสวน ${firstSites.length} แห่ง`, once: Math.round(firstBudget / 1e4) / 100, yearly: 0 },
+]
+const ONCE = ASK.reduce((a, r) => a + (r.once ?? 0), 0)
+const YEARLY = ASK.reduce((a, r) => a + r.yearly, 0)
+const PENDING = '[รอข้อมูล]'
+const m2 = (v) => fmt.dec(v, 2)
 
 // ---- waterfall: ตอนนี้ → +จุดเสี่ยง → +น้ำท่วม → +การศึกษา → หลังแก้ ----
 const wf = scenarios.waterfall
@@ -51,7 +53,7 @@ export default function Summary() {
   return (
     <SlideFrame
       kicker="14 · สรุปผล"
-      title={`ขอเพิ่ม ${ASK.total ? fmt.dec(ASK.total, 1) : PENDING} ล้านบาท คะแนนรวมขึ้นจาก ${fmt.dec(now.score)} เป็น ${fmt.dec(target.score)} อันดับ ${now.rank} เป็น ${target.rank}`}
+      title={`ขอเพิ่ม ${m2(ONCE)} ล้านบาท + ${m2(YEARLY)} ล้านบาท/ปี คะแนนรวมขึ้นจาก ${fmt.dec(now.score)} เป็น ${fmt.dec(target.score)} อันดับ ${now.rank} เป็น ${target.rank}`}
       subtitle={`ปีแรก กรณีตามเป้า · วัดผลด้วย Bangkok Index ปีถัดไป · ระยะยาวถ้า BOD ลดถึงมาตรฐาน อันดับขึ้นถึง ${scenarios.cases.find((c) => c.key === 'longterm').rank}`}
       source={`คำนวณจากคะแนนจริงของ Bangkok Index 2025 ทั้ง 16 หัวข้อ × 50 เขต โดยสมมติให้เขตอื่นคงที่ · คะแนนรวม = ค่าเฉลี่ย 16 หัวข้อ · แกนกราฟซ้ายเริ่มที่ ${Y0}`}
     >
@@ -113,22 +115,28 @@ export default function Summary() {
 
         <div className={s.side}>
           <section>
-            <h2 className={s.blockTitle}>งบที่ขอเพิ่ม</h2>
-            <ul className={s.ask}>
-              {ASK.items.map((it) => (
-                <li key={it.topic}>
-                  <span>
-                    <b>{it.topic}</b>
-                    <small>{it.detail}</small>
-                  </span>
-                  <span className={`${s.amount} num`}>{it.amount != null ? `${fmt.dec(it.amount, 2)} ล้าน` : PENDING}</span>
-                </li>
-              ))}
-              <li className={s.askTotal}>
-                <b>รวม</b>
-                <span className={`${s.amount} num`}>{ASK.total != null ? `${fmt.dec(ASK.total, 1)} ล้านบาท` : PENDING}</span>
-              </li>
-            </ul>
+            <h2 className={s.blockTitle}>งบที่ขอเพิ่ม (ล้านบาท) <small className={s.blockNote}>ยังไม่รวมค่าสร้างโรงเรียน</small></h2>
+            <table className={s.ask}>
+              <thead>
+                <tr><th>เรื่อง</th><th>ครั้งเดียว</th><th>ต่อปี</th></tr>
+              </thead>
+              <tbody>
+                {ASK.map((r) => (
+                  <tr key={r.topic}>
+                    <td title={r.detail}><b>{r.topic}</b></td>
+                    <td className="num">{r.once == null ? <span className={s.pending}>{PENDING}</span> : r.once ? m2(r.once) : '–'}</td>
+                    <td className="num">{r.yearly ? m2(r.yearly) : '–'}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td><b>รวม</b></td>
+                  <td className="num">{m2(ONCE)}</td>
+                  <td className="num">{m2(YEARLY)}</td>
+                </tr>
+              </tfoot>
+            </table>
           </section>
           <section>
             <h2 className={s.blockTitle}>วัดผลอย่างไร</h2>

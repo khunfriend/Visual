@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import SlideFrame from '../../components/SlideFrame.jsx'
-import { ChartCard, SvgLabel, TipBox, axisCommon, gridProps } from '../../components/charts/kit.jsx'
+import { ChartCard, SvgLabel, TipBox, axisCommon, fmt, gridProps } from '../../components/charts/kit.jsx'
 import { color } from '../../theme/theme.js'
 import { flood, scenarios } from '../../lib/data.js'
 import s from './style.module.css'
@@ -84,6 +84,7 @@ const GROUPS = [
 const mb = (b) => (b / 1e6).toFixed(2)
 const nowCase = scenarios.cases.find((c) => c.key === 'now')
 const targetCase = scenarios.cases.find((c) => c.key === 'target')
+const wfDelta = (k) => scenarios.waterfall.find((w) => w.label.startsWith(k)).delta // ผลต่อคะแนนรวม (ตรงกับ waterfall หน้าสรุป)
 
 export default function FloodFix() {
   const [open, setOpen] = useState(null) // แถวที่เปิดดูสูตรคำนวณ
@@ -91,6 +92,7 @@ export default function FloodFix() {
     <SlideFrame
       kicker="03 · แก้น้ำท่วม"
       title={`แก้น้ำท่วม 2 แนวทาง ตั้งเป้าลดจาก ${nowCase.floods} เหลือ ${targetCase.floods} ครั้งในปีแรก`}
+      subtitle={`ผลต่อคะแนนรวม +${fmt.dec(wfDelta('น้ำท่วม'))} คะแนน · ถ้าทำเรื่องนี้เรื่องเดียว อันดับรวม ${nowCase.rank} → ${scenarios.single.floodOnly.rank}`}
       source="ราคาอ้างอิง: ราคากลางลอกท่อ สนน. ปี 2561 ≈ 81 บาท/ม. · ค่าแรงขั้นต่ำ กทม. 400 บาท/วัน (1 ก.ค. 2568) · ความยาวท่อซอย: สำนักงานเขตดินแดง · งานท่อและ * ยังไม่มีราคากลาง เป็นประมาณการของกลุ่ม · ครั้งที่ท่วม: Bangkok Index 2025 (2568)"
     >
       <div className={s.page}>
