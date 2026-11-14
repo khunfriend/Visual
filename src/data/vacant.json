@@ -173,5 +173,16 @@
   "buildBaht": 71818000,
   "maintenanceBaht": 7181800,
   "totalBaht": 78999800
+ },
+ "firstPhase": {
+  "sites": [
+   5,
+   1,
+   6
+  ],
+  "walkM": 800,
+  "coveragePct": 45.7,
+  "coveragePctOld": 36.2,
+  "combos": 35
  }
 }

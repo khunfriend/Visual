@@ -2,7 +2,7 @@ import SlideFrame from '../../components/SlideFrame.jsx'
 import { fmt } from '../../components/charts/kit.jsx'
 import { vacant } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
-import { firstArea, firstBudget, firstSites, withMaint } from '../09b-vacant-land/firstPhase.js'
+import { firstArea, firstBudget, firstPhase, firstSites, withMaint } from '../09b-vacant-land/firstPhase.js'
 import s from './style.module.css'
 
 const { gapM2, groups, plan, total } = vacant
@@ -22,7 +22,7 @@ export default function ParkPlan() {
       source={
         <>
           ที่มา <a href={vacant.links.green_registry} target="_blank" rel="noreferrer">ทะเบียนพื้นที่สีเขียว เขตดินแดง – กทม.</a>
-          {' '}· ข้อมูลที่ว่างปี {vacant.years[0]}–{vacant.years[1]} · ตรวจสอบสถานะพื้นที่ก่อนดำเนินการ · รายละเอียดแปลงในภาคผนวก A3
+          {' '}· ข้อมูลที่ว่างปี {vacant.years[0]}–{vacant.years[1]} · ตรวจสอบสถานะพื้นที่ก่อนดำเนินการ · ระยะเดินวัดเป็นเส้นตรงจากกึ่งกลางแปลง ยังไม่นับสวนเดิม · รายละเอียดแปลงในภาคผนวก A3
         </>
       }
     >
@@ -75,6 +75,13 @@ export default function ParkPlan() {
             ))}
           </ul>
           <p className={s.remaining}>หลังทำครบ ยังต้องเพิ่มอีก <strong className="num">{fmt.int(gapM2 - firstArea)} ตร.ม.</strong> เพื่อให้ถึงค่ากลาง</p>
+          <div className={s.why}>
+            <h3>ทำไมเลือก {firstSites.length} แห่งนี้</h3>
+            <p>
+              กระจายกลางเขตและย่านแฟลต ไม่กระจุกที่เดียว · เกือบครึ่งเขต (<strong className="num">{fmt.int(firstPhase.coveragePct)}%</strong>) อยู่ในระยะเดิน 10 นาที ({fmt.int(firstPhase.walkM)} ม.) จากสวนใหม่
+            </p>
+            <p className={s.whyNote}>ครึ่งเหนือของเขตยังไม่มีที่ว่างของรัฐ ต้องใช้ที่เอกชนในระยะต่อไป</p>
+          </div>
         </section>
 
         <table className={s.sites}>
