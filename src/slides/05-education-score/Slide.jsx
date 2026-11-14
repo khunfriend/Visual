@@ -18,7 +18,7 @@ const medScore = index.medians.topics.education
 
 // เทียบดินแดงกับปทุมวัน แต่ละแถวใช้สเกลของตัวเอง
 const compare = [
-  { label: 'เด็กอายุ 0–18 ปี', dd: dd.children, pt: pt.children, unit: 'คน' },
+  { label: 'เด็กอายุ 0–18 ปี', dd: dd.children, pt: pt.children, unit: 'คน', comparisonLabel: 'ดินแดงน้อยกว่า' },
   { label: 'ครู', dd: dd.teachers, pt: pt.teachers, unit: 'คน' },
   { label: 'โรงเรียน', dd: dd.schools, pt: pt.schools, unit: 'แห่ง' },
 ]
@@ -28,8 +28,8 @@ export default function EducationScore() {
   return (
     <SlideFrame
       kicker="05 · การศึกษา (คะแนน)"
-      title="เด็กมากกว่าปทุมวัน 3 เท่า แต่มีครูเท่ากัน"
-      subtitle={`นักเรียนต่อครู ${fmt.dec(dd.studentsPerTeacher, 1)} คน สูงเป็นอันดับ ${dd.rankStudentsPerTeacher} ของกรุงเทพฯ`}
+      title={`ดินแดงได้คะแนนการศึกษาอันดับ ${scoreRank(dd)} จาก ${rows.length} เขต`}
+      subtitle={`เทียบกับปทุมวัน ดินแดงมีเด็กอายุ 0–18 ปีราว ${fmt.int(dd.children / pt.children)} เท่า มีครูใกล้เคียงกัน และมีโรงเรียนน้อยกว่า`}
       source={`ที่มา: Bangkok Index 2025 – Rocket Media Lab (การศึกษา ปีการศึกษา 2568) · โรงเรียนดินแดง ${dd.schools} แห่ง = สังกัด กทม. ${bk[DD].bma} + สพฐ. ${bk[DD].obec} · ปทุมวัน ${pt.schools} แห่ง = ${bk[PT].bma} + ${bk[PT].obec}`}
     >
       <div className={s.grid}>
@@ -81,7 +81,6 @@ export default function EducationScore() {
 
         <ChartCard
           title="ดินแดง เทียบ ปทุมวัน"
-          note="แต่ละแถวใช้สเกลของตัวเอง"
           legend={[
             { label: 'ดินแดง', color: color.dindaeng },
             { label: 'ปทุมวัน', color: color.pathumwan },
@@ -95,7 +94,7 @@ export default function EducationScore() {
                 <div key={c.label} className={s.row}>
                   <p className={s.rowLabel}>
                     {c.label}
-                    <span className={s.ratio}>{ratio >= 1.5 ? `ดินแดง ×${fmt.dec(ratio, 1)}` : ratio < 0.95 ? 'ดินแดงน้อยกว่า' : 'ใกล้เคียงกัน'}</span>
+                    <span className={s.ratio}>{c.comparisonLabel ?? (ratio < 0.95 ? 'ดินแดงน้อยกว่า' : 'ใกล้เคียงกัน')}</span>
                   </p>
                   {[
                     ['dd', c.dd, color.dindaeng],

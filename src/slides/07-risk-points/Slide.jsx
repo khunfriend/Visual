@@ -2,9 +2,8 @@ import { useMemo, useState } from 'react'
 import SlideFrame from '../../components/SlideFrame.jsx'
 import MapBase, { heatColor } from '../../components/charts/MapBase.jsx'
 import Expandable from '../../components/charts/Expandable.jsx'
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 import { TipBox, fmt } from '../../components/charts/kit.jsx'
-import { map, risk } from '../../lib/data.js'
+import { map, risk, riskPinNumbers, riskPointsByType } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
 import s from './style.module.css'
 
@@ -13,27 +12,12 @@ import s from './style.module.css'
 
 const pts = map.risk.points
 const types = map.risk.types
-const ddCount = risk.districts.find((d) => d.name === 'ดินแดง').points
+const countMax = Math.max(...types.map(({ type }) => pts.filter((p) => p.type === type).length))
 const typeColor = (t) => color.riskType[t] || color.textMuted
 const SIGMA_M = 300
 const shortName = (n) => n.replace(/^บริเวณ(โดยรอบ)?/, '').trim()
 const placeShort = (p) => p.replace('สถานประกอบการ/โรงงาน/อาคารพาณิชย์', 'อาคารพาณิชย์').replace('สวนสาธารณะ/สวนหย่อม', 'สวน/สวนหย่อม')
-const repeats = pts.filter((p) => p.repeatOf).map((p) => `${p.repeatOf}–${p.no}`)
-
-// ป้าย % บนกราฟวงกลม: ชิ้น ≥ 12% ตัวใหญ่ตรงกลางชิ้น · ชิ้น 5–12% ตัวเล็กใกล้ขอบ · จำนวนจุดดูจาก tooltip
-const RAD = Math.PI / 180
-function pieLabel({ cx, cy, midAngle, innerRadius, outerRadius, percent }) {
-  if (percent < 0.05) return null
-  const small = percent < 0.12
-  const r = innerRadius + (outerRadius - innerRadius) * (small ? 0.78 : 0.6)
-  const x = cx + r * Math.cos(-midAngle * RAD)
-  const y = cy + r * Math.sin(-midAngle * RAD)
-  return (
-    <text x={x} y={y} dy="0.35em" textAnchor="middle" fontSize={small ? 15 : 22} fontWeight={700} fill="#fff" style={{ fontFamily: 'var(--font)' }}>
-      {Math.round(percent * 100)}%
-    </text>
-  )
-}
+const repeats = pts.filter((p) => p.repeatOf).map((p) => `${riskPinNumbers.get(p.repeatOf)}–${riskPinNumbers.get(p.no)}`)
 
 /** heatmap แบบ KDE (Gaussian, σ = 300 ม.) วาดลง canvas แล้วใช้เป็นภาพ (เร็วกว่าวาด rect หลายหมื่นอัน) */
 function useHeatImage(list, key) {
@@ -75,9 +59,7 @@ const districts = risk.districts // [{ name, points, score }]
 const dd = districts.find((d) => d.name === 'ดินแดง')
 const ddRank = districts.filter((d) => d.points < dd.points).length + 1 // เรียงจากจุดน้อยไปมาก
 const ddTies = districts.filter((d) => d.points === dd.points).length
-const TARGET = 9 // เป้าในฉากทัศน์ "ปีแรก ตามเป้า" (สไลด์สรุปผล)
 const { lo: rLo, hi: rHi } = risk.scoreFormula
-const targetScore = 1 + (49 * (rHi - TARGET)) / (rHi - rLo)
 const minD = districts.filter((d) => d.points === rLo).map((d) => d.name)
 const maxD = districts.filter((d) => d.points === rHi).map((d) => d.name)
 
@@ -101,16 +83,19 @@ function DotStrip() {
   return (
     <div className={s.stripWrap}>
     <svg viewBox={`0 0 ${W} ${H}`} className={s.stripSvg} role="img" aria-label="จำนวนจุดเสี่ยงของ 50 เขต">
+      <rect x={X(risk.median) - 17} y={12} width={34} height={base + 23} rx={8} fill={color.grid} />
       <line x1={x0} x2={x1} y1={base} y2={base} stroke={color.border} strokeWidth={2} />
       {Array.from({ length: rHi - rLo + 1 }, (_, i) => rLo + i).map((t) => (
         <g key={t}>
           <line x1={X(t)} x2={X(t)} y1={base} y2={base + 6} stroke={color.border} />
-          <text x={X(t)} y={base + 26} textAnchor="middle" fontSize={18} fill={color.textFaint}>{t}</text>
+          <text x={X(t)} y={base + 26} textAnchor="middle" fontSize={18}
+            fontWeight={t === risk.median ? 700 : 400} fill={t === risk.median ? color.text : color.textFaint}>{t}</text>
         </g>
       ))}
       {/* ค่ากลาง */}
-      <line x1={X(risk.median)} x2={X(risk.median)} y1={18} y2={base} stroke={color.reference} strokeDasharray="6 5" strokeWidth={2} />
-      <text x={X(risk.median)} y={base + 48} textAnchor="middle" fontSize={20} fill={color.textMuted}>ค่ากลาง {risk.median} จุด</text>
+      <text x={X(risk.median)} y={base + 50} textAnchor="middle" fontSize={20} fontWeight={700} fill={color.text}>
+        มัธยฐาน {risk.median} จุด
+      </text>
       {/* 50 เขต */}
       {dots.map((d) => (
         <circle key={d.name} cx={d.cx} cy={d.cy} r={d.name === dd.name ? 10 : 6.5}
@@ -149,17 +134,17 @@ export default function RiskPoints() {
   const [mode, setMode] = useState('pins') // 'pins' | 'heat'
   const [year, setYear] = useState('all') // 'all' | 2567 | 2568
   const shown = year === 'all' ? pts : pts.filter((p) => p.year === year)
+  const listed = year === 'all' ? riskPointsByType : riskPointsByType.filter((p) => p.year === year)
+  const pinNumbers = new Map(listed.map((p, index) => [p.no, index + 1]))
   const heat = useHeatImage(shown, year)
   // กรองปีเดียวแล้วไม่มีสถานที่ซ้ำ จึงวางหมุดตรงตำแหน่งจริง (ไม่ต้องเลื่อนหลบ)
   const pos = (p) => (year === 'all' ? { x: p.pinX, y: p.pinY, moved: p.moved } : { x: p.x, y: p.y, moved: false })
   const yearLabel = year === 'all' ? 'ปี 2567–2568' : `ปี ${year}`
-  // สัดส่วนประเภท: เรียงตามลำดับประเภทเดิม (สีผูกกับประเภท) และตัดประเภทที่เป็น 0 ในปีที่เลือก
-  const typeData = types
-    .map((t) => {
-      const count = shown.filter((p) => p.type === t.type).length
-      return { type: t.type, count, pct: (count / shown.length) * 100 }
-    })
-    .filter((t) => t.count > 0)
+  // ใช้สเกลเดียวกันทุกปีเพื่อให้ความยาวแท่งเปรียบเทียบกันได้
+  const typeData = types.map(({ type }) => ({
+    type,
+    count: shown.filter((p) => p.type === type).length,
+  }))
 
   const yearFilter = (
     <div className={s.toggle} role="tablist" aria-label="กรองตามปี">
@@ -205,7 +190,7 @@ export default function RiskPoints() {
                   fill={mode === 'heat' ? color.text : typeColor(p.type)} stroke={color.surface} strokeWidth={2.5} />
                 <text x={q.x} y={q.y} dy="0.36em" textAnchor="middle" fontSize={21} fontWeight={700} fill="#fff"
                   style={{ fontFamily: 'var(--font)', pointerEvents: 'none' }}>
-                  {p.no}
+                  {pinNumbers.get(p.no)}
                 </text>
               </g>
             )
@@ -220,12 +205,11 @@ export default function RiskPoints() {
   return (
     <SlideFrame
       kicker="07 · จุดเสี่ยง"
-      title="17 จุดเสี่ยง กระจุกตัวช่วงสวนป่าวิภาวดีและถนนมิตรไมตรี"
+      title={`ดินแดงมี ${dd.points} จุดเสี่ยง สูงกว่ามัธยฐานกรุงเทพฯ ${dd.points - risk.median} จุด`}
       source={`ที่มา: บัญชีพื้นที่เสี่ยง กทม. สำนักเทศกิจ 2567–2568 · เป็นพื้นที่เฝ้าระวัง ไม่ใช่จุดเกิดคดี · ${map.credit}`}
     >
-      <div className={s.page}>
-        {/* ---- แถวบน: 17 จุดมากแค่ไหนเมื่อเทียบ 50 เขต ---- */}
-        <section className={s.context}>
+            <div className={s.page}>
+<section className={s.context}>
           <div className={s.strip}>
             <p className={s.colTitle}>จำนวนจุดเสี่ยงของ 50 เขต (1 จุด = 1 เขต)</p>
             <DotStrip />
@@ -239,93 +223,71 @@ export default function RiskPoints() {
               <b className="num">{ddRank}<small> / 50</small></b>
               <span>อันดับ (ร่วม {ddTies} เขต) เรียงจากจุดน้อยไปมาก</span>
             </div>
-            <div className={s.statCard}>
+            <div className={`${s.statCard} ${s.scoreCard}`}>
               <b className="num">{fmt.dec(dd.score)}<small> / 50</small></b>
-              <span>คะแนนด้านนี้ · ถ้าเหลือ {TARGET} จุด ได้ {fmt.dec(targetScore)}</span>
             </div>
           </div>
         </section>
 
-        {/* ---- แถวล่าง: อยู่ตรงไหน / ประเภทอะไร / ที่ไหนบ้าง (ตัวกรองมีผลทั้งแถว) ---- */}
         <div className={s.controls}>
           {toggle}
           {yearFilter}
         </div>
-        <div className={s.grid}>
-        <div className={s.mapCol}>
-          <div className={s.map}>
-            <Expandable
-              title={`จุดเสี่ยงในเขตดินแดง ${yearLabel} (${shown.length} จุด)`}
-              note={mode === 'heat' ? `ความหนาแน่นของจุดเสี่ยง (σ = ${SIGMA_M} ม.) · เป็นพื้นที่เฝ้าระวัง ไม่ใช่จุดเกิดคดี` : `หมายเลขเรียงจากเหนือลงใต้ · สีบอกประเภทความเสี่ยง · ที่เดิมอยู่ในบัญชีทั้ง 2 ปี: หมุด ${repeats.join(', ')}`}
-              toolbar={<>{toggle}{yearFilter}</>}
-              aside={
-                <ol className={s.asideList}>
-                  {shown.map((p) => (
-                    <li key={p.no} className={active === p.no ? s.activeItem : ''} onMouseEnter={() => setActive(p.no)} onMouseLeave={() => setActive(null)}>
-                      <span className={s.badge} style={{ background: typeColor(p.type) }}>{p.no}</span>
-                      <span className={s.itemText}>
-                        <b>{shortName(p.name)}</b>
-                        <small>{p.type} · {placeShort(p.place)} · ปี {p.year}</small>
-                      </span>
-                    </li>
-                  ))}
-                </ol>
-              }
-            >
-              {({ expanded }) => renderMap(expanded)}
-            </Expandable>
-          </div>
-          {mode === 'heat' && (
-            <div className={s.heatKey}>
-              <span>น้อย</span>
-              <i style={{ background: `linear-gradient(90deg, ${color.heat.join(',')})` }} />
-              <span>หนาแน่น</span>
+              <div className={s.grid}>
+<div className={s.mapCol}>
+            <div className={s.mapHead}>
+              <h2 className={s.colTitle}>แผนที่จุดเสี่ยง</h2>
+              <p>กดขยายเพื่อดูรายชื่อ {shown.length} จุด</p>
             </div>
-          )}
-        </div>
-          <div className={s.typeCol}>
-            <p className={s.colTitle}>แบ่งตามประเภท · {yearLabel}</p>
-            <div className={s.pie}>
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie data={typeData} dataKey="count" nameKey="type" startAngle={90} endAngle={-270}
-                    innerRadius={0} outerRadius="96%" stroke={color.surface} strokeWidth={2} isAnimationActive={false}
-                    label={pieLabel} labelLine={false}>
-                    {typeData.map((t) => (
-                      <Cell key={t.type} fill={typeColor(t.type)} />
+            <div className={s.map}>
+              <Expandable
+                title={`จุดเสี่ยงในเขตดินแดง ${yearLabel} (${shown.length} จุด)`}
+                note={mode === 'heat' ? `ความหนาแน่นของจุดเสี่ยง (σ = ${SIGMA_M} ม.) · เป็นพื้นที่เฝ้าระวัง ไม่ใช่จุดเกิดคดี` : `หมายเลขตรงกับรายชื่อ · สีบอกประเภทความเสี่ยง · ที่เดิมอยู่ในบัญชีทั้ง 2 ปี: หมุด ${repeats.join(', ')}`}
+                toolbar={<>{toggle}{yearFilter}</>}
+                aside={
+                  <ol className={s.asideList}>
+                    {listed.map((p) => (
+                      <li key={p.no} className={active === p.no ? s.activeItem : ''} onMouseEnter={() => setActive(p.no)} onMouseLeave={() => setActive(null)}>
+                        <span className={s.badge} style={{ background: typeColor(p.type) }}>{pinNumbers.get(p.no)}</span>
+                        <span className={s.itemText}>
+                          <b>{shortName(p.name)}</b>
+                          <small>{p.type} · {placeShort(p.place)} · ปี {p.year}</small>
+                        </span>
+                      </li>
                     ))}
-                  </Pie>
-                  <Tooltip content={<TipBox render={(r) => ({ title: r.type, rows: [['จำนวน', `${r.count} จุด`], ['สัดส่วน', `${fmt.int(r.pct)}%`]] })} />} />
-                </PieChart>
-              </ResponsiveContainer>
+                  </ol>
+                }
+              >
+                {({ expanded }) => renderMap(expanded)}
+              </Expandable>
             </div>
-            <div className={s.typeLegend}>
-              
-              <ul>
-                {typeData.map((t) => (
-                  <li key={t.type}>
-                    <span className={s.swatch} style={{ background: typeColor(t.type) }} />
-                    <span className={s.typeName}>{t.type}</span>
-                  </li>
-                ))}
-              </ul>
+            {mode === 'heat' && (
+              <div className={s.heatKey}>
+                <span>น้อย</span>
+                <i style={{ background: `linear-gradient(90deg, ${color.heat.join(',')})` }} />
+                <span>หนาแน่น</span>
+              </div>
+            )}
+          </div>
+          <section className={s.typeCol}>
+            <div className={s.mapHead}>
+              <h2 className={s.colTitle}>จำนวนจุดเสี่ยงแยกตามประเภท</h2>
+              <p>{yearLabel} · รวม {shown.length} จุด</p>
             </div>
-          </div>
-
-          <div className={s.listCol}>
-          <p className={s.colTitle}>รายชื่อ {shown.length} จุด (เรียงจากเหนือลงใต้)</p>
-          <ol className={s.list}>
-            {shown.map((p) => (
-              <li key={p.no} className={active === p.no ? s.activeItem : ''} onMouseEnter={() => setActive(p.no)} onMouseLeave={() => setActive(null)}>
-                <span className={s.badge} style={{ background: typeColor(p.type) }}>{p.no}</span>
-                <span className={s.itemLine}>
-                  <b>{shortName(p.name)}</b>
-                  <small>{p.year}</small>
-                </span>
-              </li>
-            ))}
-          </ol>
-          </div>
+            <ul className={s.typeBars}>
+              {typeData.map(({ type, count }) => (
+                <li key={type}>
+                  <span>{type}</span>
+                  <div className={s.barLine}>
+                    <span className={s.barTrack} aria-hidden="true">
+                      <i style={{ width: `${(count / countMax) * 100}%`, background: typeColor(type) }} />
+                    </span>
+                    <b>{count} จุด</b>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </div>
     </SlideFrame>

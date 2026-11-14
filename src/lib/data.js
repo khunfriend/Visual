@@ -14,6 +14,12 @@ import vacant from '../data/vacant.json'
 
 export { index, budget, flood, wastewater, education, risk, parks, scenarios, ask, map, vacant }
 
+const riskTypeOrder = new Map(map.risk.types.map(({ type }, index) => [type, index]))
+export const riskPointsByType = [...map.risk.points].sort((a, b) =>
+  (riskTypeOrder.get(a.type) ?? riskTypeOrder.size) - (riskTypeOrder.get(b.type) ?? riskTypeOrder.size)
+)
+export const riskPinNumbers = new Map(riskPointsByType.map((point, index) => [point.no, index + 1]))
+
 export const DD = 'ดินแดง'
 export const PT = 'ปทุมวัน'
 
