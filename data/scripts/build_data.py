@@ -682,8 +682,9 @@ write('vacant', {
 })
 
 # ---------- 8. ฉากทัศน์คะแนนรวม ----------
-print('8) ฉากทัศน์คะแนนรวม (เพิ่มทั้งโรงเรียนและครู)')
-EDU_BOTH = next(s for s in edu_scen if s['addSchools'] == 1 and s['addTeachers'] == TEACHERS_ADD)['score']
+print('8) ฉากทัศน์คะแนนรวม (เพิ่มครูอย่างเดียว)')
+# 14 พ.ย.: ตัดข้อเสนอสร้างโรงเรียนออก ใช้กรณีเพิ่มครู 50 คน (ดู ข้อมูลรวม_ตรวจแล้ว.md หัวข้อสไลด์ 5)
+EDU_BOTH = next(s for s in edu_scen if s['addSchools'] == 0 and s['addTeachers'] == TEACHERS_ADD)['score']
 
 
 def overall_scenario(crime_pts=None, floods=None, edu_score=None, bod_val=None):
@@ -714,21 +715,21 @@ for key, label, kw in CASES:
     scen.append({'key': key, 'label': label, 'crime': kw.get('crime_pts', 17), 'floods': kw.get('floods', 41),
                  'eduScore': kw.get('edu_score', r2(scores[DD]['education'])), 'bod': kw.get('bod_val', 25.81),
                  'score': s, 'rank': rk})
-for sc, want in zip(scen, [(17.35, 50), (19.32, 46), (20.07, 41), (20.42, 40), (21.59, 32)]):
+for sc, want in zip(scen, [(17.35, 50), (19.29, 46), (20.04, 41), (20.39, 40), (21.56, 32)]):
     check(f"ฉากทัศน์ {sc['label']}", (sc['score'], sc['rank']), want)
 
 base_o = TBL[DD]['overall']
 steps = [
     ('จุดเสี่ยง 17 → 9 จุด', 'crime', minmax_inv(9, cmin, cmax)),
     ('น้ำท่วม 41 → 29 ครั้ง', 'flood', minmax_inv(29, fmin, fmax)),
-    (f'การศึกษา +1 โรงเรียน +{TEACHERS_ADD} ครู', 'education', EDU_BOTH),
+    (f'การศึกษา +{TEACHERS_ADD} ครู', 'education', EDU_BOTH),
 ]
 waterfall = [{'label': 'ตอนนี้', 'value': r2(base_o)}]
 for label, k, new in steps:
     waterfall.append({'label': label, 'topicFrom': r2(scores[DD][k]), 'topicTo': r2(new),
                       'delta': r2((new - scores[DD][k]) / 16, 3)})
 waterfall.append({'label': 'หลังแก้ (ปีแรก ตามเป้า)', 'value': scen[2]['score']})
-check('waterfall รวม', r2(base_o + sum(w.get('delta', 0) for w in waterfall[1:-1])), 20.07, 0.011)
+check('waterfall รวม', r2(base_o + sum(w.get('delta', 0) for w in waterfall[1:-1])), 20.04, 0.011)
 check('น้ำเสียเรื่องเดียว BOD 15', overall_scenario(bod_val=15), (18.87, 46))
 write('scenarios', {
     'note': 'คำนวณจากคะแนนจริง 16 หัวข้อ × 50 เขต สมมติให้เขตอื่นคงที่',

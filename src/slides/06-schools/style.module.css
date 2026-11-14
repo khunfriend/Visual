@@ -249,3 +249,52 @@
   gap: 4px;
   margin-right: 10px;
 }
+
+/* กล่องข้อเสนอเสริม (ไม่นับในดัชนี) */
+.extra {
+  margin-top: 8px;
+  padding: 18px 22px;
+  border-left: 4px solid var(--c-text);
+  border-radius: 6px;
+  background: var(--c-surfaceAlt);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.extraTitle {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.extraTitle small {
+  margin-left: 8px;
+  font-size: var(--fs-source);
+  font-weight: 400;
+  color: var(--c-textMuted);
+}
+
+.extraList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.extraList li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+  line-height: 1.4;
+}
+
+.extraList b {
+  font-size: var(--fs-label);
+  color: var(--c-text);
+}

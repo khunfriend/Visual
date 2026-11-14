@@ -14,7 +14,7 @@ import s from './style.module.css'
 const ASK = [
   { topic: 'น้ำท่วม', detail: 'ล้างท่อ วางท่อใหม่ · ทีมเก็บขยะหน้าท่อ', once: 36.94, yearly: 1.61 },
   { topic: 'น้ำเสีย', detail: 'บำบัดในคลอง 2 ขั้น ที่ 6 จุด', once: 6.45, yearly: 1.07 },
-  { topic: 'การศึกษา', detail: `ครู ${ed.teachersNeeded} คน + โรงเรียน 1 แห่ง`, once: null, yearly: Math.round(ed.teacherSalary.annualTotal / 1e4) / 100 },
+  { topic: 'การศึกษา', detail: `เงินเดือนครูเพิ่ม ${ed.teachersNeeded} คน`, once: 0, yearly: Math.round(ed.teacherSalary.annualTotal / 1e4) / 100 },
   { topic: 'จุดเสี่ยง', detail: 'CCTV · ไฟ LED · อาสาจราจร · ปรับที่รกร้าง', once: 3.53, yearly: 0 },
   { topic: 'สวน', detail: `ดึงที่ว่าง 50% ทำสวน ${fmt.int(vacant.half.areaM2)} ตร.ม.`, once: Math.round(vacant.half.buildBaht / 1e4) / 100, yearly: Math.round(vacant.half.maintenanceBaht / 1e4) / 100 },
 ]
@@ -92,29 +92,9 @@ export default function Summary() {
           </ResponsiveContainer>
         </ChartCard>
 
-        <ChartCard title="อันดับรวมตามฉากทัศน์" note="ถ้าทำได้ตามเป้า ดินแดงพ้นกลุ่มรั้งท้าย">
-          <ol className={s.cases}>
-            {scenarios.cases.map((c) => (
-              <li key={c.key} className={c.key === 'target' ? s.caseOn : ''}>
-                <span className={s.caseLabel}>{c.label}</span>
-                <span className={s.caseTrack}>
-                  <span className={s.caseBar} style={{
-                    width: `${((51 - c.rank) / 50) * 100}%`,
-                    background: c.key === 'now' ? color.other : color.contrast,
-                    opacity: c.key === 'now' || c.key === 'target' ? 1 : 0.55,
-                  }} />
-                </span>
-                <span className={`${s.caseRank} num`}>#{c.rank}</span>
-                <span className={`${s.caseScore} num`}>{fmt.dec(c.score)}</span>
-              </li>
-            ))}
-          </ol>
-          <p className={s.caseNote}>ความยาวแท่ง = ยิ่งยาวยิ่งอันดับดี (อันดับ 50 สั้นที่สุด)</p>
-        </ChartCard>
-
         <div className={s.side}>
           <section>
-            <h2 className={s.blockTitle}>งบที่ขอเพิ่ม (ล้านบาท) <small className={s.blockNote}>ยังไม่รวมค่าสร้างโรงเรียน</small></h2>
+            <h2 className={s.blockTitle}>งบที่ขอเพิ่ม (ล้านบาท)</h2>
             <table className={s.ask}>
               <thead>
                 <tr><th>เรื่อง</th><th>ครั้งเดียว</th><th>ต่อปี</th></tr>

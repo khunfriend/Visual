@@ -256,12 +256,6 @@
   color: var(--c-text);
 }
 
-.proposalNote {
-  margin: 0;
-  font-size: var(--fs-source);
-  color: var(--c-textMuted);
-  line-height: 1.45;
-}
 
 /* ปุ่มดูสูตรคำนวณ (กล่องข้อเสนอ) */
 .formulaBtn {

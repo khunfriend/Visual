@@ -116,7 +116,6 @@ export default function VacantLand() {
               </div>
             )}
           </div>
-          <p className={s.proposalNote}>ใช้ที่รัฐ + ศาสนสถานได้ {fmt.int(plan.publicAreaM2)} ตร.ม. ที่เหลือ {fmt.int(half.privateM2Needed)} ตร.ม. ต้องขอใช้ที่เอกชน</p>
         </aside>
       </div>
     </SlideFrame>

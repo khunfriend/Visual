@@ -16,9 +16,9 @@
    "label": "ปีแรก ระมัดระวัง",
    "crime": 12,
    "floods": 31,
-   "eduScore": 10.05,
+   "eduScore": 9.54,
    "bod": 25.81,
-   "score": 19.32,
+   "score": 19.29,
    "rank": 46
   },
   {
@@ -26,9 +26,9 @@
    "label": "ปีแรก ตามเป้า",
    "crime": 9,
    "floods": 29,
-   "eduScore": 10.05,
+   "eduScore": 9.54,
    "bod": 25.81,
-   "score": 20.07,
+   "score": 20.04,
    "rank": 41
   },
   {
@@ -36,9 +36,9 @@
    "label": "ปีแรก กรณีดี",
    "crime": 8,
    "floods": 27,
-   "eduScore": 10.05,
+   "eduScore": 9.54,
    "bod": 25.81,
-   "score": 20.42,
+   "score": 20.39,
    "rank": 40
   },
   {
@@ -46,9 +46,9 @@
    "label": "ระยะยาว ตามเป้า",
    "crime": 9,
    "floods": 29,
-   "eduScore": 10.05,
+   "eduScore": 9.54,
    "bod": 15,
-   "score": 21.59,
+   "score": 21.56,
    "rank": 32
   }
  ],
@@ -70,14 +70,14 @@
    "delta": 0.835
   },
   {
-   "label": "การศึกษา +1 โรงเรียน +50 ครู",
+   "label": "การศึกษา +50 ครู",
    "topicFrom": 6.01,
-   "topicTo": 10.05,
-   "delta": 0.253
+   "topicTo": 9.54,
+   "delta": 0.221
   },
   {
    "label": "หลังแก้ (ปีแรก ตามเป้า)",
-   "value": 20.07
+   "value": 20.04
   }
  ],
  "single": {
@@ -90,7 +90,7 @@
    "rank": 46
   },
   "eduOnly": {
-   "score": 17.61,
+   "score": 17.57,
    "rank": 49
   },
   "bodOnly": {

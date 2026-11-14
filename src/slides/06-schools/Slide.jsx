@@ -12,9 +12,9 @@ import s from './style.module.css'
 
 const LABEL = (sc) =>
   sc.addSchools && sc.addTeachers ? `โรงเรียน +1 และครู +${sc.addTeachers}` : sc.addSchools ? 'โรงเรียน +1' : sc.addTeachers ? `ครู +${sc.addTeachers}` : 'ตอนนี้'
-const rows = ed.scenarios.map((sc) => ({ ...sc, label: LABEL(sc), chosen: sc.addSchools && sc.addTeachers }))
+const rows = ed.scenarios.map((sc) => ({ ...sc, label: LABEL(sc), chosen: !sc.addSchools && sc.addTeachers })) // 14 พ.ย.: ใช้กรณีเพิ่มครูอย่างเดียว (ตัดโรงเรียนออก)
 const now = rows[0]
-const both = rows.find((r) => r.chosen)
+const both = rows.find((r) => r.chosen) // ครู +50
 const allSchools = map.schools.items.map((sc, i) => ({ ...sc, no: i + 1 })) // เลขคงที่ไม่ว่าจะกรองแบบไหน
 // สังกัด: กทม. / สพฐ. / เอกชน / อื่น ๆ (ยืนยันจากเว็บสำนักงานเขตดินแดง ดู build_map.py)
 const AFFILS = ['กทม.', 'สพฐ.', 'เอกชน', 'อื่น ๆ']
@@ -57,6 +57,12 @@ function FollowTip({ children, tip }) {
   )
 }
 
+// เพิ่มประสิทธิภาพการสอน: แก้ปัญหาจริงโดยไม่ต้องสร้างโรงเรียน (ไม่นับในดัชนี · ยังไม่ประเมินงบ)
+const EXTRA = [
+  { title: 'ผู้ช่วยครูและธุรการโรงเรียน', why: 'ให้โรงเรียน กทม. 3 แห่ง ครูที่มีอยู่ได้สอนเต็มเวลา หาคนได้ง่ายกว่าครูเต็มตัว เริ่มได้ในปีงบประมาณ' },
+  { title: 'ศูนย์พัฒนาเด็กเล็กในชุมชน', why: 'ใช้อาคารในชุมชนและแฟลตดินแดง รับเด็กเล็กใกล้บ้าน พ่อแม่ไปทำงานได้' },
+]
+
 export default function Schools() {
   const [filter, setFilter] = useState('all')
   const [hover, setHover] = useState(null) // โรงเรียนที่เมาส์ชี้อยู่
@@ -74,8 +80,8 @@ export default function Schools() {
   )
   return (
     <SlideFrame
-      kicker="07 · เพิ่มโรงเรียนและครู"
-      title={`มีโรงเรียนต้องมีครู: เพิ่มโรงเรียน 1 แห่งและครู ${ed.teachersNeeded} คน คะแนนการศึกษาขึ้นเป็น ${fmt.dec(both.score)}`}
+      kicker="07 · เพิ่มครูและประสิทธิภาพการสอน"
+      title={`เพิ่มครู ${ed.teachersNeeded} คนและเพิ่มประสิทธิภาพการสอน คะแนนการศึกษาขึ้นเป็น ${fmt.dec(both.score)}`}
       subtitle={`ผลต่อคะแนนรวม +${fmt.dec(eduDelta)} คะแนน · ถ้าทำเรื่องนี้เรื่องเดียว อันดับรวม ${nowRank} → ${scenarios.single.eduOnly.rank} · อันดับด้านการศึกษา ${now.rank} → ราว ${both.rank}`}
       source={`คำนวณจากสูตร Bangkok Index 2025 (การศึกษา = เฉลี่ยคะแนนโรงเรียนต่อเด็ก 1,000 คน กับนักเรียนต่อครู) โดยสมมติให้เขตอื่นคงที่ · ตำแหน่งโรงเรียนและแผนที่ฐาน © OpenStreetMap contributors · สังกัดโรงเรียน: สำนักงานเขตดินแดง · เงินเดือนครูผู้ช่วย ${fmt.int(salary.monthly)} บาท/เดือน ยังไม่ยืนยันอัตรา กทม.`}
     >
@@ -141,11 +147,22 @@ export default function Schools() {
           <h2 className={s.blockTitle}>ต้องใช้งบเท่าไร</h2>
           <Stat label={`เงินเดือนครู ${ed.teachersNeeded} คน`} value={fmt.mb(salary.annualTotal, 1)} unit="ล้านบาท/ปี"
             sub={`${ed.teachersNeeded} × ${fmt.int(salary.monthly)} บาท × 12 เดือน (ยังไม่รวมสวัสดิการ)`} />
-          <Stat label="สร้างโรงเรียน 1 แห่ง" value="[รอข้อมูล]" sub="ค่าก่อสร้างและที่ดิน" />
           <p className={s.note}>
             ครู {fmt.int(dd.teachers)} → {fmt.int(dd.teachers + ed.teachersNeeded)} คน นักเรียนต่อครูลดจาก {fmt.dec(dd.studentsPerTeacher, 1)} เหลือ{' '}
             {fmt.dec(ed.studentsPerTeacherAfter, 1)}
           </p>
+          {/* เพิ่มประสิทธิภาพการสอน: ไม่ทำให้คะแนนดัชนีขยับ แต่แก้ปัญหาได้ทันที · ยังไม่ได้ประเมินงบ (ดู ข้อมูลรวม_ตรวจแล้ว.md) */}
+          <div className={s.extra}>
+            <h3 className={s.extraTitle}>เพิ่มประสิทธิภาพการสอน <small>ไม่นับในคะแนนดัชนี · ยังไม่ได้ประเมินงบ</small></h3>
+            <ul className={s.extraList}>
+              {EXTRA.map((x) => (
+                <li key={x.title}>
+                  <b>{x.title}</b>
+                  <span>{x.why}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </SlideFrame>
