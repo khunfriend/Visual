@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "district": "ดินแดง",
+    "as_of": "2026-11-13",
+    "units": {
+      "area": "ตร.ม.",
+      "money": "บาท"
+    },
+    "sources": {
+      "park_index": "https://rocketmedialab.co/database-park-bangkok-index-2025/",
+      "green_registry": "https://greenparks.bangkok.go.th/green-parks-admin/reports/report19-list.php?dcode=1026",
+      "land_tax_exemption": "https://www.matichon.co.th/local/news_3519697",
+      "cost_wat_hua_lamphong_budget": "https://thestandard.co/key-messages-parks-green-areas-in-bangkok/",
+      "cost_wat_hua_lamphong_area": "https://www.timeout.com/bangkok/th/attractions/สวนวัดหัวลำโพงรุกขนิเวศน์",
+      "cost_15min_avg": "https://siamrath.co.th/bangkok/e81304bb-2cab-46a3-a69d-8a6cc4723873"
+    }
+  },
+  "baseline": {
+    "population": 109047,
+    "accessible_park_m2": 34426.8,
+    "accessible_park_per_capita": 0.32,
+    "median_50_districts_per_capita": 0.645,
+    "target_m2_at_median": 70335.3,
+    "gap_m2": 35908.5,
+    "note": "gap_m2 = 100% ในกราฟทั้งสอง (พื้นที่สวนที่ต้องเพิ่มให้ถึงค่ากลาง 50 เขต)"
+  },
+  "chart1_vacant_land_by_owner": {
+    "title": "ถ้าใช้ที่ว่างทั้งหมด จะได้ 348% ของที่ต้องเพิ่ม",
+    "type": "แท่งเดียวต่อสี (stacked bar) + เส้นประที่ gap_m2 + คำอธิบายสีใต้แท่ง",
+    "groups": [
+      {
+        "owner": "รัฐบาล",
+        "plots": 5,
+        "area_m2": 11248,
+        "pct_of_gap": 31.3,
+        "color": "#1baf7a"
+      },
+      {
+        "owner": "ศาสนสถาน",
+        "plots": 2,
+        "area_m2": 9400,
+        "pct_of_gap": 26.2,
+        "color": "#d99a00"
+      },
+      {
+        "owner": "เอกชน",
+        "plots": 57,
+        "area_m2": 104408,
+        "pct_of_gap": 290.8,
+        "color": "#c9c7bf"
+      }
+    ],
+    "total": {
+      "plots": 64,
+      "area_m2": 125056,
+      "pct_of_gap": 348.3
+    },
+    "recorded_years": [
+      2553,
+      2563
+    ]
+  },
+  "chart2_where_to_build": {
+    "title": "จะสร้างสวนตรงไหน: เริ่มจากที่รัฐบาลและศาสนสถาน 7 แปลง",
+    "type": "แถบเดียวต่อช่องตามแปลง (กว้าง = pct_of_gap) + คำอธิบายสี + ตารางรายแปลง (ค่าก่อสร้าง) + สรุปค่าบำรุงรักษาและรวมทั้งหมด",
+    "cost_per_m2_baht": 2000,
+    "maintenance_rate": 0.1,
+    "cost_basis": "สวนวัดหัวลำโพง 6,388,000 บาท ÷ 3,200 ตร.ม. (2 ไร่) = 1,996 ปัดขึ้นเป็น 2,000 (เผื่อไว้; สวน 15 นาทีทั่วไปราว 1,000 บาท/ตร.ม.)",
+    "sites": [
+      {
+        "no": 1,
+        "name": "สถานีวิทยุกระจายเสียงแห่งประเทศไทย",
+        "owner": "สถานีวิทยุกระจายเสียงแห่งประเทศไทย",
+        "group": "หน่วยงานราชการ (สถานีวิทยุ)",
+        "color": "#6250d6",
+        "use": "สวนพักผ่อนในที่ราชการ",
+        "area_m2": 5600,
+        "pct_of_gap": 15.6,
+        "build_baht": 11200000,
+        "recorded_year": 2558
+      },
+      {
+        "no": 2,
+        "name": "เกาะกลางใต้ทางด่วนดินแดง - บางนา",
+        "owner": "การทางพิเศษแห่งประเทศไทย",
+        "group": "การทางพิเศษ (ใต้ทางด่วน)",
+        "color": "#1baf7a",
+        "use": "สวนหรือลานกีฬาใต้ทางด่วน",
+        "area_m2": 2400,
+        "pct_of_gap": 6.7,
+        "build_baht": 4800000,
+        "recorded_year": 2553
+      },
+      {
+        "no": 3,
+        "name": "ริมลำรางนาซองใต้ทางด่วนดินแดง - บางนา",
+        "owner": "การทางพิเศษแห่งประเทศไทย",
+        "group": "การทางพิเศษ (ใต้ทางด่วน)",
+        "color": "#1baf7a",
+        "use": "สวนหรือลานกีฬาใต้ทางด่วน",
+        "area_m2": 780,
+        "pct_of_gap": 2.2,
+        "build_baht": 1560000,
+        "recorded_year": 2553
+      },
+      {
+        "no": 4,
+        "name": "แฟลต 29-30 ดินแดง",
+        "owner": "การเคหะดินแดง",
+        "group": "การเคหะ (แฟลต)",
+        "color": "#2a78d6",
+        "use": "สวนชุมชนในแฟลต",
+        "area_m2": 1520,
+        "pct_of_gap": 4.2,
+        "build_baht": 3040000,
+        "recorded_year": 2556
+      },
+      {
+        "no": 5,
+        "name": "หัวมุมแฟลต ค2 เคหะชุมชนดินแดง 2 ถนนประชาสงเคราะห์",
+        "owner": "การเคหะแห่งชาติ",
+        "group": "การเคหะ (แฟลต)",
+        "color": "#2a78d6",
+        "use": "สวนชุมชนในแฟลต",
+        "area_m2": 948,
+        "pct_of_gap": 2.6,
+        "build_baht": 1896000,
+        "recorded_year": 2553
+      },
+      {
+        "no": 6,
+        "name": "ลานวัดพรหมวงศาราม",
+        "owner": "วัดพรหมวงศาราม",
+        "group": "ศาสนสถาน (วัด คริสตจักร)",
+        "color": "#d99a00",
+        "use": "ลานต้นไม้ร่วมกับศาสนสถาน",
+        "area_m2": 6200,
+        "pct_of_gap": 17.3,
+        "build_baht": 12400000,
+        "recorded_year": 2553
+      },
+      {
+        "no": 7,
+        "name": "คริสตจักรประชาคม ถนนประชาสงเคราะห์ 23",
+        "owner": "คริสจักรฯ",
+        "group": "ศาสนสถาน (วัด คริสตจักร)",
+        "color": "#d99a00",
+        "use": "ลานต้นไม้ร่วมกับศาสนสถาน",
+        "area_m2": 3200,
+        "pct_of_gap": 8.9,
+        "build_baht": 6400000,
+        "recorded_year": 2553
+      },
+      {
+        "no": null,
+        "name": "ที่ว่างเอกชน (เลือกจาก 57 แปลงที่ยังว่าง)",
+        "owner": "เอกชน",
+        "group": "ที่ว่างเอกชน (ส่วนที่ยังขาด)",
+        "color": "#c9c7bf",
+        "pattern": "hatched",
+        "use": "ให้ กทม. ใช้ทำสวน 15 นาที แลกยกเว้นภาษีที่ดิน",
+        "area_m2": 15261,
+        "pct_of_gap": 42.5,
+        "build_baht": 30522000
+      }
+    ],
+    "summary": {
+      "public_and_religious_area_m2": 20648,
+      "public_and_religious_pct_of_gap": 57.5,
+      "total_area_m2": 35909,
+      "build_total_baht": 71818000,
+      "maintenance_baht_per_year": 7181800,
+      "grand_total_baht": 78999800
+    }
+  }
+}

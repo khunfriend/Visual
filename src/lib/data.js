@@ -10,8 +10,9 @@ import parks from '../data/parks.json'
 import scenarios from '../data/scenarios.json'
 import ask from '../data/ask.json'
 import map from '../data/map.json'
+import vacant from '../data/vacant.json'
 
-export { index, budget, flood, wastewater, education, risk, parks, scenarios, ask, map }
+export { index, budget, flood, wastewater, education, risk, parks, scenarios, ask, map, vacant }
 
 export const DD = 'ดินแดง'
 export const PT = 'ปทุมวัน'
