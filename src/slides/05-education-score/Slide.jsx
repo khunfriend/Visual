@@ -18,7 +18,7 @@ const medScore = index.medians.topics.education
 
 // เทียบดินแดงกับปทุมวัน แต่ละแถวใช้สเกลของตัวเอง
 const compare = [
-  { label: 'เด็กอายุ 0–18 ปี', dd: dd.children, pt: pt.children, unit: 'คน', comparisonLabel: 'ดินแดงน้อยกว่า' },
+  { label: 'เด็กอายุ 0–18 ปี', dd: dd.children, pt: pt.children, unit: 'คน' },
   { label: 'ครู', dd: dd.teachers, pt: pt.teachers, unit: 'คน' },
   { label: 'โรงเรียน', dd: dd.schools, pt: pt.schools, unit: 'แห่ง' },
 ]
@@ -94,7 +94,7 @@ export default function EducationScore() {
                 <div key={c.label} className={s.row}>
                   <p className={s.rowLabel}>
                     {c.label}
-                    <span className={s.ratio}>{c.comparisonLabel ?? (ratio < 0.95 ? 'ดินแดงน้อยกว่า' : 'ใกล้เคียงกัน')}</span>
+                    <span className={s.ratio}>{c.comparisonLabel ?? (ratio >= 1.5 ? `ดินแดงมากกว่า ${fmt.dec(ratio, 1)} เท่า` : ratio < 0.95 ? 'ดินแดงน้อยกว่า' : 'ใกล้เคียงกัน')}</span>
                   </p>
                   {[
                     ['dd', c.dd, color.dindaeng],

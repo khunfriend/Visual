@@ -10,7 +10,6 @@ import s from './style.module.css'
 // ฐาน % = พื้นที่สวนที่ต้องเพิ่ม 35,909 ตร.ม. (คิดจากพื้นที่สวนจริง จึงต่างจาก 35,440 ของหน้า 9 เล็กน้อย)
 
 const { total, plan, gapM2, half } = vacant
-const pct0 = (v) => `${Math.round(v)}%`
 
 /** กราฟ 1: สัดส่วนการใช้พื้นที่ทั้งเขต (แท่งเดียว) · ใช้แล้ว = อาคาร/ถนน + พื้นที่สีเขียว + สวน · ไม่ใช้ = ที่ว่าง (สีดำ) */
 const land = vacant.land
@@ -72,11 +71,10 @@ function LandUse() {
 
 export default function VacantLand() {
   const [showFormula, setShowFormula] = useState(false)
-  const pubPlots = plan.sites.filter((x) => x.no).length
   return (
     <SlideFrame
       kicker="12 · สวนหย่อม (ที่ว่าง)"
-      title={`ที่ว่างมีพอ: ที่รัฐและศาสนสถาน ${pubPlots} แปลงได้ ${pct0(plan.publicPctOfGap)} ของสวนที่ต้องเพิ่ม`}
+      title={`ที่ว่างมีพอ: ใช้ครึ่งเดียว สวนต่อคนขึ้นเป็น ${fmt.dec(half.perCapitaAfter)} ตร.ม.`}
       source={
         <>
           ที่มา: Bangkok Index 2025 · <a href={vacant.links.green_registry} target="_blank" rel="noreferrer">ทะเบียนพื้นที่สีเขียว เขตดินแดง – กทม.</a>{' '}
