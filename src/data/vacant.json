@@ -1,4 +1,37 @@
 {
+ "half": {
+  "share": 0.5,
+  "areaM2": 62528,
+  "perCapitaAfter": 0.89,
+  "pctOfGap": 174.1,
+  "mix": [
+   {
+    "kind": "สวนสาธารณะ",
+    "share": 0.6,
+    "costPerM2": 2000,
+    "areaM2": 37516.8,
+    "buildBaht": 75033600
+   },
+   {
+    "kind": "สวน 15 นาที",
+    "share": 0.4,
+    "costPerM2": 1000,
+    "areaM2": 25011.2,
+    "buildBaht": 25011200
+   }
+  ],
+  "buildBaht": 100044800,
+  "maintenanceBaht": 10004480,
+  "totalBaht": 110049280,
+  "privateM2Needed": 41880
+ },
+ "land": {
+  "districtAreaM2": 8350000,
+  "parkM2": 34426.8,
+  "greenOtherM2": 185504.0,
+  "vacantM2": 125056,
+  "usedM2": 8005013.2
+ },
  "source": "ทะเบียนพื้นที่สีเขียว เขตดินแดง (greenparks.bangkok.go.th รายงาน 19) · ที่ว่างบันทึกปี 2553–2563",
  "links": {
   "park_index": "https://rocketmedialab.co/database-park-bangkok-index-2025/",

@@ -558,7 +558,50 @@ check('รัฐ + ศาสนสถาน (% ของที่ต้องเ
 check('ค่าก่อสร้างรวม (ล้านบาท)', r2(build_total / 1e6), 71.82)
 check('ค่าบำรุงรักษาต่อปี (ล้านบาท)', r2(build_total * MAINT / 1e6), 7.18)
 check('รวมทั้งหมด (ล้านบาท)', r2(build_total * (1 + MAINT) / 1e6), 79.00)
+# สัดส่วนการใช้พื้นที่ทั้งเขต (หน้า 11): พื้นที่เขตทางการ 8.35 ตร.กม. (ข้อมูลรวม: ขอบเขต OSM คำนวณได้ 8.45)
+# พื้นที่สีเขียว = Bangkok Index (สำนักงานสวนดูแล) · สวนที่เข้าถึงได้ถือเป็นส่วนหนึ่งของพื้นที่สีเขียว
+# ที่ว่างมาจากทะเบียนพื้นที่สีเขียวคนละชุด จึงนับแยก (อาจซ้อนกันได้บ้าง)
+DISTRICT_AREA_M2 = 8_350_000
+land = {
+    'districtAreaM2': DISTRICT_AREA_M2,
+    'parkM2': dd_p['accessibleM2'],
+    'greenOtherM2': r2(dd_p['greenM2'] - dd_p['accessibleM2'], 1),
+    'vacantM2': vac_area,
+}
+land['usedM2'] = r2(DISTRICT_AREA_M2 - land['parkM2'] - land['greenOtherM2'] - land['vacantM2'], 1)
+check('พื้นที่สีเขียวดินแดง (ตร.ม.)', round(dd_p['greenM2']), 219931)
+check('สวนที่เข้าถึงได้ < พื้นที่สีเขียว', dd_p['accessibleM2'] < dd_p['greenM2'], True)
+check('สัดส่วนที่ว่างต่อพื้นที่เขต (%)', r2(vac_area / DISTRICT_AREA_M2 * 100, 1), 1.5)
+# ข้อเสนอ: ดึงที่ว่างมาทำสวน 50% (หน้า 11) · ไม่รวมค่าที่ดิน
+# แบ่งพื้นที่: 60% สวนสาธารณะเต็มรูปแบบ (2,000 บาท/ตร.ม. ตามแผนรายแปลง อ้างสวนวัดหัวลำโพง)
+#             40% สวน 15 นาที (≈ 1,000 บาท/ตร.ม. ค่าเฉลี่ยสวน 15 นาที กทม. จากสยามรัฐ ใน park_charts_brief.md)
+HALF = 0.5
+COST_15MIN = 1000
+MIX = [{'kind': 'สวนสาธารณะ', 'share': 0.6, 'costPerM2': COST_M2},
+       {'kind': 'สวน 15 นาที', 'share': 0.4, 'costPerM2': COST_15MIN}]
+half_m2 = vac_area * HALF
+for m in MIX:
+    m['areaM2'] = r2(half_m2 * m['share'], 1)
+    m['buildBaht'] = round(half_m2 * m['share'] * m['costPerM2'])
+half_build = sum(m['buildBaht'] for m in MIX)
+half = {
+    'share': HALF,
+    'areaM2': round(half_m2),
+    'perCapitaAfter': r2((dd_p['accessibleM2'] + half_m2) / dd_p['population']),
+    'pctOfGap': r2(half_m2 / gap_exact * 100, 1),
+    'mix': MIX,
+    'buildBaht': half_build,
+    'maintenanceBaht': round(half_build * MAINT),
+    'totalBaht': round(half_build * (1 + MAINT)),
+    'privateM2Needed': round(half_m2 - pub_area),
+}
+check('ที่ว่าง 50% (ตร.ม.)', half['areaM2'], 62528)
+check('สวนต่อคนหลังเพิ่ม 50%', half['perCapitaAfter'], 0.89)
+check('ค่าก่อสร้าง 60/40 (ล้านบาท)', r2(half_build / 1e6), 100.04)
+check('งบรวม 50% (ล้านบาท)', r2(half['totalBaht'] / 1e6), 110.05)
 write('vacant', {
+    'half': half,
+    'land': land,
     'source': 'ทะเบียนพื้นที่สีเขียว เขตดินแดง (greenparks.bangkok.go.th รายงาน 19) · ที่ว่างบันทึกปี '
               f'{min(years)}–{max(years)}',
     'links': vac_spec['meta']['sources'],

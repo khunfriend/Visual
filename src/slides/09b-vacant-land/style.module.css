@@ -11,8 +11,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 36px;
-  padding: 32px 36px;
+  gap: 22px;
+  padding: 24px 36px;
+  min-height: 0;
   border-radius: 12px;
   background: var(--c-surfaceAlt);
 }
@@ -25,75 +26,98 @@
   border-radius: 4px;
 }
 
-/* ---- กราฟ 1: ตามเจ้าของ ---- */
-.ownerChart {
+/* ---- กราฟ 1: สัดส่วนการใช้พื้นที่ทั้งเขต (แท่งเดียว) ---- */
+.landChart {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding-top: 8px;
+  justify-content: center;
+  gap: 14px;
+  padding-bottom: 40px;
 }
 
-.barArea {
-  position: relative;
-  padding-top: 40px;
-}
-
-.bar {
+.groupLabels {
   display: flex;
-  gap: 4px;
-  height: 88px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.gapLine {
-  position: absolute;
-  top: 32px;
-  bottom: -14px;
-  border-left: 4px dashed var(--c-text);
-  transform: translateX(-2px);
-}
-
-.gapLabel {
-  position: absolute;
-  top: 0;
-  transform: translateX(-30%);
-  white-space: nowrap;
-  font-size: var(--fs-label);
-  font-weight: 700;
-  color: var(--c-text);
-}
-
-.ownerLegend {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: start;
-  gap: 12px 48px;
-}
-
-.ownerItem {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.ownerItem b {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: baseline;
   font-size: var(--fs-body);
-  font-weight: 700;
   color: var(--c-text);
 }
 
-.ownerItem small {
-  padding-left: 28px;
+.groupLabels small {
   font-size: var(--fs-source);
   color: var(--c-textMuted);
 }
 
+.unusedLabel {
+  font-weight: 700;
+}
 
+.landBar {
+  display: flex;
+  height: 140px;
+  border-radius: 8px;
+  overflow: hidden;
+}
 
+.landBar .seg {
+  position: relative;
+  min-width: 4px;
+}
+
+.landBar .seg + .seg {
+  box-shadow: inset 2px 0 0 var(--c-surface);
+}
+
+.landBar:hover .seg:not(.segOn) {
+  opacity: 0.5;
+}
+
+.inLabel {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: var(--fs-body);
+  color: var(--c-text);
+}
+
+.scale {
+  display: flex;
+  justify-content: flex-start;
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+}
+
+.landLegend {
+  list-style: none;
+  white-space: nowrap;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 48px;
+}
+
+.landLegend li {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  font-size: var(--fs-label);
+  color: var(--c-text);
+  cursor: default;
+}
+
+.landLegend b {
+  font-weight: 500;
+  color: var(--c-textMuted);
+}
+
+.legendOn span {
+  font-weight: 700;
+}
 
 /* ---- ตาราง 3 แห่งที่จะทำ ---- */
 .firstTable {
@@ -201,4 +225,88 @@
   font-size: var(--fs-source);
   font-weight: 400;
   color: var(--c-textMuted);
+}
+
+
+/* รอยหยักบนแท่งเทา = ถูกตัดให้สั้นลง */
+.breakMark {
+  position: absolute;
+  top: 0;
+  left: 72%;
+  width: 26px;
+  height: 100%;
+  fill: none;
+}
+
+.breakMark polyline:first-child {
+  stroke: var(--c-surface);
+  stroke-width: 5;
+}
+
+.breakMark polyline:last-child {
+  stroke: var(--c-surface);
+  stroke-width: 5;
+}
+
+/* กล่องข้อเสนอ ดึงที่ว่าง 50% */
+.proposal {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.proposalNote {
+  margin: 0;
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+  line-height: 1.45;
+}
+
+/* ปุ่มดูสูตรคำนวณ (กล่องข้อเสนอ) */
+.formulaBtn {
+  margin-top: 8px;
+  padding: 4px 12px;
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  background: var(--c-surface);
+  color: var(--c-textMuted);
+  font: inherit;
+  font-size: var(--fs-source);
+  cursor: pointer;
+}
+
+.formulaBtn:hover,
+.formulaBtn[aria-expanded='true'] {
+  border-color: var(--c-textMuted);
+  color: var(--c-text);
+}
+
+.formula {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--c-surface);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 4px 14px;
+  font-size: var(--fs-source);
+  color: var(--c-text);
+}
+
+.formula b {
+  text-align: right;
+}
+
+.fTotal {
+  padding-top: 6px;
+  border-top: 1px solid var(--c-border);
+  font-weight: 700;
+}
+
+@media print {
+  .formulaBtn,
+  .formula {
+    display: none;
+  }
 }
