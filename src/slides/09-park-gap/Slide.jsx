@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, DD, PT, fmt } from '../../components/charts/kit.jsx'
-import { map, parks } from '../../lib/data.js'
+import { parks } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
 import s from './style.module.css'
 
@@ -13,9 +13,8 @@ const rows = parks.districts
 const get = (name) => rows.find((d) => d.name === name)
 const dd = get(DD)
 const pt = get(PT)
-// จุดเสี่ยงที่อยู่ในสวน + จุดรกร้าง/จุดมืด (ที่สวนหย่อมช่วยได้)
-const parkRisk = map.risk.points.filter((p) => p.place.includes('สวน'))
-const riskSpots = [...parkRisk, ...map.risk.points.filter((p) => /รกร้าง|มืด/.test(p.type))]
+const parkRank = rows.filter((d) => d.score > dd.score).length + 1
+const greenRank = rows.filter((d) => d.greenPerCapita > dd.greenPerCapita).length + 1
 
 const METRICS = [
   {
@@ -78,11 +77,24 @@ function BrokenBars({ metric }) {
 export default function ParkGap() {
   return (
     <SlideFrame
-      kicker="10 · สวนหย่อม (ต่อ)"
-      title="ไม่ว่าจะวัดแบบไหน ดินแดงก็ต่ำกว่าค่ากลาง"
-      subtitle={`พื้นที่สีเขียว ${fmt.dec(dd.greenPerCapita)} ตร.ม./คน (ค่ากลาง ${fmt.dec(parks.medianGreenPerCapita)}) · สวนที่เข้าถึงได้ ${fmt.dec(dd.accessiblePerCapita)} ตร.ม./คน (ค่ากลาง ${fmt.dec(parks.medianAccessiblePerCapita)})`}
-      source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (สวนสาธารณะ 2568); บัญชีพื้นที่เสี่ยง สำนักเทศกิจ 2567–2568 · ค่ากลาง = มัธยฐาน 50 เขต (ใช้แทนค่าเฉลี่ยเพราะไม่กี่เขตที่สูงมากดึงค่าเฉลี่ยขึ้น) · แท่งปทุมวันสูงเกินกรอบจึงแสดงเต็มกรอบ ตัวเลขบนแท่งคือค่าจริง"
+      kicker="10 · สวนหย่อม"
+      title="ดินแดงมีพื้นที่สีเขียวและสวนที่เข้าถึงได้ต่อคนต่ำกว่าค่ากลาง"
+      source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (สวนสาธารณะ 2568) · ค่ากลาง = มัธยฐาน 50 เขต (ใช้แทนค่าเฉลี่ยเพราะไม่กี่เขตที่สูงมากดึงค่าเฉลี่ยขึ้น) · แท่งปทุมวันสูงเกินกรอบจึงแสดงเต็มกรอบ ตัวเลขบนแท่งคือค่าจริง"
     >
+      <dl className={s.kpis}>
+        <div className={`${s.kpi} ${s.rankKpi}`}>
+          <dt>อันดับคะแนนสวนสาธารณะ</dt>
+          <dd><strong className="num">{fmt.int(parkRank)}</strong> จาก {fmt.int(rows.length)} เขต</dd>
+        </div>
+        <div className={s.kpi}>
+          <dt>อันดับพื้นที่สีเขียวต่อคน</dt>
+          <dd><strong className="num">{fmt.int(greenRank)}</strong> จาก {fmt.int(rows.length)} เขต</dd>
+        </div>
+        <div className={s.kpi}>
+          <dt>ประชากรเขตดินแดง</dt>
+          <dd><strong className="num">{fmt.int(dd.population)}</strong> คน</dd>
+        </div>
+      </dl>
       <div className={s.legendRow}>
         {[
           ['ปทุมวัน (อันดับ 1 ของดัชนี)', color.pathumwan],
@@ -97,28 +109,10 @@ export default function ParkGap() {
       </div>
       <div className={s.grid}>
         {METRICS.map((m) => (
-          <ChartCard key={m.key} title={m.title} note={m.sub}>
+          <ChartCard key={m.key} title={m.title} note={m.sub} className={s.chart}>
             <BrokenBars metric={m} />
           </ChartCard>
         ))}
-
-        <aside className={s.why}>
-          <h2 className={s.whyTitle}>แต่สวนหย่อมช่วยเรื่องจุดเสี่ยงได้</h2>
-          <ul className={s.points}>
-            {riskSpots.map((p) => (
-              <li key={p.no}>
-                <span className={s.badge} style={{ background: color.riskType[p.type] }}>{p.no}</span>
-                <span className={s.pointText}>
-                  <b>{p.name.replace(/^บริเวณ/, '')}</b>
-                  <small>{p.type}</small>
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p className={s.whyText}>
-            {parkRisk.length} จาก {map.risk.points.length} จุดเสี่ยงอยู่ในสวนเอง ปรับปรุงสวนเดิมให้สว่างและมีคนใช้ และเปลี่ยนที่รกร้างเป็นสวนหย่อม ลดจุดเสี่ยงได้โดยตรง (หมายเลขตรงกับสไลด์ 7)
-          </p>
-        </aside>
       </div>
     </SlideFrame>
   )

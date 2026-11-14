@@ -1,8 +1,47 @@
 /* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0 0 24px;
+}
+
+.kpi {
+  padding: 14px 18px;
+  text-align: center;
+  border-radius: 12px;
+  background: var(--c-surfaceAlt);
+}
+
+.kpi dt,
+.kpi dd {
+  color: var(--c-textMuted);
+  font-size: var(--fs-label);
+}
+
+.kpi dd {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin: 2px 0 0;
+}
+
+.kpi strong {
+  color: var(--c-text);
+  font-size: 40px;
+  line-height: 1.15;
+}
+
+.rankKpi strong {
+  color: var(--c-dindaeng);
+}
+
 .legendRow {
   display: flex;
+  justify-content: center;
   gap: 28px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .legendItem {
@@ -24,119 +63,16 @@
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 0.95fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 48px;
+}
+
+.chart {
+  text-align: center;
 }
 
 .svg {
   width: 100%;
   height: 100%;
   font-family: var(--font);
-}
-
-/* ---- กล่องอธิบายมัธยฐาน ---- */
-.why {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 24px 28px;
-  border-radius: 12px;
-  background: var(--c-surfaceAlt);
-  border-left: 6px solid var(--c-reference);
-  min-height: 0;
-}
-
-.whyTitle {
-  font-size: var(--fs-body);
-  font-weight: 700;
-  color: var(--c-text);
-}
-
-.whyText {
-  font-size: var(--fs-label);
-  color: var(--c-textMuted);
-  line-height: 1.5;
-}
-
-.whyText b {
-  color: var(--c-text);
-}
-
-.whyTable {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--fs-source);
-  margin: 4px 0;
-}
-
-.whyTable th {
-  font-weight: 500;
-  color: var(--c-textMuted);
-  text-align: right;
-  padding: 4px 0 4px 8px;
-  border-bottom: 1px solid var(--c-border);
-}
-
-.whyTable td {
-  padding: 6px 0 6px 8px;
-  text-align: right;
-  color: var(--c-text);
-  border-bottom: 1px solid var(--c-grid);
-  font-size: var(--fs-label);
-}
-
-.whyTable td:first-child,
-.whyTable th:first-child {
-  text-align: left;
-  padding-left: 0;
-}
-
-.whyNote {
-  font-size: var(--fs-source);
-  color: var(--c-textFaint);
-}
-
-/* ---- รายการจุดเสี่ยงที่สวนหย่อมช่วยได้ ---- */
-.points {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.points li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.badge {
-  flex: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  display: grid;
-  place-items: center;
-}
-
-.pointText {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.35;
-}
-
-.pointText b {
-  font-size: var(--fs-label);
-  font-weight: 600;
-  color: var(--c-text);
-}
-
-.pointText small {
-  font-size: var(--fs-source);
-  color: var(--c-textMuted);
 }

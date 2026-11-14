@@ -59,6 +59,11 @@
   background: var(--c-surfaceAlt);
 }
 
+.scoreCard {
+  align-items: center;
+  justify-content: center;
+}
+
 .statCard b {
   font-size: 34px;
   white-space: nowrap;
@@ -85,41 +90,46 @@
   color: var(--c-text);
 }
 
-/* ---- แถวล่าง: แผนที่ / ประเภท / รายชื่อ ---- */
+/* ---- แถวล่าง: แผนที่และกราฟแยกตามประเภท ---- */
 .grid {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 0.62fr 0.62fr 1.45fr;
-  gap: 40px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr);
+  gap: 48px;
 }
 
 .typeCol {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
+  gap: 16px;
   min-height: 0;
+  border-left: 1px solid var(--c-border);
+  padding-left: 48px;
 }
 
-.listCol {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-height: 0;
+.mapHead h2 {
+  font-size: 28px;
 }
 
-.listCol .list {
-  flex: 1;
-  min-height: 0;
-  height: auto;
+.mapHead p {
+  margin-top: 4px;
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
 }
 
 .mapCol {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
   min-height: 0;
+}
+
+.mapCol > .mapHead {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 240px;
+  pointer-events: none;
 }
 
 .toggle {
@@ -150,9 +160,13 @@
 .map {
   flex: 1;
   min-height: 0;
+  padding-left: 240px;
 }
 
 .heatKey {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -161,31 +175,10 @@
 }
 
 .heatKey i {
-  width: 180px;
+  width: 120px;
   height: 12px;
   border-radius: 6px;
   display: inline-block;
-}
-
-.list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(9, 1fr);
-  grid-auto-flow: column;
-  column-gap: 32px;
-}
-
-.list li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 4px 8px;
-  border-radius: 8px;
-  min-height: 0;
 }
 
 .activeItem {
@@ -255,97 +248,46 @@
 }
 
 /* ---- คอลัมน์ขวา: สัดส่วนประเภท + รายชื่อ ---- */
-.right {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-height: 0;
-}
-
-.typeRow {
-  display: grid;
-  grid-template-columns: 230px 1fr;
-  align-items: center;
-  gap: 32px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--c-border);
-}
-
-.pie {
-  width: 220px;
-  height: 220px;
-}
-
-.typeTitle {
-  font-size: var(--fs-body);
-  font-weight: 700;
-  color: var(--c-text);
-  margin-bottom: 10px;
-}
-
-.typeLegend ul {
+.typeBars {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
 }
 
-.typeLegend li {
+.typeBars li {
   display: grid;
-  grid-template-columns: 12px 1fr;
+  gap: 4px;
+  font-size: var(--fs-body);
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.barLine {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px;
   align-items: center;
-  gap: 8px;
-  font-size: var(--fs-source);
-  color: var(--c-textMuted);
+  gap: 16px;
 }
 
-.typeLegend b {
-  color: var(--c-text);
-  font-weight: 600;
-}
-
-.swatch {
-  width: 12px;
-  height: 12px;
-  border-radius: 4px;
-}
-
-.typeName {
-  min-width: 0;
-}
-
-.listTitle {
+.barLine b {
   font-size: var(--fs-label);
-  font-weight: 700;
-  color: var(--c-text);
-}
-
-.right .list {
-  flex: 1;
-  min-height: 0;
-  height: auto;
-}
-
-.itemLine {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  min-width: 0;
-}
-
-.itemLine b {
-  font-size: var(--fs-label);
-  font-weight: 600;
-  color: var(--c-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
-.itemLine small {
-  flex: none;
-  font-size: var(--fs-source);
-  color: var(--c-textMuted);
+.barTrack {
+  display: block;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--c-surfaceAlt);
+}
+
+.barTrack i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
 }

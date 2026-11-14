@@ -1,7 +1,7 @@
 import { CartesianGrid, ReferenceLine, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts'
 import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, DD, PT, Stat, SvgLabel, TipBox, axisCommon, districtColor, fmt, gridProps } from '../../components/charts/kit.jsx'
-import { map, parks } from '../../lib/data.js'
+import { map, parks, riskPinNumbers } from '../../lib/data.js'
 import { color, size } from '../../theme/theme.js'
 import s from './style.module.css'
 
@@ -84,7 +84,7 @@ export default function PocketParks() {
             <ul className={s.points}>
               {[...parkRisk, ...vacantDark].map((p) => (
                 <li key={p.no}>
-                  <span className={s.badge} style={{ background: color.riskType[p.type] }}>{p.no}</span>
+                  <span className={s.badge} style={{ background: color.riskType[p.type] }}>{riskPinNumbers.get(p.no)}</span>
                   {p.name.replace(/^บริเวณ/, '')}
                   <small> · {p.type}</small>
                 </li>
