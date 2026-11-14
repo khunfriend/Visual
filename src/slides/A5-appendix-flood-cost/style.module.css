@@ -1,0 +1,50 @@
+/* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
+.list {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+.groupTitle {
+  margin: 0 0 6px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--c-text);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 560px 1fr 560px;
+  gap: 32px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--c-border);
+  font-size: var(--fs-label);
+  color: var(--c-text);
+  line-height: 1.4;
+}
+
+.item small {
+  font-size: var(--fs-label);
+  color: var(--c-textMuted);
+}
+
+.est {
+  margin-left: 10px;
+  padding: 1px 10px;
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  font-size: var(--fs-source);
+  font-style: normal;
+  color: var(--c-textMuted);
+  white-space: nowrap;
+}

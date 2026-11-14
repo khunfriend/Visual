@@ -17,6 +17,7 @@ import AppendixParks from './slides/A1-appendix-parks/Slide.jsx'
 import Appendix2569 from './slides/A2-appendix-2569/Slide.jsx'
 import AppendixVacantPlan from './slides/A3-appendix-vacant-plan/Slide.jsx'
 import AppendixLimits from './slides/A4-appendix-limits/Slide.jsx'
+import AppendixFloodCost from './slides/A5-appendix-flood-cost/Slide.jsx'
 
 const slides = [
   { id: '01-why-dindaeng', Component: WhyDindaeng },
@@ -36,6 +37,7 @@ const slides = [
   { id: 'A2-appendix-2569', Component: Appendix2569, appendix: true },
   { id: 'A3-appendix-vacant-plan', Component: AppendixVacantPlan, appendix: true },
   { id: 'A4-appendix-limits', Component: AppendixLimits, appendix: true },
+  { id: 'A5-appendix-flood-cost', Component: AppendixFloodCost, appendix: true },
 ]
 
 export default slides
