@@ -78,8 +78,6 @@ function BodBubbles() {
                 <tspan x={b.x} dy="-0.15em">{b.name}</tspan>
                 <tspan x={b.x} dy="1.15em" className="num">{fmt.dec(b.bod)}</tspan>
               </text>
-            ) : b.r >= 26 ? (
-              <text x={b.x} y={b.y} dy="0.35em" textAnchor="middle" className={s.bLabel}>{b.name}</text>
             ) : null}
           </g>
         )

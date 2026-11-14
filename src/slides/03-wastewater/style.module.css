@@ -137,16 +137,10 @@
   cursor: default;
 }
 
-.bLabel {
-  font-size: 11px;
-  fill: var(--c-text);
-  opacity: 0.75;
-  pointer-events: none;
-}
 
 .bLabelKey,
 .bLabelDd {
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 700;
   pointer-events: none;
 }
@@ -156,7 +150,7 @@
 }
 
 .bLabelDd {
-  font-size: 21px;
+  font-size: 17px;
   fill: var(--c-surface);
 }
 
