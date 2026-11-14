@@ -95,8 +95,8 @@ export default function Schools() {
     <SlideFrame
       kicker="06 · เพิ่มโรงเรียนและครู"
       title={`มีโรงเรียนต้องมีครู: เพิ่มโรงเรียน 1 แห่งและครู ${ed.teachersNeeded} คน คะแนนการศึกษาขึ้นเป็น ${fmt.dec(both.score)}`}
-      subtitle={`อันดับการศึกษาขยับจาก ${now.rank} เป็นราว ${both.rank}`}
-      source={`คำนวณจากสูตร Bangkok Index 2025 สมมติเขตอื่นคงที่ · เงินเดือนครูผู้ช่วย ${fmt.int(salary.monthly)} บาท (2568) · แผนที่ © OpenStreetMap contributors`}
+      subtitle={`อันดับการศึกษาขยับจาก ${now.rank} เป็นราว ${both.rank} · เพิ่มโรงเรียนอย่างเดียวอันดับไม่ขยับ เพราะตัวชี้วัดที่ฉุดคือนักเรียนต่อครู`}
+      source={`คำนวณจากสูตร Bangkok Index 2025 (การศึกษา = เฉลี่ยคะแนนโรงเรียนต่อเด็ก 1,000 คน กับนักเรียนต่อครู) โดยสมมติให้เขตอื่นคงที่ · ตำแหน่งโรงเรียนและแผนที่ฐาน © OpenStreetMap contributors · โรงเรียนเอกชน 4 แห่งยืนยันสังกัดจากเว็บโรงเรียน/สช. · เงินเดือนครูผู้ช่วย ${fmt.int(salary.monthly)} บาท/เดือน ยังไม่ยืนยันอัตรา กทม.`}
     >
       <div className={s.grid}>
         <ChartCard title="โรงเรียนในเขตตอนนี้" note={`พบ ${allSchools.length} แห่ง (เอกชน ${nPrivate}) · ดัชนีนับเฉพาะสังกัด กทม. + สพฐ. ${ed.districts.find((d) => d.name === 'ดินแดง').schools} แห่ง`} className={s.mapCard}>

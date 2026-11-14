@@ -950,73 +950,61 @@
    {
     "date": "2025-04-15",
     "rain": 63.5,
-    "events": 3,
-    "spots": 2
+    "spots": 3
    },
    {
     "date": "2025-05-01",
     "rain": 50.5,
-    "events": 3,
     "spots": 3
    },
    {
     "date": "2025-05-10",
     "rain": 88.0,
-    "events": 5,
     "spots": 5
    },
    {
     "date": "2025-05-12",
     "rain": 36.0,
-    "events": 1,
     "spots": 1
    },
    {
     "date": "2025-05-20",
     "rain": 49.5,
-    "events": 1,
     "spots": 1
    },
    {
     "date": "2025-06-08",
     "rain": 74.0,
-    "events": 1,
     "spots": 1
    },
    {
     "date": "2025-09-05",
     "rain": 60.0,
-    "events": 7,
-    "spots": 4
+    "spots": 7
    },
    {
     "date": "2025-10-01",
     "rain": 56.5,
-    "events": 5,
     "spots": 5
    },
    {
     "date": "2025-10-04",
     "rain": 78.0,
-    "events": 2,
     "spots": 2
    },
    {
     "date": "2025-10-19",
     "rain": 38.0,
-    "events": 1,
     "spots": 1
    },
    {
     "date": "2025-11-02",
     "rain": 43.0,
-    "events": 4,
     "spots": 4
    },
    {
     "date": "2025-11-13",
     "rain": 73.5,
-    "events": 8,
     "spots": 8
    }
   ],

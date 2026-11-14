@@ -32,7 +32,7 @@ function Dot({ cx, cy, payload }) {
       <circle cx={cx} cy={cy} r={isDindaeng ? 12 : 7}
         fill={isDindaeng ? color.dindaeng : color.other} stroke={color.surface} strokeWidth={2} />
       {isDindaeng && (
-        <SvgLabel x={cx - 14} y={cy + 30} anchor="end" weight={700} size={24}>ดินแดง</SvgLabel>
+        <SvgLabel x={cx + 16} y={cy - 12} anchor="start" weight={700} size={24}>ดินแดง</SvgLabel>
       )}
     </g>
   )
@@ -50,7 +50,8 @@ export default function Flood() {
     <SlideFrame
       kicker="02 · น้ำท่วม"
       title="ดินแดงท่วมบ่อยกว่ามัธยฐาน แต่งบระบายน้ำต่ำกว่า"
-      source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (น้ำท่วมขังบนถนนสายหลัก ปี 2568) · ข้อบัญญัติงบประมาณ กทม. 2568 · ρ = Spearman · พิกัดจุดท่วมอ้างอิงชื่อถนน/ซอย (เส้นประ = ความมั่นใจปานกลาง, 1 จุดไม่ระบุตำแหน่ง) · แผนที่ฐาน © OpenStreetMap contributors"
+      subtitle="เปรียบเทียบน้ำท่วมขังบนถนนสายหลักกับงบระบายน้ำของสำนักงานเขตทั้ง 50 เขต ปี 2568"
+      source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (น้ำท่วมขังบนถนนสายหลัก ปี 2568) · ข้อบัญญัติงบประมาณ กทม. 2568 · พิกัดจุดท่วมอ้างอิงชื่อถนน/ซอย (เส้นประ = ความมั่นใจปานกลาง, 1 จุดไม่ระบุตำแหน่ง) · แผนที่ฐาน © OpenStreetMap contributors"
     >
       <div className={s.grid}>
         <div className={s.overview}>
@@ -65,8 +66,7 @@ export default function Flood() {
           </div>
           <ChartCard
             className={s.scatter}
-            title="น้ำท่วมขังกับงบระบายน้ำ 50 เขต (2568)"
-            note={`ท่วมบ่อยไม่ได้งบมากขึ้น: ความสัมพันธ์แทบเป็นศูนย์ (ρ = ${fmt.dec(flood.spearman, 3)})`}
+            title="น้ำท่วมขังกับงบระบายน้ำ"
             legend={[
               { label: 'ดินแดง', color: color.dindaeng },
               { label: 'เขตอื่น', color: color.other },
@@ -118,6 +118,9 @@ export default function Flood() {
               </ResponsiveContainer>
             </div>
           </ChartCard>
+          <p className={s.correlation}>
+            ความสัมพันธ์เชิงอันดับระหว่างความถี่น้ำท่วมกับงบใกล้ศูนย์ <b className="num">(Spearman ρ = {fmt.dec(flood.spearman, 3)})</b>
+          </p>
         </div>
 
         <ChartCard title="ตำแหน่งจุดท่วม" className={s.mapCard}>
@@ -164,8 +167,7 @@ export default function Flood() {
         </ChartCard>
 
         <div className={s.side}>
-          <ChartCard title="จุดท่วมซ้ำซากในดินแดง" className={s.spots}
-            note={`ปี 2568 · ${fd.hotspots.reduce((a, h) => a + h.count, 0)} ครั้ง ใน ${fd.hotspots.length} จุด เกิดใน ${fd.days.length} วัน`}>
+          <ChartCard title="จุดท่วมซ้ำซากในดินแดง" className={s.spots}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={spots} layout="vertical" margin={{ top: 0, right: 44, bottom: 0, left: 0 }} barCategoryGap="22%">
                 <XAxis type="number" hide domain={[0, 10]} />
@@ -199,7 +201,7 @@ export default function Flood() {
           </ChartCard>
 
           <div className={s.stats}>
-            <Stat label={`ฝนเฉลี่ยวันที่ท่วม (${fd.days.length} วัน)`} value={fmt.dec(fd.rainPerDayAvg, 1)} unit="มม." sub={`ยังไม่ถึงขีดจำกัดระบบ ${flood.systemCapacityMm} มม.`} />
+            <Stat label="ฝนเฉลี่ยวันที่ท่วม" value={fmt.dec(fd.rainPerDayAvg, 1)} unit="มม." sub={`ยังไม่ถึงขีดจำกัดระบบ ${flood.systemCapacityMm} มม.`} />
             <Stat label="น้ำแห้งเฉลี่ย" value={fmt.int(fd.dryAvgMin)} unit="นาที" sub={`ท่วมรวมราว ${fmt.int(fd.totalHours)} ชม. ทั้งปี`} />
           </div>
         </div>

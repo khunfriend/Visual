@@ -18,16 +18,14 @@ const greenRank = rows.filter((d) => d.greenPerCapita > dd.greenPerCapita).lengt
 
 const METRICS = [
   {
-    key: 'greenPerCapita',
-    title: 'พื้นที่สีเขียวต่อคน',
-    sub: 'ตร.ม. ต่อคน · ตัวชี้วัดที่ 1 ของหัวข้อสวนสาธารณะ',
-    median: parks.medianGreenPerCapita,
-  },
-  {
     key: 'accessiblePerCapita',
     title: 'สวนสาธารณะที่เข้าถึงได้ต่อคน',
-    sub: 'ตร.ม. ต่อคน · ตัวชี้วัดที่ 2 ของหัวข้อสวนสาธารณะ',
     median: parks.medianAccessiblePerCapita,
+  },
+  {
+    key: 'greenPerCapita',
+    title: 'พื้นที่สีเขียวต่อคน',
+    median: parks.medianGreenPerCapita,
   },
 ]
 
@@ -79,10 +77,11 @@ export default function ParkGap() {
     <SlideFrame
       kicker="10 · สวนหย่อม"
       title="ดินแดงมีพื้นที่สีเขียวและสวนที่เข้าถึงได้ต่อคนต่ำกว่าค่ากลาง"
+      subtitle={`เขตดินแดงมีประชากร ${fmt.int(dd.population)} คน`}
       source="ที่มา: Bangkok Index 2025 – Rocket Media Lab (สวนสาธารณะ 2568) · ค่ากลาง = มัธยฐาน 50 เขต (ใช้แทนค่าเฉลี่ยเพราะไม่กี่เขตที่สูงมากดึงค่าเฉลี่ยขึ้น) · แท่งปทุมวันสูงเกินกรอบจึงแสดงเต็มกรอบ ตัวเลขบนแท่งคือค่าจริง"
     >
       <dl className={s.kpis}>
-        <div className={`${s.kpi} ${s.rankKpi}`}>
+        <div className={s.kpi}>
           <dt>อันดับคะแนนสวนสาธารณะ</dt>
           <dd><strong className="num">{fmt.int(parkRank)}</strong> จาก {fmt.int(rows.length)} เขต</dd>
         </div>
@@ -90,26 +89,14 @@ export default function ParkGap() {
           <dt>อันดับพื้นที่สีเขียวต่อคน</dt>
           <dd><strong className="num">{fmt.int(greenRank)}</strong> จาก {fmt.int(rows.length)} เขต</dd>
         </div>
-        <div className={s.kpi}>
-          <dt>ประชากรเขตดินแดง</dt>
-          <dd><strong className="num">{fmt.int(dd.population)}</strong> คน</dd>
-        </div>
       </dl>
-      <div className={s.legendRow}>
-        {[
-          ['ปทุมวัน (อันดับ 1 ของดัชนี)', color.pathumwan],
-          ['มัธยฐาน 50 เขต', color.other],
-          ['ดินแดง', color.dindaeng],
-        ].map(([l, c]) => (
-          <span key={l} className={s.legendItem}>
-            <i style={{ background: c }} />
-            {l}
-          </span>
-        ))}
-      </div>
       <div className={s.grid}>
         {METRICS.map((m) => (
-          <ChartCard key={m.key} title={m.title} note={m.sub} className={s.chart}>
+          <ChartCard
+            key={m.key}
+            title={<>{m.title} <span className={s.unit}>(ตร.ม./คน)</span></>}
+            className={s.chart}
+          >
             <BrokenBars metric={m} />
           </ChartCard>
         ))}

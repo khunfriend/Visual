@@ -4,11 +4,11 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
 }
 
 .table {
-  flex: none;
+  flex: 1;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -16,10 +16,10 @@
 
 .row {
   display: grid;
-  grid-template-columns: 320px 1fr 1fr 400px;
+  grid-template-columns: 420px 1fr 440px;
   gap: 32px;
   align-items: start;
-  padding: 12px 0;
+  padding: 24px 0;
   border-bottom: 1px solid var(--c-border);
 }
 
@@ -54,7 +54,7 @@
   padding-left: 24px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 8px;
   font-size: var(--fs-label);
   color: var(--c-text);
   line-height: 1.4;
@@ -124,16 +124,4 @@
 .goal b {
   font-size: var(--fs-subtitle);
   color: var(--c-text);
-}
-
-.cause {
-  font-size: var(--fs-label);
-  color: var(--c-text);
-  line-height: 1.45;
-}
-
-/* กราฟฝน 12 วันที่ท่วม (ใต้ตาราง) */
-.rainCard {
-  flex: 1;
-  min-height: 300px;
 }
