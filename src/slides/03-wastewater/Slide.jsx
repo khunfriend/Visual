@@ -57,22 +57,29 @@ const minY = Math.min(...bubbles.map((b) => b.y - b.r)) - PAD
 const maxY = Math.max(...bubbles.map((b) => b.y + b.r)) + PAD
 
 function BodBubbles() {
+  // ชี้ที่วง: วงขยาย (วาดทับวงอื่น) วงอื่นจางลง และขึ้นกล่องชื่อเขต ค่า BOD อันดับ
+  const [hover, setHover] = useState(null)
   const fillOf = (b) => (b.name === DD ? color.dindaeng : NEAR.has(b.name) ? neighborColor : color.other)
+  const h = bubbles.find((b) => b.name === hover)
+  const ordered = h ? [...bubbles.filter((b) => b !== h), h] : bubbles
+  const TIP_W = 250
+  const TIP_H = 92
+  const tipX = h && (h.x + h.r * 1.3 + 10 + TIP_W > maxX ? h.x - h.r * 1.3 - 10 - TIP_W : h.x + h.r * 1.3 + 10)
+  const tipY = h && Math.min(Math.max(h.y - TIP_H / 2, minY + 4), maxY - TIP_H - 4)
   return (
-    <svg className={s.bubbles} viewBox={`${minX} ${minY} ${maxX - minX} ${maxY - minY}`} role="img"
-      aria-label={`BOD เฉลี่ยของคลอง ${rows.length} เขต วางตามทิศจริงจากดินแดง`}>
+    <svg className={`${s.bubbles} ${h ? s.hasHover : ''}`} viewBox={`${minX} ${minY} ${maxX - minX} ${maxY - minY}`} role="img"
+      aria-label={`BOD เฉลี่ยของคลอง ${rows.length} เขต วางตามทิศจริงจากดินแดง`} onMouseLeave={() => setHover(null)}>
       <g className={s.compass} transform={`translate(${minX + 18} ${minY + 10})`}>
         <path d="M0 22 L0 2 M-5 8 L0 0 L5 8" />
         <text x="10" y="14">เหนือ</text>
       </g>
-      {bubbles.map((b) => {
+      {ordered.map((b) => {
         const key = b.name === DD || NEAR.has(b.name)
         const over = b.bod > ww.standard
         return (
-          <g key={b.name}>
-            <circle cx={b.x} cy={b.y} r={b.r} fill={fillOf(b)} fillOpacity={key || over ? 1 : 0.4} stroke={color.surface} strokeWidth="1.5">
-              <title>{`${b.name} · BOD ${fmt.dec(b.bod)} มก./ล. · อันดับ ${b.rank} จาก ${rows.length}${over ? ' · เกินเกณฑ์' : ''}`}</title>
-            </circle>
+          <g key={b.name} className={`${s.bubble} ${b === h ? s.bubbleOn : ''}`}
+            onMouseEnter={() => setHover(b.name)} onClick={() => setHover(b === h ? null : b.name)}>
+            <circle cx={b.x} cy={b.y} r={b.r} fill={fillOf(b)} fillOpacity={key || over ? 1 : 0.4} stroke={color.surface} strokeWidth="1.5" />
             {key ? (
               <text x={b.x} y={b.y} textAnchor="middle" className={b.name === DD ? s.bLabelDd : s.bLabelKey}>
                 <tspan x={b.x} dy="-0.15em">{b.name}</tspan>
@@ -82,6 +89,14 @@ function BodBubbles() {
           </g>
         )
       })}
+      {h && (
+        <g className={s.bTip} transform={`translate(${tipX} ${tipY})`}>
+          <rect width={TIP_W} height={TIP_H} rx="8" />
+          <text x="14" y="28" className={s.bTipName}>{h.name}</text>
+          <text x="14" y="52">BOD <tspan className="num">{fmt.dec(h.bod)}</tspan> มก./ล.{h.bod > ww.standard ? ' · เกินเกณฑ์' : ' · อยู่ในเกณฑ์'}</text>
+          <text x="14" y="76">อันดับ {h.rank} จาก {rows.length} (1 = น้ำดีที่สุด)</text>
+        </g>
+      )}
     </svg>
   )
 }

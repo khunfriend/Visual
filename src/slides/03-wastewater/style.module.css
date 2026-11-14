@@ -165,3 +165,40 @@
   fill: var(--c-textMuted);
 }
 
+
+/* ชี้ที่วง: ขยายวง · วงอื่นจาง · กล่องรายละเอียด */
+.bubble {
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.bubbleOn {
+  transform: scale(1.3);
+}
+
+.hasHover .bubble:not(.bubbleOn) {
+  opacity: 0.45;
+}
+
+.bTip {
+  pointer-events: none;
+}
+
+.bTip rect {
+  fill: var(--c-surface);
+  stroke: var(--c-border);
+  filter: drop-shadow(0 4px 10px rgb(0 0 0 / 0.15));
+}
+
+.bTip text {
+  font-size: 15px;
+  fill: var(--c-textMuted);
+}
+
+.bTip .bTipName {
+  font-size: 19px;
+  font-weight: 700;
+  fill: var(--c-text);
+}
