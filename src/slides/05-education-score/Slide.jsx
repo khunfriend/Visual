@@ -18,7 +18,7 @@ const medScore = index.medians.topics.education
 
 // เทียบดินแดงกับปทุมวัน แต่ละแถวใช้สเกลของตัวเอง
 const compare = [
-  { label: 'เด็กอายุ 0–18 ปี', dd: dd.children, pt: pt.children, unit: 'คน', comparisonLabel: 'ดินแดงน้อยกว่า' },
+  { label: 'เด็กอายุ 0–18 ปี', dd: dd.children, pt: pt.children, unit: 'คน', comparisonLabel: 'ดินแดงมากกว่า' },
   { label: 'ครู', dd: dd.teachers, pt: pt.teachers, unit: 'คน' },
   { label: 'โรงเรียน', dd: dd.schools, pt: pt.schools, unit: 'แห่ง' },
 ]

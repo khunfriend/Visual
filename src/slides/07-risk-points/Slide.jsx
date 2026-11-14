@@ -206,7 +206,7 @@ export default function RiskPoints() {
     <SlideFrame
       kicker="07 · จุดเสี่ยง"
       title={`ดินแดงมี ${dd.points} จุดเสี่ยง สูงกว่ามัธยฐานกรุงเทพฯ ${dd.points - risk.median} จุด`}
-      source={`ที่มา: บัญชีพื้นที่เสี่ยง กทม. สำนักเทศกิจ 2567–2568 · เป็นพื้นที่เฝ้าระวัง ไม่ใช่จุดเกิดคดี · ${map.credit}`}
+      source={`ที่มา: บัญชีพื้นที่เสี่ยงและพื้นที่อันตราย กทม. สำนักเทศกิจ ปีงบประมาณ 2567–2568 (data.bangkok.go.th); ${map.credit} · เป็นพื้นที่เฝ้าระวัง ไม่ใช่จุดเกิดคดี · สถานที่เดิมอยู่ในบัญชีทั้ง 2 ปี (เลขหมุดในมุมมองทุกปี) ${repeats.join(', ')} · heatmap σ = ${SIGMA_M} ม.`}
     >
             <div className={s.page}>
 <section className={s.context}>
@@ -242,7 +242,7 @@ export default function RiskPoints() {
             <div className={s.map}>
               <Expandable
                 title={`จุดเสี่ยงในเขตดินแดง ${yearLabel} (${shown.length} จุด)`}
-                note={mode === 'heat' ? `ความหนาแน่นของจุดเสี่ยง (σ = ${SIGMA_M} ม.) · เป็นพื้นที่เฝ้าระวัง ไม่ใช่จุดเกิดคดี` : `หมายเลขตรงกับรายชื่อ · สีบอกประเภทความเสี่ยง · ที่เดิมอยู่ในบัญชีทั้ง 2 ปี: หมุด ${repeats.join(', ')}`}
+                note={mode === 'heat' ? `ความหนาแน่นของจุดเสี่ยง (σ = ${SIGMA_M} ม.) · เป็นพื้นที่เฝ้าระวัง ไม่ใช่จุดเกิดคดี` : 'หมายเลขตรงกับรายชื่อ · สีบอกประเภทความเสี่ยง'}
                 toolbar={<>{toggle}{yearFilter}</>}
                 aside={
                   <ol className={s.asideList}>
