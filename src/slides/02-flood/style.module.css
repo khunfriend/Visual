@@ -50,17 +50,7 @@
 .plot {
   height: 100%;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-}
-
-.axisTitle,
-.correlation {
-  font-size: var(--fs-label);
-  color: var(--c-textMuted);
-}
-
-.axisTitle {
-  padding-left: 48px;
+  grid-template-rows: minmax(0, 1fr);
 }
 
 .mapCard {
@@ -76,14 +66,6 @@
 
 .spots {
   flex: 1;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  padding-top: 16px;
-  border-top: 1px solid var(--c-border);
 }
 
 /* รายการในหน้าต่างขยายแผนที่ */

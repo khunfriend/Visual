@@ -165,12 +165,10 @@ export default function WhyDindaeng() {
       <div className={s.story}>
         <p className={s.storyHead}>
           <b>5 เรื่องที่จะเล่า</b>
-          <span>หัวข้อที่ดินแดงอยู่ท้ายตาราง และแก้ได้ด้วยงบเขต · แต่ละเรื่อง: ปัญหา → วิธีแก้ → งบ → คะแนนขยับ</span>
         </p>
         <ol className={s.storyList}>
           {STORY.map((t) => (
             <li key={t.key}>
-              <span className={s.storyPage}>หน้า {t.page}</span>
               <b>{t.label}</b>
               <span className="num">อันดับ <strong>{t.rank}</strong> จาก 50</span>
               <small className="num">คะแนน {fmt.dec(t.score)} · ค่ากลาง {fmt.dec(t.median)}</small>

@@ -3,7 +3,7 @@ import {
   Tooltip, XAxis, YAxis,
 } from 'recharts'
 import SlideFrame from '../../components/SlideFrame.jsx'
-import { ChartCard, DD, Stat, SvgLabel, TipBox, axisCommon, fmt, gridProps } from '../../components/charts/kit.jsx'
+import { ChartCard, DD, SvgLabel, TipBox, axisCommon, fmt, gridProps } from '../../components/charts/kit.jsx'
 import MapBase from '../../components/charts/MapBase.jsx'
 import Expandable from '../../components/charts/Expandable.jsx'
 import { flood, map } from '../../lib/data.js'
@@ -74,7 +74,6 @@ export default function Flood() {
             ]}
           >
             <div className={s.plot}>
-              <p className={s.axisTitle}>งบระบายน้ำ (ล้านบาท · สเกลลอการิทึม)</p>
               <ResponsiveContainer width="100%" height="100%">
                 <ScatterChart margin={{ top: 34, right: 144, bottom: 35, left: 0 }}>
                   <CartesianGrid {...gridProps} />
@@ -89,9 +88,14 @@ export default function Flood() {
                   <ReferenceLine
                     y={med} stroke={color.reference} strokeDasharray="7 5" strokeWidth={2}
                     label={({ viewBox }) => (
-                      <SvgLabel x={viewBox.x + viewBox.width + 10} y={viewBox.y} dy="0.35em" anchor="start" fill={color.reference} size={22}>
-                        {fmt.dec(med)} ล้านบาท
-                      </SvgLabel>
+                      <g>
+                        <SvgLabel x={viewBox.x + viewBox.width + 10} y={viewBox.y - 12} dy="0.35em" anchor="start" fill={color.reference} size={22}>
+                          {fmt.dec(med)}
+                        </SvgLabel>
+                        <SvgLabel x={viewBox.x + viewBox.width + 10} y={viewBox.y + 14} dy="0.35em" anchor="start" fill={color.reference} size={22}>
+                          ล้านบาท
+                        </SvgLabel>
+                      </g>
                     )}
                   />
                   <ReferenceLine
@@ -118,9 +122,6 @@ export default function Flood() {
               </ResponsiveContainer>
             </div>
           </ChartCard>
-          <p className={s.correlation}>
-            ความสัมพันธ์เชิงอันดับระหว่างความถี่น้ำท่วมกับงบใกล้ศูนย์ <b className="num">(Spearman ρ = {fmt.dec(flood.spearman, 3)})</b>
-          </p>
         </div>
 
         <ChartCard title="ตำแหน่งจุดท่วม" className={s.mapCard}>
@@ -199,11 +200,6 @@ export default function Flood() {
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
-
-          <div className={s.stats}>
-            <Stat label="ฝนเฉลี่ยวันที่ท่วม" value={fmt.dec(fd.rainPerDayAvg, 1)} unit="มม." sub={`ยังไม่ถึงขีดจำกัดระบบ ${flood.systemCapacityMm} มม.`} />
-            <Stat label="น้ำแห้งเฉลี่ย" value={fmt.int(fd.dryAvgMin)} unit="นาที" sub={`ท่วมรวมราว ${fmt.int(fd.totalHours)} ชม. ทั้งปี`} />
-          </div>
         </div>
       </div>
     </SlideFrame>

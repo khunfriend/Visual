@@ -149,7 +149,7 @@ export default function FloodFix() {
           className={s.rainCard}
           title={`${underCap} จาก ${rainDays.length} วันที่ท่วม ฝนยังไม่ถึงขีดจำกัดของระบบ ${CAP} มม.`}
           legend={[
-            { label: `ฝนต่ำกว่า ${CAP} มม. แต่ยังท่วม`, color: color.rainUnder },
+            { label: `ฝนไม่ถึง ${CAP} มม. แต่ท่วม (ระบบระบายน้ำมีปัญหา)`, color: color.rainUnder },
             { label: `ฝน ${CAP} มม. ขึ้นไป (เกินขีดจำกัด)`, color: color.rainOver },
             { label: `ขีดจำกัดระบบ ${CAP} มม.`, color: color.reference, kind: 'dash' },
           ]}
