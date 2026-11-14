@@ -3,6 +3,7 @@ import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, Stat, fmt } from '../../components/charts/kit.jsx'
 import { vacant } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
+import { firstArea, firstBudget, firstSites, withMaint } from './firstPhase.js'
 import s from './style.module.css'
 
 // สไลด์ 11 (ที่ว่างทำสวน): แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
@@ -11,13 +12,6 @@ import s from './style.module.css'
 
 const { groups, total, plan, gapM2 } = vacant
 const pct0 = (v) => `${Math.round(v)}%`
-
-// แปลงที่จะทำก่อน 3 แห่ง (เลขแปลงตามแผนในภาคผนวก A3) เรียงตามที่กลุ่มเลือก
-const FIRST = [3, 1, 6]
-const firstSites = FIRST.map((no) => plan.sites.find((x) => x.no === no))
-const firstArea = firstSites.reduce((a, x) => a + x.areaM2, 0)
-const withMaint = (baht) => baht * (1 + plan.maintenanceRate) // งบ = ค่าก่อสร้าง + ค่าบำรุงรักษา 10%
-const firstBudget = firstSites.reduce((a, x) => a + withMaint(x.buildBaht), 0)
 
 /** ตาราง: จะทำแค่ 3 แห่ง · พื้นที่ · งบ (ค่าก่อสร้าง + บำรุงรักษา) */
 function FirstSites() {

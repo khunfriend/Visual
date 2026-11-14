@@ -163,24 +163,6 @@
   padding-left: 240px;
 }
 
-.heatKey {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: var(--fs-source);
-  color: var(--c-textMuted);
-}
-
-.heatKey i {
-  width: 120px;
-  height: 12px;
-  border-radius: 6px;
-  display: inline-block;
-}
-
 .activeItem {
   background: var(--c-surfaceAlt);
   outline: 1px solid var(--c-border);
