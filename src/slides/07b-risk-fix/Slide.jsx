@@ -12,9 +12,9 @@ import s from './style.module.css'
 // ราคาต่อหน่วย (บาท) · CCTV อิงงบติดตั้งกล้องใหม่ของสำนักการจราจรฯ ปีงบ 2569 (63.4 ล้าน ÷ 922 ตัว ≈ 68,800 จากข่าว) ที่เหลือเป็นค่าประมาณ
 const UNIT = {
   cctv: { label: 'CCTV', unit: 'ตัว', price: 70000 },
-  led: { label: 'โคมไฟ LED', unit: 'ชุด', price: 15000 },
+  led: { label: 'โคมไฟ LED พร้อมเสา', unit: 'ชุด', price: 16000 },
   trim: { label: 'ตัดแต่งสวน', unit: 'จุด', price: 50000 },
-  guard: { label: 'อาสาจราจร', unit: 'คน-วัน', price: 300 },
+  guard: { label: 'อาสาจราจร', unit: 'คน-วัน', price: 400 },
   cross: { label: 'ทางข้าม+ป้าย', unit: 'จุด', price: 30000 },
   vacant: { label: 'เก็บขยะ รั้ว ปรับเป็นสวนหย่อม', unit: 'แห่ง', price: 300000 },
 }

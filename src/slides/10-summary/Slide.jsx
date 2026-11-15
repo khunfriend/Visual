@@ -13,9 +13,9 @@ import s from './style.module.css'
 // จุดเสี่ยง = หน้า 9 (รวมอาสาจราจรปีแรก) · สวน = หน้า 12 ข้อเสนอดึงที่ว่าง 50% (ค่าบำรุง 10%/ปี แยกไว้ช่องต่อปี) · ส่วนใหญ่เป็นประมาณการของกลุ่ม
 const ASK = [
   { topic: 'น้ำท่วม', detail: 'ล้างท่อ วางท่อใหม่ · ทีมเก็บขยะหน้าท่อ', once: 36.94, yearly: 1.61 },
-  { topic: 'น้ำเสีย', detail: 'บำบัดในคลอง 2 ขั้น ที่ 6 จุด', once: 6.45, yearly: 1.07 },
+  { topic: 'น้ำเสีย', detail: 'บำบัดในคลอง 2 ขั้น ที่ 6 จุด', once: 7.04, yearly: 1.03 },
   { topic: 'การศึกษา', detail: `เงินเดือนครูเพิ่ม ${ed.teachersNeeded} คน`, once: 0, yearly: Math.round(ed.teacherSalary.annualTotal / 1e4) / 100 },
-  { topic: 'จุดเสี่ยง', detail: 'CCTV · ไฟ LED · อาสาจราจร · ปรับที่รกร้าง', once: 3.53, yearly: 0 },
+  { topic: 'จุดเสี่ยง', detail: 'CCTV · ไฟ LED · อาสาจราจร · ปรับที่รกร้าง', once: 3.77, yearly: 0 },
   { topic: 'สวน', detail: `ดึงที่ว่าง 50% ทำสวน ${fmt.int(vacant.half.areaM2)} ตร.ม.`, once: Math.round(vacant.half.buildBaht / 1e4) / 100, yearly: Math.round(vacant.half.maintenanceBaht / 1e4) / 100 },
 ]
 const ONCE = ASK.reduce((a, r) => a + (r.once ?? 0), 0)
