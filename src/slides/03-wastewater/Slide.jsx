@@ -3,6 +3,7 @@ import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, DD, TipBox, fmt } from '../../components/charts/kit.jsx'
 import { wastewater as ww } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
+import { hoverTap, tapAway } from '../../components/charts/hoverTap.js'
 import s from './style.module.css'
 
 // สไลด์ 03: แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
@@ -68,7 +69,7 @@ function BodBubbles() {
   const tipY = h && Math.min(Math.max(h.y - TIP_H / 2, minY + 4), maxY - TIP_H - 4)
   return (
     <svg className={`${s.bubbles} ${h ? s.hasHover : ''}`} viewBox={`${minX} ${minY} ${maxX - minX} ${maxY - minY}`} role="img"
-      aria-label={`BOD เฉลี่ยของคลอง ${rows.length} เขต วางตามทิศจริงจากดินแดง`} onMouseLeave={() => setHover(null)}>
+      aria-label={`BOD เฉลี่ยของคลอง ${rows.length} เขต วางตามทิศจริงจากดินแดง`} onMouseLeave={() => setHover(null)} {...tapAway(setHover)}>
       <g className={s.compass} transform={`translate(${minX + 18} ${minY + 10})`}>
         <path d="M0 22 L0 2 M-5 8 L0 0 L5 8" />
         <text x="10" y="14">เหนือ</text>
@@ -78,7 +79,7 @@ function BodBubbles() {
         const over = b.bod > ww.standard
         return (
           <g key={b.name} className={`${s.bubble} ${b === h ? s.bubbleOn : ''}`}
-            onMouseEnter={() => setHover(b.name)} onClick={() => setHover(b === h ? null : b.name)}>
+            {...hoverTap(b.name, b === h, setHover)}>
             <circle cx={b.x} cy={b.y} r={b.r} fill={fillOf(b)} fillOpacity={key || over ? 1 : 0.4} stroke={color.surface} strokeWidth="1.5" />
             {key ? (
               <text x={b.x} y={b.y} textAnchor="middle" className={b.name === DD ? s.bLabelDd : s.bLabelKey}>
@@ -114,7 +115,7 @@ function StationBars() {
         {stations.map((x) => {
           const over = x.bod > ww.standard
           return (
-            <div key={x.id} className={s.stRow} onMouseEnter={() => setTip(x)} onMouseLeave={() => setTip(null)}>
+            <div key={x.id} className={s.stRow} {...hoverTap(x, tip?.id === x.id, setTip)}>
               <div className={s.stLabel}>
                 <b>{x.canal}</b>
                 <span>{x.point}</span>

@@ -5,6 +5,7 @@ import Expandable from '../../components/charts/Expandable.jsx'
 import { TipBox, fmt } from '../../components/charts/kit.jsx'
 import { map, risk, riskPinNumbers, riskPointsByType } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
+import { hoverTap, tapAway } from '../../components/charts/hoverTap.js'
 import s from './style.module.css'
 
 // สไลด์ 07: แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
@@ -69,7 +70,7 @@ function DotStrip() {
       {/* พื้นที่ hover ใหญ่กว่าจุด (มองไม่เห็น) */}
       {dots.map((d) => (
         <circle key={`hit-${d.name}`} cx={d.cx} cy={d.cy} r={8} fill="transparent" style={{ cursor: 'default' }}
-          onMouseEnter={() => setHover(d)} onMouseLeave={() => setHover(null)} />
+          {...hoverTap(d, hover?.name === d.name, setHover)} />
       ))}
       <line x1={ddDot.cx} x2={ddDot.cx} y1={ddDot.cy - 12} y2={ddDot.cy - 24} stroke={color.text} strokeWidth={1.5} />
       <text x={ddDot.cx} y={ddDot.cy - 30} textAnchor="middle" fontSize={22} fontWeight={700} fill={color.text}>ดินแดง {dd.points} จุด</text>
@@ -131,8 +132,7 @@ export default function RiskPoints() {
           {shown.map((p) => {
             const q = pos(p)
             return (
-              <g key={p.no} onMouseEnter={() => setActive(p.no)} onMouseLeave={() => setActive(null)}
-                onClick={(e) => (e.stopPropagation(), setActive(p.no))} style={{ cursor: 'pointer' }}>
+              <g key={p.no} {...hoverTap(p.no, active === p.no, setActive)} style={{ cursor: 'pointer' }}>
                 {q.moved && <line x1={p.x} y1={p.y} x2={q.x} y2={q.y} stroke={color.text} strokeWidth={2} />}
                 <circle cx={q.x} cy={q.y} r={active === p.no ? 27 : 22}
                   fill={typeColor(p.type)} stroke={color.surface} strokeWidth={2.5} />
@@ -192,7 +192,7 @@ export default function RiskPoints() {
                 aside={
                   <ol className={s.asideList}>
                     {listed.map((p) => (
-                      <li key={p.no} className={active === p.no ? s.activeItem : ''} onMouseEnter={() => setActive(p.no)} onMouseLeave={() => setActive(null)}>
+                      <li key={p.no} className={active === p.no ? s.activeItem : ''} {...hoverTap(p.no, active === p.no, setActive)}>
                         <span className={s.badge} style={{ background: typeColor(p.type) }}>{pinNumbers.get(p.no)}</span>
                         <span className={s.itemText}>
                           <b>{shortName(p.name)}</b>

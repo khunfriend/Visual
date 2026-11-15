@@ -3,6 +3,7 @@ import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, Stat, fmt } from '../../components/charts/kit.jsx'
 import { vacant } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
+import { hoverTap, tapAway } from '../../components/charts/hoverTap.js'
 import s from './style.module.css'
 
 // สไลด์ 12 (ที่ว่างทำสวน แบบภาพรวม + ขยาย · ทางเลือกของหน้า 11): แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
@@ -67,14 +68,14 @@ function LandZoom() {
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className={s.zoom} role="img"
       aria-label={`ที่ว่าง ${pctLabel(land.vacantM2)} ของพื้นที่เขต ${fmt.int(total.areaM2)} ตร.ม. เสนอทำสวน ${fmt.int(half.areaM2)} ตร.ม. สวนที่ต้องเพิ่ม ${fmt.int(gapM2)} ตร.ม.`}
-      onMouseLeave={() => (setHover(null), setOvHover(null))}>
+      onMouseLeave={() => (setHover(null), setOvHover(null))} {...tapAway((v) => (setHover(v), setOvHover(v)))}>
       {/* แท่งบน: ทั้งเขต 100% สเกลจริง */}
       <text x={0} y={BAR_Y - 12} className={s.zHead}>ทั้งเขต {fmt.dec(land.districtAreaM2 / 1e6)} ตร.กม. · ใช้ไปแล้ว {pctLabel(takenM2)}</text>
       {/* ชี้ที่ส่วนใดส่วนหนึ่ง: ส่วนนั้นขยาย (วาดทับส่วนอื่น) ส่วนอื่นจาง และขึ้นกล่องข้อมูลใต้แท่ง */}
       {[...segs.filter((x) => x.key !== ovHover), ...segs.filter((x) => x.key === ovHover)].map((x) => (
         <rect key={x.key} x={x.x} y={BAR_Y} width={x.w} height={BAR_H} fill={color.landUse[x.key]}
           className={`${s.zSeg} ${ovHover === x.key ? s.zSegOn : ovHover ? s.zDim : ''}`}
-          onMouseEnter={() => (setOvHover(x.key), setHover(null))} onClick={() => setOvHover(ovHover === x.key ? null : x.key)} />
+          {...hoverTap(x.key, ovHover === x.key, (v) => (setOvHover(v), setHover(null)))} />
       ))}
       {[0, 9].map((d) => (
         <polyline key={d} className={s.zCut} points={[0, 1, 2, 3, 4, 5].map((k) => `${CUT + d + (k % 2 ? 6 : 0)},${BAR_Y - 2 + (k * (BAR_H + 4)) / 5}`).join(' ')} />
@@ -90,7 +91,7 @@ function LandZoom() {
         const y = R0 + i * RH
         const w = xs(r.m2)
         return (
-          <g key={r.key} className={hover && hover !== r.key ? s.zDim : ''} onMouseEnter={() => (setHover(r.key), setOvHover(null))}>
+          <g key={r.key} className={hover && hover !== r.key ? s.zDim : ''} {...hoverTap(r.key, hover === r.key, (v) => (setHover(v), setOvHover(null)))}>
             <text x={0} y={y + 22} className={r.strong ? s.zRowStrong : s.zRow}>{r.label}</text>
             <text x={W} y={y + 22} textAnchor="end" className={`${r.strong ? s.zValStrong : s.zVal} num`}>{fmt.int(r.m2)} ตร.ม.</text>
             <rect x={0} y={y + 34} width={W} height={30} rx={4} className={s.zTrack} />

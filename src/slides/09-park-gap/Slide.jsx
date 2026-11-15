@@ -3,6 +3,7 @@ import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, DD, PT, fmt } from '../../components/charts/kit.jsx'
 import { parks } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
+import { hoverTap, tapAway } from '../../components/charts/hoverTap.js'
 import s from './style.module.css'
 
 // สไลด์ 09: แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
@@ -47,7 +48,7 @@ function BrokenBars({ metric }) {
   const gap = (W - bars.length * bw) / (bars.length + 1)
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className={s.svg} role="img" aria-label={metric.title}>
+    <svg viewBox={`0 0 ${W} ${H}`} className={s.svg} role="img" aria-label={metric.title} {...tapAway(setHover)}>
       <line x1={0} x2={W} y1={base} y2={base} stroke={color.border} />
       {bars.map((b, i) => {
         const x = gap + i * (bw + gap)
@@ -55,7 +56,7 @@ function BrokenBars({ metric }) {
         const h = broken ? plotH : (b.value / cap) * plotH
         const y = base - h
         return (
-          <g key={b.label} onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)} style={{ cursor: 'default' }}>
+          <g key={b.label} {...hoverTap(i, hover === i, setHover)} style={{ cursor: 'default' }}>
             <rect x={x - gap / 2} y={top - 30} width={bw + gap} height={base - top + 30} fill={hover === i ? color.grid : 'transparent'} />
             <path d={`M${x},${base} V${y + 4} q0,-4 4,-4 H${x + bw - 4} q4,0 4,4 V${base} Z`} fill={b.fill} />
             <text x={x + bw / 2} y={y - 12} textAnchor="middle" fontSize={26} fontWeight={700} fill={color.text} className="num">

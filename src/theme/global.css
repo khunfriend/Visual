@@ -11,6 +11,13 @@ body,
   height: 100%;
 }
 
+/* iPad/จอสัมผัส: ไม่ซูมเมื่อแตะสองครั้ง · ไม่มีแถบเทากะพริบตอนแตะ · หน้าไม่เด้งเมื่อลากเลยขอบ */
+html {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
 body {
   background: #e9e5e1;
   color: #2a2222;

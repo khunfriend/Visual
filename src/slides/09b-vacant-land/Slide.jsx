@@ -3,6 +3,7 @@ import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, Stat, fmt } from '../../components/charts/kit.jsx'
 import { vacant } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
+import { hoverTap, tapAway } from '../../components/charts/hoverTap.js'
 import s from './style.module.css'
 
 // สไลด์ 11 (ที่ว่างทำสวน): แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
@@ -38,7 +39,7 @@ function LandUse() {
         {LAND.map((x) => (
           <div key={x.key} className={`${s.seg} ${hover === x.key ? s.segOn : ''}`}
             style={{ flex: drawM2(x), background: color.landUse[x.key] }}
-            onMouseEnter={() => setHover(x.key)}
+            {...hoverTap(x.key, hover === x.key, setHover)}
             title={`${x.label}: ${fmt.int(x.m2)} ตร.ม. (${pctLabel(x.m2)} ของพื้นที่เขต)`}>
             {x.key === 'used' && (
               <>
@@ -58,7 +59,7 @@ function LandUse() {
       <ul className={s.landLegend}>
         {LAND.map((x) => (
           <li key={x.key} className={hover === x.key ? s.legendOn : ''}
-            onMouseEnter={() => setHover(x.key)} onMouseLeave={() => setHover(null)}>
+            {...hoverTap(x.key, hover === x.key, setHover)}>
             <i style={{ background: color.landUse[x.key] }} />
             <span>{x.label}</span>
             <b className="num">{pctLabel(x.m2)}</b>

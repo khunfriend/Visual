@@ -6,6 +6,7 @@ import SlideFrame from '../../components/SlideFrame.jsx'
 import { ChartCard, DD, PT, Stat, SvgLabel, TipBox, axisCommon, fmt, gridProps } from '../../components/charts/kit.jsx'
 import { budget, index, map } from '../../lib/data.js'
 import { color } from '../../theme/theme.js'
+import { hoverTap, tapAway } from '../../components/charts/hoverTap.js'
 import s from './style.module.css'
 
 // สไลด์ 01: แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
@@ -50,11 +51,11 @@ function BangkokMap() {
   }
   return (
     <div className={s.mapWrap}>
-      <svg viewBox={`0 0 ${W} ${H}`} className={s.mapSvg} role="img" aria-label="แผนที่คะแนนรวม 50 เขต">
+      <svg viewBox={`0 0 ${W} ${H}`} className={s.mapSvg} role="img" aria-label="แผนที่คะแนนรวม 50 เขต" {...tapAway(setHover)}>
         {bkk.districts.map((d) => (
           <path key={d.name} d={d.d} fill={fillOf(d.name)} stroke={hover?.name === d.name ? color.text : color.surface}
             strokeWidth={hover?.name === d.name ? 2.5 : 1} fillRule="evenodd"
-            onMouseEnter={() => setHover(d)} onMouseLeave={() => setHover(null)} />
+            {...hoverTap(d, hover?.name === d.name, setHover)} />
         ))}
         {label(DD, 22, 'start', -18)}
         {label(PT, 22, 'start', 20)}
