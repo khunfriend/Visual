@@ -10,7 +10,7 @@ import s from './style.module.css'
 const LABEL = (sc) =>
   sc.addSchools && sc.addTeachers ? `โรงเรียน +1 และครู +${sc.addTeachers}` : sc.addSchools ? 'โรงเรียน +1' : sc.addTeachers ? `ครู +${sc.addTeachers}` : 'ตอนนี้'
 const rows = ed.scenarios.map((sc) => ({ ...sc, label: LABEL(sc), chosen: !sc.addSchools && sc.addTeachers })) // 14 พ.ย.: ใช้กรณีเพิ่มครูอย่างเดียว (ตัดโรงเรียนออก)
-const both = rows.find((r) => r.chosen) // ครู +50
+const both = rows.find((r) => r.chosen) // ครู +88 (ถึงค่ากลาง)
 const salary = ed.teacherSalary
 const dd = ed.districts.find((d) => d.name === 'ดินแดง')
 const pt = ed.districts.find((d) => d.name === 'ปทุมวัน')
@@ -66,7 +66,7 @@ function TeacherPictogram({ added, setAdded }) {
         </button>
         <p className={s.pxResult}>
           {added ? (
-            <>นักเรียนต่อครู <b className="num">{fmt.dec(ddNow, 1)} → {fmt.dec(ddAfter, 1)}</b> เท่าปทุมวัน · คะแนนการศึกษา <b className="num">{fmt.dec(now.score)} → {fmt.dec(both.score)}</b> อันดับ {now.rank} → {both.rank}</>
+            <>นักเรียนต่อครู <b className="num">{fmt.dec(ddNow, 1)} → {fmt.dec(ddAfter, 1)}</b> เท่าค่ากลาง 50 เขต · คะแนนการศึกษา <b className="num">{fmt.dec(now.score)} → {fmt.dec(both.score)}</b> อันดับ {now.rank} → {both.rank}</>
           ) : (
             <>ครู 1 คนในดินแดงดูแลนักเรียนมากกว่าปทุมวันราว {fmt.int(ddNow - pt.studentsPerTeacher)} คน · กดปุ่มเพื่อดูผลของการเพิ่มครู</>
           )}

@@ -17,10 +17,10 @@
    "label": "ปีแรก ระมัดระวัง",
    "crime": 12,
    "floods": 31,
-   "eduScore": 9.54,
+   "eduScore": 11.83,
    "bod": 25.81,
    "parkScore": 2.73,
-   "score": 19.36,
+   "score": 19.5,
    "rank": 46
   },
   {
@@ -28,32 +28,32 @@
    "label": "ปีแรก ตามเป้า",
    "crime": 9,
    "floods": 29,
-   "eduScore": 9.54,
+   "eduScore": 11.83,
    "bod": 25.81,
    "parkScore": 2.73,
-   "score": 20.11,
-   "rank": 41
+   "score": 20.25,
+   "rank": 40
   },
   {
    "key": "good",
    "label": "ปีแรก กรณีดี",
    "crime": 8,
    "floods": 27,
-   "eduScore": 9.54,
+   "eduScore": 11.83,
    "bod": 25.81,
    "parkScore": 2.73,
-   "score": 20.45,
-   "rank": 40
+   "score": 20.59,
+   "rank": 39
   },
   {
    "key": "longterm",
    "label": "ระยะยาว ตามเป้า",
    "crime": 9,
    "floods": 29,
-   "eduScore": 9.54,
+   "eduScore": 11.83,
    "bod": 15,
    "parkScore": 2.73,
-   "score": 21.62,
+   "score": 21.76,
    "rank": 32
   }
  ],
@@ -77,10 +77,10 @@
    "delta": 0.835
   },
   {
-   "label": "การศึกษา +50 ครู",
+   "label": "การศึกษา +88 ครู",
    "topicFrom": 6.01,
-   "topicTo": 9.54,
-   "delta": 0.221
+   "topicTo": 11.83,
+   "delta": 0.364
   },
   {
    "label": "สวน ใช้ที่ว่าง 50%",
@@ -91,8 +91,8 @@
   {
    "label": "ปีแรก",
    "key": "target",
-   "value": 20.11,
-   "rank": 41
+   "value": 20.25,
+   "rank": 40
   },
   {
    "label": "น้ำเสีย BOD 25.81 → 15",
@@ -104,7 +104,7 @@
   {
    "label": "ระยะยาว",
    "key": "longterm",
-   "value": 21.62,
+   "value": 21.76,
    "rank": 32
   }
  ],
@@ -118,7 +118,7 @@
    "rank": 46
   },
   "eduOnly": {
-   "score": 17.57,
+   "score": 17.72,
    "rank": 49
   },
   "bodOnly": {
