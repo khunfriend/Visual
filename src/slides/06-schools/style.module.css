@@ -303,19 +303,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 28px;
+  gap: 20px;
 }
 
 .pxRows {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 28px;
 }
 
 .pxRow {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
 }
 
 .pxHead {
@@ -326,12 +326,12 @@
 }
 
 .pxHead b {
-  font-size: var(--fs-label);
+  font-size: 30px;
   color: var(--c-text);
 }
 
 .pxHead small {
-  font-size: var(--fs-source);
+  font-size: var(--fs-label);
   color: var(--c-textMuted);
 }
 
@@ -356,7 +356,6 @@
 }
 
 .pxDd .pxKid { fill: var(--c-dindaeng); }
-.pxPt .pxKid { fill: var(--c-pathumwan); }
 .pxMed .pxKid { fill: var(--c-other); }
 
 .pxGone {
@@ -365,7 +364,7 @@
 }
 
 .pxValue {
-  font-size: 30px;
+  font-size: 44px;
   font-weight: 700;
   color: var(--c-text);
   text-align: right;
@@ -373,7 +372,7 @@
 }
 
 .pxValue small {
-  font-size: var(--fs-source);
+  font-size: var(--fs-label);
   font-weight: 400;
   color: var(--c-textMuted);
 }

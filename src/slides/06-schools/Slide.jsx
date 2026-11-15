@@ -13,7 +13,6 @@ const rows = ed.scenarios.map((sc) => ({ ...sc, label: LABEL(sc), chosen: !sc.ad
 const both = rows.find((r) => r.chosen) // ครู +88 (ถึงค่ากลาง)
 const salary = ed.teacherSalary
 const dd = ed.districts.find((d) => d.name === 'ดินแดง')
-const pt = ed.districts.find((d) => d.name === 'ปทุมวัน')
 const now = rows.find((r) => !r.addSchools && !r.addTeachers)
 
 // ภาพนับคน: ครู 1 คนดูแลนักเรียนกี่คน (1 ตัว = นักเรียน 1 คน ปัดเป็นจำนวนเต็ม · ตัวเลขข้างแถวคือค่าจริง)
@@ -32,12 +31,15 @@ function TeacherPictogram({ added, setAdded }) {
   const ddAfter = ed.studentsPerTeacherAfter
   const lines = [
     { key: 'dd', label: 'ดินแดง', sub: added ? `ครู ${fmt.int(dd.teachers + ed.teachersNeeded)} คน` : `ครู ${fmt.int(dd.teachers)} คน`, value: added ? ddAfter : ddNow, max: ddNow, cls: s.pxDd },
-    { key: 'pt', label: 'ปทุมวัน', sub: 'เขตอันดับ 1', value: pt.studentsPerTeacher, max: pt.studentsPerTeacher, cls: s.pxPt },
     { key: 'med', label: 'ค่ากลาง 50 เขต', sub: '', value: ed.medianStudentsPerTeacher, max: ed.medianStudentsPerTeacher, cls: s.pxMed },
   ]
-  const H = 34
-  const STEP = 25
+  // 2 เขต (ดินแดง · ค่ากลาง) ตัวคนวางเป็น 2 แถว แถวละ PER ตัว ให้ตัวใหญ่ขึ้น · ทุกแถวกว้างเท่ากันเพื่อเทียบจำนวนได้
+  const PER = 12
+  const KH = 38 // ความสูงตัวนักเรียน
+  const ROW_GAP = 8
+  const STEP = 38
   const X0 = 64
+  const H = KH * 2 + ROW_GAP
   return (
     <div className={s.picto}>
       <div className={s.pxRows}>
@@ -48,12 +50,12 @@ function TeacherPictogram({ added, setAdded }) {
               {l.sub && <small>{l.sub}</small>}
               <span className={`${s.pxValue} num`}>{fmt.dec(l.value, 1)}<small> คน</small></span>
             </div>
-            <svg viewBox={`0 0 ${X0 + STEP * 24} ${H + 4}`} className={s.pxSvg} role="img"
+            <svg viewBox={`0 0 ${X0 + STEP * PER} ${H}`} className={s.pxSvg} role="img"
               aria-label={`${l.label}: ครู 1 คนต่อนักเรียน ${fmt.dec(l.value, 1)} คน`}>
-              <Person x={6} y={0} h={H + 4} className={s.pxTeacher} />
-              <line x1={X0 - 16} x2={X0 - 16} y1={6} y2={H} className={s.pxDivider} />
+              <Person x={4} y={H * 0.35} h={H * 0.65} className={s.pxTeacher} />
+              <line x1={X0 - 14} x2={X0 - 14} y1={4} y2={H - 4} className={s.pxDivider} />
               {Array.from({ length: Math.round(l.max) }, (_, i) => (
-                <Person key={i} x={X0 + i * STEP} y={8} h={H - 8}
+                <Person key={i} x={X0 + (i % PER) * STEP} y={Math.floor(i / PER) * (KH + ROW_GAP)} h={KH}
                   className={`${s.pxKid} ${i >= Math.round(l.value) ? s.pxGone : ''}`} />
               ))}
             </svg>
@@ -68,7 +70,7 @@ function TeacherPictogram({ added, setAdded }) {
           {added ? (
             <>นักเรียนต่อครู <b className="num">{fmt.dec(ddNow, 1)} → {fmt.dec(ddAfter, 1)}</b> เท่าค่ากลาง 50 เขต · คะแนนการศึกษา <b className="num">{fmt.dec(now.score)} → {fmt.dec(both.score)}</b> อันดับ {now.rank} → {both.rank}</>
           ) : (
-            <>ครู 1 คนในดินแดงดูแลนักเรียนมากกว่าปทุมวันราว {fmt.int(ddNow - pt.studentsPerTeacher)} คน · กดปุ่มเพื่อดูผลของการเพิ่มครู</>
+            <>ครู 1 คนในดินแดงดูแลนักเรียนมากกว่าค่ากลาง 50 เขตราว {fmt.int(ddNow - ed.medianStudentsPerTeacher)} คน · กดปุ่มเพื่อดูผลของการเพิ่มครู</>
           )}
         </p>
       </div>
