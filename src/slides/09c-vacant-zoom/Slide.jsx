@@ -144,7 +144,7 @@ export default function VacantZoom() {
       <div className={s.grid}>
         <ChartCard
           title={`ที่ว่างมีแค่ ${pctLabel(land.vacantM2)} ของเขต แต่ใช้ครึ่งเดียวก็เกินสวนที่ต้องเพิ่ม`}
-          note="ชี้ที่แท่งบนเพื่อดูพื้นที่และ % ของเขต · แท่งบนย่อส่วนสีเทาให้เห็นส่วนเล็ก"
+          note="แท่งบนย่อส่วนสีเทาให้เห็นส่วนเล็ก"
         >
           <LandZoom />
         </ChartCard>
