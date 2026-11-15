@@ -1,6 +1,6 @@
 /* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
 .grid {
-  --wastewater-neighbor-color: var(--c-pathumwan); /* ฟ้า (ผู้ใช้เลือก 14 พ.ย.) · เขตที่ติดดินแดง */
+  --wastewater-neighbor-color: var(--c-border); /* เทาอ่อน (ผู้ใช้เลือก 15 พ.ย.) · เขตที่ติดดินแดง · เขตอื่นเทาเข้ม */
   flex: 1;
   min-height: 0;
   display: grid;
@@ -146,7 +146,7 @@
 }
 
 .bLabelKey {
-  fill: var(--c-surface);
+  fill: var(--c-heading);
 }
 
 .bLabelDd {

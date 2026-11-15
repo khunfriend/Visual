@@ -9,9 +9,11 @@ import s from './Deck.module.css'
 const labelled = (() => {
   let main = 0
   let app = 0
-  return slides.map((sl) => ({ ...sl, label: sl.appendix ? `A${++app}` : String(++main) }))
+  return slides.map((sl) => ({ ...sl, label: sl.cover ? '0' : sl.appendix ? `A${++app}` : String(++main) }))
 })()
-const mainCount = labelled.filter((sl) => !sl.appendix).length
+const mainCount = labelled.filter((sl) => !sl.appendix && !sl.cover).length
+const progressOf = (sl) => (sl.cover ? 0 : sl.appendix ? 1 : Number(sl.label) / mainCount)
+const pageText = (sl) => (sl.cover ? '' : sl.appendix ? `ภาคผนวก ${sl.label}` : `${sl.label} / ${mainCount}`)
 
 const indexOfLabel = (label) =>
   labelled.findIndex((sl) => sl.label.toLowerCase() === String(label).toLowerCase())
@@ -76,14 +78,14 @@ function PrintDeck({ cssVars }) {
     <div style={{ ...cssVars, '--print-h': `${labelled.length * 1080}px` }} className={s.printRoot}>
       <p className={s.printHint}>โหมดทำ PDF · กด Cmd/Ctrl + P แล้วเลือก "บันทึกเป็น PDF" (ขนาดกระดาษตั้งให้อัตโนมัติ)</p>
       {labelled.map((sl) => {
-        const progress = sl.appendix ? 1 : Number(sl.label) / mainCount
+        const progress = progressOf(sl)
         return (
           <div key={sl.id} className={s.printPage}>
             <ErrorBoundary label={sl.label}>
               <sl.Component />
             </ErrorBoundary>
             <div className={s.progress} style={{ transform: `scaleX(${progress})` }} />
-            <div className={s.pageNo}>{sl.appendix ? `ภาคผนวก ${sl.label}` : `${sl.label} / ${mainCount}`}</div>
+            <div className={s.pageNo}>{pageText(sl)}</div>
           </div>
         )
       })}
@@ -178,7 +180,7 @@ function Presenter({ cssVars }) {
   }, [index, jump, go, toggleFs])
 
   const sl = labelled[index]
-  const progress = sl.appendix ? 1 : Number(sl.label) / mainCount
+  const progress = progressOf(sl)
 
   return (
     <div style={cssVars} className={`${s.root} ${idle ? s.idle : ''}`}>
@@ -188,7 +190,7 @@ function Presenter({ cssVars }) {
         </ErrorBoundary>
         <div className={s.progress} style={{ transform: `scaleX(${progress})` }} />
         <div className={s.pageNo}>
-          {sl.appendix ? `ภาคผนวก ${sl.label}` : `${sl.label} / ${mainCount}`}
+          {pageText(sl)}
         </div>
       </Stage>
 

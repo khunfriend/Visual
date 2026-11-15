@@ -1,5 +1,6 @@
 // ลำดับสไลด์: สลับลำดับหรือเพิ่ม/ลบสไลด์ที่ไฟล์นี้ที่เดียว
-// สไลด์หลักได้เลขหน้า 1, 2, 3 … ตามลำดับ ภาคผนวก (appendix: true) ได้ A1, A2 … และต้องอยู่ท้ายสุด
+// ปก (cover: true) ได้ป้าย 0 และไม่นับเลขหน้า · สไลด์หลักได้เลขหน้า 1, 2, 3 … ตามลำดับ ภาคผนวก (appendix: true) ได้ A1, A2 … และต้องอยู่ท้ายสุด
+import Cover from './slides/00-qr/Slide.jsx'
 import WhyDindaeng from './slides/01-why-dindaeng/Slide.jsx'
 import Flood from './slides/02-flood/Slide.jsx'
 import FloodFix from './slides/02b-flood-fix/Slide.jsx'
@@ -16,6 +17,7 @@ import AppendixFloodCost from './slides/A5-appendix-flood-cost/Slide.jsx'
 import AppendixData from './slides/A6-appendix-data/Slide.jsx'
 
 const slides = [
+  { id: '00-qr', Component: Cover, cover: true },
   { id: '01-why-dindaeng', Component: WhyDindaeng },
   { id: '02-flood', Component: Flood },
   { id: '02b-flood-fix', Component: FloodFix },

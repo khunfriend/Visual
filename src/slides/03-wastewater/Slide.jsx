@@ -76,11 +76,10 @@ function BodBubbles() {
       </g>
       {ordered.map((b) => {
         const key = b.name === DD || NEAR.has(b.name)
-        const over = b.bod > ww.standard
         return (
           <g key={b.name} className={`${s.bubble} ${b === h ? s.bubbleOn : ''}`}
             {...hoverTap(b.name, b === h, setHover)}>
-            <circle cx={b.x} cy={b.y} r={b.r} fill={fillOf(b)} fillOpacity={key || over ? 1 : 0.4} stroke={color.surface} strokeWidth="1.5" />
+            <circle cx={b.x} cy={b.y} r={b.r} fill={fillOf(b)} stroke={color.surface} strokeWidth="1.5" />
             {key ? (
               <text x={b.x} y={b.y} textAnchor="middle" className={b.name === DD ? s.bLabelDd : s.bLabelKey}>
                 <tspan x={b.x} dy="-0.15em">{b.name}</tspan>
@@ -175,8 +174,7 @@ export default function Wastewater() {
           legend={[
             { label: 'ดินแดง', color: color.dindaeng },
             { label: 'เขตที่ติดดินแดง', color: neighborColor },
-            { label: 'เขตอื่นที่เกินเกณฑ์', color: color.other },
-            { label: 'เขตอื่นที่อยู่ในเกณฑ์', color: 'color-mix(in srgb, var(--c-other) 40%, transparent)' },
+            { label: 'เขตอื่น', color: color.other },
           ]}
         >
           <BodBubbles />

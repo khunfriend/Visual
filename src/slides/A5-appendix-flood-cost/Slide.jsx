@@ -63,7 +63,6 @@ export default function AppendixFloodCost() {
                   <div key={it.what} className={s.item}>
                     <b>
                       {it.what}
-                      {it.est && <em className={s.est}>ประมาณการ / ยังไม่ได้ตรวจ</em>}
                     </b>
                     <span>{it.src}</span>
                   </div>
