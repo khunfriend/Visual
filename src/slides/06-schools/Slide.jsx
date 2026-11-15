@@ -107,7 +107,7 @@ export default function Schools() {
               <>ครู {fmt.int(dd.teachers)} → {fmt.int(dd.teachers + ed.teachersNeeded)} คน นักเรียนต่อครูลดจาก {fmt.dec(dd.studentsPerTeacher, 1)} เหลือ{' '}
                 {fmt.dec(ed.studentsPerTeacherAfter, 1)}</>
             ) : (
-              <>ตอนนี้ครู {fmt.int(dd.teachers)} คน นักเรียนต่อครู {fmt.dec(dd.studentsPerTeacher, 1)} · กดปุ่มทางซ้ายเพื่อดูผล</>
+              <>ตอนนี้ครู {fmt.int(dd.teachers)} คน นักเรียนต่อครู {fmt.dec(dd.studentsPerTeacher, 1)}</>
             )}
           </p>
           {/* เพิ่มประสิทธิภาพการสอน: ไม่ทำให้คะแนนดัชนีขยับ แต่แก้ปัญหาได้ทันที · ยังไม่ได้ประเมินงบ (ดู ข้อมูลรวม_ตรวจแล้ว.md) */}
