@@ -6,7 +6,7 @@ import { color } from '../../theme/theme.js'
 import { hoverTap, tapAway } from '../../components/charts/hoverTap.js'
 import s from './style.module.css'
 
-// สไลด์ 12 (ที่ว่างทำสวน แบบภาพรวม + ขยาย · ทางเลือกของหน้า 11): แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
+// สไลด์ 11 (ที่ว่างทำสวน แบบภาพรวม + ขยาย · แทนแบบแท่งตัดเดิมที่ลบไป 16 พ.ย.): แก้เฉพาะไฟล์ในโฟลเดอร์นี้ (ดู CLAUDE.md)
 // ตัวเลขทุกตัวมาจาก src/data/vacant.json (build_data.py ส่วน 7b) และต้องตรงกับ ข้อมูลรวม_ตรวจแล้ว.md
 // ฐาน % = พื้นที่สวนที่ต้องเพิ่ม 35,909 ตร.ม. (คิดจากพื้นที่สวนจริง จึงต่างจาก 35,440 ของหน้า 9 เล็กน้อย)
 
@@ -131,7 +131,7 @@ export default function VacantZoom() {
   const [showFormula, setShowFormula] = useState(false)
   return (
     <SlideFrame
-      kicker="12 · สวนหย่อม (ที่ว่าง)"
+      kicker="11 · สวนหย่อม (ที่ว่าง)"
       title={`ใช้ที่ว่างครึ่งหนึ่ง สวนที่เข้าถึงได้เพิ่มจาก ${fmt.dec(land.parkM2 / vacant.population)} เป็น ${fmt.dec(half.perCapitaAfter)} ตร.ม./คน`}
       subtitle={`ดินแดงมีที่ว่างที่สำรวจพบ ${fmt.int(total.plots)} แปลง ${fmt.int(total.areaM2)} ตร.ม. มากกว่าสวนที่ต้องเพิ่ม ${fmt.dec(land.vacantM2 / gapM2, 1)} เท่า`}
       source={
