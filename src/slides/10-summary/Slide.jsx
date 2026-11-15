@@ -13,9 +13,9 @@ import s from './style.module.css'
 // จุดเสี่ยง = หน้า 9 (รวมอาสาจราจรปีแรก) · สวน = หน้า 12 ข้อเสนอดึงที่ว่าง 50% (ค่าบำรุง 10%/ปี แยกไว้ช่องต่อปี) · ส่วนใหญ่เป็นประมาณการของกลุ่ม
 const ASK = [
   { topic: 'น้ำท่วม', detail: 'ล้างท่อ วางท่อใหม่ · ทีมเก็บขยะหน้าท่อ', once: 36.94, yearly: 1.61 },
-  { topic: 'น้ำเสีย', detail: 'บำบัดในคลอง 2 ขั้น ที่ 6 จุด', once: 6.45, yearly: 1.07 },
+  { topic: 'น้ำเสีย', detail: 'บำบัดในคลอง 2 ขั้น ที่ 6 จุด', once: 7.04, yearly: 1.03 },
   { topic: 'การศึกษา', detail: `เงินเดือนครูเพิ่ม ${ed.teachersNeeded} คน`, once: 0, yearly: Math.round(ed.teacherSalary.annualTotal / 1e4) / 100 },
-  { topic: 'จุดเสี่ยง', detail: 'CCTV · ไฟ LED · อาสาจราจร · ปรับที่รกร้าง', once: 3.53, yearly: 0 },
+  { topic: 'จุดเสี่ยง', detail: 'CCTV · ไฟ LED · อาสาจราจร · ปรับที่รกร้าง', once: 3.77, yearly: 0 },
   { topic: 'สวน', detail: `ดึงที่ว่าง 50% ทำสวน ${fmt.int(vacant.half.areaM2)} ตร.ม.`, once: Math.round(vacant.half.buildBaht / 1e4) / 100, yearly: Math.round(vacant.half.maintenanceBaht / 1e4) / 100 },
 ]
 const ONCE = ASK.reduce((a, r) => a + (r.once ?? 0), 0)
@@ -55,8 +55,8 @@ export default function Summary() {
   return (
     <SlideFrame
       kicker="13 · สรุปผล"
-      title={`ขอเพิ่ม ${m2(ONCE)} ล้านบาท + ${m2(YEARLY)} ล้านบาท/ปี คะแนนรวมขึ้นจาก ${fmt.dec(now.score)} เป็น ${fmt.dec(target.score)} อันดับ ${now.rank} เป็น ${target.rank}`}
-      subtitle={`ปีแรก กรณีตามเป้า · วัดผลด้วย Bangkok Index ปีถัดไป · ระยะยาวถ้า BOD ลดถึงมาตรฐาน อันดับขึ้นถึง ${scenarios.cases.find((c) => c.key === 'longterm').rank}`}
+      title={`ขอเพิ่ม ${m2(ONCE)} ล้านบาท + ${m2(YEARLY)} ล้านบาท/ปี อันดับขึ้นจาก ${now.rank} เป็น ${target.rank}`}
+      subtitle={`ปีแรก กรณีตามเป้า · ระยะยาวถ้า BOD ลดถึงเกณฑ์ ขึ้นถึงอันดับ ${scenarios.cases.find((c) => c.key === 'longterm').rank}`}
       source={`คำนวณจากคะแนนจริงของ Bangkok Index 2025 ทั้ง 16 หัวข้อ × 50 เขต โดยสมมติให้เขตอื่นคงที่ · คะแนนรวม = ค่าเฉลี่ย 16 หัวข้อ · แกนกราฟซ้ายเริ่มที่ ${Y0}`}
     >
       <div className={s.grid}>

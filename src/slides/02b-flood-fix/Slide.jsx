@@ -45,13 +45,13 @@ const line = (label, qty, unit, price, short) => ({ label, qty, unit, price, sho
 const GROUPS = [
   {
     title: 'ปรับปรุงระบบท่อระบายน้ำ',
-    cause: 'ท่อเล็กและแนวท่อไม่ดี รับน้ำฝนไม่ทัน ระบายลงคลองช้า น้ำจึงขังบนถนน',
+    cause: 'ท่อเล็ก รับน้ำฝนไม่ทัน น้ำจึงขังบนถนน',
     kind: 'ครั้งเดียว',
     where: `${PIPE_SPOTS.length + OUTLET_SPOTS.length} จุดที่ท่วมซ้ำ (รวม ${cnt([...PIPE_SPOTS, ...OUTLET_SPOTS])} ครั้งในปี 68)`,
     steps: [
-      'ขยายขนาดท่อในจุดที่น้ำมากเกินความสามารถของท่อ',
-      'เพิ่มท่อในจุดที่น้ำสะสมเป็นประจำ',
-      'ปรับแนวท่อให้ระบายลงคลอง/ระบบหลักได้เร็วขึ้น',
+      'ขยายท่อในจุดที่น้ำล้น',
+      'เพิ่มท่อในจุดที่น้ำขังบ่อย',
+      'ปรับแนวท่อให้ลงคลองได้เร็วขึ้น',
     ],
     cost: [
       line('สำรวจและออกแบบ', PIPE_SPOTS.length, 'จุด', 800000, 'สำรวจออกแบบ'),
@@ -61,13 +61,13 @@ const GROUPS = [
   },
   {
     title: 'เพิ่มประสิทธิภาพการบำรุงรักษา',
-    cause: 'ท่อและช่องรับน้ำอุดตันจากตะกอน ขยะ และไขมัน น้ำไหลลงท่อไม่ได้',
+    cause: 'ท่อและช่องรับน้ำอุดตัน น้ำระบายไม่ทัน',
     kind: 'ต่อปี',
     where: `ทุกจุดที่ท่วมปี 68 (${nSpots} จุด)`,
     steps: [
-      'ลอกท่อและกำจัดตะกอนอย่างสม่ำเสมอ',
-      'เก็บขยะที่อุดตันช่องรับน้ำ',
-      'ตรวจระบบระบายน้ำก่อนเข้าฤดูฝน',
+      'ลอกท่อสม่ำเสมอ',
+      'เก็บขยะที่ช่องรับน้ำ',
+      'ตรวจท่อก่อนหน้าฝน',
     ],
     cost: [
       // ราคากลางลอกท่อ: สนน. ประมูลปี 2561 ราคากลาง 24,891,000 บาท ยาว 307,230 ม. ≈ 81 บาท/ม.
@@ -84,15 +84,13 @@ const GROUPS = [
 const mb = (b) => (b / 1e6).toFixed(2)
 const nowCase = scenarios.cases.find((c) => c.key === 'now')
 const targetCase = scenarios.cases.find((c) => c.key === 'target')
-const wfDelta = (k) => scenarios.waterfall.find((w) => w.label.startsWith(k)).delta // ผลต่อคะแนนรวม (ตรงกับ waterfall หน้าสรุป)
 
 export default function FloodFix() {
   const [open, setOpen] = useState(null) // แถวที่เปิดดูสูตรคำนวณ
   return (
     <SlideFrame
       kicker="03 · แก้น้ำท่วม"
-      title={`แก้น้ำท่วม 2 แนวทาง ตั้งเป้าลดจาก ${nowCase.floods} เหลือ ${targetCase.floods} ครั้งในปีแรก`}
-      subtitle={`ผลต่อคะแนนรวม +${fmt.dec(wfDelta('น้ำท่วม'))} คะแนน · ถ้าทำเรื่องนี้เรื่องเดียว อันดับรวม ${nowCase.rank} → ${scenarios.single.floodOnly.rank}`}
+      title={`แก้น้ำท่วม 2 ทาง ลดจาก ${nowCase.floods} เหลือ ${targetCase.floods} ครั้ง`}
       source="ราคาอ้างอิง: ราคากลางลอกท่อ สนน. ปี 2561 ≈ 81 บาท/ม. · ค่าแรงขั้นต่ำ กทม. 400 บาท/วัน (1 ก.ค. 2568) · ความยาวท่อซอย: สำนักงานเขตดินแดง · งานท่อและ * ยังไม่มีราคากลาง เป็นประมาณการของกลุ่ม · ครั้งที่ท่วม: Bangkok Index 2025 (2568)"
     >
       <div className={s.page}>
@@ -147,7 +145,7 @@ export default function FloodFix() {
 
         <ChartCard
           className={s.rainCard}
-          title={`${underCap} จาก ${rainDays.length} วันที่ท่วม ฝนยังไม่ถึงขีดจำกัดของระบบ ${CAP} มม.`}
+          title={`ท่วม ${rainDays.length} วัน มี ${underCap} วันที่ฝนไม่ถึง ${CAP} มม.`}
           legend={[
             { label: `ฝนไม่ถึง ${CAP} มม. แต่ท่วม (ระบบระบายน้ำมีปัญหา)`, color: color.rainUnder },
             { label: `ฝน ${CAP} มม. ขึ้นไป (เกินขีดจำกัด)`, color: color.rainOver },

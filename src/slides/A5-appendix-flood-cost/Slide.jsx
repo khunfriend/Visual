@@ -7,43 +7,43 @@ import s from './style.module.css'
 
 const GROUPS = [
   {
-    title: 'แก้น้ำท่วม (หน้า 3): ราคาต่อหน่วย', col: 1,
+    title: 'แก้น้ำท่วม (หน้า 3)', col: 1,
     items: [
-      { what: 'ราคาลอกท่อ (≈ 81 บาท/ม.)', src: 'ราคากลางประมูลลอกท่อของสำนักการระบายน้ำ กทม. ปี 2561', ref: 'MGR Online, 29 ม.ค. 2561' },
-      { what: 'ค่าแรงทีมเก็บขยะ (400 บาท/วัน)', src: 'ค่าจ้างขั้นต่ำ กรุงเทพฯ มีผล 1 ก.ค. 2568', ref: 'มติคณะกรรมการค่าจ้าง 17 มิ.ย. 2568' },
-      { what: 'สำรวจออกแบบ · ท่อใหม่ · ท่อลอดถนน · กล้องตรวจท่อ', src: 'ประมาณการของกลุ่ม', ref: 'ไม่พบราคากลางในแหล่งข้อมูลเปิด', est: true },
-    ],
-  },
-  {
-    title: 'แก้น้ำท่วม: ความยาวท่อและงานล้างท่อ', col: 1,
-    items: [
-      { what: 'ความยาวท่อระบายน้ำในซอยและความถี่ล้างท่อ (225 ซอย)', src: 'สำนักงานเขตดินแดง หน้า “ถนน ตรอก และซอย”', ref: 'webportal.bangkok.go.th/dindaeng/page/sub/624' },
-      { what: 'งบจ้างล้างท่อของเขต ปีงบ 2568 (186 ซอย)', src: 'ระบบติดตามโครงการ กรุงเทพมหานคร', ref: 'policy.bangkok.go.th (ต้องล็อกอิน ยังไม่ได้เปิดตรวจต้นฉบับ)', est: true },
+      { what: 'ลอกท่อ 81 บาท/ม.', src: 'ราคากลาง สนน. ปี 2561 (MGR Online)' },
+      { what: 'ทีมเก็บขยะ 400 บาท/วัน', src: 'ค่าจ้างขั้นต่ำ กทม. ปี 2568' },
+      { what: 'ท่อ Ø 1.00 ม. 20,000 บาท/ม.', src: 'เทียบโครงการเขตทุ่งครุ ท่อ 0.60 ม. ≈ 8,000 บาท/ม. × หน้าตัดใหญ่กว่า 2.8 เท่า', est: true },
+      { what: 'สำรวจออกแบบ · ท่อลอดถนน · กล้องตรวจท่อ', src: 'ประมาณการของกลุ่ม ยังไม่พบแหล่งอ้างอิง', est: true },
     ],
   },
   {
     title: 'แก้น้ำเสียในคลอง (หน้า 5)', col: 1,
     items: [
-      { what: 'อุปกรณ์บำบัดในคลองทุกรายการ', src: 'ตะแกรง ถังดักไขมัน คอกตะกอน เครื่องเติมอากาศ แพไบโอฟิล์ม EM: ประมาณการของกลุ่ม', ref: 'ไม่พบราคากลางในแหล่งข้อมูลเปิด', est: true },
-    ],
-  },
-  {
-    title: 'แก้น้ำท่วม: น้ำท่วมและฝน', col: 2,
-    items: [
-      { what: 'จุดท่วม จำนวนครั้ง และฝนรายวัน ปี 2568', src: 'Bangkok Index 2025 – Rocket Media Lab (น้ำท่วมขังบนถนนสายหลัก)', ref: 'rocketmedialab.co' },
-      { what: 'ขีดจำกัดระบบระบายน้ำ 60 มม.', src: 'ตัวเลขที่ กทม. ใช้อธิบายความสามารถของระบบระบายน้ำ', ref: 'ยังไม่ได้บันทึกแหล่งต้นฉบับใน ข้อมูลรวม', est: true },
+      { what: 'ถังดักไขมัน 4,950 บาท/ใบ', src: 'ราคาขาย HomePro ขนาด 50 ลิตร' },
+      { what: 'ค่าไฟ 4.22 บาท/หน่วย', src: 'ค่าไฟเฉลี่ย 3.94 บาท + VAT 7% (Thai PBS)' },
+      { what: 'แพไบโอฟิล์ม 1,500 บาท/ตร.ม.', src: 'อยู่ในช่วงต้นทุนจากงานวิจัย CSIRO (22–3,800 ดอลลาร์ออสเตรเลีย/ตร.ม.)', est: true },
+      { what: 'ตะแกรงดักขยะ · คอกดักตะกอน · เครื่องเติมอากาศ · EM', src: 'ประมาณการของกลุ่ม ยังไม่พบแหล่งอ้างอิง', est: true },
     ],
   },
   {
     title: 'สวนหย่อมบนที่ว่าง (หน้า 12)', col: 2,
     items: [
-      { what: 'สวนสาธารณะ 2,000 บาท/ตร.ม. (60% ของพื้นที่)', src: 'สวนวัดหัวลำโพงรุกขนิเวศน์: งบโครงการ ÷ พื้นที่สวน', ref: 'THE STANDARD (งบ) · Time Out Bangkok (พื้นที่)', est: true, links: [vacant.links.cost_wat_hua_lamphong_budget, vacant.links.cost_wat_hua_lamphong_area] },
-      { what: 'สวน 15 นาที ≈ 1,000 บาท/ตร.ม. (40% ของพื้นที่)', src: 'ค่าเฉลี่ยสวน 15 นาทีของ กทม.', ref: 'สยามรัฐ', est: true, links: [vacant.links.cost_15min_avg] },
-      { what: 'ค่าบำรุงรักษา 10% ของค่าก่อสร้าง/ปี', src: 'ค่าของกลุ่ม', ref: 'ไม่มีแหล่งอ้างอิง', est: true },
-      { what: 'ที่ว่าง 64 แปลง 125,056 ตร.ม.', src: 'ทะเบียนพื้นที่สีเขียว เขตดินแดง (บันทึกปี 2553–2563)', ref: 'greenparks.bangkok.go.th', links: [vacant.links.green_registry] },
-      { what: 'พื้นที่สีเขียว สวนที่เข้าถึงได้ ค่ากลาง 50 เขต', src: 'Bangkok Index 2025 – Rocket Media Lab (สวนสาธารณะ)', ref: 'rocketmedialab.co', links: [vacant.links.park_index] },
+      { what: 'สวนสาธารณะ 2,000 บาท/ตร.ม.', src: 'สวนวัดหัวลำโพง: งบ ÷ พื้นที่' },
+      { what: 'สวน 15 นาที ≈ 1,000 บาท/ตร.ม.', src: 'ค่าเฉลี่ยสวน 15 นาทีของ กทม.' },
+      { what: 'ค่าบำรุงรักษา 10% ของค่าก่อสร้าง/ปี', src: 'ค่าของกลุ่ม ยังไม่พบแหล่งอ้างอิง', est: true },
+      { what: 'ที่ว่าง 64 แปลง 125,056 ตร.ม.', src: 'ทะเบียนพื้นที่สีเขียว เขตดินแดง' },
     ],
   },
+]
+
+const LINKS = [
+  ['กทม.: โครงการท่อเขตทุ่งครุ', 'https://monitor.bangkok.go.th/mobile/myproject.php?pid=50490000-3544'],
+  ['HomePro: ถังดักไขมัน 50 ลิตร', 'https://www.homepro.co.th/p/242255'],
+  ['Thai PBS: ค่าไฟ 3.94 บาท', 'https://www.thaipbs.or.th/news/content/354915'],
+  ['CSIRO: ต้นทุนแพบำบัดลอยน้ำ', 'https://www.csiro.au/en/news/All/News/2025/October/Floating-wetlands-offer-cost-effective-nature-based-water-treatment'],
+  ['THE STANDARD: สวนวัดหัวลำโพง (งบ)', vacant.links.cost_wat_hua_lamphong_budget],
+  ['Time Out: สวนวัดหัวลำโพง (พื้นที่)', vacant.links.cost_wat_hua_lamphong_area],
+  ['สยามรัฐ: สวน 15 นาที', vacant.links.cost_15min_avg],
+  ['ทะเบียนพื้นที่สีเขียว เขตดินแดง', vacant.links.green_registry],
 ]
 
 export default function AppendixFloodCost() {
@@ -66,15 +66,20 @@ export default function AppendixFloodCost() {
                       {it.est && <em className={s.est}>ประมาณการ / ยังไม่ได้ตรวจ</em>}
                     </b>
                     <span>{it.src}</span>
-                    <small>
-                      {it.links ? it.links.map((u, i) => (
-                        <a key={u} href={u} target="_blank" rel="noreferrer">{i ? ' · ' : ''}{it.ref.split(' · ')[i] ?? it.ref}</a>
-                      )) : it.ref}
-                    </small>
                   </div>
                 ))}
               </section>
             ))}
+            {col === 2 && (
+              <section className={s.links}>
+                <h2 className={s.groupTitle}>ลิงก์ที่มา</h2>
+                <ul>
+                  {LINKS.map(([label, url]) => (
+                    <li key={url}><a href={url} target="_blank" rel="noreferrer">{label}</a></li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </div>
         ))}
       </div>
