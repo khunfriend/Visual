@@ -11,6 +11,7 @@ import RiskPoints from './slides/07-risk-points/Slide.jsx'
 import RiskFix from './slides/07b-risk-fix/Slide.jsx'
 import ParkGap from './slides/09-park-gap/Slide.jsx'
 import VacantLand from './slides/09b-vacant-land/Slide.jsx'
+import VacantZoom from './slides/09c-vacant-zoom/Slide.jsx'
 import Summary from './slides/10-summary/Slide.jsx'
 import AppendixFloodCost from './slides/A5-appendix-flood-cost/Slide.jsx'
 import AppendixData from './slides/A6-appendix-data/Slide.jsx'
@@ -27,6 +28,7 @@ const slides = [
   { id: '07b-risk-fix', Component: RiskFix },
   { id: '09-park-gap', Component: ParkGap },
   { id: '09b-vacant-land', Component: VacantLand },
+  { id: '09c-vacant-zoom', Component: VacantZoom }, // แบบใหม่ของหน้า 11 (ภาพรวม + ขยายที่ว่าง) ให้กลุ่มเลือก
   { id: '10-summary', Component: Summary },
   { id: 'A5-appendix-flood-cost', Component: AppendixFloodCost, appendix: true },
   { id: 'A6-appendix-data', Component: AppendixData, appendix: true },

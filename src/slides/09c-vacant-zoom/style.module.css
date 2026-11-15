@@ -1,0 +1,349 @@
+/* style เฉพาะสไลด์นี้ (CSS Modules ไม่รั่วไปหน้าอื่น) */
+.grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 48px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  padding: 24px 36px;
+  min-height: 0;
+  border-radius: 12px;
+  background: var(--c-surfaceAlt);
+}
+
+.grid i {
+  display: inline-block;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+/* ---- กราฟ 1: สัดส่วนการใช้พื้นที่ทั้งเขต (แท่งเดียว) ---- */
+.landChart {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding-bottom: 40px;
+}
+
+.groupLabels {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--fs-body);
+  color: var(--c-text);
+}
+
+.groupLabels small {
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+}
+
+.unusedLabel {
+  font-weight: 700;
+}
+
+.landBar {
+  display: flex;
+  height: 140px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.landBar .seg {
+  position: relative;
+  min-width: 4px;
+}
+
+.landBar .seg + .seg {
+  box-shadow: inset 2px 0 0 var(--c-surface);
+}
+
+.landBar:hover .seg:not(.segOn) {
+  opacity: 0.5;
+}
+
+.inLabel {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: var(--fs-body);
+  color: var(--c-text);
+}
+
+.scale {
+  display: flex;
+  justify-content: flex-start;
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+}
+
+.landLegend {
+  list-style: none;
+  white-space: nowrap;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 48px;
+}
+
+.landLegend li {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  font-size: var(--fs-label);
+  color: var(--c-text);
+  cursor: default;
+}
+
+.landLegend b {
+  font-weight: 500;
+  color: var(--c-textMuted);
+}
+
+.legendOn span {
+  font-weight: 700;
+}
+
+/* ---- ตาราง 3 แห่งที่จะทำ ---- */
+.firstTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-label);
+  color: var(--c-text);
+}
+
+.firstTable caption {
+  text-align: left;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+
+.firstTable caption small {
+  margin-left: 16px;
+  font-size: var(--fs-source);
+  font-weight: 400;
+  color: var(--c-textMuted);
+}
+
+.firstTable th {
+  font-size: var(--fs-source);
+  font-weight: 500;
+  color: var(--c-textMuted);
+  text-align: right;
+  padding: 0 0 6px 24px;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.firstTable td {
+  padding: 8px 0 8px 24px;
+  text-align: right;
+  border-bottom: 1px solid var(--c-grid);
+}
+
+.firstTable th:first-child,
+.firstTable td:first-child {
+  text-align: left;
+  padding-left: 0;
+}
+
+.firstTable tbody td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.firstTable tfoot td {
+  border-top: 3px solid var(--c-text);
+  border-bottom: none;
+  font-weight: 700;
+}
+
+.no {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-surface);
+}
+
+/* ---- ชี้ที่สีในแท่งแล้วบอก % ---- */
+.seg {
+  cursor: pointer;
+  transition: opacity 120ms;
+}
+
+.bar:hover .seg:not(.segOn) {
+  opacity: 0.45;
+}
+
+.tip {
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -70%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: max-content;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.14);
+  font-size: var(--fs-source);
+  color: var(--c-textMuted);
+  pointer-events: none;
+}
+
+.tip b {
+  font-size: var(--fs-body);
+  color: var(--c-text);
+}
+
+.pct {
+  font-size: var(--fs-source);
+  font-weight: 400;
+  color: var(--c-textMuted);
+}
+
+
+/* รอยหยักบนแท่งเทา = ถูกตัดให้สั้นลง */
+.breakMark {
+  position: absolute;
+  top: 0;
+  left: 72%;
+  width: 26px;
+  height: 100%;
+  fill: none;
+}
+
+.breakMark polyline:first-child {
+  stroke: var(--c-surface);
+  stroke-width: 5;
+}
+
+.breakMark polyline:last-child {
+  stroke: var(--c-surface);
+  stroke-width: 5;
+}
+
+/* กล่องข้อเสนอ ดึงที่ว่าง 50% */
+.proposal {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+
+/* ปุ่มดูสูตรคำนวณ (กล่องข้อเสนอ) */
+.formulaBtn {
+  margin-top: 8px;
+  padding: 4px 12px;
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  background: var(--c-surface);
+  color: var(--c-textMuted);
+  font: inherit;
+  font-size: var(--fs-source);
+  cursor: pointer;
+}
+
+.formulaBtn:hover,
+.formulaBtn[aria-expanded='true'] {
+  border-color: var(--c-textMuted);
+  color: var(--c-text);
+}
+
+.formula {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--c-surface);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 4px 14px;
+  font-size: var(--fs-source);
+  color: var(--c-text);
+}
+
+.formula b {
+  text-align: right;
+}
+
+.fTotal {
+  padding-top: 6px;
+  border-top: 1px solid var(--c-border);
+  font-weight: 700;
+}
+
+@media print {
+  .formulaBtn,
+  .formula {
+    display: none;
+  }
+}
+
+/* ---- กราฟภาพรวม + ขยายส่วนที่ว่าง (16 พ.ย.) · ข้อความใน SVG ขนาดเป็นหน่วย viewBox (กว้าง 1000) ---- */
+.zoom {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+.zoom rect,
+.zoom g { transition: opacity 200ms ease; }
+.zDim { opacity: 0.35; }
+.zHead { font-size: 22px; fill: var(--c-textMuted); }
+.zHeadStrong { font-size: 22px; font-weight: 700; fill: var(--c-landUse-vacant, var(--c-heading)); }
+.zIn { font-size: 22px; font-weight: 600; fill: var(--c-text); }
+.zSmall { font-size: 18px; fill: var(--c-textMuted); }
+.zFan { fill: var(--c-heading); fill-opacity: 0.05; }
+.zFanEdge { stroke: var(--c-textFaint); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.zRow { font-size: 22px; fill: var(--c-text); }
+.zRowStrong { font-size: 22px; font-weight: 700; fill: var(--c-text); }
+.zVal { font-size: 22px; font-weight: 600; fill: var(--c-text); }
+.zValStrong { font-size: 24px; font-weight: 700; fill: var(--c-good); }
+.zTrack { fill: var(--c-grid); }
+.zGap { fill: var(--c-surface); stroke: var(--c-reference); stroke-width: 2; stroke-dasharray: 6 4; }
+.zGuide { stroke: var(--c-reference); stroke-width: 1.5; stroke-dasharray: 3 4; }
+.zNote { font-size: 20px; font-weight: 600; fill: var(--c-good); }
+.zCut { fill: none; stroke: var(--c-surface); stroke-width: 4; }
+/* ชี้ที่แท่งภาพรวม: ส่วนนั้นขยายสูงขึ้น + กล่องข้อมูล */
+.zSeg {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 200ms ease, opacity 200ms ease;
+  cursor: pointer;
+}
+.zSegOn {
+  transform: scale(1.08, 1.45);
+  stroke: var(--c-surface);
+  stroke-width: 2;
+}
+.zTip rect { fill: var(--c-surface); stroke: var(--c-border); stroke-width: 1.5; filter: drop-shadow(0 4px 10px color-mix(in srgb, var(--c-text) 12%, transparent)); }
+.zTipName { font-size: 22px; font-weight: 700; fill: var(--c-text); }
+.zTipVal { font-size: 22px; fill: var(--c-textMuted); }
+.zTipVal .num { font-weight: 700; fill: var(--c-text); }
+.zTipPct { font-weight: 700; fill: var(--c-text); }
