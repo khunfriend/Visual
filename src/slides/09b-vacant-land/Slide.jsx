@@ -73,7 +73,7 @@ export default function VacantLand() {
   const [showFormula, setShowFormula] = useState(false)
   return (
     <SlideFrame
-      kicker="12 · สวนหย่อม (ที่ว่าง)"
+      kicker="11 · สวนหย่อม (ที่ว่าง)"
       title={`ที่ว่างมีพอ: ใช้ครึ่งเดียว สวนต่อคนขึ้นเป็น ${fmt.dec(half.perCapitaAfter)} ตร.ม.`}
       source={
         <>

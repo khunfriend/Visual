@@ -274,13 +274,6 @@
   color: var(--c-text);
 }
 
-.extraTitle small {
-  margin-left: 8px;
-  font-size: var(--fs-source);
-  font-weight: 400;
-  color: var(--c-textMuted);
-}
-
 .extraList {
   list-style: none;
   margin: 0;

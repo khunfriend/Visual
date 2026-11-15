@@ -78,7 +78,7 @@ function TeacherPictogram({ added, setAdded }) {
 
 // เพิ่มประสิทธิภาพการสอน: แก้ปัญหาจริงโดยไม่ต้องสร้างโรงเรียน (ไม่นับในดัชนี · ยังไม่ประเมินงบ)
 const EXTRA = [
-  { title: 'ผู้ช่วยครูและธุรการโรงเรียน', why: 'ให้ครูที่มีอยู่ได้สอนเต็มเวลา หาคนง่ายกว่าครู' },
+  { title: 'ผู้ช่วยครูและธุรการโรงเรียน', why: 'แบ่งเบางานในห้องเรียนและงานเอกสาร ให้ครูมีเวลาสอนมากขึ้น' },
   { title: 'ศูนย์พัฒนาเด็กเล็กในชุมชน', why: 'ใช้อาคารในชุมชน รับเด็กเล็กใกล้บ้าน' },
 ]
 
@@ -101,7 +101,7 @@ export default function Schools() {
         <div className={s.side}>
           <h2 className={s.blockTitle}>ต้องใช้งบเท่าไร</h2>
           <Stat label={`เงินเดือนครู ${ed.teachersNeeded} คน`} value={fmt.mb(salary.annualTotal, 1)} unit="ล้านบาท/ปี"
-            sub={`${ed.teachersNeeded} × ${fmt.int(salary.monthly)} บาท × 12 เดือน (ยังไม่รวมสวัสดิการ)`} />
+            sub={`${ed.teachersNeeded} × ${fmt.int(salary.monthly)} บาท × 12 เดือน`} />
           <p className={s.note}>
             {added ? (
               <>ครู {fmt.int(dd.teachers)} → {fmt.int(dd.teachers + ed.teachersNeeded)} คน นักเรียนต่อครูลดจาก {fmt.dec(dd.studentsPerTeacher, 1)} เหลือ{' '}
@@ -112,7 +112,7 @@ export default function Schools() {
           </p>
           {/* เพิ่มประสิทธิภาพการสอน: ไม่ทำให้คะแนนดัชนีขยับ แต่แก้ปัญหาได้ทันที · ยังไม่ได้ประเมินงบ (ดู ข้อมูลรวม_ตรวจแล้ว.md) */}
           <div className={s.extra}>
-            <h3 className={s.extraTitle}>เพิ่มประสิทธิภาพการสอน <small>ไม่นับในคะแนนดัชนี · ยังไม่ได้ประเมินงบ</small></h3>
+            <h3 className={s.extraTitle}>เพิ่มประสิทธิภาพการสอน</h3>
             <ul className={s.extraList}>
               {EXTRA.map((x) => (
                 <li key={x.title}>
